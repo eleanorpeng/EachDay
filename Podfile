@@ -10,5 +10,6 @@ target 'EachDay' do
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Storage'
   pod 'SwiftLint'
+  pod 'FanMenu', '~> 0.7'
 
 end
