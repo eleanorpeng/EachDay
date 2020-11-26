@@ -24,6 +24,8 @@
 		2009DEAD256EA82400545439 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DEAC256EA82300545439 /* UIColorExtension.swift */; };
 		2009DEB1256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DEB0256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift */; };
 		2098B159256F8DDF00AAC1CB /* WriteJournal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2098B158256F8DDF00AAC1CB /* WriteJournal.storyboard */; };
+		2098B15F256F944800AAC1CB /* WriteJournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2098B15E256F944800AAC1CB /* WriteJournalViewController.swift */; };
+		2098B162256F9A9800AAC1CB /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2098B161256F9A9800AAC1CB /* Helper.swift */; };
 		20F6E283256F822D0036F38C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F6E282256F822D0036F38C /* UIImageExtension.swift */; };
 		E884CDF5DDDA7E5EEA9A626B /* Pods_EachDay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC369F7277BF410ED23CBE70 /* Pods_EachDay.framework */; };
 /* End PBXBuildFile section */
@@ -48,6 +50,8 @@
 		2009DEAC256EA82300545439 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		2009DEB0256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageGreetingsTableViewCell.swift; sourceTree = "<group>"; };
 		2098B158256F8DDF00AAC1CB /* WriteJournal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteJournal.storyboard; sourceTree = "<group>"; };
+		2098B15E256F944800AAC1CB /* WriteJournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteJournalViewController.swift; sourceTree = "<group>"; };
+		2098B161256F9A9800AAC1CB /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		20F6E282256F822D0036F38C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		2F80B47D19AAB31240901A69 /* Pods-EachDay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EachDay.release.xcconfig"; path = "Target Support Files/Pods-EachDay/Pods-EachDay.release.xcconfig"; sourceTree = "<group>"; };
 		CC369F7277BF410ED23CBE70 /* Pods_EachDay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EachDay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				2009DE89256E4CBB00545439 /* MainPageViewController.swift */,
+				2098B15E256F944800AAC1CB /* WriteJournalViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 			children = (
 				2009DEAC256EA82300545439 /* UIColorExtension.swift */,
 				20F6E282256F822D0036F38C /* UIImageExtension.swift */,
+				2098B161256F9A9800AAC1CB /* Helper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -320,6 +326,7 @@
 			files = (
 				2009DEB1256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift in Sources */,
 				2009DE8A256E4CBB00545439 /* MainPageViewController.swift in Sources */,
+				2098B162256F9A9800AAC1CB /* Helper.swift in Sources */,
 				2009DE8F256E557700545439 /* CardView.swift in Sources */,
 				2009DE87256E4B8600545439 /* JournalViewModel.swift in Sources */,
 				2009DE71256E310500545439 /* User.swift in Sources */,
@@ -328,6 +335,7 @@
 				2009DE33256E270D00545439 /* AppDelegate.swift in Sources */,
 				2009DE92256E5A8400545439 /* JournalTableViewCell.swift in Sources */,
 				20F6E283256F822D0036F38C /* UIImageExtension.swift in Sources */,
+				2098B15F256F944800AAC1CB /* WriteJournalViewController.swift in Sources */,
 				2009DEAD256EA82400545439 /* UIColorExtension.swift in Sources */,
 				2009DE79256E41B500545439 /* UserViewModel.swift in Sources */,
 				2009DE35256E270D00545439 /* SceneDelegate.swift in Sources */,

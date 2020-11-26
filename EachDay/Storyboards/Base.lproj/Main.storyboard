@@ -174,18 +174,27 @@
                             <constraint firstItem="oc0-Ti-ddx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mBc-p0-XR7"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="calendar" catalog="system" id="9pK-Bx-z1g">
-                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="pNW-Ni-4UO"/>
                     <connections>
                         <outlet property="fanMenu" destination="Hhk-vH-ri7" id="EvG-7J-laW"/>
                         <outlet property="maskView" destination="LVj-8T-qJg" id="715-UC-amM"/>
                         <outlet property="tableView" destination="oc0-Ti-ddx" id="Iyk-Ib-1BC"/>
+                        <segue destination="Bbh-YO-iHe" kind="show" identifier="ShowWriteJournalSegue" id="HKC-Dw-lQa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="104.46428571428571"/>
+            <point key="canvasLocation" x="1949" y="104"/>
+        </scene>
+        <!--WriteJournal-->
+        <scene sceneID="01Y-0t-kqc">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="WriteJournalStoryboard" storyboardName="WriteJournal" id="Bbh-YO-iHe" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="bdB-Pp-ABr"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ERX-B7-IJV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2637.68115942029" y="193.52678571428569"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="cL2-FD-lQI">
@@ -203,7 +212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0nU-wK-DpO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2372" y="104"/>
+            <point key="canvasLocation" x="3281.1594202898555" y="103.79464285714285"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="S0k-Lp-p4U">
@@ -218,13 +227,34 @@
                         <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="yts-3b-lFQ"/>
+                        <segue destination="WvB-pf-EXR" kind="relationship" relationship="viewControllers" id="yts-3b-lFQ"/>
                         <segue destination="wqS-iT-YMm" kind="relationship" relationship="viewControllers" id="WKp-cZ-fD6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V6O-ud-YNr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="104.46428571428571"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yBH-94-v81">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WvB-pf-EXR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="calendar" catalog="system" id="9pK-Bx-z1g">
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TX7-UG-MZo">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="OFW-uF-cEa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="muM-mY-mJS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="104.46428571428571"/>
         </scene>
     </scenes>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -31,7 +31,7 @@ class MainPageViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = .clear
-        
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     func createButton() {
@@ -71,6 +71,9 @@ class MainPageViewController: UIViewController {
         fanMenu.interval = (Double.pi, 2 * Double.pi)
         
         fanMenu.onItemDidClick = { button in
+            if button.id == "write" {
+                self.performSegue(withIdentifier: "ShowWriteJournalSegue", sender: self)
+            }
             print("ItemDidClick: \(button.id)")
         }
 
