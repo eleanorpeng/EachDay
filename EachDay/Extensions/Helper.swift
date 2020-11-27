@@ -33,7 +33,7 @@ class Helper {
         return buttonBackground
     }
     
-    func createCircularButtonBackground(view: UIView) -> UIView {
+    func createBackButtonBackground(view: UIView) -> UIView {
         let buttonBackground = UIView()
         buttonBackground.translatesAutoresizingMaskIntoConstraints = false
         buttonBackground.backgroundColor = UIColor(hexString: "F1F1F1")
@@ -49,7 +49,7 @@ class Helper {
         return buttonBackground
     }
     
-    func createButton(background: UIView, image: UIImage) -> UIButton {
+    func createButton(background: UIView) -> UIButton {
         let button = UIButton()
         background.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -59,8 +59,9 @@ class Helper {
             button.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -10),
             button.bottomAnchor.constraint(equalTo: background.bottomAnchor, constant: -10)
         ])
-        button.setImage(image, for: .normal)
+        button.setImage(UIImage(named: "back"), for: .normal)
         
         return button
     }
+    
 }

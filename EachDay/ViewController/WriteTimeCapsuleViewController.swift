@@ -15,24 +15,25 @@ class WriteTimeCapsuleViewController: UIViewController {
     @IBOutlet weak var contentTextView: UITextView!
     let helper = Helper()
     @IBAction func sendButtonClicked(_ sender: Any) {
+        navigationController?.popToRootViewController(animated: true)
         
     }
     @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        initialSetUp()
     }
     
     func initialSetUp() {
-        let buttonBackground = helper.createCircularButtonBackground(view: view)
-        let button = helper.createButton(background: buttonBackground, image: UIImage(named: "back")!)
+        let buttonBackground = helper.createBackButtonBackground(view: view)
+        let button = helper.createButton(background: buttonBackground)
         NSLayoutConstraint.activate([
             buttonBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             buttonBackground.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20)
         ])
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         contentTextView.delegate = self
-        contentTextView.text = "Record detail of your day"
+        contentTextView.text = "What would you like to send?"
         contentTextView.textColor = .lightGray
     }
     

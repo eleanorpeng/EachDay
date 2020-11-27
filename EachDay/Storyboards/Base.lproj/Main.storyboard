@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -180,7 +181,7 @@
                         <outlet property="maskView" destination="LVj-8T-qJg" id="715-UC-amM"/>
                         <outlet property="tableView" destination="oc0-Ti-ddx" id="Iyk-Ib-1BC"/>
                         <segue destination="Bbh-YO-iHe" kind="show" identifier="ShowWriteJournalSegue" id="HKC-Dw-lQa"/>
-                        <segue destination="05j-2W-23z" kind="show" id="1kJ-Oo-fN4"/>
+                        <segue destination="05j-2W-23z" kind="show" identifier="ShowTimeCapsuleSegue" id="1kJ-Oo-fN4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -207,15 +208,86 @@
             </objects>
             <point key="canvasLocation" x="2638" y="259"/>
         </scene>
-        <!--View Controller-->
+        <!--Time Tracking Main Page View Controller-->
         <scene sceneID="cL2-FD-lQI">
             <objects>
-                <viewController id="wqS-iT-YMm" sceneMemberID="viewController">
+                <viewController id="wqS-iT-YMm" customClass="TimeTrackingMainPageViewController" customModule="EachDay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OUm-mH-LNs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YXk-0r-ILH">
+                                <rect key="frame" x="0.0" y="44" width="414" height="200"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="9eW-1P-wm1"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Zui-lL-NSn">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="OGd-6r-Jit">
+                                        <rect key="frame" x="0.0" y="0.0" width="82" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="9nN-Fm-dGP">
+                                            <rect key="frame" x="0.0" y="0.0" width="82" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SS0-FP-87f">
+                                                    <rect key="frame" x="16" y="10" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="Xqx-Yl-ch1"/>
+                                                        <constraint firstAttribute="width" constant="50" id="d4S-LM-sam"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzX-or-3HO">
+                                                    <rect key="frame" x="20" y="70" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="SS0-FP-87f" secondAttribute="trailing" constant="16" id="Ex2-j7-gda"/>
+                                                <constraint firstAttribute="trailing" secondItem="wzX-or-3HO" secondAttribute="trailing" constant="20" symbolic="YES" id="fvX-kI-r8Q"/>
+                                                <constraint firstItem="SS0-FP-87f" firstAttribute="top" secondItem="9nN-Fm-dGP" secondAttribute="top" constant="10" id="gQR-lf-nk4"/>
+                                                <constraint firstItem="SS0-FP-87f" firstAttribute="leading" secondItem="9nN-Fm-dGP" secondAttribute="leading" constant="16" id="jOl-Hp-aps"/>
+                                                <constraint firstItem="wzX-or-3HO" firstAttribute="leading" secondItem="9nN-Fm-dGP" secondAttribute="leading" constant="20" symbolic="YES" id="w0d-w8-26A"/>
+                                                <constraint firstItem="wzX-or-3HO" firstAttribute="top" secondItem="SS0-FP-87f" secondAttribute="bottom" constant="10" id="wCb-Lj-4RT"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7IN-UI-Mtf">
+                                <rect key="frame" x="0.0" y="244" width="414" height="569"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="i3O-fk-BV7">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i3O-fk-BV7" id="Ily-K8-laO">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="3A6-Hb-lvu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YXk-0r-ILH" firstAttribute="top" secondItem="3A6-Hb-lvu" secondAttribute="top" id="2P4-ey-PfU"/>
+                            <constraint firstItem="YXk-0r-ILH" firstAttribute="leading" secondItem="3A6-Hb-lvu" secondAttribute="leading" id="8Nr-HY-wad"/>
+                            <constraint firstItem="3A6-Hb-lvu" firstAttribute="trailing" secondItem="YXk-0r-ILH" secondAttribute="trailing" id="AYm-88-grp"/>
+                            <constraint firstItem="7IN-UI-Mtf" firstAttribute="top" secondItem="YXk-0r-ILH" secondAttribute="bottom" id="ApI-xS-Tn0"/>
+                            <constraint firstItem="3A6-Hb-lvu" firstAttribute="trailing" secondItem="7IN-UI-Mtf" secondAttribute="trailing" id="DJE-tH-hbc"/>
+                            <constraint firstItem="7IN-UI-Mtf" firstAttribute="leading" secondItem="3A6-Hb-lvu" secondAttribute="leading" id="G8z-1R-7PR"/>
+                            <constraint firstItem="3A6-Hb-lvu" firstAttribute="bottom" secondItem="7IN-UI-Mtf" secondAttribute="bottom" id="wgd-7a-C7t"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="timer" catalog="system" id="2zh-MY-aZs">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

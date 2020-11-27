@@ -24,6 +24,8 @@
 		2009DEAD256EA82400545439 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DEAC256EA82300545439 /* UIColorExtension.swift */; };
 		2009DEB1256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DEB0256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift */; };
 		203142942570D048006410A8 /* WriteTimeCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203142932570D048006410A8 /* WriteTimeCapsuleViewController.swift */; };
+		203142972570E441006410A8 /* TimeTrackingButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203142962570E441006410A8 /* TimeTrackingButtons.swift */; };
+		2031429A2570E518006410A8 /* TimeTrackingMainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203142992570E518006410A8 /* TimeTrackingMainPageViewController.swift */; };
 		2098B159256F8DDF00AAC1CB /* WriteJournal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2098B158256F8DDF00AAC1CB /* WriteJournal.storyboard */; };
 		2098B15F256F944800AAC1CB /* WriteJournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2098B15E256F944800AAC1CB /* WriteJournalViewController.swift */; };
 		2098B162256F9A9800AAC1CB /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2098B161256F9A9800AAC1CB /* Helper.swift */; };
@@ -53,6 +55,8 @@
 		2009DEAC256EA82300545439 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		2009DEB0256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageGreetingsTableViewCell.swift; sourceTree = "<group>"; };
 		203142932570D048006410A8 /* WriteTimeCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteTimeCapsuleViewController.swift; sourceTree = "<group>"; };
+		203142962570E441006410A8 /* TimeTrackingButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackingButtons.swift; sourceTree = "<group>"; };
+		203142992570E518006410A8 /* TimeTrackingMainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackingMainPageViewController.swift; sourceTree = "<group>"; };
 		2098B158256F8DDF00AAC1CB /* WriteJournal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteJournal.storyboard; sourceTree = "<group>"; };
 		2098B15E256F944800AAC1CB /* WriteJournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteJournalViewController.swift; sourceTree = "<group>"; };
 		2098B161256F9A9800AAC1CB /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				2009DE70256E310500545439 /* User.swift */,
+				203142962570E441006410A8 /* TimeTrackingButtons.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -138,6 +143,7 @@
 				2098B15E256F944800AAC1CB /* WriteJournalViewController.swift */,
 				2098B167256FB39F00AAC1CB /* TimeCapsuleViewController.swift */,
 				203142932570D048006410A8 /* WriteTimeCapsuleViewController.swift */,
+				203142992570E518006410A8 /* TimeTrackingMainPageViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -334,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2031429A2570E518006410A8 /* TimeTrackingMainPageViewController.swift in Sources */,
 				2009DEB1256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift in Sources */,
 				2009DE8A256E4CBB00545439 /* MainPageViewController.swift in Sources */,
 				2098B162256F9A9800AAC1CB /* Helper.swift in Sources */,
@@ -347,6 +354,7 @@
 				2009DE33256E270D00545439 /* AppDelegate.swift in Sources */,
 				2009DE92256E5A8400545439 /* JournalTableViewCell.swift in Sources */,
 				20F6E283256F822D0036F38C /* UIImageExtension.swift in Sources */,
+				203142972570E441006410A8 /* TimeTrackingButtons.swift in Sources */,
 				2098B15F256F944800AAC1CB /* WriteJournalViewController.swift in Sources */,
 				2009DEAD256EA82400545439 /* UIColorExtension.swift in Sources */,
 				2009DE79256E41B500545439 /* UserViewModel.swift in Sources */,

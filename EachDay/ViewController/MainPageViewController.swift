@@ -16,7 +16,6 @@ class MainPageViewController: UIViewController {
     let dates = ["24", "25"]
     let menuView = UIView()
     let menuItems = [
-        "journal",
         "write",
         "timeCapsule"
     ]
@@ -73,6 +72,8 @@ class MainPageViewController: UIViewController {
         fanMenu.onItemDidClick = { button in
             if button.id == "write" {
                 self.performSegue(withIdentifier: "ShowWriteJournalSegue", sender: self)
+            } else if button.id == "timeCapsule" {
+                self.performSegue(withIdentifier: "ShowTimeCapsuleSegue", sender: self)
             }
             print("ItemDidClick: \(button.id)")
         }

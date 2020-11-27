@@ -39,8 +39,8 @@ class WriteJournalViewController: UIViewController {
     }
     
     func initialSetUp() {
-        let buttonBackground = helper.createCircularButtonBackground(view: view)
-        let button = helper.createButton(background: buttonBackground, image: UIImage(named: "back")!)
+        let buttonBackground = helper.createBackButtonBackground(view: view)
+        let button = helper.createButton(background: buttonBackground)
         NSLayoutConstraint.activate([
             buttonBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             buttonBackground.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20)
