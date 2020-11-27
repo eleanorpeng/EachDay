@@ -9,11 +9,29 @@ import UIKit
 
 class WriteJournalViewController: UIViewController {
 
+    @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var titleLabel: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
+    @IBAction func tagButtonClicked(_ sender: Any) {
+        pickerView.isHidden = false
+        toolBar.isHidden = false
+    }
+    @IBOutlet weak var pickerView: UIPickerView!
+    @IBAction func doneButtonClicked(_ sender: Any) {
+        pickerView.isHidden = true
+        toolBar.isHidden = true
+    }
+    @IBAction func cancelButtonClicked(_ sender: Any) {
+        pickerView.isHidden = true
+        toolBar.isHidden = true
+    }
     let helper = Helper()
+    let pickerData = ["Traveling", "Daily"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+    
         initialSetUp()
     }
     @IBAction func saveButtonClicked(_ sender: Any) {
@@ -27,13 +45,12 @@ class WriteJournalViewController: UIViewController {
             buttonBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             buttonBackground.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20)
         ])
-        
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         contentTextView.delegate = self
         contentTextView.text = "Record detail of your day"
         contentTextView.textColor = .lightGray
     }
-    
+
     @objc func back() {
         navigationController?.popViewController(animated: true)
     }
@@ -54,4 +71,21 @@ extension WriteJournalViewController: UITextViewDelegate {
             contentTextView.textColor = UIColor.black
         }
     }
+}
+
+extension WriteJournalViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//
+//    }
 }

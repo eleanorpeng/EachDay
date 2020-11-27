@@ -180,6 +180,7 @@
                         <outlet property="maskView" destination="LVj-8T-qJg" id="715-UC-amM"/>
                         <outlet property="tableView" destination="oc0-Ti-ddx" id="Iyk-Ib-1BC"/>
                         <segue destination="Bbh-YO-iHe" kind="show" identifier="ShowWriteJournalSegue" id="HKC-Dw-lQa"/>
+                        <segue destination="05j-2W-23z" kind="show" id="1kJ-Oo-fN4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -195,6 +196,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ERX-B7-IJV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2637.68115942029" y="193.52678571428569"/>
+        </scene>
+        <!--TimeCapsule-->
+        <scene sceneID="5Xc-2W-0SB">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="TimeCapsuleStoryboard" storyboardName="TimeCapsule" id="05j-2W-23z" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="DXD-Vz-vlH"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="32e-ij-HvO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2638" y="259"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="cL2-FD-lQI">

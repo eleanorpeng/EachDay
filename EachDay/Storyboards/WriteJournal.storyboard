@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Record detail of your day" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sDm-va-qja">
-                                <rect key="frame" x="15" y="353.5" width="379" height="502.5"/>
+                                <rect key="frame" x="15" y="353.5" width="384" height="502.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -54,30 +54,70 @@
                                 </constraints>
                                 <state key="normal" title="Button" image="upload"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgC-Ey-acQ" userLabel="TagButton">
+                                <rect key="frame" x="314" y="64" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Wnp-ST-akX"/>
+                                    <constraint firstAttribute="width" constant="30" id="ggI-Bm-T31"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="tag"/>
+                                <connections>
+                                    <action selector="tagButtonClicked:" destination="bHZ-qQ-jfG" eventType="touchUpInside" id="JxH-a1-oBz"/>
+                                </connections>
+                            </button>
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dep-P4-cQK">
+                                <rect key="frame" x="0.0" y="680" width="414" height="216"/>
+                            </pickerView>
+                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W7U-iP-P6v">
+                                <rect key="frame" x="0.0" y="636" width="414" height="44"/>
+                                <items>
+                                    <barButtonItem title="Cancel" id="FYF-oc-V1Q">
+                                        <connections>
+                                            <action selector="cancelButtonClicked:" destination="bHZ-qQ-jfG" id="wAZ-Ba-WVb"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="9z8-na-fVh"/>
+                                    <barButtonItem title="Done" id="BJ6-N1-zE5">
+                                        <connections>
+                                            <action selector="doneButtonClicked:" destination="bHZ-qQ-jfG" id="t07-L0-z4j"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Fqg-WQ-mRi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="sDm-va-qja" secondAttribute="trailing" constant="20" id="GH0-Ry-4SG"/>
+                            <constraint firstItem="BqU-kx-kg7" firstAttribute="leading" secondItem="pgC-Ey-acQ" secondAttribute="trailing" constant="20" id="104-qR-ix8"/>
+                            <constraint firstItem="W7U-iP-P6v" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" id="5fb-eI-5IA"/>
+                            <constraint firstItem="pgC-Ey-acQ" firstAttribute="centerY" secondItem="BqU-kx-kg7" secondAttribute="centerY" id="6fD-FB-XIR"/>
+                            <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="sDm-va-qja" secondAttribute="trailing" constant="15" id="GH0-Ry-4SG"/>
                             <constraint firstItem="ggY-Nt-tnr" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" constant="20" id="HUC-Rv-D1C"/>
                             <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="BqU-kx-kg7" secondAttribute="trailing" constant="20" id="OuE-C6-q5j"/>
                             <constraint firstItem="9To-gD-iHL" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" constant="20" id="UVg-Cv-6ZB"/>
                             <constraint firstItem="d5v-BC-397" firstAttribute="centerY" secondItem="ggY-Nt-tnr" secondAttribute="centerY" id="WZJ-nW-NAe"/>
                             <constraint firstItem="9To-gD-iHL" firstAttribute="top" secondItem="ggY-Nt-tnr" secondAttribute="bottom" constant="20" id="WpZ-SA-G2d"/>
+                            <constraint firstItem="Dep-P4-cQK" firstAttribute="top" secondItem="W7U-iP-P6v" secondAttribute="bottom" id="YSB-vX-rnK"/>
                             <constraint firstItem="d5v-BC-397" firstAttribute="centerX" secondItem="ggY-Nt-tnr" secondAttribute="centerX" id="ZEf-Cj-QAb"/>
                             <constraint firstItem="ggY-Nt-tnr" firstAttribute="top" secondItem="BqU-kx-kg7" secondAttribute="bottom" constant="40" id="ZgY-oY-nRu"/>
+                            <constraint firstAttribute="bottom" secondItem="Dep-P4-cQK" secondAttribute="bottom" id="aQa-ma-oCl"/>
+                            <constraint firstItem="Dep-P4-cQK" firstAttribute="trailing" secondItem="Fqg-WQ-mRi" secondAttribute="trailing" id="e3Y-8p-Ox7"/>
                             <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="9To-gD-iHL" secondAttribute="trailing" constant="20" id="eHl-gE-yYy"/>
                             <constraint firstItem="sDm-va-qja" firstAttribute="top" secondItem="9To-gD-iHL" secondAttribute="bottom" constant="15" id="gf7-f7-QnZ"/>
                             <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="ggY-Nt-tnr" secondAttribute="trailing" constant="20" id="hMA-Vy-8WH"/>
                             <constraint firstItem="sDm-va-qja" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" constant="15" id="hRc-GC-NPm"/>
+                            <constraint firstItem="W7U-iP-P6v" firstAttribute="trailing" secondItem="Fqg-WQ-mRi" secondAttribute="trailing" id="nke-Xj-ZNR"/>
                             <constraint firstItem="BqU-kx-kg7" firstAttribute="top" secondItem="Fqg-WQ-mRi" secondAttribute="top" constant="20" id="v2D-6Q-isJ"/>
+                            <constraint firstItem="Dep-P4-cQK" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" id="xFn-FE-uZl"/>
                             <constraint firstAttribute="bottom" secondItem="sDm-va-qja" secondAttribute="bottom" constant="40" id="y10-0l-yRr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Fhx-mR-F8N"/>
                     <connections>
                         <outlet property="contentTextView" destination="sDm-va-qja" id="RSP-wm-jiC"/>
+                        <outlet property="pickerView" destination="Dep-P4-cQK" id="wAg-2c-u4E"/>
                         <outlet property="titleLabel" destination="9To-gD-iHL" id="g9b-kt-dwv"/>
+                        <outlet property="toolBar" destination="W7U-iP-P6v" id="eU2-fE-5VC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uwH-ng-rgE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -87,6 +127,7 @@
     </scenes>
     <resources>
         <image name="check" width="512" height="512"/>
+        <image name="tag" width="512" height="512"/>
         <image name="upload" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
