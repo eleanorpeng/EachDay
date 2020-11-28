@@ -15,7 +15,6 @@ class TimeCapsuleViewController: UIViewController {
   
     @IBAction func datePickerChanged(_ sender: Any) {
         selectedDate = datePicker.date
-        print(selectedDate)
     }
     
     @IBAction func forwardButtonClicked(_ sender: Any) {
