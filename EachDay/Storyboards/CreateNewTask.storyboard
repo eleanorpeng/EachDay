@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yh1-D5-MEP">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Create New Task View Controller-->
+        <scene sceneID="1yv-ce-cpx">
+            <objects>
+                <viewController storyboardIdentifier="CreateNewTaskStoryboard" id="yh1-D5-MEP" customClass="CreateNewTaskViewController" customModule="EachDay" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dut-98-1uU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create New Task" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elh-wj-OmL">
+                                <rect key="frame" x="117.5" y="69" width="179.5" height="27.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tag" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="13l-Kq-nuW">
+                                <rect key="frame" x="16" y="218.5" width="22.5" height="21"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OEA-3A-Ktw">
+                                <rect key="frame" x="46.5" y="213.5" width="54" height="30"/>
+                                <state key="normal" title="Add tag">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="addTagButtonClicked:" destination="yh1-D5-MEP" eventType="touchUpInside" id="0x4-Hv-FyO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qnf-fV-0Oz">
+                                <rect key="frame" x="40" y="746" width="334" height="36"/>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.68235294117647061" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButtonClicked:" destination="yh1-D5-MEP" eventType="touchUpInside" id="j7t-qw-a8a"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sqI-gw-eg3">
+                                <rect key="frame" x="106" y="126.5" width="202" height="42"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chronometer" translatesAutoresizingMaskIntoConstraints="NO" id="78z-BU-8GE">
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="AMF-Sb-nAI"/>
+                                            <constraint firstAttribute="height" constant="42" id="CHp-7S-sur"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="00:00:00" textAlignment="natural" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgk-AA-aLF">
+                                        <rect key="frame" x="52" y="0.0" width="150" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="Pxl-Ty-ksO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add task details" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lgf-fR-ljZ">
+                                <rect key="frame" x="16" y="251.5" width="382" height="244.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Oz6-kj-Xnr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="13l-Kq-nuW" firstAttribute="leading" secondItem="Oz6-kj-Xnr" secondAttribute="leading" constant="16" id="5b9-G6-fRR"/>
+                            <constraint firstItem="elh-wj-OmL" firstAttribute="centerX" secondItem="dut-98-1uU" secondAttribute="centerX" id="68V-QA-VI2"/>
+                            <constraint firstItem="Qnf-fV-0Oz" firstAttribute="leading" secondItem="Oz6-kj-Xnr" secondAttribute="leading" constant="40" id="6g6-xC-Xb2"/>
+                            <constraint firstItem="Qnf-fV-0Oz" firstAttribute="top" secondItem="Lgf-fR-ljZ" secondAttribute="bottom" constant="250" id="KMO-DD-hmq"/>
+                            <constraint firstItem="sqI-gw-eg3" firstAttribute="top" secondItem="elh-wj-OmL" secondAttribute="bottom" constant="30" id="MTX-gE-4Mg"/>
+                            <constraint firstItem="Lgf-fR-ljZ" firstAttribute="top" secondItem="OEA-3A-Ktw" secondAttribute="bottom" constant="8" id="NV3-eJ-hu9"/>
+                            <constraint firstItem="13l-Kq-nuW" firstAttribute="top" secondItem="sqI-gw-eg3" secondAttribute="bottom" constant="50" id="PQd-n5-sX5"/>
+                            <constraint firstItem="sqI-gw-eg3" firstAttribute="centerX" secondItem="elh-wj-OmL" secondAttribute="centerX" id="QaL-ib-tvf"/>
+                            <constraint firstItem="Lgf-fR-ljZ" firstAttribute="leading" secondItem="Oz6-kj-Xnr" secondAttribute="leading" constant="16" id="Rco-OC-V1w"/>
+                            <constraint firstItem="OEA-3A-Ktw" firstAttribute="centerY" secondItem="13l-Kq-nuW" secondAttribute="centerY" id="c3F-2S-4JA"/>
+                            <constraint firstItem="elh-wj-OmL" firstAttribute="top" secondItem="Oz6-kj-Xnr" secondAttribute="top" constant="25" id="gQR-wo-Pye"/>
+                            <constraint firstItem="Oz6-kj-Xnr" firstAttribute="bottom" secondItem="Qnf-fV-0Oz" secondAttribute="bottom" constant="80" id="h0c-5P-AsL"/>
+                            <constraint firstItem="Oz6-kj-Xnr" firstAttribute="trailing" secondItem="Lgf-fR-ljZ" secondAttribute="trailing" constant="16" id="qut-nc-ZfE"/>
+                            <constraint firstItem="Oz6-kj-Xnr" firstAttribute="trailing" secondItem="Qnf-fV-0Oz" secondAttribute="trailing" constant="40" id="t80-W6-fqa"/>
+                            <constraint firstItem="OEA-3A-Ktw" firstAttribute="leading" secondItem="13l-Kq-nuW" secondAttribute="trailing" constant="8" id="w2C-hE-5n5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addTagButton" destination="OEA-3A-Ktw" id="fKU-BX-M4I"/>
+                        <outlet property="elapsedTimeLabel" destination="bgk-AA-aLF" id="vY4-ve-vHf"/>
+                        <outlet property="saveButton" destination="Qnf-fV-0Oz" id="qYa-i5-XiS"/>
+                        <outlet property="tagImageView" destination="13l-Kq-nuW" id="jlI-8L-aXe"/>
+                        <outlet property="taskDetailTextView" destination="Lgf-fR-ljZ" id="1XS-Fi-N6i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zME-YC-d6f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="257.97101449275362" y="103.79464285714285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chronometer" width="512" height="512"/>
+        <image name="tag" catalog="system" width="128" height="119"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

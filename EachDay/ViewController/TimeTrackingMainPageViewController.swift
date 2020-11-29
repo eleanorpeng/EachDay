@@ -9,11 +9,17 @@ import UIKit
 
 class TimeTrackingMainPageViewController: UIViewController {
 
+    let helper = Helper()
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var createNewTaskButton: UIButton!
+    @IBAction func createNewTask(_ sender: Any) {
+        performSegue(withIdentifier: "ShowCreateNewTaskSegue", sender: self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
+        setUpButton()
     }
     
     let icons: [TimeTrackingButton] = [
@@ -36,34 +42,49 @@ class TimeTrackingMainPageViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         collectionView.collectionViewLayout = layout
         tableView.separatorColor = .clear
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    func createStartTimingButton() {
+        let buttonBackground = helper.createCircularBackground(view: view, color: .black, width: 40, height: 40)
+        let button = helper.createButton(background: buttonBackground, image: UIImage(named: "play")!, padding: 10)
+        NSLayoutConstraint.activate([
+            buttonBackground.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            buttonBackground.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -16)
+        ])
+    }
+    
+    func setUpButton() {
+        createNewTaskButton.layer.cornerRadius = 8
+        createNewTaskButton.clipsToBounds = true
+   
     }
 
 }
 
 extension TimeTrackingMainPageViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TimeTrackingMainTableViewCell.identifier, for: indexPath)
-        guard let timeTrackingCell = cell as? TimeTrackingMainTableViewCell else { return cell }
+        let cell = tableView.dequeueReusableCell(withIdentifier: TimeTrackingMainTableViewCell.identifier)
+        guard let timeTrackingCell = cell as? TimeTrackingMainTableViewCell else { return cell! }
         if indexPath.row == 0 {
-            timeTrackingCell.layoutCell(activity: "Reading", activityDuration: "00:25:35", time: "3:10 - 3:40 PM", description: "Description")
-            timeTrackingCell.changeActivityDurationColor(color: UIColor(r: 247, g: 174, b: 0))
-            timeTrackingCell.activityLabel.backgroundColor = .yellow
+            timeTrackingCell.layoutFirstCell(activity: "Reading", activityDuration: "00:25:35", time: "3:10 - 3:40 PM", description: "Description", color: .yellow)
         } else {
             timeTrackingCell.layoutCell(activity: "Reading", activityDuration: "00:25:35", time: "3:10 - 3:40 PM", description: "Description")
         }
         return timeTrackingCell
+
     }
-    
+   
 }
 
 extension TimeTrackingMainPageViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 8

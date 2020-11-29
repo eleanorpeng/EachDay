@@ -27,8 +27,8 @@ class TimeCapsuleViewController: UIViewController {
     }
 
     func createBackButton() {
-        let backButtonBackground = helper.createBackButtonBackground(view: view)
-        let button = helper.createButton(background: backButtonBackground)
+        let backButtonBackground = helper.createCircularBackground(view: view, color: UIColor(hexString: "F1F1F1"), width: 50, height: 50)
+        let button = helper.createButton(background: backButtonBackground, image: UIImage(named: "back")!, padding: 10)
         NSLayoutConstraint.activate([
             backButtonBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             backButtonBackground.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20)

@@ -28,10 +28,21 @@ class TimeTrackingMainTableViewCell: UITableViewCell {
         activityDurationLabel.text = activityDuration
         timeLabel.text = time
         descriptionLabel.text = description
+        activityDurationLabel.textColor = .black
+        activityLabel.backgroundColor = .clear
     }
     
     func changeActivityDurationColor(color: UIColor) {
         activityDurationLabel.textColor = color
+    }
+    
+    func layoutFirstCell(activity: String, activityDuration: String, time: String, description: String, color: UIColor) {
+        activityLabel.text = activity
+        activityDurationLabel.text = activityDuration
+        timeLabel.text = time
+        descriptionLabel.text = description
+        activityLabel.backgroundColor = color
+        activityDurationLabel.textColor = UIColor(r: 247, g: 174, b: 0)
     }
 
 }

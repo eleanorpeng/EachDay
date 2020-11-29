@@ -29,6 +29,9 @@
 		2031429D2570E655006410A8 /* TimeTrackingMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031429C2570E655006410A8 /* TimeTrackingMainCollectionViewCell.swift */; };
 		203142A02570E668006410A8 /* TimeTrackingMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031429F2570E668006410A8 /* TimeTrackingMainTableViewCell.swift */; };
 		203142CF25710367006410A8 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203142CE25710367006410A8 /* PaddingLabel.swift */; };
+		20733BC625725DEB004B4A3B /* CreateNewTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20733BC525725DEB004B4A3B /* CreateNewTask.storyboard */; };
+		20733BC925725E62004B4A3B /* CreateNewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20733BC825725E62004B4A3B /* CreateNewTaskViewController.swift */; };
+		20733BD125732D81004B4A3B /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20733BD025732D81004B4A3B /* StopWatch.swift */; };
 		2098B159256F8DDF00AAC1CB /* WriteJournal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2098B158256F8DDF00AAC1CB /* WriteJournal.storyboard */; };
 		2098B15F256F944800AAC1CB /* WriteJournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2098B15E256F944800AAC1CB /* WriteJournalViewController.swift */; };
 		2098B162256F9A9800AAC1CB /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2098B161256F9A9800AAC1CB /* Helper.swift */; };
@@ -63,6 +66,9 @@
 		2031429C2570E655006410A8 /* TimeTrackingMainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackingMainCollectionViewCell.swift; sourceTree = "<group>"; };
 		2031429F2570E668006410A8 /* TimeTrackingMainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackingMainTableViewCell.swift; sourceTree = "<group>"; };
 		203142CE25710367006410A8 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		20733BC525725DEB004B4A3B /* CreateNewTask.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateNewTask.storyboard; sourceTree = "<group>"; };
+		20733BC825725E62004B4A3B /* CreateNewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTaskViewController.swift; sourceTree = "<group>"; };
+		20733BD025732D81004B4A3B /* StopWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
 		2098B158256F8DDF00AAC1CB /* WriteJournal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteJournal.storyboard; sourceTree = "<group>"; };
 		2098B15E256F944800AAC1CB /* WriteJournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteJournalViewController.swift; sourceTree = "<group>"; };
 		2098B161256F9A9800AAC1CB /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -130,6 +136,7 @@
 			children = (
 				2009DE70256E310500545439 /* User.swift */,
 				203142962570E441006410A8 /* TimeTrackingButton.swift */,
+				20733BD025732D81004B4A3B /* StopWatch.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -150,6 +157,7 @@
 				2098B167256FB39F00AAC1CB /* TimeCapsuleViewController.swift */,
 				203142932570D048006410A8 /* WriteTimeCapsuleViewController.swift */,
 				203142992570E518006410A8 /* TimeTrackingMainPageViewController.swift */,
+				20733BC825725E62004B4A3B /* CreateNewTaskViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -192,6 +200,7 @@
 				2009DE38256E270D00545439 /* Main.storyboard */,
 				2098B158256F8DDF00AAC1CB /* WriteJournal.storyboard */,
 				2098B164256FB2C600AAC1CB /* TimeCapsule.storyboard */,
+				20733BC525725DEB004B4A3B /* CreateNewTask.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -273,6 +282,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20733BC625725DEB004B4A3B /* CreateNewTask.storyboard in Resources */,
 				2098B159256F8DDF00AAC1CB /* WriteJournal.storyboard in Resources */,
 				2098B165256FB2C600AAC1CB /* TimeCapsule.storyboard in Resources */,
 				2009DE3F256E270F00545439 /* LaunchScreen.storyboard in Resources */,
@@ -364,10 +374,12 @@
 				2009DE37256E270D00545439 /* ViewController.swift in Sources */,
 				2009DE33256E270D00545439 /* AppDelegate.swift in Sources */,
 				2009DE92256E5A8400545439 /* JournalTableViewCell.swift in Sources */,
+				20733BD125732D81004B4A3B /* StopWatch.swift in Sources */,
 				2031429D2570E655006410A8 /* TimeTrackingMainCollectionViewCell.swift in Sources */,
 				20F6E283256F822D0036F38C /* UIImageExtension.swift in Sources */,
 				203142972570E441006410A8 /* TimeTrackingButton.swift in Sources */,
 				2098B15F256F944800AAC1CB /* WriteJournalViewController.swift in Sources */,
+				20733BC925725E62004B4A3B /* CreateNewTaskViewController.swift in Sources */,
 				2009DEAD256EA82400545439 /* UIColorExtension.swift in Sources */,
 				2009DE79256E41B500545439 /* UserViewModel.swift in Sources */,
 				2009DE35256E270D00545439 /* SceneDelegate.swift in Sources */,
