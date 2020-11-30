@@ -26,6 +26,11 @@ class MainPageViewController: UIViewController {
         createMenuButton()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        fanMenu.updateNode()
+    }
+    
     func initialSetUp() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -68,7 +73,6 @@ class MainPageViewController: UIViewController {
         fanMenu.duration = 0.2
         fanMenu.delay = 0.05
         fanMenu.interval = (Double.pi, 2 * Double.pi)
-        
         fanMenu.onItemDidClick = { button in
             if button.id == "write" {
                 self.performSegue(withIdentifier: "ShowWriteJournalSegue", sender: self)
@@ -82,7 +86,6 @@ class MainPageViewController: UIViewController {
             self.maskView.isHidden = self.fanMenu.isOpen
             print("ItemWillClick: \(button.id)")
         }
-        
         fanMenu.backgroundColor = .clear
         fanMenu.menuBackground = Color.rgba(r: 247, g: 174, b: 0, a: 0.5)
     }

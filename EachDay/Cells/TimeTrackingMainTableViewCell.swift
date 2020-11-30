@@ -12,7 +12,7 @@ class TimeTrackingMainTableViewCell: UITableViewCell {
     
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var activityDurationLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var activityElapsedTimeLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,12 +23,12 @@ class TimeTrackingMainTableViewCell: UITableViewCell {
 
     }
     
-    func layoutCell(activity: String, activityDuration: String, time: String, description: String) {
+    func layoutCell(activity: String, elapsedTime: String, duration: String, description: String) {
         activityLabel.text = activity
-        activityDurationLabel.text = activityDuration
-        timeLabel.text = time
+        activityElapsedTimeLabel.text = elapsedTime
+        activityDurationLabel.text = duration
         descriptionLabel.text = description
-        activityDurationLabel.textColor = .black
+        activityElapsedTimeLabel.textColor = .black
         activityLabel.backgroundColor = .clear
     }
     
@@ -36,10 +36,10 @@ class TimeTrackingMainTableViewCell: UITableViewCell {
         activityDurationLabel.textColor = color
     }
     
-    func layoutFirstCell(activity: String, activityDuration: String, time: String, description: String, color: UIColor) {
+    func layoutFirstCell(activity: String, elapsedTime: String, duration: String, description: String, color: UIColor) {
         activityLabel.text = activity
-        activityDurationLabel.text = activityDuration
-        timeLabel.text = time
+        activityElapsedTimeLabel.text = elapsedTime
+        activityDurationLabel.text = duration
         descriptionLabel.text = description
         activityLabel.backgroundColor = color
         activityDurationLabel.textColor = UIColor(r: 247, g: 174, b: 0)

@@ -38,11 +38,13 @@ class UserViewModel {
         return user.trackTimeThemes
     }
     
-    var trackedTime: TrackedTime {
+    var trackedTime: [TrackedTime] {
         return user.trackedTime
     }
     
-    var journal: Journal {
+    var journal: [Journal] {
         return user.journal
     }
+    
+    
 }

@@ -14,10 +14,10 @@ struct User: Identifiable, Codable {
     let passcode: String
     let journalThemes: [String]
     let trackTimeThemes: [String]
-    let trackedTime: TrackedTime
-    let journal: Journal
+    let trackedTime: [TrackedTime]
+    let journal: [Journal]
     
-    init(name: String, id: String, email: String, passcode: String, journalThemes: [String], trackTimeThemes: [String], trackedTime: TrackedTime, journal: Journal) {
+    init(name: String, id: String, email: String, passcode: String, journalThemes: [String], trackTimeThemes: [String], trackedTime: [TrackedTime], journal: [Journal]) {
         self.name = name
         self.id = id
         self.email = email
@@ -38,7 +38,6 @@ struct TrackedTime: Identifiable, Codable {
     let startTime: Double
     let endTime: Double
     let category: String
-    
     init(startTime: Double, endTime: Double, category: String, id: String) {
         self.startTime = startTime
         self.endTime = endTime
@@ -76,3 +75,5 @@ struct Journal: Identifiable, Codable {
         case title, date, content, theme, image, hasTracker, isTimeCapsule, id
     }
 }
+
+
