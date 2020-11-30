@@ -22,13 +22,10 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tag" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="13l-Kq-nuW">
-                                <rect key="frame" x="16" y="201" width="22.5" height="21"/>
-                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OEA-3A-Ktw">
-                                <rect key="frame" x="46.5" y="196" width="54" height="30"/>
-                                <state key="normal" title="Add tag">
+                                <rect key="frame" x="144.5" y="111" width="125" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Add New Task">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -47,43 +44,37 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add task details" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lgf-fR-ljZ">
-                                <rect key="frame" x="16" y="234" width="382" height="262"/>
+                                <rect key="frame" x="16" y="167" width="382" height="329"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Task Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RJc-w8-PBP">
-                                <rect key="frame" x="16" y="126.5" width="382" height="24.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tag" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="13l-Kq-nuW">
+                                <rect key="frame" x="102" y="119" width="22.5" height="21"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Oz6-kj-Xnr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="13l-Kq-nuW" firstAttribute="leading" secondItem="Oz6-kj-Xnr" secondAttribute="leading" constant="16" id="5b9-G6-fRR"/>
+                            <constraint firstItem="OEA-3A-Ktw" firstAttribute="leading" secondItem="13l-Kq-nuW" secondAttribute="trailing" constant="20" id="0Ly-pk-tF5"/>
                             <constraint firstItem="elh-wj-OmL" firstAttribute="centerX" secondItem="dut-98-1uU" secondAttribute="centerX" id="68V-QA-VI2"/>
                             <constraint firstItem="Qnf-fV-0Oz" firstAttribute="leading" secondItem="Oz6-kj-Xnr" secondAttribute="leading" constant="40" id="6g6-xC-Xb2"/>
+                            <constraint firstItem="OEA-3A-Ktw" firstAttribute="centerX" secondItem="dut-98-1uU" secondAttribute="centerX" id="7js-0G-VQy"/>
                             <constraint firstItem="Qnf-fV-0Oz" firstAttribute="top" secondItem="Lgf-fR-ljZ" secondAttribute="bottom" constant="250" id="KMO-DD-hmq"/>
-                            <constraint firstItem="RJc-w8-PBP" firstAttribute="leading" secondItem="Oz6-kj-Xnr" secondAttribute="leading" constant="16" id="M9A-j5-3zk"/>
-                            <constraint firstItem="Lgf-fR-ljZ" firstAttribute="top" secondItem="OEA-3A-Ktw" secondAttribute="bottom" constant="8" id="NV3-eJ-hu9"/>
                             <constraint firstItem="Lgf-fR-ljZ" firstAttribute="leading" secondItem="Oz6-kj-Xnr" secondAttribute="leading" constant="16" id="Rco-OC-V1w"/>
-                            <constraint firstItem="RJc-w8-PBP" firstAttribute="top" secondItem="elh-wj-OmL" secondAttribute="bottom" constant="30" id="UP4-bh-Bo9"/>
-                            <constraint firstItem="RJc-w8-PBP" firstAttribute="centerX" secondItem="dut-98-1uU" secondAttribute="centerX" id="ZTp-WP-1Ey"/>
                             <constraint firstItem="OEA-3A-Ktw" firstAttribute="centerY" secondItem="13l-Kq-nuW" secondAttribute="centerY" id="c3F-2S-4JA"/>
                             <constraint firstItem="elh-wj-OmL" firstAttribute="top" secondItem="Oz6-kj-Xnr" secondAttribute="top" constant="25" id="gQR-wo-Pye"/>
                             <constraint firstItem="Oz6-kj-Xnr" firstAttribute="bottom" secondItem="Qnf-fV-0Oz" secondAttribute="bottom" constant="80" id="h0c-5P-AsL"/>
-                            <constraint firstItem="13l-Kq-nuW" firstAttribute="top" secondItem="RJc-w8-PBP" secondAttribute="bottom" constant="50" id="oVY-me-Aha"/>
+                            <constraint firstItem="Lgf-fR-ljZ" firstAttribute="top" secondItem="OEA-3A-Ktw" secondAttribute="bottom" constant="20" id="kIS-gO-Wj1"/>
                             <constraint firstItem="Oz6-kj-Xnr" firstAttribute="trailing" secondItem="Lgf-fR-ljZ" secondAttribute="trailing" constant="16" id="qut-nc-ZfE"/>
                             <constraint firstItem="Oz6-kj-Xnr" firstAttribute="trailing" secondItem="Qnf-fV-0Oz" secondAttribute="trailing" constant="40" id="t80-W6-fqa"/>
-                            <constraint firstItem="OEA-3A-Ktw" firstAttribute="leading" secondItem="13l-Kq-nuW" secondAttribute="trailing" constant="8" id="w2C-hE-5n5"/>
-                            <constraint firstItem="Oz6-kj-Xnr" firstAttribute="trailing" secondItem="RJc-w8-PBP" secondAttribute="trailing" constant="16" id="waa-4j-12n"/>
+                            <constraint firstItem="13l-Kq-nuW" firstAttribute="top" secondItem="elh-wj-OmL" secondAttribute="top" constant="50" id="xin-A4-bxC"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="addTagButton" destination="OEA-3A-Ktw" id="fKU-BX-M4I"/>
-                        <outlet property="enterTaskTextField" destination="RJc-w8-PBP" id="U8d-TQ-KFi"/>
                         <outlet property="saveButton" destination="Qnf-fV-0Oz" id="qYa-i5-XiS"/>
                         <outlet property="tagImageView" destination="13l-Kq-nuW" id="jlI-8L-aXe"/>
                         <outlet property="taskDetailTextView" destination="Lgf-fR-ljZ" id="1XS-Fi-N6i"/>

@@ -15,10 +15,8 @@ class CreateNewTaskViewController: UIViewController {
         case notRunning
     }
 
-    @IBOutlet weak var enterTaskTextField: UITextField!
     var timerState: TimerState = .initial
     let stopWatch = Stopwatch()
-    var selectedTag: String?
     var taskName: String?
     var taskDescription: String?
     weak var delegate: CreateNewTaskViewControllerDelegate?
@@ -30,9 +28,8 @@ class CreateNewTaskViewController: UIViewController {
     @IBOutlet weak var taskDetailTextView: UITextView!
     @IBAction func saveButtonClicked(_ sender: Any) {
         self.delegate?.startTiming()
-        self.delegate?.getRecord(task: taskName ?? "", description: taskDescription ?? "", category: selectedTag ?? "")
+        self.delegate?.getRecord(task: taskName ?? "", description: taskDescription ?? "")
         self.dismiss(animated: true, completion: nil)
-        clearTextField()
     }
     @IBOutlet weak var saveButton: UIButton!
     override func viewDidLoad() {
@@ -43,7 +40,6 @@ class CreateNewTaskViewController: UIViewController {
     
     func initialSetUp() {
         taskDetailTextView.delegate = self
-        enterTaskTextField.delegate = self
         setUpTextView()
         saveButton.layer.cornerRadius = 10
         saveButton.clipsToBounds = true
@@ -73,10 +69,6 @@ class CreateNewTaskViewController: UIViewController {
 //        }
 //    }
     
-    func clearTextField() {
-        enterTaskTextField.text = nil
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? TimeTrackingTagViewController {
             destination.delegate = self
@@ -101,22 +93,11 @@ extension CreateNewTaskViewController: UITextViewDelegate {
     }
 }
 
-extension CreateNewTaskViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        taskName = textField.text ?? ""
-        self.delegate?.getTaskName(task: textField.text ?? "")
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-    }
-}
-
 extension CreateNewTaskViewController: TimeTrackingTagViewControllerDelegate {
     func getSelectedTag(tag: String) {
-        selectedTag = tag
-        self.delegate?.getCategory(category: selectedTag ?? "")
-        addTagButton.setTitle(selectedTag, for: .normal)
+        taskName = tag
+        self.delegate?.getCategory(category: taskName ?? "")
+        addTagButton.setTitle(taskName, for: .normal)
         addTagButton.setTitleColor(.black, for: .normal)
         tagImageView.tintColor = .black
     }
@@ -127,5 +108,5 @@ protocol CreateNewTaskViewControllerDelegate: AnyObject {
     func getTaskName(task: String)
     func getDescription(description: String)
     func getCategory(category: String)
-    func getRecord(task: String, description: String, category: String)
+    func getRecord(task: String, description: String)
 }
