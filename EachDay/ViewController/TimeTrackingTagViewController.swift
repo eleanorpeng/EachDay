@@ -21,6 +21,7 @@ class TimeTrackingTagViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
+    
     var searchText = "" {
         didSet {
             self.filteredMockTags = mockTags.filter({
@@ -41,8 +42,6 @@ class TimeTrackingTagViewController: UIViewController {
         tableView.dataSource = self
         tableView.separatorColor = .clear
         searchTagTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-//        view.addGestureRecognizer(tap)
     }
     
     @objc func dismissKeyboard() {
@@ -116,16 +115,6 @@ extension TimeTrackingTagViewController: UITableViewDelegate, UITableViewDataSou
 }
 
 extension TimeTrackingTagViewController: UITextFieldDelegate {
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        isFiltering = true
-//        searchText = searchTagTextField.text ?? ""
-//    }
-//
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        isFiltering = true
-//        searchText = searchTagTextField.text ?? ""
-//    }
-//
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
     }

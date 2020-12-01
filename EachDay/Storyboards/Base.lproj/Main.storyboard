@@ -458,6 +458,9 @@
                                     <constraint firstAttribute="width" constant="30" id="fQ8-PT-b44"/>
                                 </constraints>
                                 <state key="normal" image="pie-chart"/>
+                                <connections>
+                                    <action selector="timeTrackingSummaryButtonClicked:" destination="wqS-iT-YMm" eventType="touchUpInside" id="Z21-Pf-qf7"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9N-Y9-ste">
                                 <rect key="frame" x="16" y="385" width="70.5" height="30"/>
@@ -516,11 +519,22 @@
                         <outlet property="createNewTaskButton" destination="Sac-MD-chj" id="pR4-RX-elW"/>
                         <outlet property="tableView" destination="7IN-UI-Mtf" id="PYw-7O-Wzp"/>
                         <segue destination="Npj-7d-U0i" kind="presentation" identifier="ShowCreateNewTaskSegue" id="9hV-fj-lsF"/>
+                        <segue destination="qa1-Wu-w5g" kind="show" identifier="ShowTimeTrackingSummarySegue" id="zvB-Yj-tvM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0nU-wK-DpO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4191.304347826087" y="103.79464285714285"/>
+        </scene>
+        <!--TimeTrackingSummary-->
+        <scene sceneID="eRS-yZ-q4L">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="TimeTrackingSummaryStoryboard" storyboardName="TimeTrackingSummary" id="qa1-Wu-w5g" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="RNl-al-xze"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pfz-pg-JOh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4862" y="-44"/>
         </scene>
         <!--CreateNewTask-->
         <scene sceneID="YLb-Dq-lsL">
@@ -577,6 +591,7 @@
         <!--Navigation Controller-->
         <scene sceneID="HEd-U7-Mgw">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BZq-wD-j1l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qaM-F9-WTj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="timer" catalog="system" id="2zh-MY-aZs">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -591,9 +606,8 @@
                         <segue destination="wqS-iT-YMm" kind="relationship" relationship="rootViewController" id="P5r-v6-mb0"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BZq-wD-j1l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3281.1594202898555" y="103.79464285714285"/>
+            <point key="canvasLocation" x="3175" y="104"/>
         </scene>
     </scenes>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

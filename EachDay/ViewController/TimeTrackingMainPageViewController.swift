@@ -27,6 +27,9 @@ class TimeTrackingMainPageViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
+    @IBAction func timeTrackingSummaryButtonClicked(_ sender: Any) {
+        performSegue(withIdentifier: "ShowTimeTrackingSummarySegue", sender: self)
+    }
     var hasAddedNewRecord = false
 //    var pauseTimeInterval: Date?
     let icons: [TimeTrackingButton] = [
