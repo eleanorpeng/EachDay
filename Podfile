@@ -11,5 +11,5 @@ target 'EachDay' do
   pod 'Firebase/Storage'
   pod 'SwiftLint'
   pod 'FanMenu', '~> 0.7'
-
+  pod 'Charts'
 end

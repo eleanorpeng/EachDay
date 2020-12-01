@@ -128,6 +128,8 @@ extension TimeTrackingMainPageViewController: UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeTrackingMainTableViewCell.identifier)
         guard let pastCell = cell as? TimeTrackingMainTableViewCell else { return cell! }
         pastCell.layoutCell(activity: "Reading", elapsedTime: "00:25:35", duration: "3:10 - 3:40 PM", description: "Description")
+//        pastCell.layoutCell(activity: timeRecords[index]., elapsedTime: "00:25:35", duration: "3:10 - 3:40 PM", description: "Description")
+
         return pastCell
     }
     
@@ -172,6 +174,13 @@ extension TimeTrackingMainPageViewController: UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        hasAddedNewRecord = true
+        taskName = icons[indexPath.row].name
+        taskDescription = ""
+        startTiming()
     }
 }
 

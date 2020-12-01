@@ -11,7 +11,7 @@ class TimeTrackingTagViewController: UIViewController {
 
     @IBOutlet weak var searchTagTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    var mockTags = ["work", "eat", "personal", "sleep", "commute"]
+    var mockTags = ["Work", "Eat", "Personal", "Sleep", "Commute"]
     var firstLoad = true
     var filteredMockTags: [String] = []
     var selectedTag: String?
