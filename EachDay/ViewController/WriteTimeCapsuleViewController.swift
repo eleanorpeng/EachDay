@@ -25,7 +25,7 @@ class WriteTimeCapsuleViewController: UIViewController {
     }
     
     func initialSetUp() {
-        let buttonBackground = helper.createCircularBackground(view: view, color: UIColor(hexString: "F1F1F1"), width: 50, height: 50)
+        let buttonBackground = helper.createCircularBackground(view: view, color: UIColor(hexString: "F1F1F1"), width: 45, height: 45)
         let button = helper.createButton(background: buttonBackground, image: UIImage(named: "back")!, padding: 10)
         NSLayoutConstraint.activate([
             buttonBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),

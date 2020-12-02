@@ -180,10 +180,11 @@ extension TimeTrackingMainPageViewController: UICollectionViewDelegate, UICollec
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        hasAddedNewRecord = true
+        startTiming()
         taskName = icons[indexPath.row].name
         taskDescription = ""
-        startTiming()
+        updateTimer()
+        
     }
 }
 
@@ -226,9 +227,14 @@ extension TimeTrackingMainPageViewController: CreateNewTaskViewControllerDelegat
 //    }
     
     func startTiming() {
+        if isPaused {
+            pause()
+        }
+        timer.invalidate()
         if !timer.isValid {
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
             startTime = Date().timeIntervalSinceReferenceDate
+            print("start time: \(startTime)")
         }
         isTiming = true
         isPaused = false
@@ -274,6 +280,10 @@ extension TimeTrackingMainPageViewController: CreateNewTaskViewControllerDelegat
     func stop() {
         timer.invalidate()
         endTime = elapsedTimeInterval
+        hasAddedNewRecord = false
+        isPaused = false
+        isTiming = false
+        pausedIntervals = []
         updateTimer()
     }
 }

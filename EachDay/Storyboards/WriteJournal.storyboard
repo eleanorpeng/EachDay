@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bHZ-qQ-jfG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bHZ-qQ-jfG">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,37 +17,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Record detail of your day" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sDm-va-qja">
-                                <rect key="frame" x="15" y="353.5" width="384" height="502.5"/>
+                                <rect key="frame" x="15" y="338.5" width="384" height="517.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ggY-Nt-tnr">
-                                <rect key="frame" x="20" y="134" width="374" height="160"/>
+                                <rect key="frame" x="20" y="119" width="374" height="160"/>
                                 <color key="backgroundColor" red="0.9108304251269036" green="0.9108304251269036" blue="0.9108304251269036" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="hwV-k9-7eJ"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BqU-kx-kg7">
-                                <rect key="frame" x="364" y="64" width="30" height="30"/>
+                                <rect key="frame" x="369" y="64" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="P0i-vX-blZ"/>
-                                    <constraint firstAttribute="width" constant="30" id="TT2-RJ-uJl"/>
+                                    <constraint firstAttribute="height" constant="25" id="P0i-vX-blZ"/>
+                                    <constraint firstAttribute="width" constant="25" id="TT2-RJ-uJl"/>
                                 </constraints>
                                 <state key="normal" image="check"/>
                                 <connections>
-                                    <action selector="saveButtonClicked:" destination="bHZ-qQ-jfG" eventType="touchUpInside" id="7Og-cj-wIe"/>
+                                    <action selector="completeButtonClicked:" destination="bHZ-qQ-jfG" eventType="touchUpInside" id="7Og-cj-wIe"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9To-gD-iHL">
-                                <rect key="frame" x="20" y="314" width="374" height="24.5"/>
+                                <rect key="frame" x="20" y="299" width="374" height="24.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5v-BC-397">
-                                <rect key="frame" x="189.5" y="196.5" width="35" height="35"/>
+                                <rect key="frame" x="189.5" y="181.5" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="7Sb-ga-32i"/>
                                     <constraint firstAttribute="height" constant="35" id="W4g-bV-Zmp"/>
@@ -55,10 +55,10 @@
                                 <state key="normal" title="Button" image="upload"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgC-Ey-acQ" userLabel="TagButton">
-                                <rect key="frame" x="314" y="64" width="30" height="30"/>
+                                <rect key="frame" x="324" y="64" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Wnp-ST-akX"/>
-                                    <constraint firstAttribute="width" constant="30" id="ggI-Bm-T31"/>
+                                    <constraint firstAttribute="height" constant="25" id="Wnp-ST-akX"/>
+                                    <constraint firstAttribute="width" constant="25" id="ggI-Bm-T31"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="tag"/>
                                 <connections>
@@ -84,6 +84,12 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Kae-Cx-hVK">
+                                <rect key="frame" x="47" y="-31.5" width="320" height="216"/>
+                                <connections>
+                                    <action selector="dateChanged:" destination="bHZ-qQ-jfG" eventType="valueChanged" id="Xyh-eP-js0"/>
+                                </connections>
+                            </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Fqg-WQ-mRi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -93,19 +99,21 @@
                             <constraint firstItem="pgC-Ey-acQ" firstAttribute="centerY" secondItem="BqU-kx-kg7" secondAttribute="centerY" id="6fD-FB-XIR"/>
                             <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="sDm-va-qja" secondAttribute="trailing" constant="15" id="GH0-Ry-4SG"/>
                             <constraint firstItem="ggY-Nt-tnr" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" constant="20" id="HUC-Rv-D1C"/>
+                            <constraint firstItem="Kae-Cx-hVK" firstAttribute="centerX" secondItem="fBj-x0-Tw8" secondAttribute="centerX" id="KiJ-Ux-8bG"/>
                             <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="BqU-kx-kg7" secondAttribute="trailing" constant="20" id="OuE-C6-q5j"/>
                             <constraint firstItem="9To-gD-iHL" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" constant="20" id="UVg-Cv-6ZB"/>
                             <constraint firstItem="d5v-BC-397" firstAttribute="centerY" secondItem="ggY-Nt-tnr" secondAttribute="centerY" id="WZJ-nW-NAe"/>
                             <constraint firstItem="9To-gD-iHL" firstAttribute="top" secondItem="ggY-Nt-tnr" secondAttribute="bottom" constant="20" id="WpZ-SA-G2d"/>
                             <constraint firstItem="Dep-P4-cQK" firstAttribute="top" secondItem="W7U-iP-P6v" secondAttribute="bottom" id="YSB-vX-rnK"/>
                             <constraint firstItem="d5v-BC-397" firstAttribute="centerX" secondItem="ggY-Nt-tnr" secondAttribute="centerX" id="ZEf-Cj-QAb"/>
-                            <constraint firstItem="ggY-Nt-tnr" firstAttribute="top" secondItem="BqU-kx-kg7" secondAttribute="bottom" constant="40" id="ZgY-oY-nRu"/>
+                            <constraint firstItem="ggY-Nt-tnr" firstAttribute="top" secondItem="BqU-kx-kg7" secondAttribute="bottom" constant="30" id="ZgY-oY-nRu"/>
                             <constraint firstAttribute="bottom" secondItem="Dep-P4-cQK" secondAttribute="bottom" id="aQa-ma-oCl"/>
                             <constraint firstItem="Dep-P4-cQK" firstAttribute="trailing" secondItem="Fqg-WQ-mRi" secondAttribute="trailing" id="e3Y-8p-Ox7"/>
                             <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="9To-gD-iHL" secondAttribute="trailing" constant="20" id="eHl-gE-yYy"/>
                             <constraint firstItem="sDm-va-qja" firstAttribute="top" secondItem="9To-gD-iHL" secondAttribute="bottom" constant="15" id="gf7-f7-QnZ"/>
                             <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="ggY-Nt-tnr" secondAttribute="trailing" constant="20" id="hMA-Vy-8WH"/>
                             <constraint firstItem="sDm-va-qja" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" constant="15" id="hRc-GC-NPm"/>
+                            <constraint firstItem="Kae-Cx-hVK" firstAttribute="centerY" secondItem="BqU-kx-kg7" secondAttribute="centerY" id="m7R-bX-LMK"/>
                             <constraint firstItem="W7U-iP-P6v" firstAttribute="trailing" secondItem="Fqg-WQ-mRi" secondAttribute="trailing" id="nke-Xj-ZNR"/>
                             <constraint firstItem="BqU-kx-kg7" firstAttribute="top" secondItem="Fqg-WQ-mRi" secondAttribute="top" constant="20" id="v2D-6Q-isJ"/>
                             <constraint firstItem="Dep-P4-cQK" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" id="xFn-FE-uZl"/>
@@ -114,9 +122,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="Fhx-mR-F8N"/>
                     <connections>
+                        <outlet property="completeButton" destination="BqU-kx-kg7" id="bsO-6C-632"/>
                         <outlet property="contentTextView" destination="sDm-va-qja" id="RSP-wm-jiC"/>
+                        <outlet property="datePicker" destination="Kae-Cx-hVK" id="nXB-gx-Id5"/>
                         <outlet property="pickerView" destination="Dep-P4-cQK" id="wAg-2c-u4E"/>
-                        <outlet property="titleLabel" destination="9To-gD-iHL" id="g9b-kt-dwv"/>
+                        <outlet property="titleTextField" destination="9To-gD-iHL" id="g9b-kt-dwv"/>
                         <outlet property="toolBar" destination="W7U-iP-P6v" id="eU2-fE-5VC"/>
                     </connections>
                 </viewController>
@@ -125,10 +135,14 @@
             <point key="canvasLocation" x="2115.9420289855075" y="112.5"/>
         </scene>
     </scenes>
+    <color key="tintColor" systemColor="labelColor"/>
     <resources>
         <image name="check" width="512" height="512"/>
         <image name="tag" width="512" height="512"/>
         <image name="upload" width="512" height="512"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

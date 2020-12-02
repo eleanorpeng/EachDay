@@ -14,6 +14,9 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var writeReflectionButton: UIButton!
+    @IBAction func writeReflectionButtonClicked(_ sender: Any) {
+        performSegue(withIdentifier: "ShowWriteReflectionSegue", sender: self)
+    }
     let helper = Helper()
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -27,7 +27,7 @@ class TimeCapsuleViewController: UIViewController {
     }
 
     func createBackButton() {
-        let backButtonBackground = helper.createCircularBackground(view: view, color: UIColor(hexString: "F1F1F1"), width: 50, height: 50)
+        let backButtonBackground = helper.createCircularBackground(view: view, color: UIColor(hexString: "F1F1F1"), width: 45, height: 45)
         let button = helper.createButton(background: backButtonBackground, image: UIImage(named: "back")!, padding: 10)
         NSLayoutConstraint.activate([
             backButtonBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -36,6 +36,7 @@ class TimeCapsuleViewController: UIViewController {
         
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
     }
+    
     @objc func back() {
         navigationController?.popViewController(animated: true)
     }

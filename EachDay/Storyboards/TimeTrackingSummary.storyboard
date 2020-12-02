@@ -84,6 +84,9 @@
                                 <state key="normal" title="Write Reflection">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="writeReflectionButtonClicked:" destination="jU0-Dn-teu" eventType="touchUpInside" id="XCc-dX-I7i"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Kmd-ns-nzM"/>
@@ -114,11 +117,22 @@
                         <outlet property="segmentedControl" destination="7Cg-9K-VMX" id="nfh-RH-OLF"/>
                         <outlet property="tableView" destination="3bg-i9-cPO" id="2h7-ao-hFc"/>
                         <outlet property="writeReflectionButton" destination="UR4-6h-CKe" id="WNz-3b-lur"/>
+                        <segue destination="ixh-Df-2lE" kind="show" identifier="ShowWriteReflectionSegue" id="gVa-vF-mpR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CiZ-ZG-hVZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="786.95652173913049" y="152.67857142857142"/>
+        </scene>
+        <!--WriteJournal-->
+        <scene sceneID="wC8-6R-sx0">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="WriteJournalStoryboard" storyboardName="WriteJournal" id="ixh-Df-2lE" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="r4d-5q-YiQ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KAk-Xz-I4S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1539" y="379"/>
         </scene>
     </scenes>
     <resources>
