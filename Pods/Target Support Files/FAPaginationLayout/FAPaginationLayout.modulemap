@@ -1,0 +1,6 @@
+framework module FAPaginationLayout {
+  umbrella header "FAPaginationLayout-umbrella.h"
+
+  export *
+  module * { export * }
+}

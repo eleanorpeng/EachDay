@@ -30,12 +30,12 @@ class UserViewModel {
         return user.passcode
     }
     
-    var journalThemes: [String] {
-        return user.journalThemes
+    var journalTags: [String] {
+        return user.journalTags
     }
     
-    var trackTimeThemes: [String] {
-        return user.trackTimeThemes
+    var trackTimeCategories: [String] {
+        return user.trackTimeCategories
     }
     
     var trackedTime: [TrackedTime] {
@@ -45,6 +45,4 @@ class UserViewModel {
     var journal: [Journal] {
         return user.journal
     }
-    
-    
 }

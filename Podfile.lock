@@ -223,6 +223,7 @@ PODS:
   - Charts/Core (3.6.0)
   - FanMenu (0.7.5):
     - Macaw
+  - FAPaginationLayout (2.0.1)
   - Firebase/CoreOnly (6.34.0):
     - FirebaseCore (= 6.10.4)
   - Firebase/Firestore (6.34.0):
@@ -303,6 +304,7 @@ PODS:
 DEPENDENCIES:
   - Charts
   - FanMenu (~> 0.7)
+  - FAPaginationLayout
   - Firebase/Firestore
   - Firebase/Storage
   - FirebaseFirestoreSwift
@@ -314,6 +316,7 @@ SPEC REPOS:
     - BoringSSL-GRPC
     - Charts
     - FanMenu
+    - FAPaginationLayout
     - Firebase
     - FirebaseCore
     - FirebaseCoreDiagnostics
@@ -337,6 +340,7 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   FanMenu: f26be76147954666be0b89ae6ffeb12b72167f2b
+  FAPaginationLayout: 5f9d95fbd94dff12f863c196640bd797abe68907
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   FirebaseCore: d3a978a3cfa3240bf7e4ba7d137fdf5b22b628ec
   FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
@@ -355,6 +359,6 @@ SPEC CHECKSUMS:
   SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
 
-PODFILE CHECKSUM: 509c017b9ed6d7307c02a8160bb936694064f3f4
+PODFILE CHECKSUM: 5ae611fd7f45b79aea3dd362c19a77b1f4b575c5
 
 COCOAPODS: 1.10.0

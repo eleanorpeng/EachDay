@@ -12,24 +12,24 @@ struct User: Identifiable, Codable {
     let id: String
     let email: String
     let passcode: String
-    let journalThemes: [String]
-    let trackTimeThemes: [String]
+    let journalTags: [String]
+    let trackTimeCategories: [String]
     let trackedTime: [TrackedTime]
     let journal: [Journal]
     
-    init(name: String, id: String, email: String, passcode: String, journalThemes: [String], trackTimeThemes: [String], trackedTime: [TrackedTime], journal: [Journal]) {
+    init(name: String, id: String, email: String, passcode: String, journalTags: [String], trackTimeCategories: [String], trackedTime: [TrackedTime], journal: [Journal]) {
         self.name = name
         self.id = id
         self.email = email
         self.passcode = passcode
-        self.journalThemes = journalThemes
-        self.trackTimeThemes = trackTimeThemes
+        self.journalTags = journalTags
+        self.trackTimeCategories = trackTimeCategories
         self.trackedTime = trackedTime
         self.journal = journal
     }
     
     enum CodingKeys: String, CodingKey {
-        case name, id, email, passcode, journal, journalThemes, trackTimeThemes, trackedTime
+        case name, id, email, passcode, journal, journalTags, trackTimeCategories, trackedTime
     }
 }
 
@@ -55,16 +55,16 @@ struct Journal: Identifiable, Codable {
     let title: String
     let date: Double
     let content: String
-    let theme: String
+    let tags: [String]
     let image: String
     let hasTracker: Bool
     let isTimeCapsule: Bool
     
-    init(title: String, date: Double, content: String, theme: String, image: String, hasTracker: Bool, isTimeCapsule: Bool, id: String) {
+    init(title: String, date: Double, content: String, tags: [String], image: String, hasTracker: Bool, isTimeCapsule: Bool, id: String) {
         self.title = title
         self.date = date
         self.content = content
-        self.theme = theme
+        self.tags = tags
         self.image = image
         self.hasTracker = hasTracker
         self.isTimeCapsule = isTimeCapsule
@@ -72,7 +72,7 @@ struct Journal: Identifiable, Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case title, date, content, theme, image, hasTracker, isTimeCapsule, id
+        case title, date, content, tags, image, hasTracker, isTimeCapsule, id
     }
 }
 

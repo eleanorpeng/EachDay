@@ -22,16 +22,18 @@ class JournalViewModel {
         return journal.title
     }
     
-    var date: Double {
-        return journal.date
+    var date: Int {
+        let date1 = Date(timeIntervalSince1970: journal.date)
+        return date1.month()
+//        return journal.date
     }
     
     var content: String {
         return journal.content
     }
     
-    var theme: String {
-        return journal.theme
+    var tags: [String] {
+        return journal.tags
     }
     
     var image: String {
@@ -44,5 +46,27 @@ class JournalViewModel {
     
     var isTimeCapsule: Bool {
         return journal.isTimeCapsule
+    }
+    
+    var day: String {
+        let date1 = Date(timeIntervalSince1970: journal.date)
+        switch date1.day() {
+        case 1:
+            return "Mon"
+        case 2:
+            return "Tue"
+        case 3:
+            return "Wed"
+        case 4:
+            return "Thu"
+        case 5:
+            return "Fri"
+        case 6:
+            return "Sat"
+        case 7:
+            return "Sun"
+        default:
+            return "None"
+        }
     }
 }

@@ -15,56 +15,57 @@ class WriteJournalViewController: UIViewController {
     var selectedDate: Date?
     var journalTitle: String?
     var journalContent: String?
-    var journalTheme: String?
+    var journalTags: [String]?
     var journalImage: UIImage?
     var isDefault = true
-    @IBOutlet weak var toolBar: UIToolbar!
+    @IBOutlet var toolBarView: UIView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var completeButton: UIButton!
     @IBOutlet weak var contentTextView: UITextView!
-    @IBAction func tagButtonClicked(_ sender: Any) {
-        pickerView.isHidden = false
-        toolBar.isHidden = false
-        if isDefault {
-            journalTheme = pickerData[0]
-        }
+    @IBAction func selectTagButtonClicked(_ sender: Any) {
+        performSegue(withIdentifier: "ShowTagSelectionSegue", sender: self)
     }
-    @IBOutlet weak var pickerView: UIPickerView!
-    @IBAction func doneButtonClicked(_ sender: Any) {
-        pickerView.isHidden = true
-        toolBar.isHidden = true
-        
-    }
-    @IBAction func cancelButtonClicked(_ sender: Any) {
-        pickerView.isHidden = true
-        toolBar.isHidden = true
-    }
+    
     @IBAction func dateChanged(_ sender: Any) {
         selectedDate = datePicker.date
     }
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBAction func dismissKeyboardButtonClicked(_ sender: Any) {
+        view.endEditing(true)
+    }
     let helper = Helper()
     let pickerData = ["Traveling", "Daily"]
+//    var completeAllInfo = false {
+//        didSet {
+//            if true {
+//                self.completeButton.setImage("tick", for: .normal)
+//                self.completeButton.isEnabled = true
+//            } else {
+//                self.completeButton.setImage("tick-gray", for: .normal)
+//                self.completeButton.isEnabled = false
+//            }
+//        }
+//    }
     
     @IBAction func completeButtonClicked(_ sender: Any) {
-        print("Title: \(journalTitle)")
-        print("Content: \(journalContent)")
-        print("Theme: \(journalTheme)")
-        print("date: \(selectedDate)")
-//        addData()
+//        print("Title: \(journalTitle)")
+//        print("Content: \(journalContent)")
+//        print("Theme: \(journalTags)")
+//        print("date: \(selectedDate)")
+        addData()
         navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pickerView.delegate = self
-        pickerView.dataSource = self
         initialSetUp()
+        contentTextView.inputAccessoryView = toolBarView
+        titleTextField.inputAccessoryView = toolBarView
     }
     
     func initialSetUp() {
         let buttonBackground = helper.createCircularBackground(view: view, color: UIColor(hexString: "F1F1F1"), width: 45, height: 45)
-        let button = helper.createButton(background: buttonBackground, image: UIImage(named: "back")!, padding: 10)
+        let button = helper.createButton(background: buttonBackground, image: UIImage(named: "close")!, padding: 12)
         NSLayoutConstraint.activate([
             buttonBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             buttonBackground.centerYAnchor.constraint(equalTo: completeButton.centerYAnchor)
@@ -88,17 +89,22 @@ class WriteJournalViewController: UIViewController {
     }
 
     func addData() {
-        let journal = Firestore.firestore().collection("Journal")
+        let journal = Firestore.firestore().collection("User").document().collection("Journal")
         let document = journal.document()
         journalData = Journal(title: journalTitle ?? "",
                               date: selectedDate?.timeIntervalSince1970 ?? 0,
                               content: journalContent ?? "",
-                          theme: journalTheme ?? "",
+                          tags: journalTags ?? [""],
                           image: "",
                           hasTracker: false,
                           isTimeCapsule: false,
                           id: document.documentID)
         try? document.setData(from: journalData)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? TagSelectionViewController {
+            destination.delegate = self
+        }
     }
 }
 
@@ -117,33 +123,26 @@ extension WriteJournalViewController: UITextViewDelegate {
             contentTextView.textColor = UIColor.black
         }
     }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if (text == "\n") {
-            textView.resignFirstResponder()
-        }
-        return true
-    }
 }
 
-extension WriteJournalViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        journalTheme = pickerData[row]
-        isDefault = false
-    }
-}
+//extension WriteJournalViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        return 1
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        return pickerData.count
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return pickerData[row]
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        journalTheme = pickerData[row]
+//        isDefault = false
+//    }
+//}
 
 extension WriteJournalViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
@@ -151,5 +150,11 @@ extension WriteJournalViewController: UITextFieldDelegate {
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+    }
+}
+
+extension WriteJournalViewController: TagSelectionViewControllerDelegate {
+    func getSelectedTags(tags: [String]) {
+        journalTags = tags
     }
 }

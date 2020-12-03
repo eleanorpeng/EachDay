@@ -23,6 +23,9 @@
 		2009DE92256E5A8400545439 /* JournalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DE91256E5A8400545439 /* JournalTableViewCell.swift */; };
 		2009DEAD256EA82400545439 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DEAC256EA82300545439 /* UIColorExtension.swift */; };
 		2009DEB1256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DEB0256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift */; };
+		2019553B25776B4E006FA8E8 /* CalendarMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2019553A25776B4E006FA8E8 /* CalendarMainViewController.swift */; };
+		2019553E25776BB4006FA8E8 /* CalendarMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2019553D25776BB4006FA8E8 /* CalendarMainCollectionViewCell.swift */; };
+		2019556925778C70006FA8E8 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2019556825778C70006FA8E8 /* SelectionViewController.swift */; };
 		203142942570D048006410A8 /* WriteTimeCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203142932570D048006410A8 /* WriteTimeCapsuleViewController.swift */; };
 		203142972570E441006410A8 /* TimeTrackingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203142962570E441006410A8 /* TimeTrackingButton.swift */; };
 		2031429A2570E518006410A8 /* TimeTrackingMainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203142992570E518006410A8 /* TimeTrackingMainPageViewController.swift */; };
@@ -45,6 +48,15 @@
 		2098B165256FB2C600AAC1CB /* TimeCapsule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2098B164256FB2C600AAC1CB /* TimeCapsule.storyboard */; };
 		2098B168256FB39F00AAC1CB /* TimeCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2098B167256FB39F00AAC1CB /* TimeCapsuleViewController.swift */; };
 		20F6E283256F822D0036F38C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F6E282256F822D0036F38C /* UIImageExtension.swift */; };
+		20FBA4442577918700A58AF0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA4432577918700A58AF0 /* MainTabBarController.swift */; };
+		20FBA44725779A3000A58AF0 /* DetailJournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA44625779A3000A58AF0 /* DetailJournalViewController.swift */; };
+		20FBA44E25779A5100A58AF0 /* JournalDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA44D25779A5100A58AF0 /* JournalDetailTableViewCell.swift */; };
+		20FBA4512577C9D100A58AF0 /* TagSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA4502577C9D100A58AF0 /* TagSelectionViewController.swift */; };
+		20FBA4542577D02600A58AF0 /* TagSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA4532577D02600A58AF0 /* TagSelectionTableViewCell.swift */; };
+		20FBA458257896B600A58AF0 /* JournalTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA457257896B600A58AF0 /* JournalTag.swift */; };
+		20FBA45F2578B1A500A58AF0 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA45E2578B1A500A58AF0 /* DateExtension.swift */; };
+		20FBA4622578B20200A58AF0 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA4612578B20200A58AF0 /* DoubleExtension.swift */; };
+		20FBA4652578BCB800A58AF0 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20FBA4642578BCB800A58AF0 /* SignIn.storyboard */; };
 		E884CDF5DDDA7E5EEA9A626B /* Pods_EachDay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC369F7277BF410ED23CBE70 /* Pods_EachDay.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +79,9 @@
 		2009DE91256E5A8400545439 /* JournalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTableViewCell.swift; sourceTree = "<group>"; };
 		2009DEAC256EA82300545439 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		2009DEB0256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageGreetingsTableViewCell.swift; sourceTree = "<group>"; };
+		2019553A25776B4E006FA8E8 /* CalendarMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMainViewController.swift; sourceTree = "<group>"; };
+		2019553D25776BB4006FA8E8 /* CalendarMainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMainCollectionViewCell.swift; sourceTree = "<group>"; };
+		2019556825778C70006FA8E8 /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
 		203142932570D048006410A8 /* WriteTimeCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteTimeCapsuleViewController.swift; sourceTree = "<group>"; };
 		203142962570E441006410A8 /* TimeTrackingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackingButton.swift; sourceTree = "<group>"; };
 		203142992570E518006410A8 /* TimeTrackingMainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackingMainPageViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +104,15 @@
 		2098B164256FB2C600AAC1CB /* TimeCapsule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeCapsule.storyboard; sourceTree = "<group>"; };
 		2098B167256FB39F00AAC1CB /* TimeCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleViewController.swift; sourceTree = "<group>"; };
 		20F6E282256F822D0036F38C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		20FBA4432577918700A58AF0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		20FBA44625779A3000A58AF0 /* DetailJournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailJournalViewController.swift; sourceTree = "<group>"; };
+		20FBA44D25779A5100A58AF0 /* JournalDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalDetailTableViewCell.swift; sourceTree = "<group>"; };
+		20FBA4502577C9D100A58AF0 /* TagSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSelectionViewController.swift; sourceTree = "<group>"; };
+		20FBA4532577D02600A58AF0 /* TagSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		20FBA457257896B600A58AF0 /* JournalTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTag.swift; sourceTree = "<group>"; };
+		20FBA45E2578B1A500A58AF0 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		20FBA4612578B20200A58AF0 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
+		20FBA4642578BCB800A58AF0 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		2F80B47D19AAB31240901A69 /* Pods-EachDay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EachDay.release.xcconfig"; path = "Target Support Files/Pods-EachDay/Pods-EachDay.release.xcconfig"; sourceTree = "<group>"; };
 		CC369F7277BF410ED23CBE70 /* Pods_EachDay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EachDay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2187CA55EBA2599E09BB815 /* Pods-EachDay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EachDay.debug.xcconfig"; path = "Target Support Files/Pods-EachDay/Pods-EachDay.debug.xcconfig"; sourceTree = "<group>"; };
@@ -149,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				2009DE70256E310500545439 /* User.swift */,
+				20FBA457257896B600A58AF0 /* JournalTag.swift */,
 				203142962570E441006410A8 /* TimeTrackingButton.swift */,
 				20733BD025732D81004B4A3B /* StopWatch.swift */,
 			);
@@ -166,7 +191,10 @@
 		2009DE75256E311800545439 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				20FBA45A2578996700A58AF0 /* Journal */,
 				2009DE89256E4CBB00545439 /* MainPageViewController.swift */,
+				20FBA4432577918700A58AF0 /* MainTabBarController.swift */,
+				2019553A25776B4E006FA8E8 /* CalendarMainViewController.swift */,
 				2098B15E256F944800AAC1CB /* WriteJournalViewController.swift */,
 				2098B167256FB39F00AAC1CB /* TimeCapsuleViewController.swift */,
 				203142932570D048006410A8 /* WriteTimeCapsuleViewController.swift */,
@@ -174,6 +202,9 @@
 				20733BC825725E62004B4A3B /* CreateNewTaskViewController.swift */,
 				20733BD32573526E004B4A3B /* TimeTrackingTagViewController.swift */,
 				20733C1D25760CC3004B4A3B /* TimeTrackingSummaryViewController.swift */,
+				2019556825778C70006FA8E8 /* SelectionViewController.swift */,
+				20FBA44625779A3000A58AF0 /* DetailJournalViewController.swift */,
+				20FBA4502577C9D100A58AF0 /* TagSelectionViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -195,6 +226,8 @@
 				20F6E282256F822D0036F38C /* UIImageExtension.swift */,
 				2098B161256F9A9800AAC1CB /* Helper.swift */,
 				203142CE25710367006410A8 /* PaddingLabel.swift */,
+				20FBA45E2578B1A500A58AF0 /* DateExtension.swift */,
+				20FBA4612578B20200A58AF0 /* DoubleExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -203,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				2009DE91256E5A8400545439 /* JournalTableViewCell.swift */,
+				2019553D25776BB4006FA8E8 /* CalendarMainCollectionViewCell.swift */,
 				2009DEB0256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift */,
 				2031429C2570E655006410A8 /* TimeTrackingMainCollectionViewCell.swift */,
 				2031429F2570E668006410A8 /* TimeTrackingMainTableViewCell.swift */,
@@ -210,6 +244,8 @@
 				20733BDD25739156004B4A3B /* AddNewTagTableViewCell.swift */,
 				20733BE025748A83004B4A3B /* TimeTrackingTopTableViewCell.swift */,
 				20733C2025760F8E004B4A3B /* TimeTrackingSummaryTableViewCell.swift */,
+				20FBA44D25779A5100A58AF0 /* JournalDetailTableViewCell.swift */,
+				20FBA4532577D02600A58AF0 /* TagSelectionTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -222,8 +258,32 @@
 				2098B164256FB2C600AAC1CB /* TimeCapsule.storyboard */,
 				20733BC525725DEB004B4A3B /* CreateNewTask.storyboard */,
 				20733C1A25760CB2004B4A3B /* TimeTrackingSummary.storyboard */,
+				20FBA4642578BCB800A58AF0 /* SignIn.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		20FBA45A2578996700A58AF0 /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+				20FBA45B2578997600A58AF0 /* Write Journal */,
+				20FBA45C2578997F00A58AF0 /* Time Capsule */,
+			);
+			path = Journal;
+			sourceTree = "<group>";
+		};
+		20FBA45B2578997600A58AF0 /* Write Journal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Write Journal";
+			sourceTree = "<group>";
+		};
+		20FBA45C2578997F00A58AF0 /* Time Capsule */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Time Capsule";
 			sourceTree = "<group>";
 		};
 		D4C3B707630014EF24F03CEE /* Pods */ = {
@@ -307,6 +367,7 @@
 				2098B159256F8DDF00AAC1CB /* WriteJournal.storyboard in Resources */,
 				2098B165256FB2C600AAC1CB /* TimeCapsule.storyboard in Resources */,
 				2009DE3F256E270F00545439 /* LaunchScreen.storyboard in Resources */,
+				20FBA4652578BCB800A58AF0 /* SignIn.storyboard in Resources */,
 				2009DE48256E27C300545439 /* GoogleService-Info.plist in Resources */,
 				20733C1B25760CB2004B4A3B /* TimeTrackingSummary.storyboard in Resources */,
 				2009DE3C256E270F00545439 /* Assets.xcassets in Resources */,
@@ -382,6 +443,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2031429A2570E518006410A8 /* TimeTrackingMainPageViewController.swift in Sources */,
+				20FBA45F2578B1A500A58AF0 /* DateExtension.swift in Sources */,
+				20FBA4512577C9D100A58AF0 /* TagSelectionViewController.swift in Sources */,
+				20FBA44725779A3000A58AF0 /* DetailJournalViewController.swift in Sources */,
 				20733BE125748A83004B4A3B /* TimeTrackingTopTableViewCell.swift in Sources */,
 				2009DEB1256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift in Sources */,
 				2009DE8A256E4CBB00545439 /* MainPageViewController.swift in Sources */,
@@ -395,20 +459,28 @@
 				2009DE71256E310500545439 /* User.swift in Sources */,
 				2009DE7D256E461D00545439 /* TrackedTimeViewModel.swift in Sources */,
 				20733BDE25739156004B4A3B /* AddNewTagTableViewCell.swift in Sources */,
+				20FBA458257896B600A58AF0 /* JournalTag.swift in Sources */,
 				203142CF25710367006410A8 /* PaddingLabel.swift in Sources */,
 				203142A02570E668006410A8 /* TimeTrackingMainTableViewCell.swift in Sources */,
+				20FBA4442577918700A58AF0 /* MainTabBarController.swift in Sources */,
+				2019556925778C70006FA8E8 /* SelectionViewController.swift in Sources */,
 				2009DE37256E270D00545439 /* ViewController.swift in Sources */,
+				20FBA44E25779A5100A58AF0 /* JournalDetailTableViewCell.swift in Sources */,
 				2009DE33256E270D00545439 /* AppDelegate.swift in Sources */,
 				2009DE92256E5A8400545439 /* JournalTableViewCell.swift in Sources */,
 				20733BD125732D81004B4A3B /* StopWatch.swift in Sources */,
 				2031429D2570E655006410A8 /* TimeTrackingMainCollectionViewCell.swift in Sources */,
+				2019553E25776BB4006FA8E8 /* CalendarMainCollectionViewCell.swift in Sources */,
 				20F6E283256F822D0036F38C /* UIImageExtension.swift in Sources */,
+				2019553B25776B4E006FA8E8 /* CalendarMainViewController.swift in Sources */,
 				20733C1E25760CC3004B4A3B /* TimeTrackingSummaryViewController.swift in Sources */,
 				203142972570E441006410A8 /* TimeTrackingButton.swift in Sources */,
 				2098B15F256F944800AAC1CB /* WriteJournalViewController.swift in Sources */,
 				20733BC925725E62004B4A3B /* CreateNewTaskViewController.swift in Sources */,
+				20FBA4622578B20200A58AF0 /* DoubleExtension.swift in Sources */,
 				2009DEAD256EA82400545439 /* UIColorExtension.swift in Sources */,
 				2009DE79256E41B500545439 /* UserViewModel.swift in Sources */,
+				20FBA4542577D02600A58AF0 /* TagSelectionTableViewCell.swift in Sources */,
 				20733C2125760F8E004B4A3B /* TimeTrackingSummaryTableViewCell.swift in Sources */,
 				2009DE35256E270D00545439 /* SceneDelegate.swift in Sources */,
 			);

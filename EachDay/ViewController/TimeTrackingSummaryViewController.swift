@@ -27,6 +27,7 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
     func initialSetUp() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorColor = .clear
         pieChartView.delegate = self
         let data = ["Reading", "Eating", "Sleeping", "Studying"]
         let values: [Double] = [23, 51, 19, 7]

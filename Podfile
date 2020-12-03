@@ -12,4 +12,5 @@ target 'EachDay' do
   pod 'SwiftLint'
   pod 'FanMenu', '~> 0.7'
   pod 'Charts'
+  pod 'FAPaginationLayout'
 end
