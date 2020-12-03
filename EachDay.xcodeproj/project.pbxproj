@@ -57,6 +57,7 @@
 		20FBA45F2578B1A500A58AF0 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA45E2578B1A500A58AF0 /* DateExtension.swift */; };
 		20FBA4622578B20200A58AF0 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA4612578B20200A58AF0 /* DoubleExtension.swift */; };
 		20FBA4652578BCB800A58AF0 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20FBA4642578BCB800A58AF0 /* SignIn.storyboard */; };
+		20FBA4962578CCAE00A58AF0 /* JournalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA4952578CCAE00A58AF0 /* JournalManager.swift */; };
 		E884CDF5DDDA7E5EEA9A626B /* Pods_EachDay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC369F7277BF410ED23CBE70 /* Pods_EachDay.framework */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,7 @@
 		20FBA45E2578B1A500A58AF0 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		20FBA4612578B20200A58AF0 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		20FBA4642578BCB800A58AF0 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
+		20FBA4952578CCAE00A58AF0 /* JournalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalManager.swift; sourceTree = "<group>"; };
 		2F80B47D19AAB31240901A69 /* Pods-EachDay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EachDay.release.xcconfig"; path = "Target Support Files/Pods-EachDay/Pods-EachDay.release.xcconfig"; sourceTree = "<group>"; };
 		CC369F7277BF410ED23CBE70 /* Pods_EachDay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EachDay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2187CA55EBA2599E09BB815 /* Pods-EachDay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EachDay.debug.xcconfig"; path = "Target Support Files/Pods-EachDay/Pods-EachDay.debug.xcconfig"; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				2098B15B256F8DEC00AAC1CB /* Storyboards */,
 				2009DE75256E311800545439 /* ViewController */,
 				2009DEB3256EAB1D00545439 /* Cells */,
+				20FBA4942578CC8E00A58AF0 /* Networking */,
 				2009DE74256E311000545439 /* View */,
 				2009DE73256E310A00545439 /* Model */,
 				2009DE77256E41A200545439 /* ViewModel */,
@@ -193,9 +196,9 @@
 			children = (
 				20FBA45A2578996700A58AF0 /* Journal */,
 				2009DE89256E4CBB00545439 /* MainPageViewController.swift */,
-				20FBA4432577918700A58AF0 /* MainTabBarController.swift */,
 				2019553A25776B4E006FA8E8 /* CalendarMainViewController.swift */,
 				2098B15E256F944800AAC1CB /* WriteJournalViewController.swift */,
+				20FBA4432577918700A58AF0 /* MainTabBarController.swift */,
 				2098B167256FB39F00AAC1CB /* TimeCapsuleViewController.swift */,
 				203142932570D048006410A8 /* WriteTimeCapsuleViewController.swift */,
 				203142992570E518006410A8 /* TimeTrackingMainPageViewController.swift */,
@@ -284,6 +287,14 @@
 			children = (
 			);
 			path = "Time Capsule";
+			sourceTree = "<group>";
+		};
+		20FBA4942578CC8E00A58AF0 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				20FBA4952578CCAE00A58AF0 /* JournalManager.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		D4C3B707630014EF24F03CEE /* Pods */ = {
@@ -483,6 +494,7 @@
 				20FBA4542577D02600A58AF0 /* TagSelectionTableViewCell.swift in Sources */,
 				20733C2125760F8E004B4A3B /* TimeTrackingSummaryTableViewCell.swift in Sources */,
 				2009DE35256E270D00545439 /* SceneDelegate.swift in Sources */,
+				20FBA4962578CCAE00A58AF0 /* JournalManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -48,10 +48,6 @@ class WriteJournalViewController: UIViewController {
 //    }
     
     @IBAction func completeButtonClicked(_ sender: Any) {
-//        print("Title: \(journalTitle)")
-//        print("Content: \(journalContent)")
-//        print("Theme: \(journalTags)")
-//        print("date: \(selectedDate)")
         addData()
         navigationController?.popViewController(animated: true)
     }
@@ -78,7 +74,6 @@ class WriteJournalViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
         titleTextField.delegate = self
-        
     }
 
     @objc func dismissKeyboard() {
@@ -104,6 +99,7 @@ class WriteJournalViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? TagSelectionViewController {
             destination.delegate = self
+            destination.selectedTags = journalTags ?? []
         }
     }
 }
@@ -124,25 +120,6 @@ extension WriteJournalViewController: UITextViewDelegate {
         }
     }
 }
-
-//extension WriteJournalViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        return pickerData.count
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return pickerData[row]
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        journalTheme = pickerData[row]
-//        isDefault = false
-//    }
-//}
 
 extension WriteJournalViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {

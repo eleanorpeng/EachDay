@@ -16,6 +16,8 @@ class TagSelectionViewController: UIViewController {
     var index = 0
     var mockData = ["Work"]
     var selectedTags: [String] = []
+    var user: [User]?
+    var tags: [String]?
     weak var delegate: TagSelectionViewControllerDelegate?
     @IBOutlet weak var tableView: UITableView!
     @IBAction func addButtonClicked(_ sender: Any) {
@@ -26,7 +28,8 @@ class TagSelectionViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak alert] _ in
             let textField = alert?.textFields![0]
             let newTag = textField?.text
-            self.mockData.append(newTag ?? "")
+            self.tags?.append(newTag ?? "")
+            JournalManager.shared.updateJournalTags(userID: self.user?[0].id ?? "", tags: self.tags ?? [])
             self.tableView.reloadData()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -38,12 +41,30 @@ class TagSelectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
+        fetchData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tableView.reloadData()
+    }
     func initialSetUp() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = .clear
+    }
+    
+    func fetchData() {
+        JournalManager.shared.fetchUser(userID: "Eleanor", completion: { result in
+            switch result {
+            case .success(let user):
+                self.tags = user[0].journalTags
+                self.user = user
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        })
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -57,17 +78,18 @@ class TagSelectionViewController: UIViewController {
 extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate, TagSelectionTableViewCellDelegate {
     func handleSelected(sender: Any) {
         guard let button = sender as? UIButton else { return }
-        let tag = mockData[button.tag]
-        selectedTags.append(tag)
+        let tag = tags?[button.tag]
+        selectedTags.append(tag ?? "")
         self.delegate?.getSelectedTags(tags: selectedTags)
     }
     
     func handleDeselected(sender: Any) {
         guard let button = sender as? UIButton else { return }
-        let tag = mockData[button.tag]
+        let tag = tags?[button.tag]
         selectedTags = selectedTags.filter({
             $0 != tag
         })
+      
         self.delegate?.getSelectedTags(tags: selectedTags)
     }
     
@@ -78,13 +100,8 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
             self.createEditAlert(button: button)
         }))
         alertSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
-
-//            self.tableView.beginUpdates()
-            print("Before: \(self.mockData)")
-            print("Tag: \(button.tag)")
-            self.mockData.remove(at: button.tag)
-            print("After: \(self.mockData)")
-//            self.tableView.deleteRows(at: [IndexPath(row: button.tag, section: 0)], with: .automatic)
+            self.tags?.remove(at: button.tag)
+            JournalManager.shared.updateJournalTags(userID: self.user?[0].id ?? "", tags: self.tags ?? [])
             self.tableView.reloadData()
         }))
         alertSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: .none))
@@ -99,23 +116,26 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
         editAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak editAlert] _ in
             let textField = editAlert?.textFields![0]
             let tag = textField?.text
-            self.mockData[button.tag] = tag ?? ""
+            self.tags?[button.tag] = tag ?? ""
+            JournalManager.shared.updateJournalTags(userID: self.user?[0].id ?? "", tags: self.tags ?? [])
             self.tableView.reloadData()
         }))
         self.present(editAlert, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mockData.count
+        return tags?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TagSelectionTableViewCell.identifier, for: indexPath)
         guard let tagCell = cell as? TagSelectionTableViewCell else { return cell }
-        tagCell.layoutCell(tag: mockData[indexPath.row])
+        tagCell.layoutCell(tag: tags?[indexPath.row] ?? "")
         tagCell.delegate = self
         tagCell.selectionButton.tag = indexPath.row
         tagCell.moreButton.tag = indexPath.row
+        tagCell.selectionIndicator.isHidden = !selectedTags.contains(tagCell.tagLabel?.text ?? "")
+        
         return tagCell
     }
     

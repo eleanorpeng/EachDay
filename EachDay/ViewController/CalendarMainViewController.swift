@@ -18,13 +18,21 @@ class CalendarMainViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     var selectedMonth = 0
+    var user: User?
     let monthNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     let monthText = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
     var currentDate = Date()
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
-      
+//        JournalManager.shared.fetchJournalData(userDocID: "JIbda5gvgUa9DhWS8NLw", selectedMonth: 12, completion: { result in
+//            switch result {
+//            case .success(let journal):
+//                print(journal)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        })
     }
     
     func initialSetUp() {

@@ -14,30 +14,32 @@ struct User: Identifiable, Codable {
     let passcode: String
     let journalTags: [String]
     let trackTimeCategories: [String]
-    let trackedTime: [TrackedTime]
-    let journal: [Journal]
+//    let trackedTime: [TrackedTime]
+//    let journal: [Journal]
     
-    init(name: String, id: String, email: String, passcode: String, journalTags: [String], trackTimeCategories: [String], trackedTime: [TrackedTime], journal: [Journal]) {
+    init(name: String, id: String, email: String, passcode: String, journalTags: [String], trackTimeCategories: [String]) {
         self.name = name
         self.id = id
         self.email = email
         self.passcode = passcode
         self.journalTags = journalTags
         self.trackTimeCategories = trackTimeCategories
-        self.trackedTime = trackedTime
-        self.journal = journal
+//        self.trackedTime = trackedTime
+//        self.journal = journal
     }
     
     enum CodingKeys: String, CodingKey {
-        case name, id, email, passcode, journal, journalTags, trackTimeCategories, trackedTime
+        case name, id, email, passcode, journalTags, trackTimeCategories
+//        case journal = "Journal"
+//        case trackedTime = "TrackedTime"
     }
 }
 
 struct TrackedTime: Identifiable, Codable {
-    let id: String
-    let startTime: Double
-    let endTime: Double
-    let category: String
+    var id: String
+    var startTime: Double
+    var endTime: Double
+    var category: String
     init(startTime: Double, endTime: Double, category: String, id: String) {
         self.startTime = startTime
         self.endTime = endTime
@@ -51,7 +53,7 @@ struct TrackedTime: Identifiable, Codable {
 }
 
 struct Journal: Identifiable, Codable {
-    let id: String
+    var id: String
     let title: String
     let date: Double
     let content: String
