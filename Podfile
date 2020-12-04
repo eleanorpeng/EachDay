@@ -13,4 +13,6 @@ target 'EachDay' do
   pod 'FanMenu', '~> 0.7'
   pod 'Charts'
   pod 'FAPaginationLayout'
+  pod 'YPImagePicker'
+  pod 'IQKeyboardManagerSwift'
 end

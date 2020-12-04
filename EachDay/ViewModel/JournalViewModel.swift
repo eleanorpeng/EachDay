@@ -24,8 +24,7 @@ class JournalViewModel {
     
     var date: Int {
         let date1 = Date(timeIntervalSince1970: journal.date)
-        return date1.month()
-//        return journal.date
+        return date1.day()
     }
     
     var content: String {

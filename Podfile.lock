@@ -289,6 +289,7 @@ PODS:
     - gRPC-Core/Interface (= 1.28.2)
   - gRPC-Core/Interface (1.28.2)
   - GTMSessionFetcher/Core (1.5.0)
+  - IQKeyboardManagerSwift (6.5.6)
   - leveldb-library (1.22)
   - Macaw (0.9.7):
     - SWXMLHash
@@ -298,8 +299,13 @@ PODS:
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.11)
+  - PryntTrimmerView (4.0.2)
+  - SteviaLayout (4.7.3)
   - SwiftLint (0.41.0)
   - SWXMLHash (5.0.1)
+  - YPImagePicker (4.4.0):
+    - PryntTrimmerView (~> 4.0.2)
+    - SteviaLayout (~> 4.7.3)
 
 DEPENDENCIES:
   - Charts
@@ -308,7 +314,9 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - FirebaseFirestoreSwift
+  - IQKeyboardManagerSwift
   - SwiftLint
+  - YPImagePicker
 
 SPEC REPOS:
   trunk:
@@ -328,12 +336,16 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - IQKeyboardManagerSwift
     - leveldb-library
     - Macaw
     - nanopb
     - PromisesObjC
+    - PryntTrimmerView
+    - SteviaLayout
     - SwiftLint
     - SWXMLHash
+    - YPImagePicker
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -352,13 +364,17 @@ SPEC CHECKSUMS:
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   Macaw: 4a931baf9a9826b06d0d8ecf300014c962ab9d50
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
+  PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
+  SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
   SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
+  YPImagePicker: 15aed8bcaa4dad976e11b6114126d731a2f9f3c9
 
-PODFILE CHECKSUM: 5ae611fd7f45b79aea3dd362c19a77b1f4b575c5
+PODFILE CHECKSUM: cc1d05f61bbca8ce87bfde8c96b155d7b3e8f110
 
 COCOAPODS: 1.10.0

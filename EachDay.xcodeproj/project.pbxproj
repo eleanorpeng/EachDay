@@ -58,6 +58,7 @@
 		20FBA4622578B20200A58AF0 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA4612578B20200A58AF0 /* DoubleExtension.swift */; };
 		20FBA4652578BCB800A58AF0 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20FBA4642578BCB800A58AF0 /* SignIn.storyboard */; };
 		20FBA4962578CCAE00A58AF0 /* JournalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA4952578CCAE00A58AF0 /* JournalManager.swift */; };
+		20FBA4992579198700A58AF0 /* TimeTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA4982579198700A58AF0 /* TimeTrackingManager.swift */; };
 		E884CDF5DDDA7E5EEA9A626B /* Pods_EachDay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC369F7277BF410ED23CBE70 /* Pods_EachDay.framework */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +116,7 @@
 		20FBA4612578B20200A58AF0 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		20FBA4642578BCB800A58AF0 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		20FBA4952578CCAE00A58AF0 /* JournalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalManager.swift; sourceTree = "<group>"; };
+		20FBA4982579198700A58AF0 /* TimeTrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackingManager.swift; sourceTree = "<group>"; };
 		2F80B47D19AAB31240901A69 /* Pods-EachDay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EachDay.release.xcconfig"; path = "Target Support Files/Pods-EachDay/Pods-EachDay.release.xcconfig"; sourceTree = "<group>"; };
 		CC369F7277BF410ED23CBE70 /* Pods_EachDay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EachDay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2187CA55EBA2599E09BB815 /* Pods-EachDay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EachDay.debug.xcconfig"; path = "Target Support Files/Pods-EachDay/Pods-EachDay.debug.xcconfig"; sourceTree = "<group>"; };
@@ -194,20 +196,9 @@
 		2009DE75256E311800545439 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				20FBA45A2578996700A58AF0 /* Journal */,
-				2009DE89256E4CBB00545439 /* MainPageViewController.swift */,
-				2019553A25776B4E006FA8E8 /* CalendarMainViewController.swift */,
-				2098B15E256F944800AAC1CB /* WriteJournalViewController.swift */,
 				20FBA4432577918700A58AF0 /* MainTabBarController.swift */,
-				2098B167256FB39F00AAC1CB /* TimeCapsuleViewController.swift */,
-				203142932570D048006410A8 /* WriteTimeCapsuleViewController.swift */,
-				203142992570E518006410A8 /* TimeTrackingMainPageViewController.swift */,
-				20733BC825725E62004B4A3B /* CreateNewTaskViewController.swift */,
-				20733BD32573526E004B4A3B /* TimeTrackingTagViewController.swift */,
-				20733C1D25760CC3004B4A3B /* TimeTrackingSummaryViewController.swift */,
-				2019556825778C70006FA8E8 /* SelectionViewController.swift */,
-				20FBA44625779A3000A58AF0 /* DetailJournalViewController.swift */,
-				20FBA4502577C9D100A58AF0 /* TagSelectionViewController.swift */,
+				20FBA45A2578996700A58AF0 /* Journal */,
+				20FBA4A1257A04B600A58AF0 /* Time Tracking */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -238,17 +229,8 @@
 		2009DEB3256EAB1D00545439 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				2009DE91256E5A8400545439 /* JournalTableViewCell.swift */,
-				2019553D25776BB4006FA8E8 /* CalendarMainCollectionViewCell.swift */,
-				2009DEB0256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift */,
-				2031429C2570E655006410A8 /* TimeTrackingMainCollectionViewCell.swift */,
-				2031429F2570E668006410A8 /* TimeTrackingMainTableViewCell.swift */,
-				20733BDA25739125004B4A3B /* TimeTrackingTagTableViewCell.swift */,
-				20733BDD25739156004B4A3B /* AddNewTagTableViewCell.swift */,
-				20733BE025748A83004B4A3B /* TimeTrackingTopTableViewCell.swift */,
-				20733C2025760F8E004B4A3B /* TimeTrackingSummaryTableViewCell.swift */,
-				20FBA44D25779A5100A58AF0 /* JournalDetailTableViewCell.swift */,
-				20FBA4532577D02600A58AF0 /* TagSelectionTableViewCell.swift */,
+				20FBA4A5257A04EC00A58AF0 /* Journal */,
+				20FBA4A6257A04F200A58AF0 /* Time Tracking */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -269,6 +251,10 @@
 		20FBA45A2578996700A58AF0 /* Journal */ = {
 			isa = PBXGroup;
 			children = (
+				2009DE89256E4CBB00545439 /* MainPageViewController.swift */,
+				2019553A25776B4E006FA8E8 /* CalendarMainViewController.swift */,
+				20FBA44625779A3000A58AF0 /* DetailJournalViewController.swift */,
+				2019556825778C70006FA8E8 /* SelectionViewController.swift */,
 				20FBA45B2578997600A58AF0 /* Write Journal */,
 				20FBA45C2578997F00A58AF0 /* Time Capsule */,
 			);
@@ -278,6 +264,8 @@
 		20FBA45B2578997600A58AF0 /* Write Journal */ = {
 			isa = PBXGroup;
 			children = (
+				2098B15E256F944800AAC1CB /* WriteJournalViewController.swift */,
+				20FBA4502577C9D100A58AF0 /* TagSelectionViewController.swift */,
 			);
 			path = "Write Journal";
 			sourceTree = "<group>";
@@ -285,6 +273,8 @@
 		20FBA45C2578997F00A58AF0 /* Time Capsule */ = {
 			isa = PBXGroup;
 			children = (
+				2098B167256FB39F00AAC1CB /* TimeCapsuleViewController.swift */,
+				203142932570D048006410A8 /* WriteTimeCapsuleViewController.swift */,
 			);
 			path = "Time Capsule";
 			sourceTree = "<group>";
@@ -293,8 +283,45 @@
 			isa = PBXGroup;
 			children = (
 				20FBA4952578CCAE00A58AF0 /* JournalManager.swift */,
+				20FBA4982579198700A58AF0 /* TimeTrackingManager.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		20FBA4A1257A04B600A58AF0 /* Time Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				20733BC825725E62004B4A3B /* CreateNewTaskViewController.swift */,
+				203142992570E518006410A8 /* TimeTrackingMainPageViewController.swift */,
+				20733BD32573526E004B4A3B /* TimeTrackingTagViewController.swift */,
+				20733C1D25760CC3004B4A3B /* TimeTrackingSummaryViewController.swift */,
+			);
+			path = "Time Tracking";
+			sourceTree = "<group>";
+		};
+		20FBA4A5257A04EC00A58AF0 /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+				2009DEB0256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift */,
+				2009DE91256E5A8400545439 /* JournalTableViewCell.swift */,
+				20FBA44D25779A5100A58AF0 /* JournalDetailTableViewCell.swift */,
+				2019553D25776BB4006FA8E8 /* CalendarMainCollectionViewCell.swift */,
+				20FBA4532577D02600A58AF0 /* TagSelectionTableViewCell.swift */,
+			);
+			path = Journal;
+			sourceTree = "<group>";
+		};
+		20FBA4A6257A04F200A58AF0 /* Time Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				2031429C2570E655006410A8 /* TimeTrackingMainCollectionViewCell.swift */,
+				2031429F2570E668006410A8 /* TimeTrackingMainTableViewCell.swift */,
+				20733BDA25739125004B4A3B /* TimeTrackingTagTableViewCell.swift */,
+				20733BDD25739156004B4A3B /* AddNewTagTableViewCell.swift */,
+				20733C2025760F8E004B4A3B /* TimeTrackingSummaryTableViewCell.swift */,
+				20733BE025748A83004B4A3B /* TimeTrackingTopTableViewCell.swift */,
+			);
+			path = "Time Tracking";
 			sourceTree = "<group>";
 		};
 		D4C3B707630014EF24F03CEE /* Pods */ = {
@@ -462,6 +489,7 @@
 				2009DE8A256E4CBB00545439 /* MainPageViewController.swift in Sources */,
 				2098B162256F9A9800AAC1CB /* Helper.swift in Sources */,
 				20733BD42573526E004B4A3B /* TimeTrackingTagViewController.swift in Sources */,
+				20FBA4992579198700A58AF0 /* TimeTrackingManager.swift in Sources */,
 				2009DE8F256E557700545439 /* CardView.swift in Sources */,
 				20733BDB25739125004B4A3B /* TimeTrackingTagTableViewCell.swift in Sources */,
 				2009DE87256E4B8600545439 /* JournalViewModel.swift in Sources */,

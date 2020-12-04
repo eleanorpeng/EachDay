@@ -17,17 +17,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Record detail of your day" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sDm-va-qja">
-                                <rect key="frame" x="15" y="338.5" width="384" height="517.5"/>
+                                <rect key="frame" x="15" y="428.5" width="384" height="427.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ggY-Nt-tnr">
-                                <rect key="frame" x="20" y="119" width="374" height="160"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ggY-Nt-tnr">
+                                <rect key="frame" x="20" y="119" width="374" height="250"/>
                                 <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="hwV-k9-7eJ"/>
+                                    <constraint firstAttribute="height" constant="250" id="hwV-k9-7eJ"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BqU-kx-kg7">
@@ -42,17 +42,20 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9To-gD-iHL">
-                                <rect key="frame" x="20" y="299" width="374" height="24.5"/>
+                                <rect key="frame" x="20" y="389" width="374" height="24.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5v-BC-397">
-                                <rect key="frame" x="189.5" y="181.5" width="35" height="35"/>
+                                <rect key="frame" x="189.5" y="226.5" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="7Sb-ga-32i"/>
                                     <constraint firstAttribute="height" constant="35" id="W4g-bV-Zmp"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="upload"/>
+                                <connections>
+                                    <action selector="uploadImageButtonClicked:" destination="bHZ-qQ-jfG" eventType="touchUpInside" id="JSs-Ow-s8O"/>
+                                </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Kae-Cx-hVK">
                                 <rect key="frame" x="47" y="-31.5" width="320" height="216"/>
@@ -87,8 +90,10 @@
                         <outlet property="completeButton" destination="BqU-kx-kg7" id="bsO-6C-632"/>
                         <outlet property="contentTextView" destination="sDm-va-qja" id="RSP-wm-jiC"/>
                         <outlet property="datePicker" destination="Kae-Cx-hVK" id="nXB-gx-Id5"/>
+                        <outlet property="journalImageView" destination="ggY-Nt-tnr" id="8KY-dn-2Sc"/>
                         <outlet property="titleTextField" destination="9To-gD-iHL" id="g9b-kt-dwv"/>
                         <outlet property="toolBarView" destination="0M5-Zc-3mP" id="OMR-c4-MMf"/>
+                        <outlet property="uploadImageButton" destination="d5v-BC-397" id="7Q4-QH-Onc"/>
                         <segue destination="MZD-iz-4tB" kind="show" identifier="ShowTagSelectionSegue" id="SBv-1b-bJj"/>
                     </connections>
                 </viewController>

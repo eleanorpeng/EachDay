@@ -54,13 +54,13 @@ struct TrackedTime: Identifiable, Codable {
 
 struct Journal: Identifiable, Codable {
     var id: String
-    let title: String
-    let date: Double
-    let content: String
-    let tags: [String]
-    let image: String
-    let hasTracker: Bool
-    let isTimeCapsule: Bool
+    var title: String
+    var date: Double
+    var content: String
+    var tags: [String]
+    var image: String
+    var hasTracker: Bool
+    var isTimeCapsule: Bool
     
     init(title: String, date: Double, content: String, tags: [String], image: String, hasTracker: Bool, isTimeCapsule: Bool, id: String) {
         self.title = title

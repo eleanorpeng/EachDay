@@ -32,8 +32,26 @@ class JournalManager {
         })
     }
     
-    func publishJournalData(journal: inout Journal, completion: @escaping (Result<String, Error>) -> Void) {
-        let document = db.collection("user").document().collection("journal").document()
+    func fetchFilteredJournalData(userDocID: String, selectedMonth: Int, currentDate: Double, completion: @escaping (Result<[Journal], Error>) -> Void) {
+        db.collection("User").document(userDocID).collection("Journal").whereField("date", isLessThan: currentDate).addSnapshotListener({ querySnapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                guard let documents = querySnapshot?.documents else { return }
+                let allJournalData = documents.compactMap({ queryDocumentSnapshot -> Journal? in
+                    return try? queryDocumentSnapshot.data(as: Journal.self)
+                })
+                let journalData = allJournalData.filter({
+                    let month = Date(timeIntervalSince1970: $0.date).month()
+                    return month == selectedMonth
+                })
+                completion(.success(journalData))
+            }
+        })
+    }
+    
+    func publishJournalData(journal: inout Journal, userID: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let document = db.collection("User").document(userID).collection("Journal").document()
         journal.id = document.documentID
         do {
             try document.setData(from: journal)
