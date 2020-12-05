@@ -68,4 +68,9 @@ class JournalViewModel {
             return "None"
         }
     }
+    
+    var formattedDate: String {
+        let date1 = Date(timeIntervalSince1970: journal.date)
+        return date1.getFormattedDate()
+    }
 }

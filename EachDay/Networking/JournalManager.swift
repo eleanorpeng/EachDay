@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseStorage
 
 class JournalManager {
     static let shared = JournalManager()
@@ -92,11 +93,29 @@ class JournalManager {
         }
     }
     
-    func deleteJournalTags() {
+    func uploadImage(userID: String, image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
+        let timeStamp = Date().timeIntervalSince1970
+        let storageRef = Storage.storage().reference().child("\(userID)\(timeStamp).png")
+        guard let imageData = image.pngData() else {
+            print("Can't convert to png data.")
+            return
+        }
         
-    }
-    
-    func updateTags() {
-        
+        storageRef.putData(imageData, metadata: nil, completion: { metadata, error in
+            if let error = error {
+                print("Failed to upload image to Firebase.")
+                completion(.failure(error))
+            } else {
+                let url = storageRef.downloadURL(completion: { url, error in
+                    guard let downloadURL = url else {
+                        print("Can't convert to url")
+                        return
+                    }
+                    print(downloadURL)
+                    completion(.success(downloadURL.absoluteString))
+                })
+            }
+            
+        })
     }
 }

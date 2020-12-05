@@ -298,6 +298,7 @@ PODS:
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
+  - PKHUD (5.3.0)
   - PromisesObjC (1.2.11)
   - PryntTrimmerView (4.0.2)
   - SteviaLayout (4.7.3)
@@ -315,6 +316,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseFirestoreSwift
   - IQKeyboardManagerSwift
+  - PKHUD (~> 5.0)
   - SwiftLint
   - YPImagePicker
 
@@ -340,6 +342,7 @@ SPEC REPOS:
     - leveldb-library
     - Macaw
     - nanopb
+    - PKHUD
     - PromisesObjC
     - PryntTrimmerView
     - SteviaLayout
@@ -368,6 +371,7 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   Macaw: 4a931baf9a9826b06d0d8ecf300014c962ab9d50
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
+  PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
   SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
@@ -375,6 +379,6 @@ SPEC CHECKSUMS:
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
   YPImagePicker: 15aed8bcaa4dad976e11b6114126d731a2f9f3c9
 
-PODFILE CHECKSUM: cc1d05f61bbca8ce87bfde8c96b155d7b3e8f110
+PODFILE CHECKSUM: 033757539ff24a67a0a172c4518105a45781730a
 
 COCOAPODS: 1.10.0

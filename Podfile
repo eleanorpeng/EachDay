@@ -15,4 +15,6 @@ target 'EachDay' do
   pod 'FAPaginationLayout'
   pod 'YPImagePicker'
   pod 'IQKeyboardManagerSwift'
+  pod 'PKHUD', '~> 5.0'
+
 end

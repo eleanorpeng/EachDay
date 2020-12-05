@@ -20,6 +20,8 @@ class WriteTimeCapsuleViewController: UIViewController {
     var config = YPImagePickerConfiguration()
     let imagePicker = YPImagePicker()
     var selectedDate: Double?
+    var letterImage: UIImage?
+    var letterImageURL: String?
     var letterTitle: String? {
         didSet {
             checkAllInfo()
@@ -38,7 +40,7 @@ class WriteTimeCapsuleViewController: UIViewController {
     @IBOutlet var toolBarView: UIView!
     @IBOutlet weak var senderButton: UIButton!
     @IBAction func sendButtonClicked(_ sender: Any) {
-        addData()
+        uploadData()
         navigationController?.popToRootViewController(animated: true)
     }
     @IBOutlet weak var timeCapsuleLetterImageView: UIImageView!
@@ -82,6 +84,7 @@ class WriteTimeCapsuleViewController: UIViewController {
                 print(photo.fromCamera)
                 print(photo.image)
                 self.timeCapsuleLetterImageView.image = photo.image
+                self.letterImage = photo.image
                 self.uploadImageButton.setImage(nil, for: .normal)
                 self.uploadImageButton.setTitle("", for: .normal)
             }
@@ -96,6 +99,21 @@ class WriteTimeCapsuleViewController: UIViewController {
         if letterTitle != nil && letterContent != nil {
             completeAllInfo = true
         }
+    }
+    func uploadData() {
+        guard letterImage != nil else {
+            letterImageURL = ""
+            return
+        }
+        JournalManager.shared.uploadImage(userID: "Eleanor", image: letterImage!, completion: { result in
+            switch result {
+            case .success(let url):
+                self.letterImageURL = url
+                self.addData()
+            case .failure(let error):
+                print(error)
+            }
+        })
     }
     
     func addData() {

@@ -563,11 +563,115 @@
                     <navigationItem key="navigationItem" id="hYU-Eh-1tg"/>
                     <connections>
                         <outlet property="tableView" destination="iQi-NN-jtb" id="es6-If-BPb"/>
+                        <segue destination="ta8-vd-ZyX" kind="show" identifier="ShowDetailJournalContentSegue" id="KPC-ka-3Oa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x0z-Je-uRv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3173.913043478261" y="845.75892857142856"/>
+        </scene>
+        <!--Detail Journal Content View Controller-->
+        <scene sceneID="EBy-b7-48C">
+            <objects>
+                <viewController id="ta8-vd-ZyX" customClass="DetailJournalContentViewController" customModule="EachDay" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LEy-fQ-3qr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fmw-Xt-QyT">
+                                <rect key="frame" x="20" y="145" width="374" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="0ZH-6y-VMe"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emI-gI-Izi">
+                                <rect key="frame" x="20" y="415" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8Z-wF-zvw">
+                                <rect key="frame" x="186" y="108" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BzS-6v-8dr">
+                                <rect key="frame" x="16" y="452" width="382" height="288"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7uY-MU-erj">
+                                <rect key="frame" x="0.0" y="750" width="414" height="3"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="n1J-Xo-Thp"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jky-VV-V3f" customClass="PaddingableUILabel" customModule="EachDay" customModuleProvider="target">
+                                <rect key="frame" x="16" y="769" width="42" height="28"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingRight">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingTop">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingBottom">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="j4r-Zy-Q2E"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7uY-MU-erj" firstAttribute="top" secondItem="BzS-6v-8dr" secondAttribute="bottom" constant="10" id="0LY-Ue-fDP"/>
+                            <constraint firstItem="jky-VV-V3f" firstAttribute="leading" secondItem="j4r-Zy-Q2E" secondAttribute="leading" constant="16" id="3kL-oP-OHG"/>
+                            <constraint firstItem="7uY-MU-erj" firstAttribute="leading" secondItem="j4r-Zy-Q2E" secondAttribute="leading" id="5kC-aO-Nu4"/>
+                            <constraint firstItem="j4r-Zy-Q2E" firstAttribute="trailing" secondItem="BzS-6v-8dr" secondAttribute="trailing" constant="16" id="6em-iy-VdJ"/>
+                            <constraint firstItem="Fmw-Xt-QyT" firstAttribute="top" secondItem="s8Z-wF-zvw" secondAttribute="bottom" constant="16" id="9LD-6b-RBQ"/>
+                            <constraint firstItem="emI-gI-Izi" firstAttribute="top" secondItem="Fmw-Xt-QyT" secondAttribute="bottom" constant="20" id="Gq6-7u-jfO"/>
+                            <constraint firstItem="Fmw-Xt-QyT" firstAttribute="leading" secondItem="j4r-Zy-Q2E" secondAttribute="leading" constant="20" id="Jbo-gM-dlo"/>
+                            <constraint firstItem="j4r-Zy-Q2E" firstAttribute="trailing" secondItem="Fmw-Xt-QyT" secondAttribute="trailing" constant="20" id="LnV-7J-n6B"/>
+                            <constraint firstItem="j4r-Zy-Q2E" firstAttribute="trailing" secondItem="7uY-MU-erj" secondAttribute="trailing" id="Orx-Ti-oVr"/>
+                            <constraint firstItem="j4r-Zy-Q2E" firstAttribute="bottom" secondItem="jky-VV-V3f" secondAttribute="bottom" constant="16" id="T5N-8o-Pfk"/>
+                            <constraint firstItem="s8Z-wF-zvw" firstAttribute="top" secondItem="j4r-Zy-Q2E" secondAttribute="top" constant="20" id="ZSQ-BC-yQM"/>
+                            <constraint firstItem="BzS-6v-8dr" firstAttribute="leading" secondItem="j4r-Zy-Q2E" secondAttribute="leading" constant="16" id="dgT-We-KwZ"/>
+                            <constraint firstItem="j4r-Zy-Q2E" firstAttribute="bottom" secondItem="7uY-MU-erj" secondAttribute="bottom" constant="60" id="kp2-kj-9oQ"/>
+                            <constraint firstItem="emI-gI-Izi" firstAttribute="leading" secondItem="j4r-Zy-Q2E" secondAttribute="leading" constant="20" id="phz-VQ-5fP"/>
+                            <constraint firstItem="BzS-6v-8dr" firstAttribute="top" secondItem="emI-gI-Izi" secondAttribute="bottom" constant="16" id="pvj-VF-DMb"/>
+                            <constraint firstItem="jky-VV-V3f" firstAttribute="top" secondItem="7uY-MU-erj" secondAttribute="bottom" constant="16" id="qfs-qN-rHw"/>
+                            <constraint firstItem="s8Z-wF-zvw" firstAttribute="centerX" secondItem="LEy-fQ-3qr" secondAttribute="centerX" id="vml-N3-RhH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="xMi-j9-FC1"/>
+                    <connections>
+                        <outlet property="contentTextView" destination="BzS-6v-8dr" id="4sv-NL-F97"/>
+                        <outlet property="dateLabel" destination="s8Z-wF-zvw" id="6XJ-0v-TaV"/>
+                        <outlet property="journalImageView" destination="Fmw-Xt-QyT" id="43l-yX-nX2"/>
+                        <outlet property="tagLabel" destination="jky-VV-V3f" id="TYV-Ij-0UM"/>
+                        <outlet property="tagSeparator" destination="7uY-MU-erj" id="Gl3-w9-shS"/>
+                        <outlet property="titleLabel" destination="emI-gI-Izi" id="tGz-6h-DGd"/>
+                        <outlet property="titleLabelToImageConstraint" destination="Gq6-7u-jfO" id="B2c-Mq-4tn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s7T-Go-lNf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4047.826086956522" y="845.75892857142856"/>
         </scene>
         <!--Time Tracking Main Page View Controller-->
         <scene sceneID="cL2-FD-lQI">

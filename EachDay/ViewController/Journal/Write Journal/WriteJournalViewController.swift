@@ -31,6 +31,7 @@ class WriteJournalViewController: UIViewController {
         }
     }
     var journalImage: UIImage?
+    var journalImageURL: String?
     var config = YPImagePickerConfiguration()
     var isDefault = true
     @IBOutlet var toolBarView: UIView!
@@ -69,7 +70,7 @@ class WriteJournalViewController: UIViewController {
     }
     
     @IBAction func completeButtonClicked(_ sender: Any) {
-        addData()
+        uploadData()
         navigationController?.popViewController(animated: true)
     }
     
@@ -102,8 +103,7 @@ class WriteJournalViewController: UIViewController {
     func imagePickerDonePicking() {
         imagePicker.didFinishPicking { [unowned imagePicker] items, _ in
             if let photo = items.singlePhoto {
-                print(photo.fromCamera)
-                print(photo.image)
+                self.journalImage = photo.image
                 self.journalImageView.image = photo.image
                 self.uploadImageButton.setImage(nil, for: .normal)
                 self.uploadImageButton.setTitle("", for: .normal)
@@ -118,14 +118,30 @@ class WriteJournalViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 
+    func uploadData() {
+        guard journalImage != nil else {
+            journalImageURL = ""
+            return
+        }
+        JournalManager.shared.uploadImage(userID: "Eleanor", image: journalImage!, completion: { result in
+            switch result {
+            case .success(let url):
+                self.journalImageURL = url
+                self.addData()
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
     func addData() {
 //        let journal = Firestore.firestore().collection("User").document().collection("Journal")
 //        let document = journal.document()
+        
         journalData = Journal(title: journalTitle ?? "",
                               date: selectedDate?.timeIntervalSince1970 ?? 0,
                               content: journalContent ?? "",
                           tags: journalTags ?? [""],
-                          image: "",
+                          image: journalImageURL ?? "",
                           hasTracker: false,
                           isTimeCapsule: false,
                           id: "")
@@ -137,6 +153,7 @@ class WriteJournalViewController: UIViewController {
                 print(error)
             }
         })
+        
     }
     
     func checkIfCompleted() {
