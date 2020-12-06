@@ -70,4 +70,10 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    func getFormattedTime() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        dateFormatter.timeZone = .current
+        return dateFormatter.string(from: self)
+    }
 }

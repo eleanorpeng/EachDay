@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class TimeTrackingMainPageViewController: UIViewController {
 
@@ -16,11 +18,7 @@ class TimeTrackingMainPageViewController: UIViewController {
     @IBAction func createNewTask(_ sender: Any) {
         performSegue(withIdentifier: "ShowCreateNewTaskSegue", sender: self)
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initialSetUp()
-        setUpButton()
-    }
+    
     let stopWatch = Stopwatch()
     var elapsedTime: String? {
         didSet {
@@ -30,7 +28,7 @@ class TimeTrackingMainPageViewController: UIViewController {
     @IBAction func timeTrackingSummaryButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "ShowTimeTrackingSummarySegue", sender: self)
     }
-    var hasAddedNewRecord = false
+    var hasNewRecord = false
 //    var pauseTimeInterval: Date?
     let icons: [TimeTrackingButton] = [
         TimeTrackingButton(name: "Sleep", icon: "sleep"),
@@ -42,7 +40,11 @@ class TimeTrackingMainPageViewController: UIViewController {
         TimeTrackingButton(name: "Commute", icon: "commute"),
         TimeTrackingButton(name: "TV", icon: "tv")
     ]
-    var timeRecords: [TrackedTime] = []
+    var timeRecords: [TrackedTime]? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var startTime: TimeInterval?
     var pausedTime: Date?
     var isTiming = false
@@ -51,6 +53,7 @@ class TimeTrackingMainPageViewController: UIViewController {
     var pausedIntervals: [TimeInterval] = []
     var elapsedTimeInterval: TimeInterval?
     var endTime: TimeInterval?
+    var endTimeTS: Timestamp?
     var taskName: String? {
         didSet {
             tableView.reloadData()
@@ -62,7 +65,40 @@ class TimeTrackingMainPageViewController: UIViewController {
         }
     }
     
-    var category: String?
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initialSetUp()
+        setUpButton()
+        fetchTimeRecord()
+//        getSomeDate()
+    }
+    
+    func fetchTimeRecord() {
+        TimeTrackingManager.shared.fetchTimeRecord(userDocID: "Eleanor", completion: { result in
+            switch result {
+            case .success(let trackedTime):
+                self.timeRecords = trackedTime
+                self.timeRecords?.forEach({
+                    print($0.taskName)
+                })
+//                print("Time \(self.timeRecords)")
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
+    
+    func getSomeDate() {
+        var calendar = Calendar.current
+        // Use the following line if you want midnight UTC instead of local time
+        calendar.timeZone = TimeZone(abbreviation: "UTC")!
+        let today = Date()
+        let midnight = calendar.startOfDay(for: today)
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: midnight)!
+        print(midnight)
+        print(tomorrow)
+    }
+  
     func initialSetUp() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -104,17 +140,16 @@ extension TimeTrackingMainPageViewController: UITableViewDelegate, UITableViewDa
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-//        return timeRecords.count
+        return timeRecords?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeTrackingMainTableViewCell.identifier)
         guard let timeTrackingCell = cell as? TimeTrackingMainTableViewCell else { return cell! }
-        if indexPath.row == 0 && hasAddedNewRecord {
+        if indexPath.row == 0 && hasNewRecord {
             return configureTopCell(tableView: tableView)
         } else {
-            return configurePastCell(tableView: tableView, index: indexPath.row + 1)
+            return configurePastCell(tableView: tableView, index: indexPath.row)
         }
     }
     
@@ -122,16 +157,21 @@ extension TimeTrackingMainPageViewController: UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeTrackingTopTableViewCell.identifier)
         guard let topCell = cell as? TimeTrackingTopTableViewCell else { return cell! }
         topCell.delegate = self
-        topCell.layoutCell(activity: taskName ?? "", description: taskDescription ?? "", elapsedTime: elapsedTime ?? "00:00:00", duration: "9:00 AM - 5:00 PM", color: .yellow)
+        topCell.layoutCell(activity: taskName ?? "", description: taskDescription ?? "", elapsedTime: elapsedTime ?? "00:00:00", duration: "", color: .yellow)
         topCell.configurePauseButtonImage(image: (isPaused ? UIImage(named: "play-button")! : UIImage(named: "pause"))!)
         return topCell
     }
     
     func configurePastCell(tableView: UITableView, index: Int) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeTrackingMainTableViewCell.identifier)
+        let trackedTimeVM = TrackedTimeViewModel(trackedTime: (timeRecords?[index])!)
         guard let pastCell = cell as? TimeTrackingMainTableViewCell else { return cell! }
-        pastCell.layoutCell(activity: "Reading", elapsedTime: "00:25:35", duration: "3:10 - 3:40 PM", description: "Description")
-//        pastCell.layoutCell(activity: timeRecords[index]., elapsedTime: "00:25:35", duration: "3:10 - 3:40 PM", description: "Description")
+       
+        pastCell.layoutCell(activity: trackedTimeVM.taskName,
+                            elapsedTime: trackedTimeVM.duration,
+                            duration: "\(trackedTimeVM.startTime) - \(trackedTimeVM.endTime)",
+                            description: trackedTimeVM.taskDescription)
+//        pastCell.layoutCell(activity: "Reading", elapsedTime: "00:25:35", duration: "3:10 - 3:40 PM", description: "Description")
 
         return pastCell
     }
@@ -143,6 +183,26 @@ extension TimeTrackingMainPageViewController: UITableViewDelegate, UITableViewDa
     
     func pauseTiming() {
         pause()
+    }
+    
+    func addData() {
+        let startTimeTS = Timestamp.init(date: Date(timeIntervalSince1970: startTime ?? 0))
+        let today = Timestamp.init(date: Date())
+        var timeRecord = TrackedTime(date: today,
+                                     startTime: startTimeTS,
+                                     endTime: endTimeTS ?? startTimeTS,
+                                     taskName: taskName ?? "",
+                                     id: "",
+                                     duration: elapsedTimeInterval ?? 0,
+                                     taskDescrpition: taskDescription ?? "")
+        TimeTrackingManager.shared.uploadTimeRecord(userDocID: "Eleanor", record: &timeRecord, completion: { result in
+            switch result {
+            case .success(let message):
+                print(message)
+            case .failure(let error):
+                print(error)
+            }
+        })
     }
     
 }
@@ -178,26 +238,19 @@ extension TimeTrackingMainPageViewController: UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        startTiming()
         taskName = icons[indexPath.row].name
         taskDescription = ""
+        hasNewRecord = true
+        startTiming()
         updateTimer()
-        
     }
 }
 
 extension TimeTrackingMainPageViewController: CreateNewTaskViewControllerDelegate {
-    func getRecord(task: String, description: String) {
-        taskName = task
-        taskDescription = description
-    }
-
-    func getCategory(category: String) {
-        
-    }
-    
+   
     func getTaskName(task: String) {
         taskName = task
     }
@@ -207,25 +260,6 @@ extension TimeTrackingMainPageViewController: CreateNewTaskViewControllerDelegat
         tableView.reloadData()
     }
     
-//    func startTiming() {
-//        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateElapsedTimeLabel(timer:)), userInfo: nil, repeats: true)
-//        stopWatch.start()
-//        stopWatch.begin()
-//        elapsedTime = stopWatch.newElapsedTimeAsString
-//        print("IN main: \(elapsedTime)")
-//
-//        tableView.reloadData()
-//    }
-//
-//    @objc func updateElapsedTimeLabel(timer: Timer) {
-//        if stopWatch.isRunning {
-//            elapsedTime = stopWatch.elapsedTimeAsString
-//            tableView.reloadData()
-//        } else {
-//            timer.invalidate()
-//        }
-//    }
-    
     func startTiming() {
         if isPaused {
             pause()
@@ -233,18 +267,18 @@ extension TimeTrackingMainPageViewController: CreateNewTaskViewControllerDelegat
         timer.invalidate()
         if !timer.isValid {
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-            startTime = Date().timeIntervalSinceReferenceDate
-            print("start time: \(startTime)")
+            startTime = Date().timeIntervalSince1970
         }
         isTiming = true
         isPaused = false
         pausedIntervals = []
-        hasAddedNewRecord = true
+        hasNewRecord = true
+        addData()
         updateTimer()
     }
     
     @objc func updateTimer() {
-        let currentTime = Date().timeIntervalSinceReferenceDate
+        let currentTime = Date().timeIntervalSince1970
         var pausedSeconds = pausedIntervals.reduce(0) { $0 + $1 }
         if let pausedTime = pausedTime {
             pausedSeconds += Date().timeIntervalSince(pausedTime)
@@ -280,7 +314,12 @@ extension TimeTrackingMainPageViewController: CreateNewTaskViewControllerDelegat
     func stop() {
         timer.invalidate()
         endTime = elapsedTimeInterval
-        hasAddedNewRecord = false
+        endTimeTS = Timestamp(date: Date())
+        TimeTrackingManager.shared.updateFields(userDocID: "Eleanor",
+                                                endTime: endTimeTS!,
+                                                duration: elapsedTimeInterval ?? 0)
+        tableView.reloadData()
+        hasNewRecord = false
         isPaused = false
         isTiming = false
         pausedIntervals = []

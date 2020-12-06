@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class DetailJournalContentViewController: UIViewController {
 
@@ -28,6 +29,7 @@ class DetailJournalContentViewController: UIViewController {
     
     func initialSetUp() {
 //        titleLabelToDateConstraint.isActive = false
+        HUD.show(.progress)
         dateLabel.text = journalVM?.formattedDate
         titleLabel.text = journalVM?.title
         contentTextView.text = journalVM?.content
@@ -39,6 +41,7 @@ class DetailJournalContentViewController: UIViewController {
         guard journalVM?.image != "" else {
             titleLabelToImageConstraint.constant = -260
             journalImageView.isHidden = true
+            HUD.hide()
             return
         }
         guard let urlString = journalVM?.image,
@@ -51,13 +54,13 @@ class DetailJournalContentViewController: UIViewController {
             DispatchQueue.main.async {
                 let image = UIImage(data: data)
                 self.journalImageView.image = image
+                HUD.hide()
             }
         })
         task.resume()
     }
     
     func layoutTags() {
-//        journalTagLabel.translatesAutoresizingMaskIntoConstraints = false
         guard (journalVM?.tags.count)! > 0 else {
             tagLabel.isHidden = true
             tagSeparator.isHidden = true
@@ -80,6 +83,7 @@ class DetailJournalContentViewController: UIViewController {
             journalTagLabel.paddingRight = 8
             journalTagLabel.paddingTop = 8
             journalTagLabel.paddingBottom = 8
+            print("XAnchor \(xAnchor)")
             setJournalTagConstraints(previousTag: previousTag!, currentTag: journalTagLabel, xAnchor: &xAnchor)
             previousTag = journalTagLabel
         }
@@ -93,7 +97,6 @@ class DetailJournalContentViewController: UIViewController {
             currentTag.topAnchor.constraint(equalTo: tagSeparator.bottomAnchor, constant: 16),
             currentTag.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
         ])
-        xAnchor += 16
     }
     
 }

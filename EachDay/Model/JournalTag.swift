@@ -22,5 +22,3 @@ struct JournalTag: Identifiable, Codable {
         case id, tag, isSelected
     }
 }
-
-

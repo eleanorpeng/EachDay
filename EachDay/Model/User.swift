@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 struct User: Identifiable, Codable {
     let name: String
@@ -35,20 +36,28 @@ struct User: Identifiable, Codable {
     }
 }
 
+//Added a new date field, changed startTime and endTime from Double to Timestamp, added duration
+
 struct TrackedTime: Identifiable, Codable {
     var id: String
-    var startTime: Double
-    var endTime: Double
-    var category: String
-    init(startTime: Double, endTime: Double, category: String, id: String) {
+    var date: Timestamp
+    var startTime: Timestamp
+    var endTime: Timestamp
+    var taskName: String
+    var duration: Double
+    var taskDescrpition: String
+    init(date: Timestamp, startTime: Timestamp, endTime: Timestamp, taskName: String, id: String, duration: Double, taskDescrpition: String) {
+        self.date = date
         self.startTime = startTime
         self.endTime = endTime
-        self.category = category
+        self.taskName = taskName
         self.id = id
+        self.duration = duration
+        self.taskDescrpition = taskDescrpition
     }
     
     enum CodingKeys: String, CodingKey {
-        case startTime, endTime, category, id
+        case startTime, endTime, taskName, id, date, duration, taskDescrpition
     }
 }
 

@@ -28,7 +28,6 @@ class CreateNewTaskViewController: UIViewController {
     @IBOutlet weak var taskDetailTextView: UITextView!
     @IBAction func saveButtonClicked(_ sender: Any) {
         self.delegate?.startTiming()
-        self.delegate?.getRecord(task: taskName ?? "", description: taskDescription ?? "")
         self.dismiss(animated: true, completion: nil)
     }
     @IBOutlet weak var saveButton: UIButton!
@@ -96,7 +95,7 @@ extension CreateNewTaskViewController: UITextViewDelegate {
 extension CreateNewTaskViewController: TimeTrackingTagViewControllerDelegate {
     func getSelectedTag(tag: String) {
         taskName = tag
-        self.delegate?.getCategory(category: taskName ?? "")
+        self.delegate?.getTaskName(task: taskName ?? "")
         addTagButton.setTitle(taskName, for: .normal)
         addTagButton.setTitleColor(.black, for: .normal)
         tagImageView.tintColor = .black
@@ -107,6 +106,4 @@ protocol CreateNewTaskViewControllerDelegate: AnyObject {
     func startTiming()
     func getTaskName(task: String)
     func getDescription(description: String)
-    func getCategory(category: String)
-    func getRecord(task: String, description: String)
 }

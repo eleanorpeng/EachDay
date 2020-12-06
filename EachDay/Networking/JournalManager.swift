@@ -13,10 +13,10 @@ import FirebaseStorage
 class JournalManager {
     static let shared = JournalManager()
     
-    var db = Firestore.firestore()
+    var database = Firestore.firestore()
     
     func fetchJournalData(userDocID: String, selectedMonth: Int, completion: @escaping (Result<[Journal], Error>) -> Void) {
-        db.collection("User").document(userDocID).collection("Journal").addSnapshotListener({ querySnapshot, error in
+        database.collection("User").document(userDocID).collection("Journal").addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -34,7 +34,7 @@ class JournalManager {
     }
     
     func fetchFilteredJournalData(userDocID: String, selectedMonth: Int, currentDate: Double, completion: @escaping (Result<[Journal], Error>) -> Void) {
-        db.collection("User").document(userDocID).collection("Journal").whereField("date", isLessThan: currentDate).addSnapshotListener({ querySnapshot, error in
+        database.collection("User").document(userDocID).collection("Journal").whereField("date", isLessThan: currentDate).addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -52,11 +52,11 @@ class JournalManager {
     }
     
     func publishJournalData(journal: inout Journal, userID: String, completion: @escaping (Result<String, Error>) -> Void) {
-        let document = db.collection("User").document(userID).collection("Journal").document()
+        let document = database.collection("User").document(userID).collection("Journal").document()
         journal.id = document.documentID
         do {
             try document.setData(from: journal)
-            completion(.success("Success!"))
+            completion(.success("Successfully uploaded journal data!"))
         } catch {
             completion(.failure(error))
         }
@@ -67,7 +67,7 @@ class JournalManager {
     }
     
     func fetchUser(userID: String, completion: @escaping (Result<[User], Error>) -> Void) {
-        db.collection("User").whereField("id", isEqualTo: userID).addSnapshotListener({ querySnapshot, error in
+        database.collection("User").whereField("id", isEqualTo: userID).addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -81,7 +81,7 @@ class JournalManager {
     }
     
     func updateJournalTags(userID: String, tags: [String]) {
-        let user = db.collection("User").document(userID)
+        let user = database.collection("User").document(userID)
         user.updateData([
             "journalTags": tags
         ]) { err in
