@@ -613,9 +613,9 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jky-VV-V3f" customClass="PaddingableUILabel" customModule="EachDay" customModuleProvider="target">
                                 <rect key="frame" x="16" y="769" width="42" height="28"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.68235294120000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
@@ -764,7 +764,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descriptions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXP-GO-U3x">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Descriptions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXP-GO-U3x">
                                                     <rect key="frame" x="24" y="50" width="249" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" systemColor="systemGrayColor"/>
@@ -775,7 +775,7 @@
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:15 - 3:40 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWK-sJ-SIn">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="3:15 - 3:40 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWK-sJ-SIn">
                                                     <rect key="frame" x="293" y="55" width="105" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" systemColor="systemGrayColor"/>
@@ -785,10 +785,10 @@
                                             <constraints>
                                                 <constraint firstItem="en7-TX-PfC" firstAttribute="leading" secondItem="Ily-K8-laO" secondAttribute="leading" constant="16" id="39P-8e-e3l"/>
                                                 <constraint firstItem="8An-kd-MVm" firstAttribute="top" secondItem="en7-TX-PfC" secondAttribute="top" id="4DH-II-Oke"/>
+                                                <constraint firstItem="8An-kd-MVm" firstAttribute="trailing" secondItem="uWK-sJ-SIn" secondAttribute="trailing" id="7oi-zc-gcm"/>
                                                 <constraint firstAttribute="trailing" secondItem="uWK-sJ-SIn" secondAttribute="trailing" constant="16" id="EII-eh-fWQ"/>
                                                 <constraint firstItem="uWK-sJ-SIn" firstAttribute="leading" secondItem="hXP-GO-U3x" secondAttribute="trailing" constant="20" id="FMN-MP-JIS"/>
                                                 <constraint firstItem="hXP-GO-U3x" firstAttribute="top" secondItem="en7-TX-PfC" secondAttribute="bottom" constant="10" id="GD9-Pt-I8I"/>
-                                                <constraint firstItem="uWK-sJ-SIn" firstAttribute="leading" secondItem="8An-kd-MVm" secondAttribute="leading" id="O1s-eO-TBq"/>
                                                 <constraint firstItem="uWK-sJ-SIn" firstAttribute="top" secondItem="8An-kd-MVm" secondAttribute="bottom" constant="10" id="Z2c-7C-RxS"/>
                                                 <constraint firstItem="8An-kd-MVm" firstAttribute="top" secondItem="Ily-K8-laO" secondAttribute="top" constant="16" id="bgO-Ey-8bq"/>
                                                 <constraint firstAttribute="trailing" secondItem="8An-kd-MVm" secondAttribute="trailing" constant="16" id="hoU-ZY-shp"/>
@@ -910,7 +910,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What Are You Working On Today?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88q-O5-PkM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What Are You Working On Today?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88q-O5-PkM">
                                 <rect key="frame" x="20" y="118" width="334" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>

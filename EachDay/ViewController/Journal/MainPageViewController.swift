@@ -131,7 +131,7 @@ extension MainPageViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: JournalTableViewCell.identifier, for: indexPath)
         guard let journalCell = cell as? JournalTableViewCell else { return cell }
         if indexPath.row == 0 {
-            journalCell.layoutCell(month: months[indexPath.section-1], date: dates[indexPath.section-1], title: "Yay", content: "I can't think of any interesting content.")
+            journalCell.layoutCell(month: months[indexPath.section-1], date: dates[indexPath.section-1], title: "Yay", content: "Some content.")
         } else {
             journalCell.dateLabel.isHidden = true
             journalCell.monthLabel.isHidden = true

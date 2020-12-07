@@ -23,12 +23,10 @@ class DetailJournalContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         journalVM = JournalViewModel(journal: journalData!)
-        print(journalData)
         initialSetUp()
     }
     
     func initialSetUp() {
-//        titleLabelToDateConstraint.isActive = false
         HUD.show(.progress)
         dateLabel.text = journalVM?.formattedDate
         titleLabel.text = journalVM?.title
@@ -75,7 +73,8 @@ class DetailJournalContentViewController: UIViewController {
         for num in 0..<journalTags!.count-1 {
             let journalTagLabel = PaddingableUILabel()
             journalTagLabel.translatesAutoresizingMaskIntoConstraints = false
-            journalTagLabel.backgroundColor = .lightGray
+            journalTagLabel.backgroundColor = UIColor(r: 247, g: 174, b: 0)
+            journalTagLabel.textColor = .white
             journalTagLabel.text = journalTags?[num+1]
             journalTagLabel.clipsToBounds = true
             journalTagLabel.cornerRadius = 8
@@ -83,7 +82,6 @@ class DetailJournalContentViewController: UIViewController {
             journalTagLabel.paddingRight = 8
             journalTagLabel.paddingTop = 8
             journalTagLabel.paddingBottom = 8
-            print("XAnchor \(xAnchor)")
             setJournalTagConstraints(previousTag: previousTag!, currentTag: journalTagLabel, xAnchor: &xAnchor)
             previousTag = journalTagLabel
         }

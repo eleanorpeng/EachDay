@@ -27,7 +27,7 @@ class TimeTrackingManager {
     }
     
     func fetchTimeRecord(userDocID: String, completion: @escaping(Result<[TrackedTime], Error>) -> Void) {
-        database.collection("User").document(userDocID).collection("TrackedTime").order(by: "endTime", descending: true).addSnapshotListener({ querySnapshot, error in
+        database.collection("User").document(userDocID).collection("TrackedTime").order(by: "startTime", descending: true).addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -62,10 +62,37 @@ class TimeTrackingManager {
             "duration": duration
         ]) { err in
             if let err = err {
-                print("Error in updating time record date")
+                print("Error in updating time record date.")
             } else {
                 print("Time record data updated successfully!")
             }
         }
+    }
+    
+    func updateTrackTimeCategories(userDocID: String, categories: [String]) {
+        database.collection("User").document(userDocID).updateData([
+            "trackTimeCategories": categories
+        ]) { err in
+            if let err = err {
+                print("Error in updating track time categories.")
+            } else {
+                print("Track time categories updated successfully!")
+            }
+        }
+    }
+    
+    func fetchCategoryTime(userDocID: String, category: String, completion: @escaping(Result<[TrackedTime], Error>) -> Void) {
+        database.collection("User").document(userDocID).collection("TrackedTime")
+            .whereField("taskName", isEqualTo: category).addSnapshotListener({ querySnapshot, error in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    guard let documents = querySnapshot?.documents else { return }
+                    let timeRecords = documents.compactMap({ queryDocument -> TrackedTime? in
+                        return try? queryDocument.data(as: TrackedTime.self)
+                    })
+                    completion(.success(timeRecords))
+                }
+        })
     }
 }

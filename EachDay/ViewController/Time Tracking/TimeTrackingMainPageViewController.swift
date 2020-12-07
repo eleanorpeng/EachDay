@@ -29,7 +29,6 @@ class TimeTrackingMainPageViewController: UIViewController {
         performSegue(withIdentifier: "ShowTimeTrackingSummarySegue", sender: self)
     }
     var hasNewRecord = false
-//    var pauseTimeInterval: Date?
     let icons: [TimeTrackingButton] = [
         TimeTrackingButton(name: "Sleep", icon: "sleep"),
         TimeTrackingButton(name: "Work", icon: "work"),
@@ -52,6 +51,7 @@ class TimeTrackingMainPageViewController: UIViewController {
     var timer = Timer()
     var pausedIntervals: [TimeInterval] = []
     var elapsedTimeInterval: TimeInterval?
+    var totalTime: [String : TimeInterval]?
     var endTime: TimeInterval?
     var endTimeTS: Timestamp?
     var taskName: String? {
@@ -69,19 +69,20 @@ class TimeTrackingMainPageViewController: UIViewController {
         super.viewDidLoad()
         initialSetUp()
         setUpButton()
-        fetchTimeRecord()
-//        getSomeDate()
+        totalTime = [:]
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        fetchTimeRecord()
+    }
     func fetchTimeRecord() {
         TimeTrackingManager.shared.fetchTimeRecord(userDocID: "Eleanor", completion: { result in
             switch result {
             case .success(let trackedTime):
                 self.timeRecords = trackedTime
-                self.timeRecords?.forEach({
-                    print($0.taskName)
-                })
-//                print("Time \(self.timeRecords)")
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             case .failure(let error):
                 print(error)
             }
@@ -126,8 +127,13 @@ class TimeTrackingMainPageViewController: UIViewController {
    
     }
     
+    func calculateTotalTime() {
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? CreateNewTaskViewController {
+            stop()
             destination.delegate = self
         }
     }
@@ -153,6 +159,10 @@ extension TimeTrackingMainPageViewController: UITableViewDelegate, UITableViewDa
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     func configureTopCell(tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeTrackingTopTableViewCell.identifier)
         guard let topCell = cell as? TimeTrackingTopTableViewCell else { return cell! }
@@ -161,18 +171,15 @@ extension TimeTrackingMainPageViewController: UITableViewDelegate, UITableViewDa
         topCell.configurePauseButtonImage(image: (isPaused ? UIImage(named: "play-button")! : UIImage(named: "pause"))!)
         return topCell
     }
-    
+
     func configurePastCell(tableView: UITableView, index: Int) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeTrackingMainTableViewCell.identifier)
         let trackedTimeVM = TrackedTimeViewModel(trackedTime: (timeRecords?[index])!)
         guard let pastCell = cell as? TimeTrackingMainTableViewCell else { return cell! }
-       
         pastCell.layoutCell(activity: trackedTimeVM.taskName,
                             elapsedTime: trackedTimeVM.duration,
                             duration: "\(trackedTimeVM.startTime) - \(trackedTimeVM.endTime)",
                             description: trackedTimeVM.taskDescription)
-//        pastCell.layoutCell(activity: "Reading", elapsedTime: "00:25:35", duration: "3:10 - 3:40 PM", description: "Description")
-
         return pastCell
     }
     
@@ -243,7 +250,6 @@ extension TimeTrackingMainPageViewController: UICollectionViewDelegate, UICollec
         collectionView.deselectItem(at: indexPath, animated: true)
         taskName = icons[indexPath.row].name
         taskDescription = ""
-        hasNewRecord = true
         startTiming()
         updateTimer()
     }
@@ -261,6 +267,7 @@ extension TimeTrackingMainPageViewController: CreateNewTaskViewControllerDelegat
     }
     
     func startTiming() {
+        hasNewRecord = true
         if isPaused {
             pause()
         }
@@ -272,7 +279,6 @@ extension TimeTrackingMainPageViewController: CreateNewTaskViewControllerDelegat
         isTiming = true
         isPaused = false
         pausedIntervals = []
-        hasNewRecord = true
         addData()
         updateTimer()
     }
@@ -318,8 +324,10 @@ extension TimeTrackingMainPageViewController: CreateNewTaskViewControllerDelegat
         TimeTrackingManager.shared.updateFields(userDocID: "Eleanor",
                                                 endTime: endTimeTS!,
                                                 duration: elapsedTimeInterval ?? 0)
-        tableView.reloadData()
+        totalTime?[taskName ?? ""] = elapsedTimeInterval
+        print(totalTime)
         hasNewRecord = false
+        tableView.reloadData()
         isPaused = false
         isTiming = false
         pausedIntervals = []
