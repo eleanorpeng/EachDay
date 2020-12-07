@@ -42,7 +42,9 @@ class TimeTrackingManager {
     
     func fetchFilteredTimeRecord(userDocID: String, startDate: Timestamp, endDate: Timestamp, completion: @escaping(Result<[TrackedTime], Error>) -> Void) {
         database.collection("User").document(userDocID).collection("TrackedTime")
-            .whereField("date", isLessThan: endDate).whereField("date", isGreaterThan: startDate)
+            .whereField("date", isLessThanOrEqualTo: endDate)
+            .whereField("date", isGreaterThanOrEqualTo: startDate)
+            .order(by: "date", descending: true)
             .addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
@@ -81,9 +83,10 @@ class TimeTrackingManager {
         }
     }
     
-    func fetchCategoryTime(userDocID: String, category: String, completion: @escaping(Result<[TrackedTime], Error>) -> Void) {
+    func fetchTimeCategory(userDocID: String, category: String, completion: @escaping(Result<[TrackedTime], Error>) -> Void) {
         database.collection("User").document(userDocID).collection("TrackedTime")
-            .whereField("taskName", isEqualTo: category).addSnapshotListener({ querySnapshot, error in
+            .whereField("taskName", isEqualTo: category)
+            .addSnapshotListener({ querySnapshot, error in
                 if let error = error {
                     completion(.failure(error))
                 } else {

@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 
 class TimeTrackingMainPageViewController: UIViewController {
 
+    var hasAddedNew = false
     let helper = Helper()
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
@@ -18,7 +19,6 @@ class TimeTrackingMainPageViewController: UIViewController {
     @IBAction func createNewTask(_ sender: Any) {
         performSegue(withIdentifier: "ShowCreateNewTaskSegue", sender: self)
     }
-    
     let stopWatch = Stopwatch()
     var elapsedTime: String? {
         didSet {
@@ -51,9 +51,22 @@ class TimeTrackingMainPageViewController: UIViewController {
     var timer = Timer()
     var pausedIntervals: [TimeInterval] = []
     var elapsedTimeInterval: TimeInterval?
-    var totalTime: [String : TimeInterval]?
+    @IBOutlet weak var totalTimeLabel: UILabel!
+    var totalTime: Double? = 0 {
+        didSet {
+            totalTimeLabel.text = totalTime?.getFormattedTime()
+        }
+    }
+    var recordedTime: [String : TimeInterval]? {
+        didSet {
+            for (category, time) in recordedTime! {
+                totalTime! += time
+            }
+        }
+    }
     var endTime: TimeInterval?
     var endTimeTS: Timestamp?
+    var trackedTimeCategories: [String]?
     var taskName: String? {
         didSet {
             tableView.reloadData()
@@ -69,14 +82,58 @@ class TimeTrackingMainPageViewController: UIViewController {
         super.viewDidLoad()
         initialSetUp()
         setUpButton()
-        totalTime = [:]
+        fetchUser()
+        recordedTime = [:]
+        fetchTimeRecord()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+//        fetchTimeRecord()
         fetchTimeRecord()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        guard hasAddedNew else { return }
+        stop()
+    }
+    
+    func fetchUser() {
+        JournalManager.shared.fetchUser(userID: "Eleanor", completion: { result in
+            switch result {
+            case .success(let user):
+                self.trackedTimeCategories = user[0].trackTimeCategories
+                self.calculateTotalTime()
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
+    
+//    func fetchTimeRecord() {
+//        TimeTrackingManager.shared.fetchTimeRecord(userDocID: "Eleanor", completion: { result in
+//            switch result {
+//            case .success(let trackedTime):
+//                self.timeRecords = trackedTime
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+//            case .failure(let error):
+//                print(error)
+//            }
+//        })
+//    }
+//
     func fetchTimeRecord() {
-        TimeTrackingManager.shared.fetchTimeRecord(userDocID: "Eleanor", completion: { result in
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "UTC")!
+        let today = Date()
+        let midnight = calendar.startOfDay(for: today)
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: midnight)!
+        let midnightTS = Timestamp(date: midnight)
+        let tomorrowTS = Timestamp(date: tomorrow)
+        TimeTrackingManager.shared.fetchFilteredTimeRecord(userDocID: "Eleanor", startDate: midnightTS, endDate: tomorrowTS, completion: { result in
             switch result {
             case .success(let trackedTime):
                 self.timeRecords = trackedTime
@@ -87,17 +144,6 @@ class TimeTrackingMainPageViewController: UIViewController {
                 print(error)
             }
         })
-    }
-    
-    func getSomeDate() {
-        var calendar = Calendar.current
-        // Use the following line if you want midnight UTC instead of local time
-        calendar.timeZone = TimeZone(abbreviation: "UTC")!
-        let today = Date()
-        let midnight = calendar.startOfDay(for: today)
-        let tomorrow = calendar.date(byAdding: .day, value: 1, to: midnight)!
-        print(midnight)
-        print(tomorrow)
     }
   
     func initialSetUp() {
@@ -124,17 +170,35 @@ class TimeTrackingMainPageViewController: UIViewController {
     func setUpButton() {
         createNewTaskButton.layer.cornerRadius = 8
         createNewTaskButton.clipsToBounds = true
-   
     }
     
     func calculateTotalTime() {
-        
+        trackedTimeCategories?.forEach({ category in
+            TimeTrackingManager.shared.fetchTimeCategory(userDocID: "Eleanor", category: category, completion: { result in
+                switch result {
+                case .success(let trackedTime):
+                    for num in 0..<trackedTime.count {
+                        let time = trackedTime[num]
+                        if let previousRecord = self.recordedTime?[time.taskName] {
+                            let duration = previousRecord + time.duration
+                            self.recordedTime?.updateValue(duration, forKey: time.taskName)
+                        } else {
+                            self.recordedTime?.updateValue(time.duration, forKey: time.taskName)
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            })
+        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? CreateNewTaskViewController {
-            stop()
             destination.delegate = self
+        }
+        if let destination = segue.destination as? TimeTrackingSummaryViewController {
+            destination.timeRecords = self.recordedTime
         }
     }
 
@@ -267,6 +331,7 @@ extension TimeTrackingMainPageViewController: CreateNewTaskViewControllerDelegat
     }
     
     func startTiming() {
+        hasAddedNew = true
         hasNewRecord = true
         if isPaused {
             pause()
@@ -324,8 +389,8 @@ extension TimeTrackingMainPageViewController: CreateNewTaskViewControllerDelegat
         TimeTrackingManager.shared.updateFields(userDocID: "Eleanor",
                                                 endTime: endTimeTS!,
                                                 duration: elapsedTimeInterval ?? 0)
-        totalTime?[taskName ?? ""] = elapsedTimeInterval
-        print(totalTime)
+        recordedTime?[taskName ?? ""] = elapsedTimeInterval
+        print(recordedTime)
         hasNewRecord = false
         tableView.reloadData()
         isPaused = false

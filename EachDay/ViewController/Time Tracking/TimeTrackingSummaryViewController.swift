@@ -18,6 +18,7 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
         performSegue(withIdentifier: "ShowWriteReflectionSegue", sender: self)
     }
     let helper = Helper()
+    var timeRecords: [String:TimeInterval]?
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()

@@ -54,9 +54,7 @@ class TimeTrackingTagViewController: UIViewController {
             switch result {
             case .success(let user):
                 self.user = user
-                print(self.user)
                 self.categories = user[0].trackTimeCategories
-                print(self.categories)
             case .failure(let error):
                 print(error)
             }

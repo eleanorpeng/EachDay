@@ -983,6 +983,7 @@
                         <outlet property="collectionView" destination="YXk-0r-ILH" id="oAS-5l-FYE"/>
                         <outlet property="createNewTaskButton" destination="Sac-MD-chj" id="pR4-RX-elW"/>
                         <outlet property="tableView" destination="7IN-UI-Mtf" id="PYw-7O-Wzp"/>
+                        <outlet property="totalTimeLabel" destination="w6Q-66-Qmf" id="NKL-Hb-w0b"/>
                         <segue destination="Npj-7d-U0i" kind="presentation" identifier="ShowCreateNewTaskSegue" id="9hV-fj-lsF"/>
                         <segue destination="qa1-Wu-w5g" kind="show" identifier="ShowTimeTrackingSummarySegue" id="zvB-Yj-tvM"/>
                     </connections>
