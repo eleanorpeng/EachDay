@@ -30,6 +30,9 @@
                                     <segment title="Week"/>
                                     <segment title="Month"/>
                                 </segments>
+                                <connections>
+                                    <action selector="selectedIndexChanged:" destination="jU0-Dn-teu" eventType="valueChanged" id="DWB-5R-gz9"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A36-JN-kMd">
                                 <rect key="frame" x="161.5" y="74" width="91" height="24"/>

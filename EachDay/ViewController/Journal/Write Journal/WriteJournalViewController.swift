@@ -103,8 +103,9 @@ class WriteJournalViewController: UIViewController {
     func imagePickerDonePicking() {
         imagePicker.didFinishPicking { [unowned imagePicker] items, _ in
             if let photo = items.singlePhoto {
-                self.journalImage = photo.image
-                self.journalImageView.image = photo.image
+                let resized = photo.image.resizedImageWith(targetSize: CGSize(width: self.view.frame.width - 40, height: 250))
+                self.journalImage = resized
+                self.journalImageView.image = resized
                 self.uploadImageButton.setImage(nil, for: .normal)
                 self.uploadImageButton.setTitle("", for: .normal)
             }
@@ -172,6 +173,7 @@ class WriteJournalViewController: UIViewController {
             destination.selectedTags = journalTags ?? []
         }
     }
+   
 }
 
 extension WriteJournalViewController: UITextViewDelegate {

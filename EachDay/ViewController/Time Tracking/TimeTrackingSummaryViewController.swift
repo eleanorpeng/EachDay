@@ -7,10 +7,16 @@
 
 import UIKit
 import Charts
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBAction func selectedIndexChanged(_ sender: Any) {
+        selectedSegmentIndex = segmentedControl.selectedSegmentIndex
+        setUpData()
+    }
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var writeReflectionButton: UIButton!
@@ -18,7 +24,23 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
         performSegue(withIdentifier: "ShowWriteReflectionSegue", sender: self)
     }
     let helper = Helper()
+    var selectedSegmentIndex = 0
     var timeRecords: [String:TimeInterval]?
+    var trackedTime: [TrackedTime]?
+    var trackedTimeCategories: [String]?
+    var percentageTimeValues: [Double]?
+    var timeValues: [Double]? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    var categories: [String]? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    var startDateTS: Timestamp?
+    var endDateTS: Timestamp?
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
@@ -30,13 +52,30 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
         tableView.dataSource = self
         tableView.separatorColor = .clear
         pieChartView.delegate = self
-        let data = ["Reading", "Eating", "Sleeping", "Studying"]
-        let values: [Double] = [23, 51, 19, 7]
-        setUpPieChart(value: values, label: data)
-        pieChartView.entryLabelFont = .systemFont(ofSize: 12, weight: .light)
-        pieChartView.entryLabelColor = .black
+        setUpData()
         writeReflectionButton.layer.cornerRadius = 10
         writeReflectionButton.clipsToBounds = true
+        
+    }
+    
+    func setUpData() {
+        let dayRange = switchSegmentIndex()
+        setDateRange(days: dayRange)
+        fetchFilteredData(startDate: startDateTS, endDate: endDateTS)
+        
+        pieChartView.entryLabelFont = .systemFont(ofSize: 12, weight: .light)
+        pieChartView.entryLabelColor = .black
+    }
+    
+    func calculatePieChartValue() {
+        guard let timeRecord = self.timeRecords else { return }
+        categories = Array(timeRecord.keys)
+        timeValues = Array(timeRecord.values)
+        guard let sum = timeValues?.reduce(0, +) else { return }
+        percentageTimeValues = timeValues?.map({
+            return ($0 / sum) * 100
+        })
+        tableView.reloadData()
     }
     
     func createBackButton() {
@@ -56,7 +95,6 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
 
     func setUpPieChart(value: [Double], label: [String]) {
         let entries = (0..<label.count).map { (num) -> PieChartDataEntry in
-        
             return PieChartDataEntry(value: value[num],
                                      label: label[num])
         }
@@ -84,17 +122,95 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
         pieChartView.data = data
         pieChartView.highlightValues(nil)
     }
+    
+    func fetchFilteredData(startDate: Timestamp?, endDate: Timestamp?) {
+        guard let startDate = startDate, let endDate = endDate else { return }
+        TimeTrackingManager.shared.fetchFilteredTimeRecord(userDocID: "Eleanor", startDate: startDate, endDate: endDate, completion: { result in
+            switch result {
+            case .success(let trackedTime):
+                self.trackedTime = trackedTime
+                self.calculateTotalTime()
+                self.calculatePieChartValue()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.setUpPieChart(value: self.percentageTimeValues ?? [], label: self.categories ?? [])
+                }
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
+    
+    func setDateRange(days: Int) {
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "UTC")!
+        let today = Date()
+        let startDate = calendar.startOfDay(for: today)
+        let endDate = calendar.date(byAdding: .day, value: days, to: startDate)!
+        print(startDate)
+        print(endDate)
+        startDateTS = Timestamp(date: startDate)
+        endDateTS = Timestamp(date: endDate)
+       
+    }
+    
+    func switchSegmentIndex() -> Int {
+        let today = Date()
+        switch selectedSegmentIndex {
+        case 0:
+            return 1
+        case 1:
+            let week = today.weekDay()
+            return 7 - week
+        case 2:
+            let month = today.month()
+            if [1, 3, 5, 7, 8, 10, 12].contains(month) {
+                return 31 - today.day()
+            } else {
+                return 30 - today.day()
+            }
+        default:
+            return 0
+        }
+    }
+    
+    func calculateTotalTime() {
+        timeRecords = [:]
+        guard let trackedTime = trackedTime else { return }
+        for num in 0..<trackedTime.count {
+            let time = trackedTime[num]
+            if let previousRecord = self.timeRecords?[time.taskName] {
+                let duration = previousRecord + time.duration
+                self.timeRecords?.updateValue(duration, forKey: time.taskName)
+            } else {
+                self.timeRecords?.updateValue(time.duration, forKey: time.taskName)
+            }
+        }
+    }
+    
+    func fetchUser() {
+        JournalManager.shared.fetchUser(userID: "Eleanor", completion: { result in
+            switch result {
+            case .success(let user):
+                self.trackedTimeCategories = user[0].trackTimeCategories
+                self.calculateTotalTime()
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
 }
 
 extension TimeTrackingSummaryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return categories?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeTrackingSummaryTableViewCell.identifier, for: indexPath)
         guard let summaryCell = cell as? TimeTrackingSummaryTableViewCell else { return cell }
-        summaryCell.layoutCell(activity: "Reading", time: "01:23:35")
+        summaryCell.layoutCell(activity: categories?[indexPath.row] ?? "",
+                               time: timeValues?[indexPath.row].getFormattedTime() ?? "")
         return summaryCell
     }
 }

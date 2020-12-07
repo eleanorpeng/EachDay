@@ -24,7 +24,6 @@ extension Date {
             let calendar = NSCalendar.current
             let com = calendar.dateComponents([.year,.month,.day], from: self)
             return com.day!
-
         }
      
         func weekDay()->Int{
