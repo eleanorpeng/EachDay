@@ -9,6 +9,7 @@ import UIKit
 import Charts
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import Kingfisher
 
 class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
     
@@ -196,6 +197,14 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
                 print(error)
             }
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? WriteJournalViewController {
+            let pieChartImage = pieChartView.asImage()
+            destination.journalImage = pieChartImage
+            destination.isWritingSummary = true
+        }
     }
 }
 

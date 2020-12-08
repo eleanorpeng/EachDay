@@ -35,9 +35,11 @@ class TagSelectionViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
     @IBAction func backButtonClicked(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
@@ -111,7 +113,7 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
     func createEditAlert(button: UIButton) {
         let editAlert = UIAlertController(title: "Edit Tag", message: nil, preferredStyle: .alert)
         editAlert.addTextField(configurationHandler: { textField in
-            textField.placeholder = self.mockData[button.tag]
+            textField.placeholder = self.tags?[button.tag]
         })
         editAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak editAlert] _ in
             let textField = editAlert?.textFields![0]

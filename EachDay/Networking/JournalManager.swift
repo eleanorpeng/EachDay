@@ -16,7 +16,7 @@ class JournalManager {
     var database = Firestore.firestore()
     
     func fetchJournalData(userDocID: String, selectedMonth: Int, completion: @escaping (Result<[Journal], Error>) -> Void) {
-        database.collection("User").document(userDocID).collection("Journal").addSnapshotListener({ querySnapshot, error in
+        database.collection("User").document(userDocID).collection("Journal").order(by: "date", descending: true).addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -34,7 +34,9 @@ class JournalManager {
     }
     
     func fetchFilteredJournalData(userDocID: String, selectedMonth: Int, currentDate: Double, completion: @escaping (Result<[Journal], Error>) -> Void) {
-        database.collection("User").document(userDocID).collection("Journal").whereField("date", isLessThan: currentDate).addSnapshotListener({ querySnapshot, error in
+        database.collection("User").document(userDocID).collection("Journal")
+            .whereField("date", isLessThan: currentDate)
+            .order(by: "date", descending: true).addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {

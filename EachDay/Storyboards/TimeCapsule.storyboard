@@ -76,31 +76,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xv5-jK-K80">
-                                <rect key="frame" x="20" y="365" width="374" height="24.5"/>
+                                <rect key="frame" x="20" y="415" width="374" height="24.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Record detail of your day" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4L6-09-a3G">
-                                <rect key="frame" x="15" y="404.5" width="384" height="363.5"/>
+                                <rect key="frame" x="15" y="454.5" width="384" height="313.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jKZ-G5-rU1">
-                                <rect key="frame" x="20" y="95" width="374" height="250"/>
+                                <rect key="frame" x="0.0" y="95" width="414" height="300"/>
                                 <color key="backgroundColor" red="0.91083042510000001" green="0.91083042510000001" blue="0.91083042510000001" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="6ME-QO-YBi"/>
+                                    <constraint firstAttribute="height" constant="300" id="6ME-QO-YBi"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3K-eE-Zfj">
-                                <rect key="frame" x="189.5" y="202.5" width="35" height="35"/>
+                                <rect key="frame" x="189.5" y="227.5" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="QBy-ZE-uSg"/>
                                     <constraint firstAttribute="width" constant="35" id="pkY-sn-bcI"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="upload"/>
+                                <state key="normal" title="Button" image="cloud-uploading"/>
                                 <connections>
                                     <action selector="uploadButtonClicked:" destination="fe6-C1-wsa" eventType="touchUpInside" id="lkS-gK-rbz"/>
                                 </connections>
@@ -120,10 +120,10 @@
                         <viewLayoutGuide key="safeArea" id="ib1-6H-vlG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="jKZ-G5-rU1" firstAttribute="leading" secondItem="ib1-6H-vlG" secondAttribute="leading" constant="20" id="1np-x1-hok"/>
+                            <constraint firstItem="jKZ-G5-rU1" firstAttribute="leading" secondItem="ib1-6H-vlG" secondAttribute="leading" id="1np-x1-hok"/>
                             <constraint firstItem="ib1-6H-vlG" firstAttribute="trailing" secondItem="xv5-jK-K80" secondAttribute="trailing" constant="20" id="3pe-Wb-mGX"/>
                             <constraint firstItem="ib1-6H-vlG" firstAttribute="trailing" secondItem="4L6-09-a3G" secondAttribute="trailing" constant="15" id="9YQ-7I-hUc"/>
-                            <constraint firstItem="ib1-6H-vlG" firstAttribute="trailing" secondItem="jKZ-G5-rU1" secondAttribute="trailing" constant="20" id="Diz-JE-tff"/>
+                            <constraint firstItem="ib1-6H-vlG" firstAttribute="trailing" secondItem="jKZ-G5-rU1" secondAttribute="trailing" id="Diz-JE-tff"/>
                             <constraint firstItem="jKZ-G5-rU1" firstAttribute="top" secondItem="wEO-PB-vJ5" secondAttribute="bottom" constant="40" id="Hn9-NI-TMM"/>
                             <constraint firstItem="ib1-6H-vlG" firstAttribute="trailing" secondItem="wEO-PB-vJ5" secondAttribute="trailing" constant="20" id="PeS-8g-rhk"/>
                             <constraint firstItem="xv5-jK-K80" firstAttribute="leading" secondItem="ib1-6H-vlG" secondAttribute="leading" constant="20" id="QQq-rb-aWy"/>
@@ -187,10 +187,10 @@
     </scenes>
     <color key="tintColor" systemColor="labelColor"/>
     <resources>
+        <image name="cloud-uploading" width="512" height="512"/>
         <image name="down-arrow" width="512" height="512"/>
         <image name="right-arrow" width="512" height="512"/>
         <image name="send" width="512" height="512"/>
-        <image name="upload" width="512" height="512"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

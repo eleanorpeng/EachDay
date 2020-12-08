@@ -14,7 +14,9 @@ class CalendarMainViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var userProfileButton: UIButton!
-    @IBOutlet weak var userProfileButtonClicked: UIButton!
+    @IBAction func userProfileButtonClicked(_ sender: Any) {
+        performSegue(withIdentifier: "ShowUserSettingSegue", sender: self)
+    }
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     var selectedMonth = 0
@@ -25,14 +27,6 @@ class CalendarMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
-//        JournalManager.shared.fetchJournalData(userDocID: "JIbda5gvgUa9DhWS8NLw", selectedMonth: 12, completion: { result in
-//            switch result {
-//            case .success(let journal):
-//                print(journal)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        })
     }
     
     func initialSetUp() {

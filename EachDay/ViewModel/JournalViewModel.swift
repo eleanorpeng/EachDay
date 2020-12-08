@@ -49,7 +49,7 @@ class JournalViewModel {
     
     var day: String {
         let date1 = Date(timeIntervalSince1970: journal.date)
-        switch date1.day() {
+        switch date1.weekDay() {
         case 1:
             return "Mon"
         case 2:

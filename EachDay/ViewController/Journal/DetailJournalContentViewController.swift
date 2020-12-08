@@ -7,6 +7,7 @@
 
 import UIKit
 import PKHUD
+import Kingfisher
 
 class DetailJournalContentViewController: UIViewController {
 
@@ -51,7 +52,8 @@ class DetailJournalContentViewController: UIViewController {
             
             DispatchQueue.main.async {
                 let image = UIImage(data: data)
-                self.journalImageView.image = image
+//                self.journalImageView.image = image
+                self.journalImageView.kf.setImage(with: url, options: [.transition(.fade(1))])
                 HUD.hide()
             }
         })

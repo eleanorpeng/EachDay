@@ -32,6 +32,12 @@
 		2031429D2570E655006410A8 /* TimeTrackingMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031429C2570E655006410A8 /* TimeTrackingMainCollectionViewCell.swift */; };
 		203142A02570E668006410A8 /* TimeTrackingMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031429F2570E668006410A8 /* TimeTrackingMainTableViewCell.swift */; };
 		203142CF25710367006410A8 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203142CE25710367006410A8 /* PaddingLabel.swift */; };
+		2053B85B257F227A005DFA24 /* UserSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053B85A257F227A005DFA24 /* UserSettingViewController.swift */; };
+		2053B85E257F2296005DFA24 /* UserSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2053B85D257F2296005DFA24 /* UserSetting.storyboard */; };
+		2053B881257F56D9005DFA24 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053B880257F56D9005DFA24 /* UIViewExtension.swift */; };
+		2053B884257F7224005DFA24 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053B883257F7224005DFA24 /* ProfileTableViewCell.swift */; };
+		2053B887257F7234005DFA24 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053B886257F7234005DFA24 /* SettingsTableViewCell.swift */; };
+		2053B88B257F7CCE005DFA24 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053B88A257F7CCE005DFA24 /* Settings.swift */; };
 		20733BC625725DEB004B4A3B /* CreateNewTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20733BC525725DEB004B4A3B /* CreateNewTask.storyboard */; };
 		20733BC925725E62004B4A3B /* CreateNewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20733BC825725E62004B4A3B /* CreateNewTaskViewController.swift */; };
 		20733BD125732D81004B4A3B /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20733BD025732D81004B4A3B /* StopWatch.swift */; };
@@ -91,6 +97,12 @@
 		2031429C2570E655006410A8 /* TimeTrackingMainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackingMainCollectionViewCell.swift; sourceTree = "<group>"; };
 		2031429F2570E668006410A8 /* TimeTrackingMainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackingMainTableViewCell.swift; sourceTree = "<group>"; };
 		203142CE25710367006410A8 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		2053B85A257F227A005DFA24 /* UserSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingViewController.swift; sourceTree = "<group>"; };
+		2053B85D257F2296005DFA24 /* UserSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserSetting.storyboard; sourceTree = "<group>"; };
+		2053B880257F56D9005DFA24 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		2053B883257F7224005DFA24 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		2053B886257F7234005DFA24 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		2053B88A257F7CCE005DFA24 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		20733BC525725DEB004B4A3B /* CreateNewTask.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateNewTask.storyboard; sourceTree = "<group>"; };
 		20733BC825725E62004B4A3B /* CreateNewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTaskViewController.swift; sourceTree = "<group>"; };
 		20733BD025732D81004B4A3B /* StopWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
@@ -182,6 +194,7 @@
 				2009DE70256E310500545439 /* User.swift */,
 				20FBA457257896B600A58AF0 /* JournalTag.swift */,
 				203142962570E441006410A8 /* TimeTrackingButton.swift */,
+				2053B88A257F7CCE005DFA24 /* Settings.swift */,
 				20733BD025732D81004B4A3B /* StopWatch.swift */,
 			);
 			path = Model;
@@ -199,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				20FBA4432577918700A58AF0 /* MainTabBarController.swift */,
+				2053B85A257F227A005DFA24 /* UserSettingViewController.swift */,
 				20FBA45A2578996700A58AF0 /* Journal */,
 				20FBA4A1257A04B600A58AF0 /* Time Tracking */,
 			);
@@ -224,6 +238,7 @@
 				203142CE25710367006410A8 /* PaddingLabel.swift */,
 				20FBA45E2578B1A500A58AF0 /* DateExtension.swift */,
 				20FBA4612578B20200A58AF0 /* DoubleExtension.swift */,
+				2053B880257F56D9005DFA24 /* UIViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -231,6 +246,8 @@
 		2009DEB3256EAB1D00545439 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2053B883257F7224005DFA24 /* ProfileTableViewCell.swift */,
+				2053B886257F7234005DFA24 /* SettingsTableViewCell.swift */,
 				20FBA4A5257A04EC00A58AF0 /* Journal */,
 				20FBA4A6257A04F200A58AF0 /* Time Tracking */,
 			);
@@ -246,6 +263,7 @@
 				20733BC525725DEB004B4A3B /* CreateNewTask.storyboard */,
 				20733C1A25760CB2004B4A3B /* TimeTrackingSummary.storyboard */,
 				20FBA4642578BCB800A58AF0 /* SignIn.storyboard */,
+				2053B85D257F2296005DFA24 /* UserSetting.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -404,6 +422,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2053B85E257F2296005DFA24 /* UserSetting.storyboard in Resources */,
 				20733BC625725DEB004B4A3B /* CreateNewTask.storyboard in Resources */,
 				2098B159256F8DDF00AAC1CB /* WriteJournal.storyboard in Resources */,
 				2098B165256FB2C600AAC1CB /* TimeCapsule.storyboard in Resources */,
@@ -509,6 +528,7 @@
 				2019556925778C70006FA8E8 /* SelectionViewController.swift in Sources */,
 				2009DE37256E270D00545439 /* ViewController.swift in Sources */,
 				20FBA44E25779A5100A58AF0 /* JournalDetailTableViewCell.swift in Sources */,
+				2053B887257F7234005DFA24 /* SettingsTableViewCell.swift in Sources */,
 				2009DE33256E270D00545439 /* AppDelegate.swift in Sources */,
 				2009DE92256E5A8400545439 /* JournalTableViewCell.swift in Sources */,
 				20733BD125732D81004B4A3B /* StopWatch.swift in Sources */,
@@ -523,8 +543,12 @@
 				20FBA4622578B20200A58AF0 /* DoubleExtension.swift in Sources */,
 				2009DEAD256EA82400545439 /* UIColorExtension.swift in Sources */,
 				2009DE79256E41B500545439 /* UserViewModel.swift in Sources */,
+				2053B85B257F227A005DFA24 /* UserSettingViewController.swift in Sources */,
 				20FBA4542577D02600A58AF0 /* TagSelectionTableViewCell.swift in Sources */,
+				2053B884257F7224005DFA24 /* ProfileTableViewCell.swift in Sources */,
+				2053B881257F56D9005DFA24 /* UIViewExtension.swift in Sources */,
 				20733C2125760F8E004B4A3B /* TimeTrackingSummaryTableViewCell.swift in Sources */,
+				2053B88B257F7CCE005DFA24 /* Settings.swift in Sources */,
 				2009DE35256E270D00545439 /* SceneDelegate.swift in Sources */,
 				20FBA4962578CCAE00A58AF0 /* JournalManager.swift in Sources */,
 			);

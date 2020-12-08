@@ -22,7 +22,6 @@ class TrackedTimeViewModel {
         return time.getFormattedTime()
     }
 
-
     var endTime: String {
         let time = trackedTime.endTime.dateValue()
         return time.getFormattedTime()
@@ -42,5 +41,4 @@ class TrackedTimeViewModel {
     var taskDescription: String {
         return trackedTime.taskDescrpition
     }
-    
 }

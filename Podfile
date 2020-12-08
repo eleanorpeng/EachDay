@@ -16,5 +16,6 @@ target 'EachDay' do
   pod 'YPImagePicker'
   pod 'IQKeyboardManagerSwift'
   pod 'PKHUD', '~> 5.0'
-
+  pod 'Kingfisher', '~> 5.15'
+  
 end

@@ -27,4 +27,9 @@ class SelectionViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? WriteJournalViewController {
+            destination.isWritingSummary = false
+        }
+    }
 }

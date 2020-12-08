@@ -158,6 +158,7 @@ class TimeTrackingMainPageViewController: UIViewController {
         }
         totalTimeLabel.text = totalTime?.getFormattedTime() ?? "00:00:00"
     }
+    
     func initialSetUp() {
         tableView.delegate = self
         tableView.dataSource = self

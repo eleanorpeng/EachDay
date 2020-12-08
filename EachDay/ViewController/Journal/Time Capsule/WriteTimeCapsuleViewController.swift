@@ -81,7 +81,7 @@ class WriteTimeCapsuleViewController: UIViewController {
     func imagePickerDonePicking() {
         imagePicker.didFinishPicking { [unowned imagePicker] items, _ in
             if let photo = items.singlePhoto {
-                let resized = photo.image.resizedImageWith(targetSize: CGSize(width: self.view.frame.width - 40, height: 250))
+                let resized = photo.image.resizedImageWith(targetSize: CGSize(width: self.view.frame.width, height: 300))
                 self.letterImage = resized
                 self.timeCapsuleLetterImageView.image = resized
                 self.timeCapsuleLetterImageView.image = photo.image

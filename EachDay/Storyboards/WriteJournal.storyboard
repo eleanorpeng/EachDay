@@ -17,17 +17,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Record detail of your day" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sDm-va-qja">
-                                <rect key="frame" x="15" y="428.5" width="384" height="427.5"/>
+                                <rect key="frame" x="15" y="478.5" width="384" height="377.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ggY-Nt-tnr">
-                                <rect key="frame" x="20" y="119" width="374" height="250"/>
+                                <rect key="frame" x="0.0" y="119" width="414" height="300"/>
                                 <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="hwV-k9-7eJ"/>
+                                    <constraint firstAttribute="height" constant="300" id="hwV-k9-7eJ"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BqU-kx-kg7">
@@ -42,17 +42,17 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9To-gD-iHL">
-                                <rect key="frame" x="20" y="389" width="374" height="24.5"/>
+                                <rect key="frame" x="20" y="439" width="374" height="24.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5v-BC-397">
-                                <rect key="frame" x="189.5" y="226.5" width="35" height="35"/>
+                                <rect key="frame" x="189.5" y="251.5" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="7Sb-ga-32i"/>
                                     <constraint firstAttribute="height" constant="35" id="W4g-bV-Zmp"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="upload"/>
+                                <state key="normal" title="Button" image="cloud-uploading"/>
                                 <connections>
                                     <action selector="uploadImageButtonClicked:" destination="bHZ-qQ-jfG" eventType="touchUpInside" id="JSs-Ow-s8O"/>
                                 </connections>
@@ -68,7 +68,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="sDm-va-qja" secondAttribute="trailing" constant="15" id="GH0-Ry-4SG"/>
-                            <constraint firstItem="ggY-Nt-tnr" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" constant="20" id="HUC-Rv-D1C"/>
+                            <constraint firstItem="ggY-Nt-tnr" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" id="HUC-Rv-D1C"/>
                             <constraint firstItem="Kae-Cx-hVK" firstAttribute="centerX" secondItem="fBj-x0-Tw8" secondAttribute="centerX" id="KiJ-Ux-8bG"/>
                             <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="BqU-kx-kg7" secondAttribute="trailing" constant="20" id="OuE-C6-q5j"/>
                             <constraint firstItem="9To-gD-iHL" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" constant="20" id="UVg-Cv-6ZB"/>
@@ -78,7 +78,7 @@
                             <constraint firstItem="ggY-Nt-tnr" firstAttribute="top" secondItem="BqU-kx-kg7" secondAttribute="bottom" constant="30" id="ZgY-oY-nRu"/>
                             <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="9To-gD-iHL" secondAttribute="trailing" constant="20" id="eHl-gE-yYy"/>
                             <constraint firstItem="sDm-va-qja" firstAttribute="top" secondItem="9To-gD-iHL" secondAttribute="bottom" constant="15" id="gf7-f7-QnZ"/>
-                            <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="ggY-Nt-tnr" secondAttribute="trailing" constant="20" id="hMA-Vy-8WH"/>
+                            <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="ggY-Nt-tnr" secondAttribute="trailing" id="hMA-Vy-8WH"/>
                             <constraint firstItem="sDm-va-qja" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" constant="15" id="hRc-GC-NPm"/>
                             <constraint firstItem="Kae-Cx-hVK" firstAttribute="centerY" secondItem="BqU-kx-kg7" secondAttribute="centerY" id="m7R-bX-LMK"/>
                             <constraint firstItem="BqU-kx-kg7" firstAttribute="top" secondItem="Fqg-WQ-mRi" secondAttribute="top" constant="20" id="v2D-6Q-isJ"/>
@@ -273,12 +273,12 @@
         <image name="back" width="512" height="512"/>
         <image name="circle-blank" width="512" height="512"/>
         <image name="circle-filled" width="512" height="512"/>
+        <image name="cloud-uploading" width="512" height="512"/>
         <image name="down-arrow" width="512" height="512"/>
         <image name="more" width="170.66667175292969" height="170.66667175292969"/>
         <image name="plus" width="512" height="512"/>
         <image name="tag" width="512" height="512"/>
         <image name="tick" width="512" height="512"/>
-        <image name="upload" width="512" height="512"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

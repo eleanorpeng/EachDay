@@ -32,9 +32,4 @@ extension UIImage {
 
         return newImage!
     }
-    
-//    func getWidth(width: CGFloat) -> CGFloat {
-//        let screenWidth = UIScreen.main.bounds.width
-//        return (width / )
-//    }
 }

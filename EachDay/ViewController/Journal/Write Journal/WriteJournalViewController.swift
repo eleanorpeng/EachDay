@@ -9,10 +9,10 @@ import UIKit
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import YPImagePicker
+import Charts
 
 class WriteJournalViewController: UIViewController {
 
-    //Declare journal info
     var journalData: Journal?
     var selectedDate: Date?
     var journalTitle: String? {
@@ -34,6 +34,7 @@ class WriteJournalViewController: UIViewController {
     var journalImageURL: String?
     var config = YPImagePickerConfiguration()
     var isDefault = true
+    var isWritingSummary = false
     @IBOutlet var toolBarView: UIView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var completeButton: UIButton!
@@ -79,6 +80,15 @@ class WriteJournalViewController: UIViewController {
         initialSetUp()
         contentTextView.inputAccessoryView = toolBarView
         titleTextField.inputAccessoryView = toolBarView
+        if isWritingSummary {
+            configureSummaryView()
+        }
+    }
+    
+    func configureSummaryView() {
+        journalImageView.image = journalImage
+        uploadImageButton.isHidden = true
+        journalImageView.backgroundColor = .clear
     }
     
     func initialSetUp() {
@@ -103,7 +113,8 @@ class WriteJournalViewController: UIViewController {
     func imagePickerDonePicking() {
         imagePicker.didFinishPicking { [unowned imagePicker] items, _ in
             if let photo = items.singlePhoto {
-                let resized = photo.image.resizedImageWith(targetSize: CGSize(width: self.view.frame.width - 40, height: 250))
+//                let resized = photo.image.resize(targetSize: CGSize(width: self.view.frame.width, height: 300))
+                let resized = photo.image.resizedImageWith(targetSize: CGSize(width: self.view.frame.width, height: 300))
                 self.journalImage = resized
                 self.journalImageView.image = resized
                 self.uploadImageButton.setImage(nil, for: .normal)
@@ -146,7 +157,7 @@ class WriteJournalViewController: UIViewController {
                           hasTracker: false,
                           isTimeCapsule: false,
                           id: "")
-        JournalManager.shared.publishJournalData(journal: &journalData!, userID: "Eleanor",completion: { result in
+        JournalManager.shared.publishJournalData(journal: &journalData!, userID: "Eleanor", completion: { result in
             switch result {
             case .success(let message):
                 print(message)
@@ -173,7 +184,6 @@ class WriteJournalViewController: UIViewController {
             destination.selectedTags = journalTags ?? []
         }
     }
-   
 }
 
 extension WriteJournalViewController: UITextViewDelegate {
