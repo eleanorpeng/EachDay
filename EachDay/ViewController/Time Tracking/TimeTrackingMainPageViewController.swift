@@ -39,7 +39,7 @@ class TimeTrackingMainPageViewController: UIViewController {
         TimeTrackingButton(name: "Commute", icon: "commute"),
         TimeTrackingButton(name: "TV", icon: "tv")
     ]
-    var timeRecords: [TrackedTime]? {
+    var trackedTime: [TrackedTime]? {
         didSet {
             tableView.reloadData()
         }
@@ -52,18 +52,18 @@ class TimeTrackingMainPageViewController: UIViewController {
     var pausedIntervals: [TimeInterval] = []
     var elapsedTimeInterval: TimeInterval?
     @IBOutlet weak var totalTimeLabel: UILabel!
-    var totalTime: Double? = 0 {
-        didSet {
-            totalTimeLabel.text = totalTime?.getFormattedTime()
-        }
-    }
-    var recordedTime: [String : TimeInterval]? {
-        didSet {
-            for (category, time) in recordedTime! {
-                totalTime! += time
-            }
-        }
-    }
+    var totalTime: Double? = 0
+//        didSet {
+//            totalTimeLabel.text = totalTime?.getFormattedTime()
+//        }
+    
+    var trackedTimeDic: [String : TimeInterval]?
+//        didSet {
+//            for (category, time) in recordedTime! {
+//                totalTime! += time
+//            }
+//        }
+    
     var endTime: TimeInterval?
     var endTimeTS: Timestamp?
     var trackedTimeCategories: [String]?
@@ -83,7 +83,7 @@ class TimeTrackingMainPageViewController: UIViewController {
         initialSetUp()
         setUpButton()
         fetchUser()
-        recordedTime = [:]
+        trackedTimeDic = [:]
         fetchTimeRecord()
         
     }
@@ -104,7 +104,7 @@ class TimeTrackingMainPageViewController: UIViewController {
             switch result {
             case .success(let user):
                 self.trackedTimeCategories = user[0].trackTimeCategories
-                self.calculateTotalTime()
+//                self.calculateTotalTime()
             case .failure(let error):
                 print(error)
             }
@@ -137,9 +137,11 @@ class TimeTrackingMainPageViewController: UIViewController {
         TimeTrackingManager.shared.fetchFilteredTimeRecord(userDocID: "Eleanor", startDate: midnightTS, endDate: tomorrowTS, completion: { result in
             switch result {
             case .success(let trackedTime):
-                self.timeRecords = trackedTime
+                self.trackedTime = trackedTime
+                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.displayTotalTime()
                 }
             case .failure(let error):
                 print(error)
@@ -147,6 +149,15 @@ class TimeTrackingMainPageViewController: UIViewController {
         })
     }
   
+    func displayTotalTime() {
+        self.calculateTotalTime()
+        totalTime = 0
+        guard let recordedTime = trackedTimeDic else { return }
+        for (category, time) in recordedTime {
+            totalTime! += time
+        }
+        totalTimeLabel.text = totalTime?.getFormattedTime() ?? "00:00:00"
+    }
     func initialSetUp() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -174,24 +185,18 @@ class TimeTrackingMainPageViewController: UIViewController {
     }
     
     func calculateTotalTime() {
-        trackedTimeCategories?.forEach({ category in
-            TimeTrackingManager.shared.fetchTimeCategory(userDocID: "Eleanor", category: category, completion: { result in
-                switch result {
-                case .success(let trackedTime):
-                    for num in 0..<trackedTime.count {
-                        let time = trackedTime[num]
-                        if let previousRecord = self.recordedTime?[time.taskName] {
-                            let duration = previousRecord + time.duration
-                            self.recordedTime?.updateValue(duration, forKey: time.taskName)
-                        } else {
-                            self.recordedTime?.updateValue(time.duration, forKey: time.taskName)
-                        }
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-            })
-        })
+        trackedTimeDic = [:]
+        guard let trackedTime = trackedTime else { return }
+
+        for num in 0..<trackedTime.count {
+            let time = trackedTime[num]
+            if let previousRecord = self.trackedTimeDic?[time.taskName] {
+                let duration = previousRecord + time.duration
+                self.trackedTimeDic?.updateValue(duration, forKey: time.taskName)
+            } else {
+                self.trackedTimeDic?.updateValue(time.duration, forKey: time.taskName)
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -199,7 +204,7 @@ class TimeTrackingMainPageViewController: UIViewController {
             destination.delegate = self
         }
         if let destination = segue.destination as? TimeTrackingSummaryViewController {
-            destination.timeRecords = self.recordedTime
+            destination.timeRecords = self.trackedTimeDic
         }
     }
 
@@ -211,7 +216,7 @@ extension TimeTrackingMainPageViewController: UITableViewDelegate, UITableViewDa
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return timeRecords?.count ?? 0
+        return trackedTime?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -239,7 +244,7 @@ extension TimeTrackingMainPageViewController: UITableViewDelegate, UITableViewDa
 
     func configurePastCell(tableView: UITableView, index: Int) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeTrackingMainTableViewCell.identifier)
-        let trackedTimeVM = TrackedTimeViewModel(trackedTime: (timeRecords?[index])!)
+        let trackedTimeVM = TrackedTimeViewModel(trackedTime: (trackedTime?[index])!)
         guard let pastCell = cell as? TimeTrackingMainTableViewCell else { return cell! }
         pastCell.layoutCell(activity: trackedTimeVM.taskName,
                             elapsedTime: trackedTimeVM.duration,
@@ -390,8 +395,8 @@ extension TimeTrackingMainPageViewController: CreateNewTaskViewControllerDelegat
         TimeTrackingManager.shared.updateFields(userDocID: "Eleanor",
                                                 endTime: endTimeTS!,
                                                 duration: elapsedTimeInterval ?? 0)
-        recordedTime?[taskName ?? ""] = elapsedTimeInterval
-        print(recordedTime)
+        trackedTimeDic?[taskName ?? ""] = elapsedTimeInterval
+        print(trackedTimeDic)
         hasNewRecord = false
         tableView.reloadData()
         isPaused = false

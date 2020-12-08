@@ -11,7 +11,6 @@ class TimeTrackingTagViewController: UIViewController {
 
     @IBOutlet weak var searchTagTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    var mockTags = ["Work", "Eat", "Personal", "Sleep", "Commute"]
     var categories: [String]? {
         didSet {
             self.tableView.reloadData()
@@ -132,7 +131,6 @@ extension TimeTrackingTagViewController: UITableViewDelegate, UITableViewDataSou
     func addNewTag() {
         categories?.append(searchText)
         TimeTrackingManager.shared.updateTrackTimeCategories(userDocID: "Eleanor", categories: categories ?? [])
-//        mockTags.append(searchText)
         isFiltering = false
         searchTagTextField.text = nil
         searchTagTextField.resignFirstResponder()

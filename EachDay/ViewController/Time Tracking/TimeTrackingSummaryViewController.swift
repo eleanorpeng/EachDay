@@ -147,8 +147,6 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
         let today = Date()
         let startDate = calendar.startOfDay(for: today)
         let endDate = calendar.date(byAdding: .day, value: days, to: startDate)!
-        print(startDate)
-        print(endDate)
         startDateTS = Timestamp(date: startDate)
         endDateTS = Timestamp(date: endDate)
        
