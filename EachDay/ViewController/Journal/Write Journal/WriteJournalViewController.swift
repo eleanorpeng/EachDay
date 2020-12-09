@@ -113,7 +113,6 @@ class WriteJournalViewController: UIViewController {
     func imagePickerDonePicking() {
         imagePicker.didFinishPicking { [unowned imagePicker] items, _ in
             if let photo = items.singlePhoto {
-//                let resized = photo.image.resize(targetSize: CGSize(width: self.view.frame.width, height: 300))
                 let resized = photo.image.resizedImageWith(targetSize: CGSize(width: self.view.frame.width, height: 300))
                 self.journalImage = resized
                 self.journalImageView.image = resized
@@ -123,6 +122,7 @@ class WriteJournalViewController: UIViewController {
             imagePicker.dismiss(animated: true, completion: nil)
         }
     }
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -146,9 +146,6 @@ class WriteJournalViewController: UIViewController {
         })
     }
     func addData() {
-//        let journal = Firestore.firestore().collection("User").document().collection("Journal")
-//        let document = journal.document()
-        
         journalData = Journal(title: journalTitle ?? "",
                               date: selectedDate?.timeIntervalSince1970 ?? 0,
                               content: journalContent ?? "",

@@ -273,7 +273,6 @@
 			children = (
 				2009DE89256E4CBB00545439 /* MainPageViewController.swift */,
 				2019553A25776B4E006FA8E8 /* CalendarMainViewController.swift */,
-				20FBA44625779A3000A58AF0 /* DetailJournalViewController.swift */,
 				2019556825778C70006FA8E8 /* SelectionViewController.swift */,
 				20FBA4E5257A41A200A58AF0 /* DetailJournalContentViewController.swift */,
 				20FBA45B2578997600A58AF0 /* Write Journal */,
@@ -286,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				2098B15E256F944800AAC1CB /* WriteJournalViewController.swift */,
+				20FBA44625779A3000A58AF0 /* DetailJournalViewController.swift */,
 				20FBA4502577C9D100A58AF0 /* TagSelectionViewController.swift */,
 			);
 			path = "Write Journal";

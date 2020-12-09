@@ -150,13 +150,13 @@
         <!--Tag Selection View Controller-->
         <scene sceneID="fxG-9z-3cL">
             <objects>
-                <viewController id="MZD-iz-4tB" customClass="TagSelectionViewController" customModule="EachDay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TagSelectionViewController" id="MZD-iz-4tB" customClass="TagSelectionViewController" customModule="EachDay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qfY-ER-9jX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qob-dL-FeC">
-                                <rect key="frame" x="0.0" y="70" width="414" height="738"/>
+                                <rect key="frame" x="0.0" y="65" width="414" height="743"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TagSelectionTableViewCell" rowHeight="62" id="GUZ-wC-O7N" customClass="TagSelectionTableViewCell" customModule="EachDay" customModuleProvider="target">
@@ -223,10 +223,10 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RmE-fE-o9h">
-                                <rect key="frame" x="364" y="20" width="30" height="30"/>
+                                <rect key="frame" x="369" y="20" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="3zt-7z-vHU"/>
-                                    <constraint firstAttribute="height" constant="30" id="ncE-Au-PAn"/>
+                                    <constraint firstAttribute="width" constant="25" id="3zt-7z-vHU"/>
+                                    <constraint firstAttribute="height" constant="25" id="ncE-Au-PAn"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="plus"/>
                                 <connections>
@@ -234,10 +234,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kmn-rs-458">
-                                <rect key="frame" x="20" y="20" width="30" height="30"/>
+                                <rect key="frame" x="20" y="20" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="aiR-Uu-MQl"/>
-                                    <constraint firstAttribute="width" constant="30" id="wsR-Mp-kXG"/>
+                                    <constraint firstAttribute="height" constant="25" id="aiR-Uu-MQl"/>
+                                    <constraint firstAttribute="width" constant="25" id="wsR-Mp-kXG"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="back"/>
                                 <connections>

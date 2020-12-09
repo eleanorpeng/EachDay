@@ -27,6 +27,7 @@ class SettingsTableViewCell: UITableViewCell {
         iconImageView.image = UIImage(named: icon)
         settingLabel.text = setting
         settingDescriptionLabel.text = description
+        settingDescriptionLabel.textColor = .lightGray
     }
 
 }
