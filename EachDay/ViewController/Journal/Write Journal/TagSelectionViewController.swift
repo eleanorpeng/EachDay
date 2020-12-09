@@ -14,11 +14,20 @@ class TagSelectionViewController: UIViewController {
         }
     }
     var index = 0
-    var mockData = ["Work"]
     var selectedTags: [String] = []
     var user: [User]?
     var tags: [String]?
+    var fromUserSetting = false
+    var isTimeTracking = false
+    var isSorting = false
     weak var delegate: TagSelectionViewControllerDelegate?
+    @IBAction func sortButtonClicked(_ sender: Any) {
+        isSorting = !isSorting
+        configureSortButton()
+//
+//        tableView.dragDelegate = self
+//        tableView.dragInteractionEnabled = true
+    }
     @IBOutlet weak var tableView: UITableView!
     @IBAction func addButtonClicked(_ sender: Any) {
         let alert = UIAlertController(title: "Add new tag", message: nil, preferredStyle: .alert)
@@ -29,7 +38,8 @@ class TagSelectionViewController: UIViewController {
             let textField = alert?.textFields![0]
             let newTag = textField?.text
             self.tags?.append(newTag ?? "")
-            JournalManager.shared.updateJournalTags(userID: self.user?[0].id ?? "", tags: self.tags ?? [])
+            self.updateTags()
+//            JournalManager.shared.updateJournalTags(userID: self.user?[0].id ?? "", tags: self.tags ?? [])
             self.tableView.reloadData()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -40,6 +50,7 @@ class TagSelectionViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBOutlet weak var sortButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
@@ -49,6 +60,16 @@ class TagSelectionViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tableView.reloadData()
+    }
+    
+    func configureSortButton() {
+        if isSorting {
+            sortButton.setImage(UIImage(named: "sort-gray"), for: .normal)
+            tableView.isEditing = true
+        } else {
+            sortButton.setImage(UIImage(named: "sort"), for: .normal)
+            tableView.isEditing = false
+        }
     }
     func initialSetUp() {
         tableView.delegate = self
@@ -60,13 +81,25 @@ class TagSelectionViewController: UIViewController {
         JournalManager.shared.fetchUser(userID: "Eleanor", completion: { result in
             switch result {
             case .success(let user):
-                self.tags = user[0].journalTags
+                if self.isTimeTracking {
+                    self.tags = user[0].trackTimeCategories
+                } else {
+                    self.tags = user[0].journalTags
+                }
                 self.user = user
                 self.tableView.reloadData()
             case .failure(let error):
                 print(error)
             }
         })
+    }
+    
+    func updateTags() {
+        if isTimeTracking {
+            TimeTrackingManager.shared.updateTrackTimeCategories(userDocID: "Eleanor", categories: tags ?? [])
+        } else {
+            JournalManager.shared.updateJournalTags(userID: "Eleanor", tags: tags ?? [])
+        }
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -77,7 +110,13 @@ class TagSelectionViewController: UIViewController {
     
 }
 
-extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate, TagSelectionTableViewCellDelegate {
+extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate, TagSelectionTableViewCellDelegate, UITableViewDragDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let dragItems = UIDragItem(itemProvider: NSItemProvider())
+        dragItems.localObject = tags?[indexPath.row]
+        return [dragItems]
+    }
+    
     func handleSelected(sender: Any) {
         guard let button = sender as? UIButton else { return }
         let tag = tags?[button.tag]
@@ -103,7 +142,8 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
         }))
         alertSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
             self.tags?.remove(at: button.tag)
-            JournalManager.shared.updateJournalTags(userID: self.user?[0].id ?? "", tags: self.tags ?? [])
+            self.updateTags()
+//            JournalManager.shared.updateJournalTags(userID: self.user?[0].id ?? "", tags: self.tags ?? [])
             self.tableView.reloadData()
         }))
         alertSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: .none))
@@ -119,7 +159,8 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
             let textField = editAlert?.textFields![0]
             let tag = textField?.text
             self.tags?[button.tag] = tag ?? ""
-            JournalManager.shared.updateJournalTags(userID: self.user?[0].id ?? "", tags: self.tags ?? [])
+            self.updateTags()
+//            JournalManager.shared.updateJournalTags(userID: self.user?[0].id ?? "", tags: self.tags ?? [])
             self.tableView.reloadData()
         }))
         self.present(editAlert, animated: true, completion: nil)
@@ -132,7 +173,11 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TagSelectionTableViewCell.identifier, for: indexPath)
         guard let tagCell = cell as? TagSelectionTableViewCell else { return cell }
-        tagCell.layoutCell(tag: tags?[indexPath.row] ?? "")
+        if fromUserSetting {
+            tagCell.layoutUserSettingCell(tag: tags?[indexPath.row] ?? "")
+        } else {
+            tagCell.layoutCell(tag: tags?[indexPath.row] ?? "")
+        }
         tagCell.delegate = self
         tagCell.selectionButton.tag = indexPath.row
         tagCell.moreButton.tag = indexPath.row
@@ -149,6 +194,23 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
         tableView.deselectRow(at: indexPath, animated: true)
         selected = true
         index = indexPath.row
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return.none
+    }
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedTag = self.tags?[sourceIndexPath.row] ?? ""
+        tags?.remove(at: sourceIndexPath.row)
+        tags?.insert(movedTag, at: destinationIndexPath.row)
+        updateTags()
     }
 }
 

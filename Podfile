@@ -17,5 +17,6 @@ target 'EachDay' do
   pod 'IQKeyboardManagerSwift'
   pod 'PKHUD', '~> 5.0'
   pod 'Kingfisher', '~> 5.15'
+  pod 'SVPinView', '~> 1.0'
   
 end

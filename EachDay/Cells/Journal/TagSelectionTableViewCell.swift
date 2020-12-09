@@ -30,6 +30,7 @@ class TagSelectionTableViewCell: UITableViewCell {
     @IBAction func moreButtonClicked(_ sender: Any) {
         self.delegate?.handleMoreButton(sender: sender)
     }
+    @IBOutlet weak var tagLabelConstraint: NSLayoutConstraint!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -42,6 +43,20 @@ class TagSelectionTableViewCell: UITableViewCell {
     func layoutCell(tag: String) {
         tagLabel.text = tag
         selectionIndicator.isHidden = true
+    }
+    
+    func layoutUserSettingCell(tag: String) {
+        tagLabel.text = tag
+        selectionButton.isHidden = true
+        selectionIndicator.isHidden = true
+        tagLabelConstraint = NSLayoutConstraint(item: tagLabel,
+                                                attribute: .leading,
+                                                relatedBy: .equal,
+                                                toItem: self.contentView,
+                                                attribute: .leading,
+                                                multiplier: 1,
+                                                constant: 16)
+        tagLabelConstraint.isActive = true
     }
     
     func showIndicator() {

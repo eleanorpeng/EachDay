@@ -75,6 +75,9 @@ class CalendarMainViewController: UIViewController {
             destination.selectedMonth = selectedMonth
             self.navigationController?.navigationBar.isHidden = false
         }
+        if let destination = segue.destination as? UserSettingViewController {
+            self.navigationController?.navigationBar.isHidden = false
+        }
     }
 
 }

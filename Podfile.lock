@@ -305,6 +305,7 @@ PODS:
   - PromisesObjC (1.2.11)
   - PryntTrimmerView (4.0.2)
   - SteviaLayout (4.7.3)
+  - SVPinView (1.0.11)
   - SwiftLint (0.41.0)
   - SWXMLHash (5.0.1)
   - YPImagePicker (4.4.0):
@@ -321,6 +322,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - Kingfisher (~> 5.15)
   - PKHUD (~> 5.0)
+  - SVPinView (~> 1.0)
   - SwiftLint
   - YPImagePicker
 
@@ -351,6 +353,7 @@ SPEC REPOS:
     - PromisesObjC
     - PryntTrimmerView
     - SteviaLayout
+    - SVPinView
     - SwiftLint
     - SWXMLHash
     - YPImagePicker
@@ -381,10 +384,11 @@ SPEC CHECKSUMS:
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
   SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
+  SVPinView: 9b538d0ba68cdb092afe4f0f67ec84cbed079466
   SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
   YPImagePicker: 15aed8bcaa4dad976e11b6114126d731a2f9f3c9
 
-PODFILE CHECKSUM: f6b41ed806394dd90646c906396b6ec75675f233
+PODFILE CHECKSUM: 5b42bf080bb410598da5a5b27059eb538b959208
 
 COCOAPODS: 1.10.0
