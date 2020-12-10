@@ -9,16 +9,20 @@ import UIKit
 import YPImagePicker
 
 class UserSettingViewController: UIViewController, PasscodeViewControllerDelegate {
+    
     var hasPasscode = false {
         didSet {
             settings?[3].description = hasPasscode ? "Enable" : "Disable"
             tableView.reloadData()
         }
     }
+    
+    var isDisablingPasscode = false
     var isTimeTracking = false
     var profileImage: UIImage?
     var isDefaulProfileImage = true
     var settings: [Settings]?
+    var isEditingPasscode = false
     @IBOutlet weak var tableView: UITableView!
     let imagePicker = YPImagePicker()
     override func viewDidLoad() {
@@ -36,6 +40,7 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
                     Settings(icon: "passcode", setting: "Passcode", description: "Disable"),
                     Settings(icon: "face-recognition", setting: "FaceID", description: "Enable")
                     ]
+        
     }
     
     func imagePickerDonePicking() {
@@ -59,12 +64,20 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
         
         if let destination = segue.destination as? PasscodeViewController {
             destination.delegate = self
+            destination.isEditingPasscode = isEditingPasscode
+            destination.isDisablingPasscode = isDisablingPasscode
         }
     }
     
     func handlePasscodeSet(hasSet: Bool) {
         hasPasscode = hasSet
     }
+    
+    func getPasscodeState(isEditing: Bool, isDisabling: Bool) {
+        self.isEditing = isEditing
+        self.isDisablingPasscode = isDisabling
+    }
+    
 }
 
 extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource, ProfileTableViewCellDelegate {
@@ -152,23 +165,42 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
     
     func presentPasscodeAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
         alert.addAction(UIAlertAction(title: hasPasscode ? "Disable" : "Enable", style: .default, handler: { _ in
-            if !self.hasPasscode {
-                self.performSegue(withIdentifier: "ShowPasscodeSegue", sender: self)
-            } else {
-                self.presentDisablePasscodeAlert()
+            if self.hasPasscode {
+                self.isDisablingPasscode = true
             }
-            
+            self.performSegue(withIdentifier: "ShowPasscodeSegue", sender: self)
+//            if !self.hasPasscode {
+//                self.performSegue(withIdentifier: "ShowPasscodeSegue", sender: self)
+//            } else {
+//                self.presentDisablePasscodeAlert()
+//            }
         }))
+        
+        if hasPasscode {
+            alert.addAction(UIAlertAction(title: "Edit Passcode", style: .default, handler: { _ in
+                self.isEditingPasscode = true
+                self.performSegue(withIdentifier: "ShowPasscodeSegue", sender: self)
+            }))
+        }
+        
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+//    func presentEditPasscodeAlert() {
+//        let alert = UIAlertAction(title: "Edit Passcode", style: .default, handler: { _ in
+//            self.performSegue(withIdentifier: "ShowPasscodeSegue", sender: self)
+//        })
+//    }
     
     func presentDisablePasscodeAlert() {
         let alert = UIAlertController(title: "Passcode Disabled", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             self.hasPasscode = false
         }))
+        
         self.present(alert, animated: true, completion: nil)
     }
 }
