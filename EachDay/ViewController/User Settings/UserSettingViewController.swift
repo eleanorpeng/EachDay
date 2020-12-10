@@ -66,6 +66,7 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
             destination.delegate = self
             destination.isEditingPasscode = isEditingPasscode
             destination.isDisablingPasscode = isDisablingPasscode
+            destination.isInitial = false
         }
     }
     

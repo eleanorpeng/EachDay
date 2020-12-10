@@ -7,12 +7,15 @@
 
 import UIKit
 import SVPinView
+import KeychainAccess
 
 class PasscodeViewController: UIViewController {
     weak var delegate: PasscodeViewControllerDelegate?
     @IBOutlet weak var pinView: SVPinView!
     @IBOutlet weak var titleLabel: UILabel!
-    
+    @IBOutlet weak var subtitleLabel: UILabel!
+    var isInitial = true
+    let keychain = Keychain()
     var isEditingPasscode = false
     var isDisablingPasscode = false
     var passcode: String?
@@ -21,9 +24,24 @@ class PasscodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchPasscode()
-        configurePinView()
+        if isInitial {
+            configureIntialView()
+        } else {
+            configurePinView()
+        }
     }
     
+    //Initial View
+    func configureIntialView() {
+        pinView.didFinishCallback = { [weak self] pin in
+            if pin == self?.keychain["passcode"] {
+                self?.performSegue(withIdentifier: "", sender: self)
+            }
+        }
+    }
+    
+    
+    //Views from user settings
     func configurePinView() {
         pinView.keyboardType = .phonePad
         pinView.becomeFirstResponderAtIndex = 0
@@ -56,6 +74,7 @@ class PasscodeViewController: UIViewController {
     func configureEditingView() {
         if isEditingPasscode {
             titleLabel.text = "Enter Old Passcode"
+            subtitleLabel.text = "Please enter old passcode."
         }
         pinView.didFinishCallback = { [weak self] pin in
             if pin == self?.passcode {
@@ -71,6 +90,7 @@ class PasscodeViewController: UIViewController {
     func configureDisablingView() {
         if isDisablingPasscode {
             titleLabel.text = "Enter Old Passcode"
+            subtitleLabel.text = "Please enter old passcode."
         }
         pinView.didFinishCallback = { [weak self] pin in
             if pin == self?.passcode {
@@ -99,8 +119,8 @@ class PasscodeViewController: UIViewController {
         animation.duration = 0.07
         animation.repeatCount = 4
         animation.autoreverses = true
-        animation.fromValue = NSValue(cgPoint: CGPoint(x: view.center.x - 10, y: view.center.y))
-        animation.toValue = NSValue(cgPoint: CGPoint(x: view.center.x + 10, y: view.center.y))
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: view.center.x - 5, y: view.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: view.center.x + 5, y: view.center.y))
 
         view.layer.add(animation, forKey: "position")
     }
@@ -109,6 +129,7 @@ class PasscodeViewController: UIViewController {
         passcode = pin
         count += 1
         titleLabel.text = "Re-enter Passcode"
+        subtitleLabel.text = "Please re-enter your passcode."
         pinView.clearPin()
     }
     
@@ -116,6 +137,7 @@ class PasscodeViewController: UIViewController {
         secondPasscode = pin
         self.delegate?.handlePasscodeSet(hasSet: true)
         if passcode == secondPasscode {
+            keychain["passcode"] = passcode
             UserManager.shared.updatePasscode(userDocID: "Eleanor", passcode: passcode ?? "")
             showCompleteAlert()
         } else {
@@ -124,21 +146,28 @@ class PasscodeViewController: UIViewController {
     }
     
     func showCompleteAlert() {
-        let alert = UIAlertController(title: isDisablingPasscode ? "Passcode disabled." : "Your passcode is set!", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-            self.navigationController?.popViewController(animated: true)
-        }))
-        self.present(alert, animated: true, completion: nil)
+//        let alert = UIAlertController(title: isDisablingPasscode ? "Passcode disabled." : "Your passcode is set!", message: nil, preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+//            self.navigationController?.popViewController(animated: true)
+//        }))
+//        self.present(alert, animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func showIncompleteAlert() {
-        let alert = UIAlertController(title: "Please enter the correct passcode.", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-            self.delegate?.getPasscodeState(isEditing: false, isDisabling: false)
-            self.pinView.clearPin()
-        }))
-        self.present(alert, animated: true, completion: nil)
+        subtitleLabel.text = "Please enter the correct passcode."
+        createShakeAnimation()
+        self.delegate?.getPasscodeState(isEditing: false, isDisabling: false)
+        pinView.clearPin()
+        
+//        let alert = UIAlertController(title: "Please enter the correct passcode.", message: nil, preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+//            self.delegate?.getPasscodeState(isEditing: false, isDisabling: false)
+//            self.pinView.clearPin()
+//        }))
+//        self.present(alert, animated: true, completion: nil)
     }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? UserSettingViewController {

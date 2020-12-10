@@ -17,13 +17,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Your Passcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jt6-eY-Pr6">
-                                <rect key="frame" x="107.5" y="174" width="199" height="28"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <rect key="frame" x="112" y="174" width="190.5" height="26.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter passcode." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMn-ci-Fsu">
+                                <rect key="frame" x="118.5" y="216.5" width="177" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dH1-CR-AsE" customClass="SVPinView" customModule="SVPinView">
-                                <rect key="frame" x="16" y="232" width="382" height="80"/>
+                                <rect key="frame" x="16" y="277" width="382" height="80"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="tL3-71-5sc"/>
@@ -72,14 +78,17 @@
                         <constraints>
                             <constraint firstItem="jt6-eY-Pr6" firstAttribute="centerX" secondItem="9fb-S8-yp2" secondAttribute="centerX" id="3dt-om-oNW"/>
                             <constraint firstItem="dH1-CR-AsE" firstAttribute="centerX" secondItem="9fb-S8-yp2" secondAttribute="centerX" id="FRB-CW-gvu"/>
+                            <constraint firstItem="fMn-ci-Fsu" firstAttribute="top" secondItem="jt6-eY-Pr6" secondAttribute="bottom" constant="16" id="IY7-qg-ILv"/>
                             <constraint firstItem="0bi-KG-FrS" firstAttribute="trailing" secondItem="dH1-CR-AsE" secondAttribute="trailing" constant="16" id="Idk-xb-XCp"/>
+                            <constraint firstItem="dH1-CR-AsE" firstAttribute="top" secondItem="fMn-ci-Fsu" secondAttribute="bottom" constant="40" id="SDR-nd-Rmf"/>
                             <constraint firstItem="jt6-eY-Pr6" firstAttribute="top" secondItem="0bi-KG-FrS" secondAttribute="top" constant="130" id="WzJ-gz-u4A"/>
+                            <constraint firstItem="fMn-ci-Fsu" firstAttribute="centerX" secondItem="9fb-S8-yp2" secondAttribute="centerX" id="end-Vg-opj"/>
                             <constraint firstItem="dH1-CR-AsE" firstAttribute="leading" secondItem="0bi-KG-FrS" secondAttribute="leading" constant="16" id="f28-r0-0K0"/>
-                            <constraint firstItem="dH1-CR-AsE" firstAttribute="top" secondItem="jt6-eY-Pr6" secondAttribute="bottom" constant="30" id="fdJ-C9-hvE"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="pinView" destination="dH1-CR-AsE" id="hYk-U8-LOq"/>
+                        <outlet property="subtitleLabel" destination="fMn-ci-Fsu" id="g2J-dk-QEA"/>
                         <outlet property="titleLabel" destination="jt6-eY-Pr6" id="a1k-UF-VNH"/>
                     </connections>
                 </viewController>
