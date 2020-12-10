@@ -23,6 +23,11 @@ class PasscodeViewController: UIViewController {
     var count = 1
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         fetchPasscode()
         if isInitial {
             configureIntialView()
@@ -30,16 +35,21 @@ class PasscodeViewController: UIViewController {
             configurePinView()
         }
     }
-    
     //Initial View
     func configureIntialView() {
+        titleLabel.text = "Enter Passcode"
+        pinView.becomeFirstResponderAtIndex = 0
+        pinView.keyboardType = .phonePad
         pinView.didFinishCallback = { [weak self] pin in
             if pin == self?.keychain["passcode"] {
-                self?.performSegue(withIdentifier: "", sender: self)
+                self?.performSegue(withIdentifier: "ShowMainSegue", sender: self)
+            } else {
+                self?.createShakeAnimation()
+                self?.subtitleLabel.text = "Incorrect passcode. Please re-enter passcode."
+                self?.pinView.clearPin()
             }
         }
     }
-    
     
     //Views from user settings
     func configurePinView() {

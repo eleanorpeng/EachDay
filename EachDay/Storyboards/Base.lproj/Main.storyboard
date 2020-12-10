@@ -1028,7 +1028,7 @@
         <!--Main Tab Bar Controller-->
         <scene sceneID="S0k-Lp-p4U">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="FOs-io-TwP" customClass="MainTabBarController" customModule="EachDay" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="FOs-io-TwP" customClass="MainTabBarController" customModule="EachDay" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yvy-gT-ubt">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

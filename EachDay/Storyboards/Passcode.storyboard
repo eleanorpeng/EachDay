@@ -11,7 +11,7 @@
         <!--Passcode View Controller-->
         <scene sceneID="Kko-Hr-Ypu">
             <objects>
-                <viewController id="VKp-Hk-olL" customClass="PasscodeViewController" customModule="EachDay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="VKp-Hk-olL" customClass="PasscodeViewController" customModule="EachDay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9fb-S8-yp2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,7 +25,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter passcode." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMn-ci-Fsu">
                                 <rect key="frame" x="118.5" y="216.5" width="177" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dH1-CR-AsE" customClass="SVPinView" customModule="SVPinView">
@@ -90,16 +90,30 @@
                         <outlet property="pinView" destination="dH1-CR-AsE" id="hYk-U8-LOq"/>
                         <outlet property="subtitleLabel" destination="fMn-ci-Fsu" id="g2J-dk-QEA"/>
                         <outlet property="titleLabel" destination="jt6-eY-Pr6" id="a1k-UF-VNH"/>
+                        <segue destination="Z0k-bv-hVn" kind="show" identifier="ShowMainSegue" id="23V-h5-Esa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ie7-fW-Qmh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="215.94202898550725" y="113.83928571428571"/>
         </scene>
+        <!--Main-->
+        <scene sceneID="NmB-nt-bch">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="Z0k-bv-hVn" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="htR-O5-bUG"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ig9-NA-JIQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="796" y="86"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
