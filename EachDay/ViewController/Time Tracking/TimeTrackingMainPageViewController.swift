@@ -131,6 +131,7 @@ class TimeTrackingMainPageViewController: UIViewController {
         let today = Date()
         let midnight = calendar.startOfDay(for: today)
         let tomorrow = calendar.date(byAdding: .day, value: 1, to: midnight)!
+        
         let midnightTS = Timestamp(date: midnight)
         let tomorrowTS = Timestamp(date: tomorrow)
         

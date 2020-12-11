@@ -289,7 +289,7 @@ PODS:
     - gRPC-Core/Interface (= 1.28.2)
   - gRPC-Core/Interface (1.28.2)
   - GTMSessionFetcher/Core (1.5.0)
-  - IQKeyboardManagerSwift (6.5.6)
+  - IQKeyboardManagerSwift (6.3.0)
   - KeychainAccess (4.2.1)
   - Kingfisher (5.15.7):
     - Kingfisher/Core (= 5.15.7)
@@ -320,7 +320,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - FirebaseFirestoreSwift
-  - IQKeyboardManagerSwift
+  - IQKeyboardManagerSwift (= 6.3.0)
   - KeychainAccess
   - Kingfisher (~> 5.15)
   - PKHUD (~> 5.0)
@@ -378,7 +378,7 @@ SPEC CHECKSUMS:
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
-  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f
   KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
   Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
@@ -393,6 +393,6 @@ SPEC CHECKSUMS:
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
   YPImagePicker: 15aed8bcaa4dad976e11b6114126d731a2f9f3c9
 
-PODFILE CHECKSUM: 1ea71bb4b031cece071cb8915b8883bf270021df
+PODFILE CHECKSUM: 6df6c38cbb1502ad629fa8351bb82bfc1f0fb47f
 
 COCOAPODS: 1.10.0

@@ -90,7 +90,7 @@
                         <outlet property="pinView" destination="dH1-CR-AsE" id="hYk-U8-LOq"/>
                         <outlet property="subtitleLabel" destination="fMn-ci-Fsu" id="g2J-dk-QEA"/>
                         <outlet property="titleLabel" destination="jt6-eY-Pr6" id="a1k-UF-VNH"/>
-                        <segue destination="Z0k-bv-hVn" kind="show" identifier="ShowMainSegue" id="23V-h5-Esa"/>
+                        <segue destination="Z0k-bv-hVn" kind="show" identifier="ShowMainSegue" id="zGh-sn-D2b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ie7-fW-Qmh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -21,9 +21,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+
 import UIKit
 
-@objc public class IQInvocation: NSObject {
+@objc public class IQInvocation : NSObject {
     @objc public weak var target: AnyObject?
     @objc public var action: Selector
     

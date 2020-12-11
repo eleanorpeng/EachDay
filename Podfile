@@ -14,7 +14,7 @@ target 'EachDay' do
   pod 'Charts'
   pod 'FAPaginationLayout'
   pod 'YPImagePicker'
-  pod 'IQKeyboardManagerSwift'
+  pod 'IQKeyboardManagerSwift', '6.3.0'
   pod 'PKHUD', '~> 5.0'
   pod 'Kingfisher', '~> 5.15'
   pod 'SVPinView', '~> 1.0'

@@ -95,6 +95,30 @@ class JournalManager {
         }
     }
     
+    func updateJournal(userID: String, journalID: String, title: String, content: String, tags: [String]) {
+        database.collection("User").document(userID).collection("Journal").document(journalID).updateData([
+            "title" : title,
+            "content" : content,
+            "tags": tags
+        ]) { err in
+            if let err = err {
+                print("Error in updating journal data")
+            } else {
+                print("Journal data updated successfully!")
+            }
+        }
+    }
+    
+    func deleteJournal(userID: String, journalID: String) {
+        database.collection("User").document(userID).collection("Journal").document(journalID).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+            }
+        }
+    }
+    
     func uploadImage(userID: String, image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
         let timeStamp = Date().timeIntervalSince1970
         let storageRef = Storage.storage().reference().child("\(userID)\(timeStamp).png")

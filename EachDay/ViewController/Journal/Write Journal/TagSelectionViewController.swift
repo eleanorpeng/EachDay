@@ -20,6 +20,8 @@ class TagSelectionViewController: UIViewController {
     var fromUserSetting = false
     var isTimeTracking = false
     var isSorting = false
+    var fromDetail = false
+    var selectedTagsFromDetail: [String] = []
     weak var delegate: TagSelectionViewControllerDelegate?
     @IBAction func sortButtonClicked(_ sender: Any) {
         isSorting = !isSorting
@@ -55,6 +57,9 @@ class TagSelectionViewController: UIViewController {
         super.viewDidLoad()
         initialSetUp()
         fetchData()
+        if fromDetail {
+            self.navigationController?.isNavigationBarHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,6 +127,7 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
         let tag = tags?[button.tag]
         selectedTags.append(tag ?? "")
         self.delegate?.getSelectedTags(tags: selectedTags)
+    
     }
     
     func handleDeselected(sender: Any) {
@@ -130,7 +136,6 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
         selectedTags = selectedTags.filter({
             $0 != tag
         })
-      
         self.delegate?.getSelectedTags(tags: selectedTags)
     }
     
@@ -182,7 +187,9 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
         tagCell.selectionButton.tag = indexPath.row
         tagCell.moreButton.tag = indexPath.row
         tagCell.selectionIndicator.isHidden = !selectedTags.contains(tagCell.tagLabel?.text ?? "")
-        
+//        if fromDetail {
+//            tagCell.selectionIndicator.isHidden = !selectedTagsFromDetail.contains(tagCell.tagLabel?.text ?? "")
+//        }
         return tagCell
     }
     

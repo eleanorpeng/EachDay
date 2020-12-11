@@ -27,13 +27,21 @@ class CalendarMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveProfileImage(_:)), name: Notifications.receiveProfileImageNotification, object: nil)
     }
     
+    @objc func didReceiveProfileImage(_ notification: Notification) {
+        if let profileImage = notification.object as? UIImage {
+            userProfileButton.setImage(profileImage, for: .normal)
+        }
+    }
     func initialSetUp() {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
         dateLabel.text = currentDate.getFormattedDate()
+        userProfileButton.clipsToBounds = true
+        userProfileButton.layer.cornerRadius = userProfileButton.frame.width / 2
     }
     
     override func viewWillAppear(_ animated: Bool) {

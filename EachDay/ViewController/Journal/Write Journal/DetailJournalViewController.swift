@@ -22,6 +22,7 @@ class DetailJournalViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorColor = .clear
+        tableView.reloadData()
         fetchData(userDocID: "Eleanor")
     }
     

@@ -23,6 +23,7 @@
 		2009DE92256E5A8400545439 /* JournalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DE91256E5A8400545439 /* JournalTableViewCell.swift */; };
 		2009DEAD256EA82400545439 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DEAC256EA82300545439 /* UIColorExtension.swift */; };
 		2009DEB1256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DEB0256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift */; };
+		2013683625826A6E00C90BB6 /* BiometricAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2013683525826A6E00C90BB6 /* BiometricAuthentication.swift */; };
 		2019553B25776B4E006FA8E8 /* CalendarMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2019553A25776B4E006FA8E8 /* CalendarMainViewController.swift */; };
 		2019553E25776BB4006FA8E8 /* CalendarMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2019553D25776BB4006FA8E8 /* CalendarMainCollectionViewCell.swift */; };
 		2019556925778C70006FA8E8 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2019556825778C70006FA8E8 /* SelectionViewController.swift */; };
@@ -59,6 +60,7 @@
 		2098B162256F9A9800AAC1CB /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2098B161256F9A9800AAC1CB /* Helper.swift */; };
 		2098B165256FB2C600AAC1CB /* TimeCapsule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2098B164256FB2C600AAC1CB /* TimeCapsule.storyboard */; };
 		2098B168256FB39F00AAC1CB /* TimeCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2098B167256FB39F00AAC1CB /* TimeCapsuleViewController.swift */; };
+		20A5D3D62583212E0009F3FC /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A5D3D52583212E0009F3FC /* Notifications.swift */; };
 		20F6E283256F822D0036F38C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F6E282256F822D0036F38C /* UIImageExtension.swift */; };
 		20FBA4442577918700A58AF0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA4432577918700A58AF0 /* MainTabBarController.swift */; };
 		20FBA44725779A3000A58AF0 /* DetailJournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA44625779A3000A58AF0 /* DetailJournalViewController.swift */; };
@@ -94,6 +96,7 @@
 		2009DE91256E5A8400545439 /* JournalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTableViewCell.swift; sourceTree = "<group>"; };
 		2009DEAC256EA82300545439 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		2009DEB0256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageGreetingsTableViewCell.swift; sourceTree = "<group>"; };
+		2013683525826A6E00C90BB6 /* BiometricAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthentication.swift; sourceTree = "<group>"; };
 		2019553A25776B4E006FA8E8 /* CalendarMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMainViewController.swift; sourceTree = "<group>"; };
 		2019553D25776BB4006FA8E8 /* CalendarMainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMainCollectionViewCell.swift; sourceTree = "<group>"; };
 		2019556825778C70006FA8E8 /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +133,7 @@
 		2098B161256F9A9800AAC1CB /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		2098B164256FB2C600AAC1CB /* TimeCapsule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeCapsule.storyboard; sourceTree = "<group>"; };
 		2098B167256FB39F00AAC1CB /* TimeCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleViewController.swift; sourceTree = "<group>"; };
+		20A5D3D52583212E0009F3FC /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		20F6E282256F822D0036F38C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		20FBA4432577918700A58AF0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		20FBA44625779A3000A58AF0 /* DetailJournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailJournalViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 		2009DE73256E310A00545439 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				20A5D3D52583212E0009F3FC /* Notifications.swift */,
 				2009DE70256E310500545439 /* User.swift */,
 				20FBA457257896B600A58AF0 /* JournalTag.swift */,
 				203142962570E441006410A8 /* TimeTrackingButton.swift */,
@@ -273,6 +278,7 @@
 				2053B85A257F227A005DFA24 /* UserSettingViewController.swift */,
 				201B28D7258079FA00FB6A77 /* UserSettingTagsViewController.swift */,
 				2051016E2580CC6300E7D985 /* PasscodeViewController.swift */,
+				2013683525826A6E00C90BB6 /* BiometricAuthentication.swift */,
 			);
 			path = "User Settings";
 			sourceTree = "<group>";
@@ -534,6 +540,7 @@
 				20FBA45F2578B1A500A58AF0 /* DateExtension.swift in Sources */,
 				20FBA4512577C9D100A58AF0 /* TagSelectionViewController.swift in Sources */,
 				20FBA44725779A3000A58AF0 /* DetailJournalViewController.swift in Sources */,
+				2013683625826A6E00C90BB6 /* BiometricAuthentication.swift in Sources */,
 				20733BE125748A83004B4A3B /* TimeTrackingTopTableViewCell.swift in Sources */,
 				2009DEB1256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift in Sources */,
 				2009DE8A256E4CBB00545439 /* MainPageViewController.swift in Sources */,
@@ -564,6 +571,7 @@
 				20733BD125732D81004B4A3B /* StopWatch.swift in Sources */,
 				2031429D2570E655006410A8 /* TimeTrackingMainCollectionViewCell.swift in Sources */,
 				2019553E25776BB4006FA8E8 /* CalendarMainCollectionViewCell.swift in Sources */,
+				20A5D3D62583212E0009F3FC /* Notifications.swift in Sources */,
 				20F6E283256F822D0036F38C /* UIImageExtension.swift in Sources */,
 				2019553B25776B4E006FA8E8 /* CalendarMainViewController.swift in Sources */,
 				20733C1E25760CC3004B4A3B /* TimeTrackingSummaryViewController.swift in Sources */,

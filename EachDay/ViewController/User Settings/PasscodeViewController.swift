@@ -9,39 +9,75 @@ import UIKit
 import SVPinView
 import KeychainAccess
 
-class PasscodeViewController: UIViewController {
+class PasscodeViewController: UIViewController, UserSettingViewControllerDelegate {
+    
+    
     weak var delegate: PasscodeViewControllerDelegate?
     @IBOutlet weak var pinView: SVPinView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     var isInitial = true
+    let biometricAuth = BiometricAuthentication()
     let keychain = Keychain()
     var isEditingPasscode = false
     var isDisablingPasscode = false
     var passcode: String?
     var secondPasscode: String?
     var count = 1
+    var enableBiometricsAuth = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        let touchBool = biometricAuth.canEvaluatePolicy()
+//        if touchBool {
+//            self.configureBiometrics()
+//        }
+//        print(keychain["passcode"])
+//        
+//        if isInitial && keychain["passcode"] != nil {
+//            configureIntialView()
+//        } else if isInitial && keychain["passcode"] == nil {
+//            performSegue(withIdentifier: "ShowMainSegue", sender: self)
+//        } else {
+//            configurePinView()
+//        }
     }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        fetchPasscode()
-        if isInitial {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        if isInitial && keychain["passcode"] != nil {
             configureIntialView()
+        } else if isInitial && keychain["passcode"] == nil {
+            performSegue(withIdentifier: "ShowMainSegue", sender: self)
         } else {
             configurePinView()
         }
     }
+
     //Initial View
+    
+    func getBiometricsAuthState(enable: Bool) {
+        enableBiometricsAuth = enable
+    }
+    
+    func configureBiometrics() {
+        biometricAuth.authenticateUser { [weak self] message in
+            if let message = message {
+                return
+            } else {
+                self?.performSegue(withIdentifier: "ShowMainSegue", sender: self)
+            }
+        }
+    }
     func configureIntialView() {
+        if enableBiometricsAuth {
+            configureBiometrics()
+        }
         titleLabel.text = "Enter Passcode"
         pinView.becomeFirstResponderAtIndex = 0
         pinView.keyboardType = .phonePad
         pinView.didFinishCallback = { [weak self] pin in
             if pin == self?.keychain["passcode"] {
+//                print(self?.keychain["passcode"])
                 self?.performSegue(withIdentifier: "ShowMainSegue", sender: self)
             } else {
                 self?.createShakeAnimation()
@@ -87,7 +123,7 @@ class PasscodeViewController: UIViewController {
             subtitleLabel.text = "Please enter old passcode."
         }
         pinView.didFinishCallback = { [weak self] pin in
-            if pin == self?.passcode {
+            if pin == self?.keychain["passcode"] {
                 self?.count = 1
                 self?.titleLabel.text = "Enter New Passcode"
                 self?.checkPasscode(pin: pin)
@@ -103,9 +139,11 @@ class PasscodeViewController: UIViewController {
             subtitleLabel.text = "Please enter old passcode."
         }
         pinView.didFinishCallback = { [weak self] pin in
-            if pin == self?.passcode {
+            if pin == self?.keychain["passcode"] {
                 UserManager.shared.updatePasscode(userDocID: "Eleanor", passcode: "")
                 self?.delegate?.handlePasscodeSet(hasSet: false)
+                self?.keychain["passcode"] = nil
+                print(self?.keychain["passcode"])
                 self?.showCompleteAlert()
             } else {
                 self?.showIncompleteAlert()
@@ -137,6 +175,8 @@ class PasscodeViewController: UIViewController {
     
     func firstCheck(pin: String) {
         passcode = pin
+        print("Passcode: \(passcode)")
+        keychain["passcode"] = passcode
         count += 1
         titleLabel.text = "Re-enter Passcode"
         subtitleLabel.text = "Please re-enter your passcode."
@@ -147,7 +187,7 @@ class PasscodeViewController: UIViewController {
         secondPasscode = pin
         self.delegate?.handlePasscodeSet(hasSet: true)
         if passcode == secondPasscode {
-            keychain["passcode"] = passcode
+            print(keychain["passcode"])
             UserManager.shared.updatePasscode(userDocID: "Eleanor", passcode: passcode ?? "")
             showCompleteAlert()
         } else {

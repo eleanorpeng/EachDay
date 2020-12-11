@@ -16,20 +16,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="EachDayLogo" translatesAutoresizingMaskIntoConstraints="NO" id="BNv-jG-Rga">
-                                <rect key="frame" x="62" y="189" width="290" height="177"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4O-1J-oWP">
-                                <rect key="frame" x="62" y="121" width="113" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Each Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4O-1J-oWP">
+                                <rect key="frame" x="76.5" y="149" width="261" height="32"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start recording life in your own way" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xpp-mu-beo">
+                                <rect key="frame" x="59" y="201" width="296" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eeI-er-ZS1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="N4O-1J-oWP" firstAttribute="top" secondItem="eeI-er-ZS1" secondAttribute="top" constant="105" id="5PL-Ri-d2F"/>
+                            <constraint firstItem="Xpp-mu-beo" firstAttribute="centerX" secondItem="EW3-HH-tAa" secondAttribute="centerX" id="5fe-mj-eUJ"/>
+                            <constraint firstItem="N4O-1J-oWP" firstAttribute="centerX" secondItem="EW3-HH-tAa" secondAttribute="centerX" id="LlI-LX-KH0"/>
+                            <constraint firstItem="Xpp-mu-beo" firstAttribute="top" secondItem="N4O-1J-oWP" secondAttribute="bottom" constant="20" id="bW5-l1-1wK"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZpJ-26-fB9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -38,7 +45,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="EachDayLogo" width="1667" height="1667"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

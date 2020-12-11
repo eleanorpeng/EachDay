@@ -16,6 +16,7 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
             tableView.reloadData()
         }
     }
+    weak var delegate: UserSettingViewControllerDelegate?
     
     var isDisablingPasscode = false
     var isTimeTracking = false
@@ -23,6 +24,12 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
     var isDefaulProfileImage = true
     var settings: [Settings]?
     var isEditingPasscode = false
+    var enableBiometricsAuth = false {
+        didSet {
+            settings?[4].description = enableBiometricsAuth ? "Enable" : "Disable"
+            tableView.reloadData()
+        }
+    }
     @IBOutlet weak var tableView: UITableView!
     let imagePicker = YPImagePicker()
     override func viewDidLoad() {
@@ -31,6 +38,7 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
     }
     
     func initialSetUp() {
+        self.navigationController?.navigationBar.isHidden = false
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorColor = .clear
@@ -38,7 +46,7 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
                     Settings(icon: "tag", setting: "Journal Tags", description: ">"),
                     Settings(icon: "stopwatch", setting: "Time Tracker Categories", description: ">"),
                     Settings(icon: "passcode", setting: "Passcode", description: "Disable"),
-                    Settings(icon: "face-recognition", setting: "FaceID", description: "Enable")
+                    Settings(icon: "face-recognition", setting: "FaceID", description: "Disable")
                     ]
         
     }
@@ -51,6 +59,7 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
             }
             imagePicker.dismiss(animated: true, completion: {
                 self.tableView.reloadData()
+                NotificationCenter.default.post(name: Notifications.receiveProfileImageNotification, object: self.profileImage)
             })
         }
     }
@@ -59,7 +68,7 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
         if let destination = segue.destination as? TagSelectionViewController {
             destination.fromUserSetting = true
             destination.isTimeTracking = isTimeTracking
-            print(isTimeTracking)
+            self.navigationController?.navigationBar.isHidden = true
         }
         
         if let destination = segue.destination as? PasscodeViewController {
@@ -67,6 +76,7 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
             destination.isEditingPasscode = isEditingPasscode
             destination.isDisablingPasscode = isDisablingPasscode
             destination.isInitial = false
+            self.delegate = destination
         }
     }
     
@@ -129,7 +139,6 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
     func setUpSettingCell(index: Int) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.identifier)
         guard let settingCell = cell as? SettingsTableViewCell else { return cell! }
-        print(settings?[index].description)
         settingCell.layoutCell(icon: settings?[index].icon ?? "",
                                setting: settings?[index].setting ?? "",
                                description: settings?[index].description ?? "")
@@ -153,11 +162,10 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
         case 3:
             presentPasscodeAlert()
         case 4:
-            print("4")
+            presentEnableBiometricsAuthAlert()
         default:
             print("Nothing")
         }
-        
     }
     
     func presentRoutineAlert() {
@@ -204,4 +212,19 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func presentEnableBiometricsAuthAlert() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: enableBiometricsAuth ? "Enable" : "Disable", style: .default, handler: { _ in
+            self.enableBiometricsAuth = !self.enableBiometricsAuth
+            self.delegate?.getBiometricsAuthState(enable: self.enableBiometricsAuth)
+            //use delegate to send to passcode
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
+protocol UserSettingViewControllerDelegate: AnyObject {
+    func getBiometricsAuthState(enable: Bool)
 }

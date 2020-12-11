@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let storyboard = UIStoryboard(name: "Passcode", bundle: nil)
         window?.rootViewController = storyboard.instantiateInitialViewController()
-        window?.makeKeyAndVisible()
+//        window?.makeKeyAndVisible()
 //        let window = UIWindow(windowScene: windowScene)
 //        window.rootViewController = PasscodeViewController()
 //        self.window = window
