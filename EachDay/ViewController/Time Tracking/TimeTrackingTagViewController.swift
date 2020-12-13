@@ -31,7 +31,7 @@ class TimeTrackingTagViewController: UIViewController {
     var searchText = "" {
         didSet {
             self.filteredCategories = categories?.filter({
-                $0.contains(searchText)
+                $0.lowercased().contains(searchText.lowercased())
             })
             if searchText == "" {
                 isFiltering = false

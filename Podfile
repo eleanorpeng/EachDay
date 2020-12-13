@@ -19,5 +19,6 @@ target 'EachDay' do
   pod 'Kingfisher', '~> 5.15'
   pod 'SVPinView', '~> 1.0'
   pod 'KeychainAccess'
+  pod 'lottie-ios'
   
 end

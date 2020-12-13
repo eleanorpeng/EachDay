@@ -457,7 +457,7 @@
             </objects>
             <point key="canvasLocation" x="2312" y="1248"/>
         </scene>
-        <!--Detail Journal View Controller-->
+        <!--December-->
         <scene sceneID="e4T-bD-4lv">
             <objects>
                 <viewController id="Dd1-Ki-uOH" customClass="DetailJournalViewController" customModule="EachDay" customModuleProvider="target" sceneMemberID="viewController">
@@ -577,15 +577,26 @@
                             <constraint firstItem="iQi-NN-jtb" firstAttribute="top" secondItem="tfu-z2-qFS" secondAttribute="top" id="xcR-EG-Sy0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="hYU-Eh-1tg"/>
+                    <navigationItem key="navigationItem" title="December" id="hYU-Eh-1tg"/>
                     <connections>
                         <outlet property="tableView" destination="iQi-NN-jtb" id="es6-If-BPb"/>
                         <segue destination="ta8-vd-ZyX" kind="show" identifier="ShowDetailJournalContentSegue" id="KPC-ka-3Oa"/>
+                        <segue destination="GBw-y7-Toa" kind="show" identifier="ShowFilterJournalTagsSegue" id="nTb-NW-DsB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x0z-Je-uRv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3173.913043478261" y="845.75892857142856"/>
+        </scene>
+        <!--FilterJournalView-->
+        <scene sceneID="lXq-b9-9Rg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FilterJournalView" id="GBw-y7-Toa" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="7PP-gg-0E2"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lqz-Nx-oYw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3175" y="1248"/>
         </scene>
         <!--Detail Journal Content View Controller-->
         <scene sceneID="EBy-b7-48C">

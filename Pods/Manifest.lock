@@ -295,6 +295,7 @@ PODS:
     - Kingfisher/Core (= 5.15.7)
   - Kingfisher/Core (5.15.7)
   - leveldb-library (1.22)
+  - lottie-ios (3.1.9)
   - Macaw (0.9.7):
     - SWXMLHash
   - nanopb (1.30906.0):
@@ -323,6 +324,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift (= 6.3.0)
   - KeychainAccess
   - Kingfisher (~> 5.15)
+  - lottie-ios
   - PKHUD (~> 5.0)
   - SVPinView (~> 1.0)
   - SwiftLint
@@ -350,6 +352,7 @@ SPEC REPOS:
     - KeychainAccess
     - Kingfisher
     - leveldb-library
+    - lottie-ios
     - Macaw
     - nanopb
     - PKHUD
@@ -382,6 +385,7 @@ SPEC CHECKSUMS:
   KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
   Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  lottie-ios: 3a3758ef5a008e762faec9c9d50a39842f26d124
   Macaw: 4a931baf9a9826b06d0d8ecf300014c962ab9d50
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
@@ -393,6 +397,6 @@ SPEC CHECKSUMS:
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
   YPImagePicker: 15aed8bcaa4dad976e11b6114126d731a2f9f3c9
 
-PODFILE CHECKSUM: 6df6c38cbb1502ad629fa8351bb82bfc1f0fb47f
+PODFILE CHECKSUM: 307d61e69f76cb4da75a69f7180732f32cb5eed0
 
 COCOAPODS: 1.10.0

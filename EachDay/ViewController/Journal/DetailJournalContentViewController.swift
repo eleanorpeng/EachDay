@@ -70,7 +70,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         contentTextView.isEditable = isEditingContent
         titleTextField.isUserInteractionEnabled = isEditingContent
         contentTextView.inputAccessoryView = toolBarView
-        if !isEditingContent {
+        if !isEditingContent && (modifiedTitle != nil || modifiedContent != nil || modifiedTags != nil){
             updateJournal()
         }
     }
@@ -95,6 +95,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         contentTextView.delegate = self
         displayImage()
         layoutTags()
+        
     }
     
     func displayImage() {

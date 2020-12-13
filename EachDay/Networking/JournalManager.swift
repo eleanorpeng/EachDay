@@ -33,6 +33,24 @@ class JournalManager {
         })
     }
     
+    func fetchTimeCapsuleData(userDocID: String, currentDate: Double, completion: @escaping (Result<[Journal], Error>) -> Void) {
+        database.collection("User").document(userDocID).collection("Journal").whereField("date", isLessThan: currentDate).addSnapshotListener({ querySnapchot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                guard let documents = querySnapchot?.documents else { return }
+                let allJournalData = documents.compactMap({ queryDocumentSnapshot -> Journal? in
+                    return try? queryDocumentSnapshot.data(as: Journal.self)
+                })
+                let timeCapsule = allJournalData.filter({
+                    $0.isTimeCapsule
+                })
+                completion(.success(timeCapsule))
+            }
+            
+        })
+    }
+    
     func fetchFilteredJournalData(userDocID: String, selectedMonth: Int, currentDate: Double, completion: @escaping (Result<[Journal], Error>) -> Void) {
         database.collection("User").document(userDocID).collection("Journal")
             .whereField("date", isLessThan: currentDate)

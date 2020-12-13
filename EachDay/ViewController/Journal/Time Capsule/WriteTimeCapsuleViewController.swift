@@ -104,6 +104,7 @@ class WriteTimeCapsuleViewController: UIViewController {
     func uploadData() {
         guard letterImage != nil else {
             letterImageURL = ""
+            addData()
             return
         }
         JournalManager.shared.uploadImage(userID: "Eleanor", image: letterImage!, completion: { result in

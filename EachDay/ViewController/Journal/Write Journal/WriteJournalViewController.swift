@@ -72,6 +72,7 @@ class WriteJournalViewController: UIViewController {
     
     @IBAction func completeButtonClicked(_ sender: Any) {
         uploadData()
+        
         navigationController?.popViewController(animated: true)
     }
     
@@ -133,6 +134,7 @@ class WriteJournalViewController: UIViewController {
     func uploadData() {
         guard journalImage != nil else {
             journalImageURL = ""
+            addData()
             return
         }
         JournalManager.shared.uploadImage(userID: "Eleanor", image: journalImage!, completion: { result in

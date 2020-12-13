@@ -15,7 +15,8 @@ class CalendarMainViewController: UIViewController {
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var userProfileButton: UIButton!
     @IBAction func userProfileButtonClicked(_ sender: Any) {
-        performSegue(withIdentifier: "ShowUserSettingSegue", sender: self)
+//        performSegue(withIdentifier: "ShowUserSettingSegue", sender: self)
+        createTimeCapAlert()
     }
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -23,11 +24,41 @@ class CalendarMainViewController: UIViewController {
     var user: User?
     let monthNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     let monthText = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+    let customAlert = CustomAlert()
     var currentDate = Date()
+    var journalData: [Journal]?
+    var timeCapsule: [Journal]?
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveProfileImage(_:)), name: Notifications.receiveProfileImageNotification, object: nil)
+        fetchData(userDocID: "Eleanor")
+    }
+    
+    func createTimeCapAlert() {
+        customAlert.showAlert(on: self)
+        
+    }
+
+    @objc func dismissAlert() {
+        customAlert.dismissAlert()
+    }
+    
+    func fetchData(userDocID: String) {
+        JournalManager.shared.fetchTimeCapsuleData(userDocID: "Eleanor", currentDate: Date().timeIntervalSince1970, completion: { result in
+            switch result {
+            case .success(let timeCapsule):
+                self.timeCapsule = timeCapsule
+                print(timeCapsule)
+                guard let timeCapsule = self.timeCapsule else { return }
+                if !timeCapsule.isEmpty {
+                    self.createTimeCapAlert()
+                }
+            case .failure(let error):
+                print(error)
+            }
+            
+        })
     }
     
     @objc func didReceiveProfileImage(_ notification: Notification) {
@@ -57,6 +88,7 @@ class CalendarMainViewController: UIViewController {
         collectionView.scrollToItem(at: IndexPath(row: currentDate.month() - 1, section: 0),
                                     at: [.centeredVertically, .centeredHorizontally],
                                     animated: true)
+        
     }
 
     func updateCellsLayout() {
