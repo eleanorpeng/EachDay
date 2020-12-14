@@ -22,11 +22,7 @@ class TimeTrackingTagViewController: UIViewController {
     var user: [User]?
     var selectedTag: String?
     weak var delegate: TimeTrackingTagViewControllerDelegate?
-    var isFiltering = false {
-        didSet {
-            self.tableView.reloadData()
-        }
-    }
+    var isFiltering = false
     
     var searchText = "" {
         didSet {
@@ -79,6 +75,7 @@ class TimeTrackingTagViewController: UIViewController {
         filteredCategories = categories?.filter({
             $0.contains(searchText)
         })
+        tableView.reloadData()
     }
 }
 
@@ -99,6 +96,7 @@ extension TimeTrackingTagViewController: UITableViewDelegate, UITableViewDataSou
                 return addNewCell
             } else {
                 firstLoad = false
+//                print(filteredCategories)
                 return setUpTimeTrackingTagCell(tableView: tableView, tag: filteredCategories ?? [], index: indexPath.row)
             }
         } else {
@@ -110,6 +108,9 @@ extension TimeTrackingTagViewController: UITableViewDelegate, UITableViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeTrackingTagTableViewCell.identifier)
         guard let timeTrackingTagCell = cell as? TimeTrackingTagTableViewCell else { return cell! }
         guard !tag.isEmpty else { return cell! }
+
+//        print(index)
+//        print(tag)
         timeTrackingTagCell.layoutCell(tag: tag[index])
         return timeTrackingTagCell
     }

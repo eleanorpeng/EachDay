@@ -21,22 +21,22 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterJournalTableViewCell" id="5B0-iU-i4J" customClass="FilterJournalTableViewCell" customModule="EachDay" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="75.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5B0-iU-i4J" id="ANk-9p-8Qr">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="75.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aL-bg-dgW">
-                                                    <rect key="frame" x="16" y="27" width="42" height="21.5"/>
+                                                    <rect key="frame" x="16" y="19" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="8aL-bg-dgW" secondAttribute="bottom" constant="16" id="Viw-Jd-QSG"/>
-                                                <constraint firstItem="8aL-bg-dgW" firstAttribute="top" secondItem="ANk-9p-8Qr" secondAttribute="topMargin" constant="16" id="efQ-Ag-QRQ"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="8aL-bg-dgW" secondAttribute="bottom" constant="8" id="Viw-Jd-QSG"/>
+                                                <constraint firstItem="8aL-bg-dgW" firstAttribute="top" secondItem="ANk-9p-8Qr" secondAttribute="topMargin" constant="8" id="efQ-Ag-QRQ"/>
                                                 <constraint firstItem="8aL-bg-dgW" firstAttribute="leading" secondItem="ANk-9p-8Qr" secondAttribute="leading" constant="16" id="ujg-jy-qfi"/>
                                                 <constraint firstItem="8aL-bg-dgW" firstAttribute="centerY" secondItem="ANk-9p-8Qr" secondAttribute="centerY" id="um0-TE-g0q"/>
                                             </constraints>

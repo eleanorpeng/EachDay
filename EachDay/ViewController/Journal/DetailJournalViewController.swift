@@ -29,6 +29,7 @@ class DetailJournalViewController: UIViewController {
     var selectedJournalIndex = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorColor = .clear
@@ -42,7 +43,7 @@ class DetailJournalViewController: UIViewController {
     
     func createBarButtonItem() {
         let filterButton = UIButton(type: .custom)
-        filterButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        filterButton.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
         filterButton.setImage(UIImage(named: "funnel"), for: .normal)
         filterButton.addTarget(self, action: #selector(filterJournal), for: .touchUpInside)
         
@@ -70,7 +71,15 @@ class DetailJournalViewController: UIViewController {
         JournalManager.shared.fetchFilteredJournalData(userDocID: userDocID, selectedMonth: selectedMonth, currentDate: Date().timeIntervalSince1970, completion: { result in
             switch result {
             case .success(let journal):
-                self.journalData = journal
+                self.journalData = journal.filter({
+                    !$0.isTimeCapsule
+                })
+                if self.isFiltering {
+                    guard let journalData = self.journalData else { return }
+                    self.filteredJournals = journalData.filter({
+                        $0.tags.contains(self.selectedFilterTag ?? "")
+                    })
+                }
             case .failure(let error):
                 print(error)
             }
@@ -128,7 +137,7 @@ class DetailJournalViewController: UIViewController {
 //    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? DetailJournalContentViewController {
-            destination.journalData = self.journalData?[selectedJournalIndex]
+            destination.journalData = isFiltering ? self.filteredJournals[selectedJournalIndex] : self.journalData?[selectedJournalIndex]
         }
         if let destination = segue.destination as? FilterJournalViewController {
             destination.tags = user?.journalTags
@@ -159,12 +168,19 @@ extension DetailJournalViewController: UITableViewDelegate, UITableViewDataSourc
         journalCell.layoutCell(date: String(journalViewModel.date),
                                day: journalViewModel.day,
                                title: journalViewModel.title,
-                               content: journalViewModel.content)
+                               content: journalViewModel.content,
+                               tags: journalViewModel.tags)
+        print("Index: \(indexPath.row), tags: \(journalViewModel.tags)")
+//        print(journalViewModel.tags)
+        if journalViewModel.tags.contains("Time Capsule") {
+            journalCell.displayTimeCapsuleIndicator()
+        }
+        journalCell.collectionView.reloadData()
         return journalCell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 210
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

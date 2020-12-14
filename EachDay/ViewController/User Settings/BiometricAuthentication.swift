@@ -37,7 +37,6 @@ class BiometricAuthentication {
         guard canEvaluatePolicy() else {
             completion("Touch ID not available.")
             return
-            
         }
         context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: loginReason) { (success, evaluateError) in
             if success {

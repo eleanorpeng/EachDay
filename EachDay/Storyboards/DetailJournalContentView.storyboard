@@ -29,11 +29,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BzS-6v-8dr">
-                                <rect key="frame" x="16" y="468.5" width="382" height="320.5"/>
+                                <rect key="frame" x="16" y="464.5" width="382" height="324.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7uY-MU-erj">
@@ -45,7 +45,7 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jky-VV-V3f" customClass="PaddingableUILabel" customModule="EachDay" customModuleProvider="target">
                                 <rect key="frame" x="16" y="818" width="42" height="28"/>
-                                <color key="backgroundColor" red="0.96862745100000003" green="0.68235294120000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.68235294117647061" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -68,12 +68,12 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Label" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MWT-jd-d33">
-                                <rect key="frame" x="20" y="424" width="372.5" height="28.5"/>
+                                <rect key="frame" x="20" y="424" width="372.5" height="24.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sgO-VD-Ye4">
-                                <rect key="frame" x="16" y="424" width="382" height="36.5"/>
+                                <rect key="frame" x="16" y="424" width="382" height="40.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -97,7 +97,7 @@
                             <constraint firstItem="MWT-jd-d33" firstAttribute="width" secondItem="LEy-fQ-3qr" secondAttribute="width" multiplier="0.9" id="SNY-yR-VOE"/>
                             <constraint firstItem="j4r-Zy-Q2E" firstAttribute="bottom" secondItem="jky-VV-V3f" secondAttribute="bottom" constant="16" id="T5N-8o-Pfk"/>
                             <constraint firstItem="sgO-VD-Ye4" firstAttribute="top" secondItem="Fmw-Xt-QyT" secondAttribute="bottom" constant="20" id="Wxr-LO-pSV"/>
-                            <constraint firstItem="BzS-6v-8dr" firstAttribute="top" secondItem="sgO-VD-Ye4" secondAttribute="bottom" constant="8" id="X8F-RH-BzH"/>
+                            <constraint firstItem="BzS-6v-8dr" firstAttribute="top" secondItem="sgO-VD-Ye4" secondAttribute="bottom" id="X8F-RH-BzH"/>
                             <constraint firstItem="MWT-jd-d33" firstAttribute="top" secondItem="Fmw-Xt-QyT" secondAttribute="bottom" constant="20" id="YJY-iy-5h2"/>
                             <constraint firstItem="s8Z-wF-zvw" firstAttribute="top" secondItem="j4r-Zy-Q2E" secondAttribute="top" constant="20" id="ZSQ-BC-yQM"/>
                             <constraint firstItem="BzS-6v-8dr" firstAttribute="leading" secondItem="j4r-Zy-Q2E" secondAttribute="leading" constant="16" id="dgT-We-KwZ"/>
@@ -163,14 +163,24 @@
                                 <action selector="downButtonClicked:" destination="ta8-vd-ZyX" eventType="touchUpInside" id="WjN-eC-3Hb"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9qP-cu-Ufj">
+                            <rect key="frame" x="0.0" y="0.0" width="416" height="1"/>
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="LdV-GU-Eaw"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="C80-32-feh"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="9qP-cu-Ufj" firstAttribute="leading" secondItem="Iym-GU-ubH" secondAttribute="leading" id="0dF-6k-MtW"/>
                         <constraint firstAttribute="trailing" secondItem="SqQ-hz-uso" secondAttribute="trailing" constant="16" id="6wz-Kt-vj5"/>
                         <constraint firstItem="SqQ-hz-uso" firstAttribute="centerY" secondItem="Iym-GU-ubH" secondAttribute="centerY" id="Gfr-AP-qQx"/>
                         <constraint firstItem="IyP-G1-WB5" firstAttribute="centerY" secondItem="Iym-GU-ubH" secondAttribute="centerY" id="KYz-JV-waz"/>
+                        <constraint firstAttribute="trailing" secondItem="9qP-cu-Ufj" secondAttribute="trailing" id="gLj-aH-Doi"/>
                         <constraint firstItem="IyP-G1-WB5" firstAttribute="leading" secondItem="Iym-GU-ubH" secondAttribute="leading" constant="16" id="j3J-bk-Pda"/>
+                        <constraint firstItem="9qP-cu-Ufj" firstAttribute="top" secondItem="Iym-GU-ubH" secondAttribute="top" id="y39-yn-nNS"/>
                     </constraints>
                 </view>
             </objects>

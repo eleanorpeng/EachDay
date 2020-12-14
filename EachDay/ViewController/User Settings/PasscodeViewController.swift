@@ -28,6 +28,7 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 //        let touchBool = biometricAuth.canEvaluatePolicy()
 //        if touchBool {
 //            self.configureBiometrics()
@@ -101,6 +102,7 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
     }
     
     func configureSetUpView() {
+        
         pinView.didFinishCallback = { [weak self] pin in
             print("The passcode is \(pin)")
             self?.checkPasscode(pin: pin)
@@ -124,9 +126,11 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
         }
         pinView.didFinishCallback = { [weak self] pin in
             if pin == self?.keychain["passcode"] {
-                self?.count = 1
+                self?.pinView.clearPin()
                 self?.titleLabel.text = "Enter New Passcode"
-                self?.checkPasscode(pin: pin)
+                self?.subtitleLabel.text = "Please enter new passcode."
+                self?.configureSetUpView()
+                
             } else {
                 self?.showIncompleteAlert()
             }
@@ -143,7 +147,6 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
                 UserManager.shared.updatePasscode(userDocID: "Eleanor", passcode: "")
                 self?.delegate?.handlePasscodeSet(hasSet: false)
                 self?.keychain["passcode"] = nil
-                print(self?.keychain["passcode"])
                 self?.showCompleteAlert()
             } else {
                 self?.showIncompleteAlert()
@@ -175,7 +178,6 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
     
     func firstCheck(pin: String) {
         passcode = pin
-        print("Passcode: \(passcode)")
         keychain["passcode"] = passcode
         count += 1
         titleLabel.text = "Re-enter Passcode"
@@ -187,7 +189,6 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
         secondPasscode = pin
         self.delegate?.handlePasscodeSet(hasSet: true)
         if passcode == secondPasscode {
-            print(keychain["passcode"])
             UserManager.shared.updatePasscode(userDocID: "Eleanor", passcode: passcode ?? "")
             showCompleteAlert()
         } else {
@@ -221,6 +222,7 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? UserSettingViewController {
+            //changed from if passcode to keychain
             if passcode != nil {
                 destination.hasPasscode = true
             } else {

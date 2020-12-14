@@ -58,6 +58,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     
     @IBAction func tagButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "ShowTagsFromContentSegue", sender: self)
+        view.endEditing(true)
     }
     
     @IBAction func downButtonClicked(_ sender: Any) {
@@ -68,9 +69,18 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         super.viewDidLoad()
         journalVM = JournalViewModel(journal: journalData!)
         initialSetUp()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         guard let tags = journalVM?.tags else { return }
         if let destination = segue.destination as? TagSelectionViewController {
             destination.fromDetail = true
@@ -83,6 +93,22 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         let alert = UIAlertController(title: "You just saved one precious memory!", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             JournalManager.shared.changeTimeCapsuleStatus(userDocID: "Eleanor", journalID: self.journalVM?.id ?? "")
+            HUD.flash(.progress)
+            self.navigationController?.popViewController(animated: true)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showTimeCapsuleAlert() {
+        let alert = UIAlertController(title: "Do you wish to save this time capsule?", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+            JournalManager.shared.changeTimeCapsuleStatus(userDocID: "Eleanor", journalID: self.journalVM?.id ?? "")
+            HUD.flash(.progress)
+            self.navigationController?.popViewController(animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: { _ in
+            JournalManager.shared.deleteJournal(userID: "Eleanor", journalID: self.journalVM?.id ?? "")
+            HUD.flash(.progress)
             self.navigationController?.popViewController(animated: true)
         }))
         present(alert, animated: true, completion: nil)
@@ -114,8 +140,11 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         HUD.show(.progress)
         dateLabel.text = journalVM?.formattedDate
         titleTextField.text = journalVM?.title
-        titleTextView.text = journalVM?.title
-        contentTextView.text = journalVM?.content
+//        titleTextView.text = journalVM?.title
+        titleTextView.setUpTitle(text: journalVM?.title ?? "", lineSpacing: 3)
+//        contentTextView.text = journalVM?.content
+        contentTextView.setUpContentText(text: journalVM?.content ?? "", lineSpacing: 3)
+
         titleTextField.delegate = self
         contentTextView.delegate = self
         titleTextView.delegate = self
@@ -158,6 +187,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         }
         tagLabel.text = journalVM?.tags[0]
         tagLabel.clipsToBounds = true
+        tagLabel.backgroundColor = UIColor(hexString: "F7AE00")
         guard (journalVM?.tags.count)! > 1 else { return }
         var xAnchor: CGFloat = 16
         let journalTags = journalVM?.tags
@@ -165,7 +195,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         for num in 0..<journalTags!.count-1 {
             let journalTagLabel = PaddingableUILabel()
             journalTagLabel.translatesAutoresizingMaskIntoConstraints = false
-            journalTagLabel.backgroundColor = UIColor(r: 247, g: 174, b: 0)
+            journalTagLabel.backgroundColor = UIColor(hexString: "F7AE00")
             journalTagLabel.textColor = .white
             journalTagLabel.text = journalTags?[num+1]
             journalTagLabel.clipsToBounds = true
@@ -192,9 +222,9 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     func textViewDidEndEditing(_ textView: UITextView) {
         textView.resignFirstResponder()
         modifiedContent = contentTextView.text
-//        contentTextView.text = modifiedContent
+
         modifiedTitle = titleTextView.text
-//        titleTextView.text = modifiedTitle
+
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

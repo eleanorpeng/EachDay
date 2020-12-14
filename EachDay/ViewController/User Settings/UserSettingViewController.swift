@@ -178,6 +178,8 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
         alert.addAction(UIAlertAction(title: hasPasscode ? "Disable" : "Enable", style: .default, handler: { _ in
             if self.hasPasscode {
                 self.isDisablingPasscode = true
+            } else {
+                self.isDisablingPasscode = false
             }
             self.performSegue(withIdentifier: "ShowPasscodeSegue", sender: self)
 //            if !self.hasPasscode {
@@ -215,7 +217,7 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
     
     func presentEnableBiometricsAuthAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: enableBiometricsAuth ? "Enable" : "Disable", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: enableBiometricsAuth ? "Disable" : "Enable", style: .default, handler: { _ in
             self.enableBiometricsAuth = !self.enableBiometricsAuth
             self.delegate?.getBiometricsAuthState(enable: self.enableBiometricsAuth)
             //use delegate to send to passcode

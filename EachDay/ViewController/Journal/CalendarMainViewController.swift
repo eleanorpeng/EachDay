@@ -15,8 +15,8 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var userProfileButton: UIButton!
     @IBAction func userProfileButtonClicked(_ sender: Any) {
-//        performSegue(withIdentifier: "ShowUserSettingSegue", sender: self)
-        createTimeCapAlert()
+        performSegue(withIdentifier: "ShowUserSettingSegue", sender: self)
+        
     }
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -31,17 +31,26 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
-        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveProfileImage(_:)), name: Notifications.receiveProfileImageNotification, object: nil)
-        fetchData(userDocID: "Eleanor")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.clipsToBounds = true
+        fetchData(userDocID: "Eleanor")
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveProfileImage(_:)), name: Notifications.receiveProfileImageNotification, object: nil)
+    }
+    
+    
     func createTimeCapAlert() {
+        NotificationCenter.default.post(Notification(name: Notifications.receiveTimeCapsule, object: nil))
         customAlert.delegate = self
         customAlert.showAlert(on: self)
-        
     }
 
     @objc func dismissAlert() {
+        NotificationCenter.default.post(Notification(name: Notifications.dismissTimeCapsule, object: nil))
         performSegue(withIdentifier: "ShowJournalContentSegue", sender: self)
 //        customAlert.dismissAlert()
     }
@@ -78,12 +87,7 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         userProfileButton.layer.cornerRadius = userProfileButton.frame.width / 2
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.navigationController?.navigationBar.isHidden = true
-        self.navigationController?.navigationBar.barTintColor = .white
-        self.navigationController?.navigationBar.clipsToBounds = true
-    }
+    
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()

@@ -42,6 +42,7 @@ class WriteJournalViewController: UIViewController {
     @IBOutlet weak var journalImageView: UIImageView!
     @IBAction func selectTagButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "ShowTagSelectionSegue", sender: self)
+        view.endEditing(true)
     }
     
     @IBAction func dateChanged(_ sender: Any) {

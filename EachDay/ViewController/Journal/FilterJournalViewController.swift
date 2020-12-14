@@ -34,8 +34,8 @@ class FilterJournalViewController: UIViewController {
     func initialSetUp() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorColor = .clear
         createSearchBar()
-        
     }
 
     func createSearchBar() {
@@ -88,6 +88,7 @@ extension FilterJournalViewController: UITableViewDelegate, UITableViewDataSourc
         }
         searchController.searchBar.text = selectedText
     }
+    
     
 }
 

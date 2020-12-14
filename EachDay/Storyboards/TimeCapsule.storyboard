@@ -152,10 +152,10 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMc-7J-JRB">
-                            <rect key="frame" x="349" y="5" width="30" height="30"/>
+                            <rect key="frame" x="354" y="7.5" width="25" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="30" id="neN-dZ-7GD"/>
-                                <constraint firstAttribute="height" constant="30" id="v9G-Yr-qjc"/>
+                                <constraint firstAttribute="width" constant="25" id="neN-dZ-7GD"/>
+                                <constraint firstAttribute="height" constant="25" id="v9G-Yr-qjc"/>
                             </constraints>
                             <state key="normal" title="Button" image="down-arrow"/>
                             <connections>
@@ -169,16 +169,25 @@
                                 <constraint firstAttribute="height" constant="1" id="W8E-Cy-1ei"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dcn-dB-BGk">
+                            <rect key="frame" x="0.0" y="1" width="395" height="1"/>
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="CN4-s0-lst"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="fHT-eC-2Cb"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="FMc-7J-JRB" firstAttribute="leading" secondItem="tPP-ob-yp6" secondAttribute="trailing" constant="-46" id="FYG-NJ-0my"/>
                         <constraint firstItem="0pf-IP-UUn" firstAttribute="top" secondItem="tPP-ob-yp6" secondAttribute="top" id="Ku8-hn-WDK"/>
+                        <constraint firstItem="Dcn-dB-BGk" firstAttribute="leading" secondItem="tPP-ob-yp6" secondAttribute="leading" id="Lmd-rZ-ixb"/>
+                        <constraint firstItem="Dcn-dB-BGk" firstAttribute="top" secondItem="0pf-IP-UUn" secondAttribute="bottom" id="X4J-42-pxz"/>
                         <constraint firstItem="FMc-7J-JRB" firstAttribute="centerY" secondItem="tPP-ob-yp6" secondAttribute="centerY" id="Zlh-mR-2mT"/>
                         <constraint firstAttribute="trailing" secondItem="FMc-7J-JRB" secondAttribute="trailing" constant="16" id="ZvZ-Ge-vnX"/>
                         <constraint firstAttribute="trailing" secondItem="0pf-IP-UUn" secondAttribute="trailing" id="ihR-O6-NJz"/>
                         <constraint firstItem="0pf-IP-UUn" firstAttribute="leading" secondItem="fHT-eC-2Cb" secondAttribute="leading" id="je2-OQ-b1h"/>
+                        <constraint firstAttribute="trailing" secondItem="Dcn-dB-BGk" secondAttribute="trailing" id="snU-MP-nYC"/>
                     </constraints>
                 </view>
             </objects>
