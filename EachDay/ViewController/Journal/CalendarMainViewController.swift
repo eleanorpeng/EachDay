@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import FirebaseFirestoreSwift
 
-class CalendarMainViewController: UIViewController {
+class CalendarMainViewController: UIViewController, CustomAlertDelegate {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var greetingLabel: UILabel!
@@ -36,12 +36,14 @@ class CalendarMainViewController: UIViewController {
     }
     
     func createTimeCapAlert() {
+        customAlert.delegate = self
         customAlert.showAlert(on: self)
         
     }
 
     @objc func dismissAlert() {
-        customAlert.dismissAlert()
+        performSegue(withIdentifier: "ShowJournalContentSegue", sender: self)
+//        customAlert.dismissAlert()
     }
     
     func fetchData(userDocID: String) {
@@ -66,6 +68,7 @@ class CalendarMainViewController: UIViewController {
             userProfileButton.setImage(profileImage, for: .normal)
         }
     }
+    
     func initialSetUp() {
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -117,6 +120,11 @@ class CalendarMainViewController: UIViewController {
         }
         if let destination = segue.destination as? UserSettingViewController {
             self.navigationController?.navigationBar.isHidden = false
+        }
+        if let destination = segue.destination as? DetailJournalContentViewController {
+            self.navigationController?.navigationBar.isHidden = false
+            destination.isTimeCapsule = true
+            destination.journalData = timeCapsule?[0]
         }
     }
 

@@ -71,6 +71,18 @@ class JournalManager {
         })
     }
     
+    func changeTimeCapsuleStatus(userDocID: String, journalID: String) {
+        database.collection("User").document(userDocID).collection("Journal").document(journalID).updateData([
+            "isTimeCapsule": false
+        ]) { err in
+            if let err = err {
+                print("Error in updating time capsule status")
+            } else {
+                print("Successfully updated time capsule status!")
+            }
+        }
+    }
+    
     func publishJournalData(journal: inout Journal, userID: String, completion: @escaping (Result<String, Error>) -> Void) {
         let document = database.collection("User").document(userID).collection("Journal").document()
         journal.id = document.documentID

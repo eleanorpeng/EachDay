@@ -27,6 +27,7 @@
 		201953CE2585B85A004BF656 /* mailbox.json in Resources */ = {isa = PBXBuildFile; fileRef = 201953CD2585B85A004BF656 /* mailbox.json */; };
 		201953D12585BAD3004BF656 /* Modal1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201953D02585BAD3004BF656 /* Modal1.swift */; };
 		201953E22585FD21004BF656 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201953E12585FD21004BF656 /* CustomAlert.swift */; };
+		20195451258701D0004BF656 /* DetailJournalContentView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2019542C2586FC72004BF656 /* DetailJournalContentView.storyboard */; };
 		2019553B25776B4E006FA8E8 /* CalendarMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2019553A25776B4E006FA8E8 /* CalendarMainViewController.swift */; };
 		2019553E25776BB4006FA8E8 /* CalendarMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2019553D25776BB4006FA8E8 /* CalendarMainCollectionViewCell.swift */; };
 		2019556925778C70006FA8E8 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2019556825778C70006FA8E8 /* SelectionViewController.swift */; };
@@ -106,6 +107,7 @@
 		201953CD2585B85A004BF656 /* mailbox.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mailbox.json; sourceTree = "<group>"; };
 		201953D02585BAD3004BF656 /* Modal1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal1.swift; sourceTree = "<group>"; };
 		201953E12585FD21004BF656 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
+		2019542C2586FC72004BF656 /* DetailJournalContentView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = DetailJournalContentView.storyboard; path = /Users/yutingpeng/Desktop/AppWorksSchoolMaterials/EachDay/EachDay/Storyboards/DetailJournalContentView.storyboard; sourceTree = "<absolute>"; };
 		2019553A25776B4E006FA8E8 /* CalendarMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMainViewController.swift; sourceTree = "<group>"; };
 		2019553D25776BB4006FA8E8 /* CalendarMainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMainCollectionViewCell.swift; sourceTree = "<group>"; };
 		2019556825778C70006FA8E8 /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				2009DE38256E270D00545439 /* Main.storyboard */,
+				2019542C2586FC72004BF656 /* DetailJournalContentView.storyboard */,
 				2098B158256F8DDF00AAC1CB /* WriteJournal.storyboard */,
 				201B28D32580774400FB6A77 /* Tags.storyboard */,
 				2098B164256FB2C600AAC1CB /* TimeCapsule.storyboard */,
@@ -485,6 +488,7 @@
 				2009DE48256E27C300545439 /* GoogleService-Info.plist in Resources */,
 				20733C1B25760CB2004B4A3B /* TimeTrackingSummary.storyboard in Resources */,
 				2009DE3C256E270F00545439 /* Assets.xcassets in Resources */,
+				20195451258701D0004BF656 /* DetailJournalContentView.storyboard in Resources */,
 				2009DE3A256E270D00545439 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

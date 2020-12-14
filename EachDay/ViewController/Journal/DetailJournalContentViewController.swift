@@ -15,21 +15,27 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     }
     
     @IBOutlet weak var titleTextFieldToImageConstraint: NSLayoutConstraint!
+    @IBOutlet weak var titleTextViewToImageConstraint: NSLayoutConstraint!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var journalImageView: UIImageView!
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var tagSeparator: UIView!
     @IBOutlet weak var tagLabel: PaddingableUILabel!
     @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var titleTextView: UITextView!
     var isEditingContent = false
     var journalData: Journal?
     var journalVM: JournalViewModel?
     var modifiedTitle: String?
     var modifiedContent: String?
     var modifiedTags: [String]?
+    var isTimeCapsule = false
     
     @IBAction func trashButtonClicked(_ sender: Any) {
-        let alert = UIAlertController(title: "Are you sure you want to delete this journal?", message: "This action can't be undo.", preferredStyle: .alert)
+        let alert = UIAlertController(title: isTimeCapsule ?
+                                        "Are you sure you want to delete this time capsule?" :
+                                        "Are you sure you want to delete this journal?"
+                                      , message: "This action can't be undo.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak alert] _ in
             JournalManager.shared.deleteJournal(userID: "Eleanor", journalID: self.journalVM?.id ?? "")
             HUD.flash(.progress)
@@ -38,12 +44,18 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
     @IBOutlet var toolBarView: UIView!
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBAction func editButtonClicked(_ sender: Any) {
+        guard !isTimeCapsule else {
+            createSaveAlert()
+            return
+        }
         isEditingContent = !isEditingContent
         configureEditMode()
     }
+    
     @IBAction func tagButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "ShowTagsFromContentSegue", sender: self)
     }
@@ -51,6 +63,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     @IBAction func downButtonClicked(_ sender: Any) {
         view.endEditing(true)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         journalVM = JournalViewModel(journal: journalData!)
@@ -65,12 +78,24 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
             destination.delegate = self
         }
     }
+    
+    func createSaveAlert() {
+        let alert = UIAlertController(title: "You just saved one precious memory!", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            JournalManager.shared.changeTimeCapsuleStatus(userDocID: "Eleanor", journalID: self.journalVM?.id ?? "")
+            self.navigationController?.popViewController(animated: true)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
     func configureEditMode() {
         editButton.title = isEditingContent ? "Done" : "Edit"
         contentTextView.isEditable = isEditingContent
+        titleTextView.isEditable = isEditingContent
         titleTextField.isUserInteractionEnabled = isEditingContent
+        titleTextView.isUserInteractionEnabled = isEditingContent
         contentTextView.inputAccessoryView = toolBarView
-        if !isEditingContent && (modifiedTitle != nil || modifiedContent != nil || modifiedTags != nil){
+        if !isEditingContent && (modifiedTitle != nil || modifiedContent != nil || modifiedTags != nil) {
             updateJournal()
         }
     }
@@ -89,18 +114,22 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         HUD.show(.progress)
         dateLabel.text = journalVM?.formattedDate
         titleTextField.text = journalVM?.title
+        titleTextView.text = journalVM?.title
         contentTextView.text = journalVM?.content
-        
         titleTextField.delegate = self
         contentTextView.delegate = self
+        titleTextView.delegate = self
         displayImage()
         layoutTags()
-        
+        if isTimeCapsule {
+            editButton.title = "Save"
+        }
     }
     
     func displayImage() {
         guard journalVM?.image != "" else {
-            titleTextFieldToImageConstraint.constant = -260
+            titleTextFieldToImageConstraint.constant = -290
+            titleTextViewToImageConstraint.constant = -300
             journalImageView.isHidden = true
             HUD.hide()
             return
@@ -162,8 +191,10 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     
     func textViewDidEndEditing(_ textView: UITextView) {
         textView.resignFirstResponder()
-        modifiedContent = textView.text
-        contentTextView.text = modifiedContent
+        modifiedContent = contentTextView.text
+//        contentTextView.text = modifiedContent
+        modifiedTitle = titleTextView.text
+//        titleTextView.text = modifiedTitle
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -173,5 +204,3 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     }
     
 }
-
-

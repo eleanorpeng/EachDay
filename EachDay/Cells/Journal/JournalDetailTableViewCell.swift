@@ -14,6 +14,8 @@ class JournalDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var journalTitleLabel: UILabel!
     @IBOutlet weak var journalContentLabel: UILabel!
+    @IBOutlet weak var timeCapsuleIndicator: UIImageView!
+    @IBOutlet weak var journalContentTextView: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,6 +33,13 @@ class JournalDetailTableViewCell: UITableViewCell {
         dayLabel.text = day
         journalTitleLabel.text = title
         journalContentLabel.text = content
+        journalContentLabel.isHidden = true
+        journalContentTextView.text = content
+        timeCapsuleIndicator.isHidden = false
+    }
+    
+    func displayTimeCapsuleIndicator() {
+        timeCapsuleIndicator.isHidden = false
     }
 
 }

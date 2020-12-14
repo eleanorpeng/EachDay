@@ -10,6 +10,7 @@ import UIKit
 import Lottie
 
 class CustomAlert {
+    weak var delegate: CustomAlertDelegate?
     struct Constants {
         static let backgroundAlphaTo: CGFloat = 0.6
     }
@@ -86,9 +87,14 @@ class CustomAlert {
                 }, completion: { done in
                     self.alertView.removeFromSuperview()
                     self.backgroundView.removeFromSuperview()
+                    self.delegate?.dismissAlert()
                 })
             }
             
         })
     }
+}
+
+protocol CustomAlertDelegate: AnyObject {
+    func dismissAlert()
 }
