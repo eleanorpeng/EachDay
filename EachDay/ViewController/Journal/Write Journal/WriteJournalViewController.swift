@@ -150,7 +150,7 @@ class WriteJournalViewController: UIViewController {
     }
     func addData() {
         journalData = Journal(title: journalTitle ?? "",
-                              date: selectedDate?.timeIntervalSince1970 ?? 0,
+                              date: Timestamp(date: selectedDate ?? Date()),
                               content: journalContent ?? "",
                           tags: journalTags ?? [""],
                           image: journalImageURL ?? "",

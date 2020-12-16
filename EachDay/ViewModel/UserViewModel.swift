@@ -38,6 +38,10 @@ class UserViewModel {
         return user.trackTimeCategories
     }
     
+    var image: String {
+        return user.image
+    }
+    
 //    var trackedTime: [TrackedTime] {
 //        return user.trackedTime
 //    }

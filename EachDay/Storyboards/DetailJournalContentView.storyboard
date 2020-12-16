@@ -124,7 +124,7 @@
                     <connections>
                         <outlet property="contentTextView" destination="BzS-6v-8dr" id="4sv-NL-F97"/>
                         <outlet property="dateLabel" destination="s8Z-wF-zvw" id="6XJ-0v-TaV"/>
-                        <outlet property="editButton" destination="Q4c-K7-l4s" id="ov6-cE-zsI"/>
+                        <outlet property="editButton" destination="Q4c-K7-l4s" id="fBf-aw-y0U"/>
                         <outlet property="journalImageView" destination="Fmw-Xt-QyT" id="43l-yX-nX2"/>
                         <outlet property="tagLabel" destination="jky-VV-V3f" id="TYV-Ij-0UM"/>
                         <outlet property="tagSeparator" destination="7uY-MU-erj" id="Gl3-w9-shS"/>
@@ -133,6 +133,7 @@
                         <outlet property="titleTextView" destination="sgO-VD-Ye4" id="cVt-pu-Oki"/>
                         <outlet property="titleTextViewToImageConstraint" destination="Wxr-LO-pSV" id="WnI-ql-17W"/>
                         <outlet property="toolBarView" destination="Iym-GU-ubH" id="Cvh-4o-nPb"/>
+                        <outlet property="trashButton" destination="LF3-HO-a9N" id="az8-xH-4X5"/>
                         <segue destination="wmj-oN-d62" kind="show" identifier="ShowTagsFromContentSegue" id="DgV-fJ-aKZ"/>
                     </connections>
                 </viewController>

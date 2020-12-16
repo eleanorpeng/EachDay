@@ -55,7 +55,6 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
     }
 
     //Initial View
-    
     func getBiometricsAuthState(enable: Bool) {
         enableBiometricsAuth = enable
     }

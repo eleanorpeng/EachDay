@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestoreSwift
+import Kingfisher
 
 class CalendarMainViewController: UIViewController, CustomAlertDelegate {
 
@@ -16,7 +17,6 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
     @IBOutlet weak var userProfileButton: UIButton!
     @IBAction func userProfileButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "ShowUserSettingSegue", sender: self)
-        
     }
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -28,6 +28,12 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
     var currentDate = Date()
     var journalData: [Journal]?
     var timeCapsule: [Journal]?
+    var selectedYear = 2020
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBAction func datePickerSelected(_ sender: Any) {
+        selectedYear = datePicker.date.year()
+        print(selectedYear)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
@@ -39,9 +45,9 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController?.navigationBar.clipsToBounds = true
         fetchData(userDocID: "Eleanor")
+        fetchUser(userDocID: "Eleanor")
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveProfileImage(_:)), name: Notifications.receiveProfileImageNotification, object: nil)
     }
-    
     
     func createTimeCapAlert() {
         NotificationCenter.default.post(Notification(name: Notifications.receiveTimeCapsule, object: nil))
@@ -60,7 +66,6 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
             switch result {
             case .success(let timeCapsule):
                 self.timeCapsule = timeCapsule
-                print(timeCapsule)
                 guard let timeCapsule = self.timeCapsule else { return }
                 if !timeCapsule.isEmpty {
                     self.createTimeCapAlert()
@@ -68,7 +73,23 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
             case .failure(let error):
                 print(error)
             }
-            
+        })
+    }
+    
+    func fetchUser(userDocID: String) {
+        UserManager.shared.fetchUser(userID: userDocID, completion: { result in
+            switch result {
+            case .success(let user):
+                self.user = user[0]
+                guard self.user?.image != nil else { return }
+                guard let url = URL(string: self.user?.image ?? "") else { return }
+                let resource = ImageResource(downloadURL: url)
+                KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil, completionHandler: { image, error, cacheType, imageURL in
+                    self.userProfileButton.setImage(image ?? UIImage(named: "user"), for: .normal)
+                })
+            case .failure(let error):
+                print(error)
+            }
         })
     }
     
@@ -86,9 +107,7 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         userProfileButton.clipsToBounds = true
         userProfileButton.layer.cornerRadius = userProfileButton.frame.width / 2
     }
-    
-    
-    
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         updateCellsLayout()
@@ -120,6 +139,7 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? DetailJournalViewController {
             destination.selectedMonth = selectedMonth
+            destination.selectedYear = selectedYear
             self.navigationController?.navigationBar.isHidden = false
         }
         if let destination = segue.destination as? UserSettingViewController {
@@ -177,15 +197,5 @@ extension CalendarMainViewController: UICollectionViewDelegate, UICollectionView
         selectedMonth = monthNum[indexPath.row]
         performSegue(withIdentifier: "ShowJournalDetailSegue", sender: self)
     }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        let screenWidth = view.frame.width
-//        let itemSize = collectionView.frame.width - 20
-//        return (screenWidth - itemSize) / 2
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-//    }
     
 }

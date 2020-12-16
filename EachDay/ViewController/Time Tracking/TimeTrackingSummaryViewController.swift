@@ -56,12 +56,10 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
         setUpData()
         writeReflectionButton.layer.cornerRadius = 10
         writeReflectionButton.clipsToBounds = true
-        
     }
     
     func setUpData() {
-        let dayRange = switchSegmentIndex()
-        setDateRange(days: dayRange)
+        switchSegmentIndex()
         fetchFilteredData(startDate: startDateTS, endDate: endDateTS)
         
         pieChartView.entryLabelFont = .systemFont(ofSize: 12, weight: .light)
@@ -141,35 +139,20 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
             }
         })
     }
-    
-    func setDateRange(days: Int) {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "UTC")!
-        let today = Date()
-        let startDate = calendar.startOfDay(for: today)
-        let endDate = calendar.date(byAdding: .day, value: days, to: startDate)!
-        startDateTS = Timestamp(date: startDate)
-        endDateTS = Timestamp(date: endDate)
-       
-    }
-    
-    func switchSegmentIndex() -> Int {
-        let today = Date()
+
+    func switchSegmentIndex() {
         switch selectedSegmentIndex {
         case 0:
-            return 1
+            startDateTS = Timestamp(date: Date().startOfDay)
+            endDateTS = Timestamp(date: Date().endOfDay)
         case 1:
-            let week = today.weekDay()
-            return 7 - week
+            startDateTS = Timestamp(date: Date().startOfWeek)
+            endDateTS = Timestamp(date: Date().endOfWeek)
         case 2:
-            let month = today.month()
-            if [1, 3, 5, 7, 8, 10, 12].contains(month) {
-                return 31 - today.day()
-            } else {
-                return 30 - today.day()
-            }
+            startDateTS = Timestamp(date: Date().startOfMonth)
+            endDateTS = Timestamp(date: Date().endOfMonth)
         default:
-            return 0
+            break
         }
     }
     

@@ -23,6 +23,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     @IBOutlet weak var tagLabel: PaddingableUILabel!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var titleTextView: UITextView!
+    @IBOutlet var trashButton: UIBarButtonItem!
     var isEditingContent = false
     var journalData: Journal?
     var journalVM: JournalViewModel?
@@ -30,6 +31,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     var modifiedContent: String?
     var modifiedTags: [String]?
     var isTimeCapsule = false
+    let loadingView = LoadingView()
     
     @IBAction func trashButtonClicked(_ sender: Any) {
         let alert = UIAlertController(title: isTimeCapsule ?
@@ -38,7 +40,8 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
                                       , message: "This action can't be undo.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak alert] _ in
             JournalManager.shared.deleteJournal(userID: "Eleanor", journalID: self.journalVM?.id ?? "")
-            HUD.flash(.progress)
+            self.loadingView.startLoading(on: self)
+//            HUD.flash(.progress)
             self.navigationController?.popViewController(animated: true)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -46,7 +49,9 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     }
     
     @IBOutlet var toolBarView: UIView!
-    @IBOutlet weak var editButton: UIBarButtonItem!
+
+    @IBOutlet var editButton: UIBarButtonItem!
+
     @IBAction func editButtonClicked(_ sender: Any) {
         guard !isTimeCapsule else {
             createSaveAlert()
@@ -80,7 +85,6 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         guard let tags = journalVM?.tags else { return }
         if let destination = segue.destination as? TagSelectionViewController {
             destination.fromDetail = true
@@ -89,11 +93,12 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         }
     }
     
-    func createSaveAlert() {
+    @objc func createSaveAlert() {
         let alert = UIAlertController(title: "You just saved one precious memory!", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             JournalManager.shared.changeTimeCapsuleStatus(userDocID: "Eleanor", journalID: self.journalVM?.id ?? "")
-            HUD.flash(.progress)
+            self.loadingView.startLoading(on: self)
+//            HUD.flash(.progress)
             self.navigationController?.popViewController(animated: true)
         }))
         present(alert, animated: true, completion: nil)
@@ -103,12 +108,14 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         let alert = UIAlertController(title: "Do you wish to save this time capsule?", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
             JournalManager.shared.changeTimeCapsuleStatus(userDocID: "Eleanor", journalID: self.journalVM?.id ?? "")
-            HUD.flash(.progress)
+            self.loadingView.startLoading(on: self)
+//            HUD.flash(.progress)
             self.navigationController?.popViewController(animated: true)
         }))
         alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: { _ in
             JournalManager.shared.deleteJournal(userID: "Eleanor", journalID: self.journalVM?.id ?? "")
-            HUD.flash(.progress)
+            self.loadingView.startLoading(on: self)
+//            HUD.flash(.progress)
             self.navigationController?.popViewController(animated: true)
         }))
         present(alert, animated: true, completion: nil)
@@ -137,22 +144,35 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     }
     
     func initialSetUp() {
-        HUD.show(.progress)
+//        HUD.show(.progress)
+//        loadingView.startLoading(on: self)
         dateLabel.text = journalVM?.formattedDate
         titleTextField.text = journalVM?.title
-//        titleTextView.text = journalVM?.title
         titleTextView.setUpTitle(text: journalVM?.title ?? "", lineSpacing: 3)
-//        contentTextView.text = journalVM?.content
         contentTextView.setUpContentText(text: journalVM?.content ?? "", lineSpacing: 3)
-
         titleTextField.delegate = self
         contentTextView.delegate = self
         titleTextView.delegate = self
         displayImage()
         layoutTags()
         if isTimeCapsule {
-            editButton.title = "Save"
+            createBarButtonItem()
         }
+    }
+    
+    func createBarButtonItem() {
+        let saveButton = UIButton(type: .custom)
+        saveButton.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
+        saveButton.setImage(UIImage(named: "download"), for: .normal)
+        saveButton.addTarget(self, action: #selector(createSaveAlert), for: .touchUpInside)
+        
+        let saveBarButton = UIBarButtonItem(customView: saveButton)
+        let currWidth = saveBarButton.customView?.widthAnchor.constraint(equalToConstant: 24)
+        currWidth?.isActive = true
+        let currHeight = saveBarButton.customView?.heightAnchor.constraint(equalToConstant: 24)
+        currHeight?.isActive = true
+        editButton = nil
+        self.navigationItem.rightBarButtonItems = [trashButton, saveBarButton]
     }
     
     func displayImage() {
@@ -160,9 +180,11 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
             titleTextFieldToImageConstraint.constant = -290
             titleTextViewToImageConstraint.constant = -300
             journalImageView.isHidden = true
-            HUD.hide()
+//            loadingView.dismissLoading()
+//            HUD.hide()
             return
         }
+        loadingView.startLoading(on: self)
         guard let urlString = journalVM?.image,
               let url = URL(string: urlString) else { return }
         let task = URLSession.shared.dataTask(with: url, completionHandler: { data, _, error in
@@ -173,7 +195,8 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
             DispatchQueue.main.async {
                 let image = UIImage(data: data)
                 self.journalImageView.kf.setImage(with: url, options: [.transition(.fade(1))])
-                HUD.hide()
+                self.loadingView.dismissLoading()
+//                HUD.hide()
             }
         })
         task.resume()

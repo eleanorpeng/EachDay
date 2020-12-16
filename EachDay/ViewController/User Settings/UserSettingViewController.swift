@@ -7,6 +7,7 @@
 
 import UIKit
 import YPImagePicker
+import Kingfisher
 
 class UserSettingViewController: UIViewController, PasscodeViewControllerDelegate {
     
@@ -21,9 +22,16 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
     var isDisablingPasscode = false
     var isTimeTracking = false
     var profileImage: UIImage?
+    var profileImageURL: String? {
+        didSet {
+            isDefaulProfileImage = false
+        }
+    }
     var isDefaulProfileImage = true
     var settings: [Settings]?
     var isEditingPasscode = false
+    var user: User?
+    var userName: String?
     var enableBiometricsAuth = false {
         didSet {
             settings?[4].description = enableBiometricsAuth ? "Enable" : "Disable"
@@ -35,6 +43,7 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
+        fetchUserData()
     }
     
     func initialSetUp() {
@@ -48,13 +57,37 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
                     Settings(icon: "passcode", setting: "Passcode", description: "Disable"),
                     Settings(icon: "face-recognition", setting: "FaceID", description: "Disable")
                     ]
-        
+    }
+    
+    func fetchUserData() {
+        UserManager.shared.fetchUser(userID: "Eleanor", completion: { result in
+            switch result {
+            case .success(let user):
+                self.user = user[0]
+                self.userName = self.user?.name
+                print(self.userName)
+                self.profileImageURL = self.user?.image ?? ""
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        })
     }
     
     func imagePickerDonePicking() {
         imagePicker.didFinishPicking { [unowned imagePicker] items, _ in
             if let photo = items.singlePhoto {
                 self.profileImage = photo.image
+                UserManager.shared.uploadImage(userDocID: "Eleanor", image: photo.image, completion: { result in
+                    switch result {
+                    case .success(let message):
+                        print(message)
+                    case .failure(let error):
+                        print(error)
+                    }
+                })
                 self.isDefaulProfileImage = false
             }
             imagePicker.dismiss(animated: true, completion: {
@@ -132,7 +165,15 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
         let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier)
         guard let profileCell = cell as? ProfileTableViewCell else { return cell! }
         profileCell.delegate = self
-        profileCell.layoutCell(profileImage: (isDefaulProfileImage ? UIImage(named: "user")! : profileImage)!, name: "Eleanor Peng")
+//        if profileImageURL != nil {
+//
+//        }
+        if isDefaulProfileImage {
+            profileCell.layoutCell(profileImage: nil, name: userName ?? "Eleanor Peng")
+        } else {
+            profileCell.layoutCell(profileImage: profileImageURL, name: userName ?? "Eleanor Peng")
+        }
+        
         return profileCell
     }
     

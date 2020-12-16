@@ -7,6 +7,7 @@
 
 import UIKit
 import YPImagePicker
+import Kingfisher
 
 class ProfileTableViewCell: UITableViewCell {
 
@@ -28,10 +29,16 @@ class ProfileTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-    func layoutCell(profileImage: UIImage, name: String) {
+    func layoutCell(profileImage: String?, name: String) {
         userProfileImageView.clipsToBounds = true
         userProfileImageView.layer.cornerRadius = userProfileImageView.frame.width / 2
-        userProfileImageView.image = profileImage
+        if profileImage != nil {
+            userProfileImageView.kf.setImage(with: URL(string: profileImage!))
+        } else {
+            userProfileImageView.image = UIImage(named: "user")
+        }
+        userNameTextField.isUserInteractionEnabled = false
+        userNameTextField.borderStyle = .none
         userNameTextField.text = name
         userNameTextField.delegate = self
      
@@ -94,6 +101,7 @@ class ProfileTableViewCell: UITableViewCell {
 extension ProfileTableViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         userNameTextField.text = textField.text
+        UserManager.shared.updateUserName(userDocID: "Eleanor", name: userNameTextField.text ?? "")
         isEditingProfile = !isEditingProfile
         configureEditProfileButton()
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yc2-G7-V9o">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
@@ -8,42 +8,90 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Sign In View Controller-->
         <scene sceneID="2AC-Es-YuN">
             <objects>
-                <viewController id="Yc2-G7-V9o" sceneMemberID="viewController">
+                <viewController id="Yc2-G7-V9o" customClass="SignInViewController" customModule="EachDay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EW3-HH-tAa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Each Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4O-1J-oWP">
-                                <rect key="frame" x="76.5" y="149" width="261" height="32"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <rect key="frame" x="71.5" y="198" width="271" height="32"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start recording life in your own way" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xpp-mu-beo">
-                                <rect key="frame" x="59" y="201" width="296" height="23"/>
+                                <rect key="frame" x="59" y="250" width="296" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TW7-c9-FzJ" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="16" y="323" width="382" height="250"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="jX7-o7-FMA"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="welcome"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVT-BN-ciT">
+                                <rect key="frame" x="117" y="653" width="180" height="32"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="Wv3-ZC-aIZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="Sign In With Apple">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="signInButtonClicked:" destination="Yc2-G7-V9o" eventType="touchUpInside" id="8F0-CB-ZEq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eeI-er-ZS1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="N4O-1J-oWP" firstAttribute="top" secondItem="eeI-er-ZS1" secondAttribute="top" constant="105" id="5PL-Ri-d2F"/>
                             <constraint firstItem="Xpp-mu-beo" firstAttribute="centerX" secondItem="EW3-HH-tAa" secondAttribute="centerX" id="5fe-mj-eUJ"/>
+                            <constraint firstItem="vVT-BN-ciT" firstAttribute="centerX" secondItem="EW3-HH-tAa" secondAttribute="centerX" id="BtV-ZY-GzC"/>
+                            <constraint firstItem="TW7-c9-FzJ" firstAttribute="centerY" secondItem="EW3-HH-tAa" secondAttribute="centerY" id="GsA-lK-OaP"/>
                             <constraint firstItem="N4O-1J-oWP" firstAttribute="centerX" secondItem="EW3-HH-tAa" secondAttribute="centerX" id="LlI-LX-KH0"/>
-                            <constraint firstItem="Xpp-mu-beo" firstAttribute="top" secondItem="N4O-1J-oWP" secondAttribute="bottom" constant="20" id="bW5-l1-1wK"/>
+                            <constraint firstItem="TW7-c9-FzJ" firstAttribute="top" secondItem="Xpp-mu-beo" secondAttribute="bottom" constant="50" id="OMf-0h-DuX"/>
+                            <constraint firstItem="TW7-c9-FzJ" firstAttribute="centerX" secondItem="EW3-HH-tAa" secondAttribute="centerX" id="TGx-Te-3ul"/>
+                            <constraint firstItem="TW7-c9-FzJ" firstAttribute="leading" secondItem="EW3-HH-tAa" secondAttribute="leading" constant="16" id="dWZ-1X-sgS"/>
+                            <constraint firstItem="Xpp-mu-beo" firstAttribute="top" secondItem="N4O-1J-oWP" secondAttribute="bottom" constant="20" id="gxa-DW-5ha"/>
+                            <constraint firstAttribute="trailing" secondItem="TW7-c9-FzJ" secondAttribute="trailing" constant="16" id="jJh-Sg-W8V"/>
+                            <constraint firstItem="vVT-BN-ciT" firstAttribute="top" secondItem="TW7-c9-FzJ" secondAttribute="bottom" constant="80" id="mb9-nb-rMF"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="animationView" destination="TW7-c9-FzJ" id="2Ia-CN-2Mq"/>
+                        <outlet property="signInButton" destination="vVT-BN-ciT" id="P1D-uM-LnO"/>
+                        <segue destination="Qo3-8V-vS5" kind="show" identifier="ShowMainFromSignIn" id="Zyb-4J-SLG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZpJ-26-fB9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="247.82608695652175" y="136.60714285714286"/>
         </scene>
+        <!--Main-->
+        <scene sceneID="STf-Ei-U2P">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="Qo3-8V-vS5" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="y4c-kE-tbr"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bx0-gu-RYv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="823" y="156"/>
+        </scene>
     </scenes>
+    <designables>
+        <designable name="TW7-c9-FzJ"/>
+    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -16,50 +16,73 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Bzd-iN-fno">
-                                <rect key="frame" x="20" y="398" width="374" height="100"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="Bzd-iN-fno">
+                                <rect key="frame" x="20" y="423" width="374" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="7pF-BG-7Sf"/>
+                                    <constraint firstAttribute="height" constant="50" id="7pF-BG-7Sf"/>
                                 </constraints>
                                 <connections>
                                     <action selector="datePickerChanged:" destination="Ll9-AI-sSR" eventType="valueChanged" id="C12-Xm-tJx"/>
                                 </connections>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When do you wish to receive your letter?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czz-f7-7yz">
-                                <rect key="frame" x="20" y="350" width="374" height="23"/>
+                                <rect key="frame" x="20" y="384" width="374" height="23"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="otZ-Xr-xib">
-                                <rect key="frame" x="334" y="782" width="40" height="40"/>
+                                <rect key="frame" x="349" y="797" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="Bzj-8I-YKK"/>
-                                    <constraint firstAttribute="height" constant="40" id="hLR-Oc-6VE"/>
+                                    <constraint firstAttribute="width" constant="25" id="Bzj-8I-YKK"/>
+                                    <constraint firstAttribute="height" constant="25" id="hLR-Oc-6VE"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="right-arrow"/>
                                 <connections>
                                     <action selector="forwardButtonClicked:" destination="Ll9-AI-sSR" eventType="touchUpInside" id="OIt-zY-RId"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZe-dQ-fFk">
+                                <rect key="frame" x="263" y="799" width="78" height="21.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8K-gS-6xj" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="20" y="64" width="374" height="230"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="230" id="8dX-EA-srC"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="mail-send"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Odw-M9-vCX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Bzd-iN-fno" firstAttribute="leading" secondItem="Odw-M9-vCX" secondAttribute="leading" constant="20" id="2b6-d7-28B"/>
-                            <constraint firstItem="Bzd-iN-fno" firstAttribute="top" secondItem="czz-f7-7yz" secondAttribute="bottom" constant="25" id="C8Q-QI-qS2"/>
+                            <constraint firstItem="Bzd-iN-fno" firstAttribute="top" secondItem="czz-f7-7yz" secondAttribute="bottom" constant="16" id="C8Q-QI-qS2"/>
                             <constraint firstItem="Bzd-iN-fno" firstAttribute="centerY" secondItem="3ZS-h5-j7X" secondAttribute="centerY" id="Pim-fP-Vo0"/>
                             <constraint firstItem="czz-f7-7yz" firstAttribute="centerX" secondItem="3ZS-h5-j7X" secondAttribute="centerX" id="QBE-7f-EpP"/>
                             <constraint firstItem="Odw-M9-vCX" firstAttribute="bottom" secondItem="otZ-Xr-xib" secondAttribute="bottom" constant="40" id="Qt7-uk-RJ9"/>
                             <constraint firstItem="Odw-M9-vCX" firstAttribute="trailing" secondItem="czz-f7-7yz" secondAttribute="trailing" constant="20" id="SnJ-CE-gDu"/>
+                            <constraint firstItem="G8K-gS-6xj" firstAttribute="top" secondItem="Odw-M9-vCX" secondAttribute="top" constant="20" id="YSj-F7-K6b"/>
                             <constraint firstItem="Odw-M9-vCX" firstAttribute="trailing" secondItem="otZ-Xr-xib" secondAttribute="trailing" constant="40" id="ZFg-0G-ggI"/>
+                            <constraint firstItem="G8K-gS-6xj" firstAttribute="leading" secondItem="Odw-M9-vCX" secondAttribute="leading" constant="20" id="aEm-3u-phk"/>
                             <constraint firstItem="Bzd-iN-fno" firstAttribute="centerX" secondItem="3ZS-h5-j7X" secondAttribute="centerX" id="e0Z-JO-0cu"/>
                             <constraint firstItem="Odw-M9-vCX" firstAttribute="trailing" secondItem="Bzd-iN-fno" secondAttribute="trailing" constant="20" id="ekM-Oo-KYX"/>
+                            <constraint firstItem="dZe-dQ-fFk" firstAttribute="centerY" secondItem="otZ-Xr-xib" secondAttribute="centerY" id="ob9-Gq-2uE"/>
+                            <constraint firstItem="otZ-Xr-xib" firstAttribute="leading" secondItem="dZe-dQ-fFk" secondAttribute="trailing" constant="8" id="plv-Er-rpN"/>
                             <constraint firstItem="czz-f7-7yz" firstAttribute="leading" secondItem="Odw-M9-vCX" secondAttribute="leading" constant="20" id="r6o-hL-ezY"/>
+                            <constraint firstItem="Odw-M9-vCX" firstAttribute="trailing" secondItem="G8K-gS-6xj" secondAttribute="trailing" constant="20" id="rbn-86-IhO"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="animationView" destination="G8K-gS-6xj" id="EYN-6v-uH8"/>
                         <outlet property="datePicker" destination="Bzd-iN-fno" id="z2A-15-xGP"/>
+                        <outlet property="titleLabel" destination="czz-f7-7yz" id="SRv-9j-2dB"/>
                         <segue destination="fe6-C1-wsa" kind="show" identifier="ShowWriteTimeCapsuleSegue" id="UEH-iM-U0I"/>
                     </connections>
                 </viewController>
@@ -194,6 +217,9 @@
             <point key="canvasLocation" x="361" y="54"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="G8K-gS-6xj"/>
+    </designables>
     <color key="tintColor" systemColor="labelColor"/>
     <resources>
         <image name="cloud-uploading" width="512" height="512"/>

@@ -12,7 +12,7 @@ import FirebaseStorage
 
 class JournalManager {
     static let shared = JournalManager()
-    
+    var userDocIDTest = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
     var database = Firestore.firestore()
     
     func fetchJournalData(userDocID: String, selectedMonth: Int, completion: @escaping (Result<[Journal], Error>) -> Void) {
@@ -25,7 +25,7 @@ class JournalManager {
                     return try? queryDocumentSnapshot.data(as: Journal.self)
                 })
                 let journalData = allJournalData.filter({
-                    let month = Date(timeIntervalSince1970: $0.date).month()
+                    let month = $0.date.dateValue().month()
                     return month == selectedMonth
                 })
                 completion(.success(journalData))
@@ -51,9 +51,8 @@ class JournalManager {
         })
     }
     
-    func fetchFilteredJournalData(userDocID: String, selectedMonth: Int, currentDate: Double, completion: @escaping (Result<[Journal], Error>) -> Void) {
+    func fetchFilteredJournalData(userDocID: String, selectedMonth: Int, selectedYear: Int, completion: @escaping (Result<[Journal], Error>) -> Void) {
         database.collection("User").document(userDocID).collection("Journal")
-            .whereField("date", isLessThan: currentDate)
             .order(by: "date", descending: true).addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
@@ -63,8 +62,9 @@ class JournalManager {
                     return try? queryDocumentSnapshot.data(as: Journal.self)
                 })
                 let journalData = allJournalData.filter({
-                    let month = Date(timeIntervalSince1970: $0.date).month()
-                    return month == selectedMonth
+                    let month = $0.date.dateValue().month()
+                    let year = $0.date.dateValue().year()
+                    return month == selectedMonth && year == selectedYear
                 })
                 completion(.success(journalData))
             }

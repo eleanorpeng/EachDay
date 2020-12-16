@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseFirestoreSwift
 import Firebase
+import Lottie
 
 class DetailJournalViewController: UIViewController {
 
@@ -15,12 +16,12 @@ class DetailJournalViewController: UIViewController {
     var user: User?
     var journalData: [Journal]?
     var selectedMonth = 0
+    var selectedYear = 2020
     var selectedFilterTag: String?
     let searchController = UISearchController(searchResultsController: nil)
     var isFiltering: Bool = false
 //        return searchController.isActive && !isSearchBarEmpty
         
-    
     var filteredJournals: [Journal] = []
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -68,7 +69,9 @@ class DetailJournalViewController: UIViewController {
     }
     
     func fetchData(userDocID: String) {
-        JournalManager.shared.fetchFilteredJournalData(userDocID: userDocID, selectedMonth: selectedMonth, currentDate: Date().timeIntervalSince1970, completion: { result in
+        JournalManager.shared.fetchFilteredJournalData(userDocID: userDocID,
+                                                       selectedMonth: selectedMonth,
+                                                       selectedYear: selectedYear, completion: { result in
             switch result {
             case .success(let journal):
                 self.journalData = journal.filter({
@@ -116,25 +119,7 @@ class DetailJournalViewController: UIViewController {
         })
         tableView.reloadData()
     }
-    
-//    func fetchJournalData(userDocID: String) {
-//        db.collection("User").document(userDocID).collection("Journal").addSnapshotListener({ querySnapshot, error in
-//            guard let documents = querySnapshot?.documents else {
-//                print("Error fetching documents")
-//                return
-//            }
-//            let allJournalData = documents.compactMap({ queryDocumentSnapshot -> Journal? in
-//                return try? queryDocumentSnapshot.data(as: Journal.self)
-//            })
-//            self.journalData = allJournalData.filter({
-//                let month = Date(timeIntervalSince1970: $0.date).month()
-//                return month == self.selectedMonth
-//            })
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        })
-//    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? DetailJournalContentViewController {
             destination.journalData = isFiltering ? self.filteredJournals[selectedJournalIndex] : self.journalData?[selectedJournalIndex]
@@ -148,7 +133,18 @@ class DetailJournalViewController: UIViewController {
 
 extension DetailJournalViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if journalData?.count ?? 0 == 0 {
+            let customView = configureEmptyView()
+            tableView.backgroundView = customView
+        } else {
+            tableView.backgroundView = nil
+        }
         if isFiltering {
+            if filteredJournals.count ?? 0 == 0 {
+                tableView.backgroundView = configureEmptyView()
+            } else {
+                tableView.backgroundView = nil
+            }
             return filteredJournals.count
         }
         return journalData?.count ?? 0
@@ -187,6 +183,43 @@ extension DetailJournalViewController: UITableViewDelegate, UITableViewDataSourc
         tableView.deselectRow(at: indexPath, animated: true)
         selectedJournalIndex = indexPath.row
         performSegue(withIdentifier: "ShowDetailJournalContentSegue", sender: self)
+    }
+    
+    func configureEmptyView() -> UIView {
+        let customView = UIView()
+        var animationView = AnimationView()
+        animationView = .init(name: "empty")
+        animationView.animationSpeed = 1
+        animationView.loopMode = .loop
+        animationView.contentMode = .scaleAspectFit
+        animationView.play()
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let messageLabel = UILabel()
+        messageLabel.textAlignment = .center
+        messageLabel.numberOfLines = 0
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        messageLabel.text = isFiltering ?
+            "Hmm... seems like you haven't entered any entries with this tag"
+            : "Hmm... seems like you haven't entered anything this month yet"
+        messageLabel.font = UIFont.boldSystemFont(ofSize: 19)
+//        messageLabel.changeLineSpacing(lineSpacing: 5, text: "Hmm... seems like you haven't entered anything this month yet")
+
+        customView.addSubview(animationView)
+        customView.addSubview(messageLabel)
+        
+        NSLayoutConstraint.activate([
+            messageLabel.centerXAnchor.constraint(equalTo: customView.centerXAnchor),
+            messageLabel.centerYAnchor.constraint(equalTo: customView.centerYAnchor),
+            messageLabel.leadingAnchor.constraint(equalTo: customView.leadingAnchor, constant: 30),
+            messageLabel.trailingAnchor.constraint(equalTo: customView.trailingAnchor, constant: -30),
+            animationView.bottomAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -16),
+            animationView.leadingAnchor.constraint(equalTo: customView.leadingAnchor, constant: 16),
+            animationView.trailingAnchor.constraint(equalTo: customView.trailingAnchor, constant: -16),
+            animationView.heightAnchor.constraint(equalToConstant: 250)
+        ])
+        
+        return customView
     }
     
 }

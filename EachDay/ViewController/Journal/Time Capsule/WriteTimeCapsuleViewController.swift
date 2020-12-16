@@ -7,6 +7,7 @@
 
 import UIKit
 import YPImagePicker
+import Firebase
 
 class WriteTimeCapsuleViewController: UIViewController {
 
@@ -19,7 +20,7 @@ class WriteTimeCapsuleViewController: UIViewController {
     @IBOutlet weak var uploadImageButton: UIButton!
     var config = YPImagePickerConfiguration()
     let imagePicker = YPImagePicker()
-    var selectedDate: Double?
+    var selectedDate: Date?
     var letterImage: UIImage?
     var letterImageURL: String?
     var letterTitle: String? {
@@ -119,8 +120,16 @@ class WriteTimeCapsuleViewController: UIViewController {
     }
     
     func addData() {
+//        timeCapsuleData = Journal(title: letterTitle ?? "",
+//                                  date: selectedDate ?? 0,
+//                                  content: letterContent ?? "",
+//                                  tags: ["Time Capsule"],
+//                                  image: "",
+//                                  hasTracker: false,
+//                                  isTimeCapsule: true,
+//                                  id: "")
         timeCapsuleData = Journal(title: letterTitle ?? "",
-                                  date: selectedDate ?? 0,
+                                  date: Timestamp(date: selectedDate ?? Date()),
                                   content: letterContent ?? "",
                                   tags: ["Time Capsule"],
                                   image: "",

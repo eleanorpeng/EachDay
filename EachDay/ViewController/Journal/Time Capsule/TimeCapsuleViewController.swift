@@ -7,12 +7,17 @@
 
 import UIKit
 import YPImagePicker
+import Lottie
 
 class TimeCapsuleViewController: UIViewController {
 
     let helper = Helper()
     var selectedDate: Date?
-   
+ 
+//    @IBOutlet weak var animationView: AnimationView!
+//    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var animationView: AnimationView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBAction func datePickerChanged(_ sender: Any) {
         selectedDate = datePicker.date
@@ -26,6 +31,32 @@ class TimeCapsuleViewController: UIViewController {
         selectedDate = Date()
         datePicker.minimumDate = Date()
         createBackButton()
+        changeLineSpacing()
+        configureAnimation()
+    }
+    
+    func configureAnimation() {
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 1
+        animationView.play()
+    }
+    
+    func changeLineSpacing() {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.paragraphStyle: paragraphStyle, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 19)]
+        let attributedString = NSAttributedString(string: "When do you wish to receive your letter?", attributes: attributes)
+        titleLabel.attributedText = attributedString
+        
+//        let paragraphStyle = NSMutableParagraphStyle()
+//        paragraphStyle.lineSpacing = lineSpacing
+//
+//        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.paragraphStyle: paragraphStyle, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
+//
+//        let attributedString = NSAttributedString(string: text, attributes: attributes)
+//
+//        self.attributedText = attributedString
     }
 
     func createBackButton() {
@@ -45,7 +76,7 @@ class TimeCapsuleViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? WriteTimeCapsuleViewController {
-            destination.selectedDate = self.selectedDate?.timeIntervalSince1970
+            destination.selectedDate = self.selectedDate
         }
     }
 }

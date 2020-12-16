@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 class JournalViewModel {
     let journal: Journal
@@ -23,7 +24,7 @@ class JournalViewModel {
     }
     
     var date: Int {
-        let date1 = Date(timeIntervalSince1970: journal.date)
+        let date1 = journal.date.dateValue()
         return date1.day()
     }
     
@@ -48,7 +49,7 @@ class JournalViewModel {
     }
     
     var day: String {
-        let date1 = Date(timeIntervalSince1970: journal.date)
+        let date1 = journal.date.dateValue()
         switch date1.weekDay() {
         case 1:
             return "Mon"
@@ -69,8 +70,15 @@ class JournalViewModel {
         }
     }
     
+    var dateTS: Timestamp {
+        return journal.date
+    }
+//    var image: String {
+//        return journal.image
+//    }
+    
     var formattedDate: String {
-        let date1 = Date(timeIntervalSince1970: journal.date)
+        let date1 = journal.date.dateValue()
         return date1.getFormattedDate()
     }
 }
