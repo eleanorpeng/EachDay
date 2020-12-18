@@ -24,19 +24,31 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
     var user: User?
     let monthNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     let monthText = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+    let defaultColor = UIColor(r: 247, g: 174, b: 0)
+    var calendarData: CalendarView?
     let customAlert = CustomAlert()
+    var calendarColors: [String]?
     var currentDate = Date()
     var journalData: [Journal]?
     var timeCapsule: [Journal]?
     var selectedYear = 2020
+    let colorPicker = SlideUpView()
+    var calendarColor: UIColor?
+    var changeColorIndex: Int?
+    var isChangingColor = false
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBAction func datePickerSelected(_ sender: Any) {
         selectedYear = datePicker.date.year()
-        print(selectedYear)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchData()
+        fetchUser()
         initialSetUp()
+//        if let colors = UserDefaults.standard.array(forKey: "calendarColors") as? [UIColor] {
+//            calendarData = CalendarView(colors: colors)
+//        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,10 +56,10 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController?.navigationBar.clipsToBounds = true
-        fetchData(userDocID: "Eleanor")
-        fetchUser(userDocID: "Eleanor")
+        
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveProfileImage(_:)), name: Notifications.receiveProfileImageNotification, object: nil)
     }
+    
     
     func createTimeCapAlert() {
         NotificationCenter.default.post(Notification(name: Notifications.receiveTimeCapsule, object: nil))
@@ -61,8 +73,8 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
 //        customAlert.dismissAlert()
     }
     
-    func fetchData(userDocID: String) {
-        JournalManager.shared.fetchTimeCapsuleData(userDocID: "Eleanor", currentDate: Date().timeIntervalSince1970, completion: { result in
+    func fetchData() {
+        JournalManager.shared.fetchTimeCapsuleData(currentDate: Date().timeIntervalSince1970, completion: { result in
             switch result {
             case .success(let timeCapsule):
                 self.timeCapsule = timeCapsule
@@ -76,17 +88,27 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         })
     }
     
-    func fetchUser(userDocID: String) {
-        UserManager.shared.fetchUser(userID: userDocID, completion: { result in
+    func fetchUser() {
+        UserManager.shared.fetchUser(completion: { result in
             switch result {
             case .success(let user):
                 self.user = user[0]
+                if let name = self.user?.name, let color = self.user?.calendarColors {
+                    self.nameLabel.text = "Hi, \(name)"
+                    self.calendarColors = color
+                    self.calendarData = CalendarView(colors: self.calendarColors ?? [""])
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+//                        self.isChangingColor = false
+                    }
+                }
                 guard self.user?.image != nil else { return }
                 guard let url = URL(string: self.user?.image ?? "") else { return }
                 let resource = ImageResource(downloadURL: url)
                 KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil, completionHandler: { image, error, cacheType, imageURL in
                     self.userProfileButton.setImage(image ?? UIImage(named: "user"), for: .normal)
                 })
+                
             case .failure(let error):
                 print(error)
             }
@@ -106,15 +128,17 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         dateLabel.text = currentDate.getFormattedDate()
         userProfileButton.clipsToBounds = true
         userProfileButton.layer.cornerRadius = userProfileButton.frame.width / 2
+        
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         updateCellsLayout()
-        collectionView.scrollToItem(at: IndexPath(row: currentDate.month() - 1, section: 0),
-                                    at: [.centeredVertically, .centeredHorizontally],
-                                    animated: true)
-        
+        if !isChangingColor {
+            collectionView.scrollToItem(at: IndexPath(row: currentDate.month() - 1, section: 0),
+                                        at: [.centeredVertically, .centeredHorizontally],
+                                        animated: true)
+        }
     }
 
     func updateCellsLayout() {
@@ -154,7 +178,34 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
 
 }
 
-extension CalendarMainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CalendarMainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CalendarMainCollectionViewCellDelegate, SlideUpViewDelegate {
+    
+    func handleChangeColorButton(sender: Any) {
+        colorPicker.delegate = self
+        colorPicker.showSlideView(on: self)
+        if let button = sender as? UIButton {
+            changeColorIndex = button.tag
+        }
+    }
+    
+    func changeCalendarColor(color: UIColor) {
+        calendarColor = color
+        let calendarColorHex = calendarColor?.toHexString()
+        calendarData?.colors?[changeColorIndex ?? -1] = calendarColorHex ?? ""
+        UserManager.shared.updateCalendarColor(color: (calendarData?.colors)!, completion: { result in
+            switch result {
+            case .success(let message):
+                print(message)
+            case .failure(let error):
+                print(error)
+            }
+        })
+//        UserDefaults.setValue(calendarData?.colors, forKey: "calendarColors")
+        isChangingColor = true
+//        collectionView.reloadData()
+//        isChangingColor = false
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 12
     }
@@ -162,7 +213,15 @@ extension CalendarMainViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarMainCollectionViewCell.identifier, for: indexPath)
         guard let cardCell = cell as? CalendarMainCollectionViewCell else { return cell }
-        cardCell.layoutCell(monthNum: String(monthNum[indexPath.row]), monthText: monthText[indexPath.row])
+        cardCell.delegate = self
+        if let month = calendarData?.month[indexPath.row], let monthString = calendarData?.monthText[indexPath.row], let color = calendarData?.colors?[indexPath.row] {
+            cardCell.layoutCell(monthNum: String(month), monthText: monthString, color: UIColor(hexString: color))
+        }
+//        cardCell.layoutCell(monthNum: String(monthNum[indexPath.row]), monthText: monthText[indexPath.row], color: UIColor(r: 247, g: 174, b: 0))
+//        if indexPath.row == changeColorIndex {
+//            cardCell.layoutCell(monthNum: String(monthNum[indexPath.row]), monthText: monthText[indexPath.row], color: calendarColor ?? UIColor(r: 247, g: 174, b: 0))
+//        }
+        cardCell.changeColorButton.tag = indexPath.row
         cardCell.layer.cornerRadius = 10
         cardCell.clipsToBounds = true
         cardCell.contentView.layer.cornerRadius = 10.0

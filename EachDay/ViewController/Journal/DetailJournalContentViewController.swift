@@ -39,7 +39,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
                                         "Are you sure you want to delete this journal?"
                                       , message: "This action can't be undo.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak alert] _ in
-            JournalManager.shared.deleteJournal(userID: "Eleanor", journalID: self.journalVM?.id ?? "")
+            JournalManager.shared.deleteJournal(journalID: self.journalVM?.id ?? "")
             self.loadingView.startLoading(on: self)
 //            HUD.flash(.progress)
             self.navigationController?.popViewController(animated: true)
@@ -96,7 +96,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     @objc func createSaveAlert() {
         let alert = UIAlertController(title: "You just saved one precious memory!", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-            JournalManager.shared.changeTimeCapsuleStatus(userDocID: "Eleanor", journalID: self.journalVM?.id ?? "")
+            JournalManager.shared.changeTimeCapsuleStatus(journalID: self.journalVM?.id ?? "")
             self.loadingView.startLoading(on: self)
 //            HUD.flash(.progress)
             self.navigationController?.popViewController(animated: true)
@@ -107,13 +107,13 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     func showTimeCapsuleAlert() {
         let alert = UIAlertController(title: "Do you wish to save this time capsule?", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
-            JournalManager.shared.changeTimeCapsuleStatus(userDocID: "Eleanor", journalID: self.journalVM?.id ?? "")
+            JournalManager.shared.changeTimeCapsuleStatus(journalID: self.journalVM?.id ?? "")
             self.loadingView.startLoading(on: self)
 //            HUD.flash(.progress)
             self.navigationController?.popViewController(animated: true)
         }))
         alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: { _ in
-            JournalManager.shared.deleteJournal(userID: "Eleanor", journalID: self.journalVM?.id ?? "")
+            JournalManager.shared.deleteJournal(journalID: self.journalVM?.id ?? "")
             self.loadingView.startLoading(on: self)
 //            HUD.flash(.progress)
             self.navigationController?.popViewController(animated: true)
@@ -135,8 +135,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     
     func updateJournal() {
         if let title = journalVM?.title, let content = journalVM?.content, let tags = journalVM?.tags, let id = journalVM?.id {
-            JournalManager.shared.updateJournal(userID: "Eleanor",
-                                                journalID: journalVM?.id ?? id,
+            JournalManager.shared.updateJournal(journalID: journalVM?.id ?? id,
                                                 title: modifiedTitle ?? title,
                                                 content: modifiedContent ?? content,
                                                 tags: modifiedTags ?? tags)
@@ -235,9 +234,10 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     func setJournalTagConstraints(previousTag: PaddingableUILabel, currentTag: PaddingableUILabel, xAnchor: inout CGFloat) {
         currentTag.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(currentTag)
+        view.sendSubviewToBack(currentTag)
         NSLayoutConstraint.activate([
             currentTag.leadingAnchor.constraint(equalTo: previousTag.trailingAnchor, constant: xAnchor),
-            currentTag.topAnchor.constraint(equalTo: tagSeparator.bottomAnchor, constant: 16),
+            currentTag.topAnchor.constraint(equalTo: tagSeparator.bottomAnchor, constant: 10),
             currentTag.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
         ])
     }
@@ -245,7 +245,6 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     func textViewDidEndEditing(_ textView: UITextView) {
         textView.resignFirstResponder()
         modifiedContent = contentTextView.text
-
         modifiedTitle = titleTextView.text
 
     }

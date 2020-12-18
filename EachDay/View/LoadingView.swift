@@ -37,6 +37,7 @@ class LoadingView {
         loadingView.frame = targetView.frame
         loadingView.center = targetView.center
         backgroundview.frame = targetView.bounds
+        
         targetView.addSubview(backgroundview)
         targetView.addSubview(loadingView)
         
@@ -47,6 +48,9 @@ class LoadingView {
                 self.loadingView.alpha = 1
             })
         })
+//        UIView.animate(withDuration: 0.15, animations: {
+//            self.loadingView.alpha = 1
+//        }, completion: nil)
     }
     
     func dismissLoading() {

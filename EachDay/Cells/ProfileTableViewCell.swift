@@ -101,7 +101,7 @@ class ProfileTableViewCell: UITableViewCell {
 extension ProfileTableViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         userNameTextField.text = textField.text
-        UserManager.shared.updateUserName(userDocID: "Eleanor", name: userNameTextField.text ?? "")
+        UserManager.shared.updateUserName(name: userNameTextField.text ?? "")
         isEditingProfile = !isEditingProfile
         configureEditProfileButton()
     }

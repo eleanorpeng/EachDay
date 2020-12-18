@@ -83,7 +83,7 @@ class TagSelectionViewController: UIViewController {
     }
     
     func fetchData() {
-        JournalManager.shared.fetchUser(userID: "Eleanor", completion: { result in
+        JournalManager.shared.fetchUser(completion: { result in
             switch result {
             case .success(let user):
                 if self.isTimeTracking {
@@ -101,9 +101,9 @@ class TagSelectionViewController: UIViewController {
     
     func updateTags() {
         if isTimeTracking {
-            TimeTrackingManager.shared.updateTrackTimeCategories(userDocID: "Eleanor", categories: tags ?? [])
+            TimeTrackingManager.shared.updateTrackTimeCategories(categories: tags ?? [])
         } else {
-            JournalManager.shared.updateJournalTags(userID: "Eleanor", tags: tags ?? [])
+            JournalManager.shared.updateJournalTags(tags: tags ?? [])
         }
     }
     

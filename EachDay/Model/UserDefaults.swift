@@ -10,4 +10,5 @@ import Foundation
 enum EPUserDefaults: String {
     case hasSignedIn
     case userId
+    case enableBiometrics
 }

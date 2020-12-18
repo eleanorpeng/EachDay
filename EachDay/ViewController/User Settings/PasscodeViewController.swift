@@ -24,7 +24,7 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
     var passcode: String?
     var secondPasscode: String?
     var count = 1
-    var enableBiometricsAuth = false
+    var enableBiometricsAuth = UserDefaults.standard.bool(forKey: EPUserDefaults.enableBiometrics.rawValue)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,7 +143,7 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
         }
         pinView.didFinishCallback = { [weak self] pin in
             if pin == self?.keychain["passcode"] {
-                UserManager.shared.updatePasscode(userDocID: "Eleanor", passcode: "")
+                UserManager.shared.updatePasscode(passcode: "")
                 self?.delegate?.handlePasscodeSet(hasSet: false)
                 self?.keychain["passcode"] = nil
                 self?.showCompleteAlert()
@@ -154,7 +154,7 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
     }
     
     func fetchPasscode() {
-        UserManager.shared.fetchUser(userID: "Eleanor", completion: { result in
+        UserManager.shared.fetchUser(completion: { result in
             switch result {
             case .success(let user):
                 self.passcode = user[0].passcode
@@ -188,7 +188,7 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
         secondPasscode = pin
         self.delegate?.handlePasscodeSet(hasSet: true)
         if passcode == secondPasscode {
-            UserManager.shared.updatePasscode(userDocID: "Eleanor", passcode: passcode ?? "")
+            UserManager.shared.updatePasscode(passcode: passcode ?? "")
             showCompleteAlert()
         } else {
             showIncompleteAlert()

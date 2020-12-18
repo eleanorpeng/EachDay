@@ -45,7 +45,7 @@ class TimeTrackingTagViewController: UIViewController {
     }
     
     func fetchCategories() {
-        JournalManager.shared.fetchUser(userID: "Eleanor", completion: { result in
+        JournalManager.shared.fetchUser(completion: { result in
             switch result {
             case .success(let user):
                 self.user = user
@@ -131,7 +131,7 @@ extension TimeTrackingTagViewController: UITableViewDelegate, UITableViewDataSou
     
     func addNewTag() {
         categories?.append(searchText)
-        TimeTrackingManager.shared.updateTrackTimeCategories(userDocID: "Eleanor", categories: categories ?? [])
+        TimeTrackingManager.shared.updateTrackTimeCategories(categories: categories ?? [])
         isFiltering = false
         searchTagTextField.text = nil
         searchTagTextField.resignFirstResponder()

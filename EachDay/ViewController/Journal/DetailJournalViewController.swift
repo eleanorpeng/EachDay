@@ -69,8 +69,7 @@ class DetailJournalViewController: UIViewController {
     }
     
     func fetchData(userDocID: String) {
-        JournalManager.shared.fetchFilteredJournalData(userDocID: userDocID,
-                                                       selectedMonth: selectedMonth,
+        JournalManager.shared.fetchFilteredJournalData(selectedMonth: selectedMonth,
                                                        selectedYear: selectedYear, completion: { result in
             switch result {
             case .success(let journal):
@@ -93,7 +92,7 @@ class DetailJournalViewController: UIViewController {
     }
     
     func fetchUser(userDocID: String) {
-        UserManager.shared.fetchUser(userID: userDocID, completion: { result in
+        UserManager.shared.fetchUser(completion: { result in
             switch result {
             case .success(let user):
                 self.user = user[0]
@@ -200,8 +199,8 @@ extension DetailJournalViewController: UITableViewDelegate, UITableViewDataSourc
         messageLabel.numberOfLines = 0
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.text = isFiltering ?
-            "Hmm... seems like you haven't entered any entries with this tag"
-            : "Hmm... seems like you haven't entered anything this month yet"
+            "Hmm... seems like you haven't written anything with this tag."
+            : "Hmm... seems like you haven't written anything in this month."
         messageLabel.font = UIFont.boldSystemFont(ofSize: 19)
 //        messageLabel.changeLineSpacing(lineSpacing: 5, text: "Hmm... seems like you haven't entered anything this month yet")
 

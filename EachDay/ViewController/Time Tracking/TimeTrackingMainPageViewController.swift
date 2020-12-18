@@ -100,7 +100,7 @@ class TimeTrackingMainPageViewController: UIViewController {
     }
     
     func fetchUser() {
-        JournalManager.shared.fetchUser(userID: "Eleanor", completion: { result in
+        JournalManager.shared.fetchUser(completion: { result in
             switch result {
             case .success(let user):
                 self.trackedTimeCategories = user[0].trackTimeCategories
@@ -135,7 +135,7 @@ class TimeTrackingMainPageViewController: UIViewController {
         let midnightTS = Timestamp(date: midnight)
         let tomorrowTS = Timestamp(date: tomorrow)
         
-        TimeTrackingManager.shared.fetchFilteredTimeRecord(userDocID: "Eleanor", startDate: midnightTS, endDate: tomorrowTS, completion: { result in
+        TimeTrackingManager.shared.fetchFilteredTimeRecord(startDate: midnightTS, endDate: tomorrowTS, completion: { result in
             switch result {
             case .success(let trackedTime):
                 self.trackedTime = trackedTime
@@ -274,7 +274,7 @@ extension TimeTrackingMainPageViewController: UITableViewDelegate, UITableViewDa
                                      id: "",
                                      duration: elapsedTimeInterval ?? 0,
                                      taskDescrpition: taskDescription ?? "")
-        TimeTrackingManager.shared.uploadTimeRecord(userDocID: "Eleanor", record: &timeRecord, completion: { result in
+        TimeTrackingManager.shared.uploadTimeRecord(record: &timeRecord, completion: { result in
             switch result {
             case .success(let message):
                 print(message)
@@ -394,8 +394,7 @@ extension TimeTrackingMainPageViewController: CreateNewTaskViewControllerDelegat
         timer.invalidate()
         endTime = elapsedTimeInterval
         endTimeTS = Timestamp(date: Date())
-        TimeTrackingManager.shared.updateFields(userDocID: "Eleanor",
-                                                endTime: endTimeTS!,
+        TimeTrackingManager.shared.updateFields(endTime: endTimeTS!,
                                                 duration: elapsedTimeInterval ?? 0)
         trackedTimeDic?[taskName ?? ""] = elapsedTimeInterval
         print(trackedTimeDic)

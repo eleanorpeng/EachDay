@@ -124,7 +124,7 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
     
     func fetchFilteredData(startDate: Timestamp?, endDate: Timestamp?) {
         guard let startDate = startDate, let endDate = endDate else { return }
-        TimeTrackingManager.shared.fetchFilteredTimeRecord(userDocID: "Eleanor", startDate: startDate, endDate: endDate, completion: { result in
+        TimeTrackingManager.shared.fetchFilteredTimeRecord(startDate: startDate, endDate: endDate, completion: { result in
             switch result {
             case .success(let trackedTime):
                 self.trackedTime = trackedTime
@@ -171,7 +171,7 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
     }
     
     func fetchUser() {
-        JournalManager.shared.fetchUser(userID: "Eleanor", completion: { result in
+        JournalManager.shared.fetchUser(completion: { result in
             switch result {
             case .success(let user):
                 self.trackedTimeCategories = user[0].trackTimeCategories

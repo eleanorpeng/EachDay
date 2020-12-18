@@ -18,11 +18,27 @@ extension UIView {
         }
     }
     
+    func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+            let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+            let mask = CAShapeLayer()
+            mask.path = path.cgPath
+            layer.mask = mask
+    }
+    
     func asImage2() -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: self.bounds.size)
         let image = renderer.image { ctx in
             self.drawHierarchy(in: self.bounds, afterScreenUpdates: true)
         }
         return image
+    }
+}
+
+extension UIButton {
+    func createRoundCorners(corners: UIRectCorner, radius: CGFloat) {
+            let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+            let mask = CAShapeLayer()
+            mask.path = path.cgPath
+            layer.mask = mask
     }
 }

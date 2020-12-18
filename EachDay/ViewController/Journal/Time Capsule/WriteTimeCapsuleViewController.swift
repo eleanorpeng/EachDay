@@ -108,7 +108,7 @@ class WriteTimeCapsuleViewController: UIViewController {
             addData()
             return
         }
-        JournalManager.shared.uploadImage(userID: "Eleanor", image: letterImage!, completion: { result in
+        JournalManager.shared.uploadImage(image: letterImage!, completion: { result in
             switch result {
             case .success(let url):
                 self.letterImageURL = url
@@ -120,14 +120,6 @@ class WriteTimeCapsuleViewController: UIViewController {
     }
     
     func addData() {
-//        timeCapsuleData = Journal(title: letterTitle ?? "",
-//                                  date: selectedDate ?? 0,
-//                                  content: letterContent ?? "",
-//                                  tags: ["Time Capsule"],
-//                                  image: "",
-//                                  hasTracker: false,
-//                                  isTimeCapsule: true,
-//                                  id: "")
         timeCapsuleData = Journal(title: letterTitle ?? "",
                                   date: Timestamp(date: selectedDate ?? Date()),
                                   content: letterContent ?? "",
@@ -136,7 +128,7 @@ class WriteTimeCapsuleViewController: UIViewController {
                                   hasTracker: false,
                                   isTimeCapsule: true,
                                   id: "")
-        JournalManager.shared.publishJournalData(journal: &timeCapsuleData!, userID: "Eleanor", completion: { result in
+        JournalManager.shared.publishJournalData(journal: &timeCapsuleData!, completion: { result in
             switch result {
             case .success(let message):
                 print(message)

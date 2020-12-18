@@ -16,10 +16,11 @@ struct User: Identifiable, Codable {
     var journalTags: [String]
     var trackTimeCategories: [String]
     var image: String
+    var calendarColors: [String]
 //    let trackedTime: [TrackedTime]
 //    let journal: [Journal]
     
-    init(name: String, id: String, email: String, passcode: String, journalTags: [String], trackTimeCategories: [String], image: String) {
+    init(name: String, id: String, email: String, passcode: String, journalTags: [String], trackTimeCategories: [String], image: String, colors: [String]) {
         self.name = name
         self.id = id
         self.email = email
@@ -27,12 +28,13 @@ struct User: Identifiable, Codable {
         self.journalTags = journalTags
         self.trackTimeCategories = trackTimeCategories
         self.image = image
+        self.calendarColors = colors
 //        self.trackedTime = trackedTime
 //        self.journal = journal
     }
     
     enum CodingKeys: String, CodingKey {
-        case name, id, email, passcode, journalTags, trackTimeCategories, image
+        case name, id, email, passcode, journalTags, trackTimeCategories, image,  calendarColors
 //        case journal = "Journal"
 //        case trackedTime = "TrackedTime"
     }
@@ -48,6 +50,7 @@ struct TrackedTime: Identifiable, Codable {
     var taskName: String
     var duration: Double
     var taskDescrpition: String
+    
     init(date: Timestamp, startTime: Timestamp, endTime: Timestamp, taskName: String, id: String, duration: Double, taskDescrpition: String) {
         self.date = date
         self.startTime = startTime
@@ -56,6 +59,7 @@ struct TrackedTime: Identifiable, Codable {
         self.id = id
         self.duration = duration
         self.taskDescrpition = taskDescrpition
+        
     }
     
     enum CodingKeys: String, CodingKey {
@@ -89,5 +93,3 @@ struct Journal: Identifiable, Codable {
         case title, date, content, tags, image, hasTracker, isTimeCapsule, id
     }
 }
-
-

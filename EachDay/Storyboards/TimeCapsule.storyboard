@@ -49,7 +49,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8K-gS-6xj" customClass="AnimationView" customModule="Lottie">
-                                <rect key="frame" x="20" y="64" width="374" height="230"/>
+                                <rect key="frame" x="20" y="94" width="374" height="230"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="230" id="8dX-EA-srC"/>
@@ -68,7 +68,7 @@
                             <constraint firstItem="czz-f7-7yz" firstAttribute="centerX" secondItem="3ZS-h5-j7X" secondAttribute="centerX" id="QBE-7f-EpP"/>
                             <constraint firstItem="Odw-M9-vCX" firstAttribute="bottom" secondItem="otZ-Xr-xib" secondAttribute="bottom" constant="40" id="Qt7-uk-RJ9"/>
                             <constraint firstItem="Odw-M9-vCX" firstAttribute="trailing" secondItem="czz-f7-7yz" secondAttribute="trailing" constant="20" id="SnJ-CE-gDu"/>
-                            <constraint firstItem="G8K-gS-6xj" firstAttribute="top" secondItem="Odw-M9-vCX" secondAttribute="top" constant="20" id="YSj-F7-K6b"/>
+                            <constraint firstItem="G8K-gS-6xj" firstAttribute="top" secondItem="Odw-M9-vCX" secondAttribute="top" constant="50" id="YSj-F7-K6b"/>
                             <constraint firstItem="Odw-M9-vCX" firstAttribute="trailing" secondItem="otZ-Xr-xib" secondAttribute="trailing" constant="40" id="ZFg-0G-ggI"/>
                             <constraint firstItem="G8K-gS-6xj" firstAttribute="leading" secondItem="Odw-M9-vCX" secondAttribute="leading" constant="20" id="aEm-3u-phk"/>
                             <constraint firstItem="Bzd-iN-fno" firstAttribute="centerX" secondItem="3ZS-h5-j7X" secondAttribute="centerX" id="e0Z-JO-0cu"/>
@@ -217,9 +217,6 @@
             <point key="canvasLocation" x="361" y="54"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="G8K-gS-6xj"/>
-    </designables>
     <color key="tintColor" systemColor="labelColor"/>
     <resources>
         <image name="cloud-uploading" width="512" height="512"/>

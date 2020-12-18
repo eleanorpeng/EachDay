@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ColorPickerCollectionViewCell" customModule="EachDay" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorPickerCollectionViewCell" id="gTV-IL-0wX" customClass="ColorPickerCollectionViewCell" customModule="EachDay" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="57" height="51"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="57" height="51"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6p-Fb-ybu">
+                        <rect key="frame" x="0.0" y="0.0" width="57" height="51"/>
+                        <connections>
+                            <action selector="buttonClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ses-JL-XNQ"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="f6p-Fb-ybu" secondAttribute="bottom" id="FW5-80-cEU"/>
+                <constraint firstAttribute="trailing" secondItem="f6p-Fb-ybu" secondAttribute="trailing" id="LQk-1g-EsD"/>
+                <constraint firstItem="f6p-Fb-ybu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="mGR-5a-vN6"/>
+                <constraint firstItem="f6p-Fb-ybu" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="vbG-fI-g4k"/>
+            </constraints>
+            <size key="customSize" width="57" height="51"/>
+            <connections>
+                <outlet property="colorButton" destination="f6p-Fb-ybu" id="Gxe-32-faf"/>
+            </connections>
+            <point key="canvasLocation" x="142.75362318840581" y="67.96875"/>
+        </collectionViewCell>
+    </objects>
+</document>

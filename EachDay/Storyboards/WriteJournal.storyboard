@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Record detail of your day" translatesAutoresizingMaskIntoConstraints="NO" id="sDm-va-qja">
-                                <rect key="frame" x="15" y="475.5" width="384" height="380.5"/>
+                                <rect key="frame" x="15" y="475.5" width="384" height="323.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
@@ -63,10 +63,43 @@
                                     <action selector="dateChanged:" destination="bHZ-qQ-jfG" eventType="valueChanged" id="Xyh-eP-js0"/>
                                 </connections>
                             </datePicker>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8Y-iZ-hmi">
+                                <rect key="frame" x="0.0" y="809" width="414" height="3"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="GKr-6J-7N1"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64W-45-euR" customClass="PaddingableUILabel" customModule="EachDay" customModuleProvider="target">
+                                <rect key="frame" x="16" y="822" width="42" height="24"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.68235294120000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingRight">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingTop">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingBottom">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Fqg-WQ-mRi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="e8Y-iZ-hmi" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" id="ELy-5s-apD"/>
+                            <constraint firstItem="64W-45-euR" firstAttribute="top" secondItem="e8Y-iZ-hmi" secondAttribute="bottom" constant="10" id="FxI-9E-QmK"/>
                             <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="sDm-va-qja" secondAttribute="trailing" constant="15" id="GH0-Ry-4SG"/>
                             <constraint firstItem="ggY-Nt-tnr" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" id="HUC-Rv-D1C"/>
                             <constraint firstItem="Kae-Cx-hVK" firstAttribute="centerX" secondItem="fBj-x0-Tw8" secondAttribute="centerX" id="KiJ-Ux-8bG"/>
@@ -74,15 +107,19 @@
                             <constraint firstItem="9To-gD-iHL" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" constant="20" id="UVg-Cv-6ZB"/>
                             <constraint firstItem="d5v-BC-397" firstAttribute="centerY" secondItem="ggY-Nt-tnr" secondAttribute="centerY" id="WZJ-nW-NAe"/>
                             <constraint firstItem="9To-gD-iHL" firstAttribute="top" secondItem="ggY-Nt-tnr" secondAttribute="bottom" constant="20" id="WpZ-SA-G2d"/>
+                            <constraint firstItem="e8Y-iZ-hmi" firstAttribute="top" secondItem="sDm-va-qja" secondAttribute="bottom" constant="10" id="YNJ-yV-hx5"/>
                             <constraint firstItem="d5v-BC-397" firstAttribute="centerX" secondItem="ggY-Nt-tnr" secondAttribute="centerX" id="ZEf-Cj-QAb"/>
                             <constraint firstItem="ggY-Nt-tnr" firstAttribute="top" secondItem="BqU-kx-kg7" secondAttribute="bottom" constant="30" id="ZgY-oY-nRu"/>
+                            <constraint firstItem="64W-45-euR" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" constant="16" id="c5X-06-Q7h"/>
                             <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="9To-gD-iHL" secondAttribute="trailing" constant="20" id="eHl-gE-yYy"/>
+                            <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="e8Y-iZ-hmi" secondAttribute="trailing" id="fEt-n0-YIj"/>
                             <constraint firstItem="sDm-va-qja" firstAttribute="top" secondItem="9To-gD-iHL" secondAttribute="bottom" constant="15" id="gf7-f7-QnZ"/>
+                            <constraint firstItem="Fqg-WQ-mRi" firstAttribute="bottom" secondItem="e8Y-iZ-hmi" secondAttribute="bottom" constant="50" id="hAx-uf-QbJ"/>
                             <constraint firstItem="Fqg-WQ-mRi" firstAttribute="trailing" secondItem="ggY-Nt-tnr" secondAttribute="trailing" id="hMA-Vy-8WH"/>
                             <constraint firstItem="sDm-va-qja" firstAttribute="leading" secondItem="Fqg-WQ-mRi" secondAttribute="leading" constant="15" id="hRc-GC-NPm"/>
+                            <constraint firstItem="Fqg-WQ-mRi" firstAttribute="bottom" secondItem="64W-45-euR" secondAttribute="bottom" constant="16" id="iKC-rY-CqZ"/>
                             <constraint firstItem="Kae-Cx-hVK" firstAttribute="centerY" secondItem="BqU-kx-kg7" secondAttribute="centerY" id="m7R-bX-LMK"/>
                             <constraint firstItem="BqU-kx-kg7" firstAttribute="top" secondItem="Fqg-WQ-mRi" secondAttribute="top" constant="20" id="v2D-6Q-isJ"/>
-                            <constraint firstAttribute="bottom" secondItem="sDm-va-qja" secondAttribute="bottom" constant="40" id="y10-0l-yRr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Fhx-mR-F8N"/>
@@ -91,6 +128,8 @@
                         <outlet property="contentTextView" destination="sDm-va-qja" id="RSP-wm-jiC"/>
                         <outlet property="datePicker" destination="Kae-Cx-hVK" id="nXB-gx-Id5"/>
                         <outlet property="journalImageView" destination="ggY-Nt-tnr" id="8KY-dn-2Sc"/>
+                        <outlet property="tagLabel" destination="64W-45-euR" id="ies-B2-s68"/>
+                        <outlet property="tagSeparator" destination="e8Y-iZ-hmi" id="0cG-EE-vhe"/>
                         <outlet property="titleTextField" destination="9To-gD-iHL" id="g9b-kt-dwv"/>
                         <outlet property="toolBarView" destination="0M5-Zc-3mP" id="OMR-c4-MMf"/>
                         <outlet property="uploadImageButton" destination="d5v-BC-397" id="7Q4-QH-Onc"/>
@@ -99,14 +138,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uwH-ng-rgE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="0M5-Zc-3mP">
-                    <rect key="frame" x="0.0" y="0.0" width="394" height="41"/>
+                    <rect key="frame" x="0.0" y="0.0" width="394" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLk-aC-ZBm">
-                            <rect key="frame" x="358" y="11" width="20" height="20"/>
+                            <rect key="frame" x="353" y="12" width="25" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="R2g-vW-yf9"/>
-                                <constraint firstAttribute="height" constant="20" id="iaC-aG-YHj"/>
+                                <constraint firstAttribute="width" constant="25" id="R2g-vW-yf9"/>
+                                <constraint firstAttribute="height" constant="25" id="iaC-aG-YHj"/>
                             </constraints>
                             <state key="normal" title="Button" image="down-arrow"/>
                             <connections>
@@ -121,10 +160,10 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Qn-nD-8ol" userLabel="TagButton">
-                            <rect key="frame" x="16" y="11" width="20" height="20"/>
+                            <rect key="frame" x="16" y="12" width="25" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="981-NZ-ptw"/>
-                                <constraint firstAttribute="height" constant="20" id="pPx-6Y-meT"/>
+                                <constraint firstAttribute="width" constant="25" id="981-NZ-ptw"/>
+                                <constraint firstAttribute="height" constant="25" id="pPx-6Y-meT"/>
                             </constraints>
                             <state key="normal" title="Button" image="tag"/>
                             <connections>
@@ -169,6 +208,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

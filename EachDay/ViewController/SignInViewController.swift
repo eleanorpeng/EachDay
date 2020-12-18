@@ -7,6 +7,7 @@
 
 import UIKit
 import Lottie
+import KeychainAccess
 
 class SignInViewController: UIViewController {
 
@@ -17,11 +18,20 @@ class SignInViewController: UIViewController {
         uploadUserData()
         performSegue(withIdentifier: "ShowMainFromSignIn", sender: self)
     }
+    let keychain = Keychain()
+    var calendarColors: [String]?
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         createAnimation()
         setUpButton()
         configureSignInStatus(status: false)
+        UserDefaults.standard.setValue(false, forKey: EPUserDefaults.enableBiometrics.rawValue)
+        calendarColors = [
+            "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00"
+        ]
+//        UserDefaults.standard.setValue(calendarColors, forKey: "calendarColors")
+        keychain["passcode"] = nil
     }
     
     func setUpButton() {
@@ -38,6 +48,7 @@ class SignInViewController: UIViewController {
     
     func configureSignInStatus(status: Bool) {
         UserDefaults.standard.setValue(status, forKey: EPUserDefaults.hasSignedIn.rawValue)
+        
     }
     
     func uploadUserData() {
@@ -48,7 +59,7 @@ class SignInViewController: UIViewController {
                         passcode: "",
                         journalTags: ["Time Capsule", "Reflection"],
                         trackTimeCategories: ["Eat", "Sleep", "Music", "Commute", "TV", "Read", "Workout", "Work"],
-                        image: "")
+                        image: "", colors: calendarColors!)
         UserDefaults.standard.setValue(user.id, forKey: EPUserDefaults.userId.rawValue)
         UserManager.shared.uploadUserData(user: user, completion: { result in
             switch result {

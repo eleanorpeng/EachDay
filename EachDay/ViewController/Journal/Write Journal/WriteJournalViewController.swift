@@ -13,6 +13,7 @@ import Charts
 
 class WriteJournalViewController: UIViewController {
 
+    @IBOutlet weak var tagSeparator: UIView!
     var journalData: Journal?
     var selectedDate: Date?
     var journalTitle: String? {
@@ -28,6 +29,7 @@ class WriteJournalViewController: UIViewController {
     var journalTags: [String]? {
         didSet {
             self.checkIfCompleted()
+            self.layoutTags()
         }
     }
     var journalImage: UIImage?
@@ -40,6 +42,7 @@ class WriteJournalViewController: UIViewController {
     @IBOutlet weak var completeButton: UIButton!
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var journalImageView: UIImageView!
+    @IBOutlet weak var tagLabel: PaddingableUILabel!
     @IBAction func selectTagButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "ShowTagSelectionSegue", sender: self)
         view.endEditing(true)
@@ -110,6 +113,8 @@ class WriteJournalViewController: UIViewController {
         titleTextField.delegate = self
         completeButton.isEnabled = false
         completeButton.setImage(UIImage(named: "tick-gray"), for: .normal)
+        tagLabel.isHidden = true
+        tagSeparator.isHidden = true
     }
 
     func imagePickerDonePicking() {
@@ -138,7 +143,7 @@ class WriteJournalViewController: UIViewController {
             addData()
             return
         }
-        JournalManager.shared.uploadImage(userID: "Eleanor", image: journalImage!, completion: { result in
+        JournalManager.shared.uploadImage(image: journalImage!, completion: { result in
             switch result {
             case .success(let url):
                 self.journalImageURL = url
@@ -157,7 +162,7 @@ class WriteJournalViewController: UIViewController {
                           hasTracker: false,
                           isTimeCapsule: false,
                           id: "")
-        JournalManager.shared.publishJournalData(journal: &journalData!, userID: "Eleanor", completion: { result in
+        JournalManager.shared.publishJournalData(journal: &journalData!, completion: { result in
             switch result {
             case .success(let message):
                 print(message)
@@ -177,6 +182,47 @@ class WriteJournalViewController: UIViewController {
         } else {
             completeAllInfo = false
         }
+    }
+    
+    func layoutTags() {
+        guard (journalTags?.count ?? 0) > 0 else {
+            tagLabel.isHidden = true
+            tagSeparator.isHidden = true
+            return
+        }
+        tagLabel.isHidden = false
+        tagSeparator.isHidden = false
+        tagLabel.text = journalTags?[0]
+        tagLabel.clipsToBounds = true
+        tagLabel.backgroundColor = UIColor(hexString: "F7AE00")
+        guard (journalTags?.count ?? 0) > 1 else { return }
+        var xAnchor: CGFloat = 16
+        guard let journalTags = journalTags else { return }
+        var previousTag = tagLabel
+        for num in 0..<journalTags.count-1 {
+            let journalTagLabel = PaddingableUILabel()
+            journalTagLabel.translatesAutoresizingMaskIntoConstraints = false
+            journalTagLabel.backgroundColor = UIColor(hexString: "F7AE00")
+            journalTagLabel.textColor = .white
+            journalTagLabel.text = journalTags[num+1]
+            journalTagLabel.clipsToBounds = true
+            journalTagLabel.cornerRadius = 8
+            journalTagLabel.paddingLeft = 8
+            journalTagLabel.paddingRight = 8
+            journalTagLabel.paddingTop = 8
+            journalTagLabel.paddingBottom = 8
+            setJournalTagConstraints(previousTag: previousTag!, currentTag: journalTagLabel, xAnchor: &xAnchor)
+            previousTag = journalTagLabel
+        }
+    }
+    func setJournalTagConstraints(previousTag: PaddingableUILabel, currentTag: PaddingableUILabel, xAnchor: inout CGFloat) {
+        currentTag.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(currentTag)
+        NSLayoutConstraint.activate([
+            currentTag.leadingAnchor.constraint(equalTo: previousTag.trailingAnchor, constant: xAnchor),
+            currentTag.topAnchor.constraint(equalTo: tagSeparator.bottomAnchor, constant: 10),
+            currentTag.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+        ])
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? TagSelectionViewController {
