@@ -23,6 +23,10 @@ class TimeCapsuleViewController: UIViewController {
         selectedDate = datePicker.date
     }
     
+    @IBAction func continueButtonClicked(_ sender: Any) {
+        performSegue(withIdentifier: "ShowWriteTimeCapsuleSegue", sender: self)
+    }
+    
     @IBAction func forwardButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "ShowWriteTimeCapsuleSegue", sender: self)
     }

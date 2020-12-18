@@ -64,4 +64,27 @@ class LoadingView {
             })
         })
     }
+    
+    func startLoadingWithoutBackground(on viewController: UIViewController) {
+        guard let targetView = viewController.view else { return }
+        myTargetView = targetView
+        loadingView.frame = targetView.frame
+        loadingView.center = targetView.center
+        backgroundview.frame = targetView.bounds
+        
+        targetView.addSubview(loadingView)
+        
+        UIView.animate(withDuration: 0.15, animations: {
+            self.loadingView.alpha = 1
+        }, completion: nil)
+    }
+    
+    func dismissLoadingWithoutBackground() {
+        guard let targetView = myTargetView else { return }
+        UIView.animate(withDuration: 0.25, animations: {
+            UIView.animate(withDuration: 0.25, animations: {
+                self.loadingView.removeFromSuperview()
+            }, completion: nil)
+        })
+    }
 }

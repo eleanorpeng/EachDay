@@ -347,10 +347,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdf-4J-eiE">
-                                <rect key="frame" x="334" y="118" width="50" height="50"/>
+                                <rect key="frame" x="324" y="118" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="Km7-LJ-Y5V"/>
-                                    <constraint firstAttribute="height" constant="50" id="yKs-lx-gbX"/>
+                                    <constraint firstAttribute="width" constant="60" id="Km7-LJ-Y5V"/>
+                                    <constraint firstAttribute="height" constant="60" id="yKs-lx-gbX"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="user"/>
                                 <connections>
@@ -555,7 +555,7 @@
                                                             </constraints>
                                                         </view>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jwa-U4-GKt">
-                                                            <rect key="frame" x="129" y="45.5" width="225" height="103.5"/>
+                                                            <rect key="frame" x="129" y="45.5" width="225" height="93.5"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                             <color key="textColor" systemColor="labelColor"/>
@@ -631,7 +631,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="FJb-pO-xAB" firstAttribute="top" secondItem="jwa-U4-GKt" secondAttribute="bottom" constant="10" id="0b6-Mk-N6m"/>
+                                                        <constraint firstItem="FJb-pO-xAB" firstAttribute="top" secondItem="jwa-U4-GKt" secondAttribute="bottom" constant="20" id="0b6-Mk-N6m"/>
                                                         <constraint firstAttribute="bottom" secondItem="FJb-pO-xAB" secondAttribute="bottom" constant="8" id="1sB-Lj-lXB"/>
                                                         <constraint firstItem="cAA-Hk-ax0" firstAttribute="leading" secondItem="xkA-gP-AfR" secondAttribute="trailing" constant="20" id="AJT-ak-vt0"/>
                                                         <constraint firstItem="jwa-U4-GKt" firstAttribute="top" secondItem="cAA-Hk-ax0" secondAttribute="bottom" constant="6" id="CuD-4K-qu6"/>

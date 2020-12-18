@@ -33,6 +33,7 @@ class ProfileTableViewCell: UITableViewCell {
         userProfileImageView.clipsToBounds = true
         userProfileImageView.layer.cornerRadius = userProfileImageView.frame.width / 2
         if profileImage != nil {
+            userProfileImageView.kf.indicatorType = .activity
             userProfileImageView.kf.setImage(with: URL(string: profileImage!))
         } else {
             userProfileImageView.image = UIImage(named: "user")

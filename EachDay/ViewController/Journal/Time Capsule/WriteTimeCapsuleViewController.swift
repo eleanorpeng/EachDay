@@ -18,6 +18,7 @@ class WriteTimeCapsuleViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var uploadImageButton: UIButton!
+    @IBOutlet weak var dateLabel: UILabel!
     var config = YPImagePickerConfiguration()
     let imagePicker = YPImagePicker()
     var selectedDate: Date?
@@ -77,6 +78,9 @@ class WriteTimeCapsuleViewController: UIViewController {
         senderButton.isEnabled = false
         contentTextView.inputAccessoryView = toolBarView
         titleTextField.inputAccessoryView = toolBarView
+        if let date = selectedDate?.getFormattedDate(), let time = selectedDate?.getFormattedTime() {
+            dateLabel.text = "\(date) \(time)"
+        }
     }
     
     func imagePickerDonePicking() {

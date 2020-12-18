@@ -42,12 +42,6 @@
                                     <action selector="forwardButtonClicked:" destination="Ll9-AI-sSR" eventType="touchUpInside" id="OIt-zY-RId"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZe-dQ-fFk">
-                                <rect key="frame" x="263" y="799" width="78" height="21.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8K-gS-6xj" customClass="AnimationView" customModule="Lottie">
                                 <rect key="frame" x="20" y="94" width="374" height="230"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -58,12 +52,22 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="mail-send"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LB6-Hs-BF2">
+                                <rect key="frame" x="263" y="792.5" width="78" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <action selector="continueButtonClicked:" destination="Ll9-AI-sSR" eventType="touchUpInside" id="Skl-QT-K5l"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Odw-M9-vCX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Bzd-iN-fno" firstAttribute="leading" secondItem="Odw-M9-vCX" secondAttribute="leading" constant="20" id="2b6-d7-28B"/>
+                            <constraint firstItem="otZ-Xr-xib" firstAttribute="leading" secondItem="LB6-Hs-BF2" secondAttribute="trailing" constant="8" id="7ct-Wc-D9a"/>
                             <constraint firstItem="Bzd-iN-fno" firstAttribute="top" secondItem="czz-f7-7yz" secondAttribute="bottom" constant="16" id="C8Q-QI-qS2"/>
+                            <constraint firstItem="LB6-Hs-BF2" firstAttribute="centerY" secondItem="otZ-Xr-xib" secondAttribute="centerY" id="L4W-j6-NDa"/>
                             <constraint firstItem="Bzd-iN-fno" firstAttribute="centerY" secondItem="3ZS-h5-j7X" secondAttribute="centerY" id="Pim-fP-Vo0"/>
                             <constraint firstItem="czz-f7-7yz" firstAttribute="centerX" secondItem="3ZS-h5-j7X" secondAttribute="centerX" id="QBE-7f-EpP"/>
                             <constraint firstItem="Odw-M9-vCX" firstAttribute="bottom" secondItem="otZ-Xr-xib" secondAttribute="bottom" constant="40" id="Qt7-uk-RJ9"/>
@@ -73,8 +77,6 @@
                             <constraint firstItem="G8K-gS-6xj" firstAttribute="leading" secondItem="Odw-M9-vCX" secondAttribute="leading" constant="20" id="aEm-3u-phk"/>
                             <constraint firstItem="Bzd-iN-fno" firstAttribute="centerX" secondItem="3ZS-h5-j7X" secondAttribute="centerX" id="e0Z-JO-0cu"/>
                             <constraint firstItem="Odw-M9-vCX" firstAttribute="trailing" secondItem="Bzd-iN-fno" secondAttribute="trailing" constant="20" id="ekM-Oo-KYX"/>
-                            <constraint firstItem="dZe-dQ-fFk" firstAttribute="centerY" secondItem="otZ-Xr-xib" secondAttribute="centerY" id="ob9-Gq-2uE"/>
-                            <constraint firstItem="otZ-Xr-xib" firstAttribute="leading" secondItem="dZe-dQ-fFk" secondAttribute="trailing" constant="8" id="plv-Er-rpN"/>
                             <constraint firstItem="czz-f7-7yz" firstAttribute="leading" secondItem="Odw-M9-vCX" secondAttribute="leading" constant="20" id="r6o-hL-ezY"/>
                             <constraint firstItem="Odw-M9-vCX" firstAttribute="trailing" secondItem="G8K-gS-6xj" secondAttribute="trailing" constant="20" id="rbn-86-IhO"/>
                         </constraints>
@@ -139,6 +141,12 @@
                                     <action selector="sendButtonClicked:" destination="fe6-C1-wsa" eventType="touchUpInside" id="aML-kd-nHY"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mf-xE-QNp">
+                                <rect key="frame" x="183.5" y="35" width="47" height="25"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ib1-6H-vlG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -156,12 +164,16 @@
                             <constraint firstItem="xv5-jK-K80" firstAttribute="top" secondItem="jKZ-G5-rU1" secondAttribute="bottom" constant="20" id="awG-Mc-0QC"/>
                             <constraint firstItem="ib1-6H-vlG" firstAttribute="bottom" secondItem="4L6-09-a3G" secondAttribute="bottom" constant="40" id="t0V-Om-Mja"/>
                             <constraint firstItem="K3K-eE-Zfj" firstAttribute="centerY" secondItem="jKZ-G5-rU1" secondAttribute="centerY" id="tmI-0p-W6E"/>
+                            <constraint firstItem="8mf-xE-QNp" firstAttribute="top" secondItem="ib1-6H-vlG" secondAttribute="top" constant="35" id="u9r-uQ-oFK"/>
                             <constraint firstItem="K3K-eE-Zfj" firstAttribute="centerX" secondItem="jKZ-G5-rU1" secondAttribute="centerX" id="ubG-od-97S"/>
+                            <constraint firstItem="jKZ-G5-rU1" firstAttribute="top" secondItem="8mf-xE-QNp" secondAttribute="bottom" constant="35" id="weK-rC-BRK"/>
+                            <constraint firstItem="8mf-xE-QNp" firstAttribute="centerX" secondItem="7Af-Vt-14a" secondAttribute="centerX" id="xhn-4N-mny"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XnT-Gy-mbH"/>
                     <connections>
                         <outlet property="contentTextView" destination="4L6-09-a3G" id="ktE-Eh-qcO"/>
+                        <outlet property="dateLabel" destination="8mf-xE-QNp" id="tb2-Gg-fKG"/>
                         <outlet property="senderButton" destination="wEO-PB-vJ5" id="DiP-0D-G4x"/>
                         <outlet property="timeCapsuleLetterImageView" destination="jKZ-G5-rU1" id="DHG-xy-tMy"/>
                         <outlet property="titleTextField" destination="xv5-jK-K80" id="Uhv-JH-DEh"/>
@@ -214,7 +226,7 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="361" y="54"/>
+            <point key="canvasLocation" x="360.86956521739131" y="53.571428571428569"/>
         </scene>
     </scenes>
     <color key="tintColor" systemColor="labelColor"/>

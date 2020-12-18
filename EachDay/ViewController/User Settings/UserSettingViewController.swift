@@ -28,6 +28,7 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
         didSet {
             if profileImageURL != "" {
                 isDefaultProfileImage = false
+                self.tableView.reloadData()
             }
         }
     }
@@ -75,7 +76,6 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
             case .success(let user):
                 self.user = user[0]
                 self.userName = self.user?.name
-//                print(self.userName)
                 self.profileImageURL = self.user?.image ?? ""
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -101,10 +101,13 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
                 self.isDefaultProfileImage = false
             }
             imagePicker.dismiss(animated: true, completion: {
+//                self.loadingView.startLoadingWithoutBackground(on: self)
                 self.tableView.reloadData()
                 NotificationCenter.default.post(name: Notifications.receiveProfileImageNotification, object: self.profileImage)
+                
             })
         }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -135,6 +138,7 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
 }
 
 extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource, ProfileTableViewCellDelegate {
+    
     func handleEditImage() {
         imagePickerDonePicking()
         present(imagePicker, animated: true, completion: nil)
@@ -180,6 +184,7 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
             profileCell.layoutCell(profileImage: nil, name: userName ?? "Eleanor Peng")
         } else {
             profileCell.layoutCell(profileImage: profileImageURL, name: userName ?? "Eleanor Peng")
+            
         }
         
         return profileCell
@@ -244,7 +249,6 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
                 self.performSegue(withIdentifier: "ShowPasscodeSegue", sender: self)
             }))
         }
-        
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
