@@ -101,7 +101,6 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
     }
     
     func configureSetUpView() {
-        
         pinView.didFinishCallback = { [weak self] pin in
             print("The passcode is \(pin)")
             self?.checkPasscode(pin: pin)

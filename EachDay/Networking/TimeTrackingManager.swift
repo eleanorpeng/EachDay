@@ -13,10 +13,10 @@ class TimeTrackingManager {
     static let shared = TimeTrackingManager()
     var database = Firestore.firestore()
     var timeRecordID: String?
-    var userDocIDTest = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
+    var userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
     
     func uploadTimeRecord(record: inout TrackedTime, completion: @escaping(Result<String, Error>) -> Void) {
-        let document = database.collection("User").document(userDocIDTest ?? "").collection("TrackedTime").document()
+        let document = database.collection("User").document(userDocID ?? "").collection("TrackedTime").document()
         record.id = document.documentID
         timeRecordID = document.documentID
         do {
@@ -28,7 +28,7 @@ class TimeTrackingManager {
     }
     
     func fetchTimeRecord(completion: @escaping(Result<[TrackedTime], Error>) -> Void) {
-        database.collection("User").document(userDocIDTest ?? "").collection("TrackedTime").order(by: "startTime", descending: true).addSnapshotListener({ querySnapshot, error in
+        database.collection("User").document(userDocID ?? "").collection("TrackedTime").order(by: "startTime", descending: true).addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -42,7 +42,7 @@ class TimeTrackingManager {
     }
     
     func fetchFilteredTimeRecord(startDate: Timestamp, endDate: Timestamp, completion: @escaping(Result<[TrackedTime], Error>) -> Void) {
-        database.collection("User").document(userDocIDTest ?? "").collection("TrackedTime")
+        database.collection("User").document(userDocID ?? "").collection("TrackedTime")
             .whereField("date", isLessThanOrEqualTo: endDate)
             .whereField("date", isGreaterThanOrEqualTo: startDate)
             .order(by: "date", descending: true)
@@ -60,7 +60,7 @@ class TimeTrackingManager {
     }
     
     func updateFields(endTime: Timestamp, duration: Double) {
-        database.collection("User").document(userDocIDTest ?? "").collection("TrackedTime").document(timeRecordID ?? "").updateData([
+        database.collection("User").document(userDocID ?? "").collection("TrackedTime").document(timeRecordID ?? "").updateData([
             "endTime": endTime,
             "duration": duration
         ]) { err in
@@ -73,7 +73,7 @@ class TimeTrackingManager {
     }
     
     func updateTrackTimeCategories(categories: [String]) {
-        database.collection("User").document(userDocIDTest ?? "").updateData([
+        database.collection("User").document(userDocID ?? "").updateData([
             "trackTimeCategories": categories
         ]) { err in
             if let err = err {
@@ -85,7 +85,7 @@ class TimeTrackingManager {
     }
     
     func fetchTimeCategory(category: String, completion: @escaping(Result<[TrackedTime], Error>) -> Void) {
-        database.collection("User").document(userDocIDTest ?? "").collection("TrackedTime")
+        database.collection("User").document(userDocID ?? "").collection("TrackedTime")
             .whereField("taskName", isEqualTo: category)
             .addSnapshotListener({ querySnapshot, error in
                 if let error = error {

@@ -12,11 +12,11 @@ import FirebaseStorage
 
 class JournalManager {
     static let shared = JournalManager()
-    var userDocIDTest = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
+    var userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
     var database = Firestore.firestore()
     
     func fetchJournalData(selectedMonth: Int, completion: @escaping (Result<[Journal], Error>) -> Void) {
-        database.collection("User").document(userDocIDTest ?? "").collection("Journal").order(by: "date", descending: true).addSnapshotListener({ querySnapshot, error in
+        database.collection("User").document(userDocID ?? "").collection("Journal").order(by: "date", descending: true).addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -34,7 +34,7 @@ class JournalManager {
     }
     
     func fetchTimeCapsuleData(currentDate: Double, completion: @escaping (Result<[Journal], Error>) -> Void) {
-        database.collection("User").document(userDocIDTest ?? "").collection("Journal").whereField("date", isLessThan: currentDate).addSnapshotListener({ querySnapchot, error in
+        database.collection("User").document(userDocID ?? "").collection("Journal").whereField("date", isLessThan: currentDate).addSnapshotListener({ querySnapchot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -52,7 +52,7 @@ class JournalManager {
     }
     
     func fetchFilteredJournalData(selectedMonth: Int, selectedYear: Int, completion: @escaping (Result<[Journal], Error>) -> Void) {
-        database.collection("User").document(userDocIDTest ?? "").collection("Journal")
+        database.collection("User").document(userDocID ?? "").collection("Journal")
             .order(by: "date", descending: true).addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
@@ -72,7 +72,7 @@ class JournalManager {
     }
     
     func changeTimeCapsuleStatus(journalID: String) {
-        database.collection("User").document(userDocIDTest ?? "").collection("Journal").document(journalID).updateData([
+        database.collection("User").document(userDocID ?? "").collection("Journal").document(journalID).updateData([
             "isTimeCapsule": false
         ]) { err in
             if let err = err {
@@ -84,7 +84,7 @@ class JournalManager {
     }
     
     func publishJournalData(journal: inout Journal, completion: @escaping (Result<String, Error>) -> Void) {
-        let document = database.collection("User").document(userDocIDTest ?? "").collection("Journal").document()
+        let document = database.collection("User").document(userDocID ?? "").collection("Journal").document()
         journal.id = document.documentID
         do {
             try document.setData(from: journal)
@@ -99,7 +99,7 @@ class JournalManager {
     }
     
     func fetchUser(completion: @escaping (Result<[User], Error>) -> Void) {
-        database.collection("User").whereField("id", isEqualTo: userDocIDTest ?? "").addSnapshotListener({ querySnapshot, error in
+        database.collection("User").whereField("id", isEqualTo: userDocID ?? "").addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -113,7 +113,7 @@ class JournalManager {
     }
     
     func updateJournalTags(tags: [String]) {
-        let user = database.collection("User").document(userDocIDTest ?? "")
+        let user = database.collection("User").document(userDocID ?? "")
         user.updateData([
             "journalTags": tags
         ]) { err in
@@ -126,7 +126,7 @@ class JournalManager {
     }
     
     func updateJournal(journalID: String, title: String, content: String, tags: [String]) {
-        database.collection("User").document(userDocIDTest ?? "").collection("Journal").document(journalID).updateData([
+        database.collection("User").document(userDocID ?? "").collection("Journal").document(journalID).updateData([
             "title" : title,
             "content" : content,
             "tags": tags
@@ -140,7 +140,7 @@ class JournalManager {
     }
     
     func deleteJournal(journalID: String) {
-        database.collection("User").document(userDocIDTest ?? "").collection("Journal").document(journalID).delete() { err in
+        database.collection("User").document(userDocID ?? "").collection("Journal").document(journalID).delete() { err in
             if let err = err {
                 print("Error removing document: \(err)")
             } else {
@@ -151,7 +151,7 @@ class JournalManager {
     
     func uploadImage(image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
         let timeStamp = Date().timeIntervalSince1970
-        let storageRef = Storage.storage().reference().child("\(userDocIDTest ?? "")\(timeStamp).png")
+        let storageRef = Storage.storage().reference().child("\(userDocID ?? "")\(timeStamp).png")
         guard let imageData = image.pngData() else {
             print("Can't convert to png data.")
             return

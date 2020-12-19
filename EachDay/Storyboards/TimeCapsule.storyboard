@@ -229,6 +229,9 @@
             <point key="canvasLocation" x="360.86956521739131" y="53.571428571428569"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="G8K-gS-6xj"/>
+    </designables>
     <color key="tintColor" systemColor="labelColor"/>
     <resources>
         <image name="cloud-uploading" width="512" height="512"/>

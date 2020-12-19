@@ -16,7 +16,7 @@ class SignInViewController: UIViewController {
     @IBAction func signInButtonClicked(_ sender: Any) {
         configureSignInStatus(status: true)
         uploadUserData()
-        performSegue(withIdentifier: "ShowMainFromSignIn", sender: self)
+        
     }
     let keychain = Keychain()
     var calendarColors: [String]?
@@ -52,19 +52,19 @@ class SignInViewController: UIViewController {
     }
     
     func uploadUserData() {
-        //Get name from Apple ID
-        let user = User(name: "Eleanor",
+        //Get name from Apple ID, will change user info based on Apple ID info
+        var user = User(name: "Eleanor",
                         id: "IAMACTUALLYFAKE",
                         email: "eleanorpeng31@gmail.com",
                         passcode: "",
                         journalTags: ["Time Capsule", "Reflection"],
                         trackTimeCategories: ["Eat", "Sleep", "Music", "Commute", "TV", "Read", "Workout", "Work"],
                         image: "", colors: calendarColors!)
-        UserDefaults.standard.setValue(user.id, forKey: EPUserDefaults.userId.rawValue)
-        UserManager.shared.uploadUserData(user: user, completion: { result in
+        UserManager.shared.uploadUserData(user: &user, completion: { result in
             switch result {
             case .success(let message):
                 print(message)
+                self.performSegue(withIdentifier: "ShowMainFromSignIn", sender: self)
             case .failure(let error):
                 print(error)
             }

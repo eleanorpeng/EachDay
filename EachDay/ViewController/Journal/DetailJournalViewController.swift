@@ -39,9 +39,41 @@ class DetailJournalViewController: UIViewController {
         fetchData(userDocID: "Eleanor")
 //        createSearchBar()
         fetchUser(userDocID: "Eleanor")
-  
+        setUpNavigationBar()
     }
     
+    func setUpNavigationBar() {
+        var monthTitle = ""
+        switch selectedMonth {
+        case 1:
+            monthTitle = "January"
+        case 2:
+            monthTitle = "February"
+        case 3:
+            monthTitle = "March"
+        case 4:
+            monthTitle = "April"
+        case 5:
+            monthTitle = "May"
+        case 6:
+            monthTitle = "June"
+        case 7:
+            monthTitle = "July"
+        case 8:
+            monthTitle = "August"
+        case 9:
+            monthTitle = "September"
+        case 10:
+            monthTitle = "October"
+        case 11:
+            monthTitle = "November"
+        case 12:
+            monthTitle = "December"
+        default:
+            break
+        }
+        self.navigationItem.title = monthTitle
+    }
     func createBarButtonItem() {
         let filterButton = UIButton(type: .custom)
         filterButton.frame = CGRect(x: 0, y: 0, width: 15, height: 15)

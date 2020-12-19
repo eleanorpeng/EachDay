@@ -13,10 +13,13 @@ import FirebaseStorage
 class UserManager {
     static let shared = UserManager()
     let database = Firestore.firestore()
-    var userDocIDTest = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
-    
-    func uploadUserData(user: User, completion: @escaping (Result<String, Error>) -> Void) {
-        let document = database.collection("User").document(user.id)
+//    var userDocIDTest = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
+    var userDocID: String?
+    func uploadUserData(user: inout User, completion: @escaping (Result<String, Error>) -> Void) {
+        let document = database.collection("User").document()
+        user.id = document.documentID
+        UserDefaults.standard.setValue(user.id, forKey: EPUserDefaults.userId.rawValue)
+        userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
         do {
             try document.setData(from: user)
             completion(.success("Successfully updated user data!"))
@@ -26,7 +29,7 @@ class UserManager {
     }
     
     func updatePasscode(passcode: String) {
-        database.collection("User").document(userDocIDTest ?? "").updateData([
+        database.collection("User").document(userDocID ?? "").updateData([
             "passcode" : passcode
         ]) { err in
             if let err = err {
@@ -38,7 +41,7 @@ class UserManager {
     }
     
     func fetchUser(completion: @escaping (Result<[User], Error>) -> Void) {
-        database.collection("User").whereField("id", isEqualTo: userDocIDTest ?? "").addSnapshotListener({ querySnapshot, error in
+        database.collection("User").whereField("id", isEqualTo: userDocID ?? "").addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -52,7 +55,7 @@ class UserManager {
     }
     
     func updateUserName(name: String) {
-        database.collection("User").document(userDocIDTest ?? "").updateData([
+        database.collection("User").document(userDocID ?? "").updateData([
             "name": name
         ]) { err in
             if let err = err {
@@ -64,7 +67,7 @@ class UserManager {
     }
     
     func updateImage(image: String) {
-        database.collection("User").document(userDocIDTest ?? "").updateData([
+        database.collection("User").document(userDocID ?? "").updateData([
             "image": image
         ]) { err in
             if let err = err {
@@ -77,7 +80,7 @@ class UserManager {
     
     func uploadImage(image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
         let timeStamp = Date().timeIntervalSince1970
-        let storageRef = Storage.storage().reference().child("\(userDocIDTest ?? "")profileImage.png")
+        let storageRef = Storage.storage().reference().child("\(userDocID ?? "")profileImage.png")
         guard let imageData = image.pngData() else {
             print("Can't convert to png data.")
             return
@@ -101,7 +104,7 @@ class UserManager {
     }
     
     func updateCalendarColor(color: [String], completion: @escaping (Result<String, Error>) -> Void) {
-        database.collection("User").document(userDocIDTest ?? "").updateData([
+        database.collection("User").document(userDocID ?? "").updateData([
             "calendarColors" : color
         ]) { err in
             if let err = err {
