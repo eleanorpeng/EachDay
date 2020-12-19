@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             storyboard = UIStoryboard(name: "SignIn", bundle: nil)
         }
         window?.rootViewController = storyboard.instantiateInitialViewController()
-//        window?.makeKeyAndVisible()
+        window?.makeKeyAndVisible()
 //        let window = UIWindow(windowScene: windowScene)
 //        window.rootViewController = PasscodeViewController()
 //        self.window = window
@@ -53,6 +53,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+//        let storyboard = UIStoryboard(name: "Passcode", bundle: nil)
+        var storyboard: UIStoryboard
+        if UserDefaults.standard.bool(forKey: EPUserDefaults.hasSignedIn.rawValue) {
+            storyboard = UIStoryboard(name: "Passcode", bundle: nil)
+        } else {
+            storyboard = UIStoryboard(name: "SignIn", bundle: nil)
+        }
+        window?.rootViewController = storyboard.instantiateInitialViewController()
+        window?.makeKeyAndVisible()
+        
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {

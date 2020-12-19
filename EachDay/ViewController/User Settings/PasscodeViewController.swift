@@ -28,7 +28,7 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        UserDefaults.standard.setValue(false, forKey: EPUserDefaults.hasSignedIn.rawValue)
 //        let touchBool = biometricAuth.canEvaluatePolicy()
 //        if touchBool {
 //            self.configureBiometrics()
@@ -42,9 +42,8 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
 //        } else {
 //            configurePinView()
 //        }
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+        pinView.keyboardType = .phonePad
+        pinView.becomeFirstResponderAtIndex = 0
         if isInitial && keychain["passcode"] != nil {
             configureIntialView()
         } else if isInitial && keychain["passcode"] == nil {
