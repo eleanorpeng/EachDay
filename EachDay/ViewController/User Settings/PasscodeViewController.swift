@@ -42,8 +42,21 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
 //        } else {
 //            configurePinView()
 //        }
-        pinView.keyboardType = .phonePad
-        pinView.becomeFirstResponderAtIndex = 0
+        
+//        pinView.keyboardType = .phonePad
+//        pinView.becomeFirstResponderAtIndex = 0
+//        if isInitial && keychain["passcode"] != nil {
+//            configureIntialView()
+//        } else if isInitial && keychain["passcode"] == nil {
+//            performSegue(withIdentifier: "ShowMainSegue", sender: self)
+//        } else {
+//            configurePinView()
+//        }
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        print(keychain["passcode"])
         if isInitial && keychain["passcode"] != nil {
             configureIntialView()
         } else if isInitial && keychain["passcode"] == nil {
@@ -52,7 +65,7 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
             configurePinView()
         }
     }
-
+    
     //Initial View
     func getBiometricsAuthState(enable: Bool) {
         enableBiometricsAuth = enable

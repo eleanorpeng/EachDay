@@ -10,6 +10,7 @@ import Charts
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Kingfisher
+import Lottie
 
 class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
     
@@ -25,6 +26,7 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
         performSegue(withIdentifier: "ShowWriteReflectionSegue", sender: self)
     }
     let helper = Helper()
+    @IBOutlet weak var animationView: AnimationView!
     var selectedSegmentIndex = 0
     var timeRecords: [String:TimeInterval]?
     var trackedTime: [TrackedTime]?
@@ -56,14 +58,27 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
         setUpData()
         writeReflectionButton.layer.cornerRadius = 10
         writeReflectionButton.clipsToBounds = true
+        
     }
     
     func setUpData() {
         switchSegmentIndex()
         fetchFilteredData(startDate: startDateTS, endDate: endDateTS)
-        
         pieChartView.entryLabelFont = .systemFont(ofSize: 12, weight: .light)
         pieChartView.entryLabelColor = .black
+        if let trackedTime = trackedTime {
+            if trackedTime.isEmpty {
+                pieChartView.isHidden = true
+                animationView.isHidden = false
+                animationView.loopMode = .loop
+                animationView.animationSpeed = 1
+                animationView.contentMode = .scaleAspectFit
+                animationView.play()
+            } else {
+                pieChartView.isHidden = false
+                animationView.isHidden = true
+            }
+        }
     }
     
     func calculatePieChartValue() {

@@ -808,7 +808,7 @@
                                 </cells>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7IN-UI-Mtf">
-                                <rect key="frame" x="0.0" y="424.5" width="414" height="328.5"/>
+                                <rect key="frame" x="0.0" y="424.5" width="414" height="336.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeTrackingMainTableViewCell" rowHeight="98" id="i3O-fk-BV7" customClass="TimeTrackingMainTableViewCell" customModule="EachDay" customModuleProvider="target">
@@ -1017,9 +1017,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sac-MD-chj">
-                                <rect key="frame" x="41.5" y="768" width="331" height="30"/>
+                                <rect key="frame" x="20" y="771" width="374" height="32"/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.68235294120000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <state key="normal" title="Create New Task">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1036,21 +1036,21 @@
                             <constraint firstItem="YXk-0r-ILH" firstAttribute="leading" secondItem="3A6-Hb-lvu" secondAttribute="leading" id="8Nr-HY-wad"/>
                             <constraint firstItem="3A6-Hb-lvu" firstAttribute="trailing" secondItem="YXk-0r-ILH" secondAttribute="trailing" id="AYm-88-grp"/>
                             <constraint firstItem="7IN-UI-Mtf" firstAttribute="top" secondItem="b9N-Y9-ste" secondAttribute="bottom" constant="10" id="ApI-xS-Tn0"/>
+                            <constraint firstItem="3A6-Hb-lvu" firstAttribute="trailing" secondItem="Sac-MD-chj" secondAttribute="trailing" constant="20" id="CeG-tK-WU9"/>
                             <constraint firstItem="3A6-Hb-lvu" firstAttribute="trailing" secondItem="byt-co-eZB" secondAttribute="trailing" constant="20" id="DGD-yM-yt4"/>
                             <constraint firstItem="88q-O5-PkM" firstAttribute="top" secondItem="3A6-Hb-lvu" secondAttribute="top" constant="30" id="DH3-4O-ajf"/>
                             <constraint firstItem="3A6-Hb-lvu" firstAttribute="trailing" secondItem="7IN-UI-Mtf" secondAttribute="trailing" id="DJE-tH-hbc"/>
                             <constraint firstItem="7IN-UI-Mtf" firstAttribute="leading" secondItem="3A6-Hb-lvu" secondAttribute="leading" id="G8z-1R-7PR"/>
                             <constraint firstItem="88q-O5-PkM" firstAttribute="leading" secondItem="3A6-Hb-lvu" secondAttribute="leading" constant="20" id="HB7-07-fAJ"/>
-                            <constraint firstItem="3A6-Hb-lvu" firstAttribute="bottom" secondItem="Sac-MD-chj" secondAttribute="bottom" constant="15" id="IO2-x3-lCO"/>
+                            <constraint firstItem="3A6-Hb-lvu" firstAttribute="bottom" secondItem="Sac-MD-chj" secondAttribute="bottom" constant="10" id="IO2-x3-lCO"/>
                             <constraint firstItem="b9N-Y9-ste" firstAttribute="top" secondItem="YXk-0r-ILH" secondAttribute="bottom" constant="20" id="KSf-uT-uJU"/>
                             <constraint firstItem="3A6-Hb-lvu" firstAttribute="trailing" secondItem="w6Q-66-Qmf" secondAttribute="trailing" constant="16" id="PGx-H7-3UH"/>
                             <constraint firstItem="Sac-MD-chj" firstAttribute="centerX" secondItem="OUm-mH-LNs" secondAttribute="centerX" id="W7l-mC-72p"/>
                             <constraint firstItem="byt-co-eZB" firstAttribute="centerY" secondItem="88q-O5-PkM" secondAttribute="centerY" id="gWD-Bf-2JH"/>
-                            <constraint firstItem="Sac-MD-chj" firstAttribute="width" secondItem="OUm-mH-LNs" secondAttribute="width" multiplier="0.8" id="p6D-oA-Xgg"/>
+                            <constraint firstItem="Sac-MD-chj" firstAttribute="top" secondItem="7IN-UI-Mtf" secondAttribute="bottom" constant="10" id="lrt-aA-UbX"/>
                             <constraint firstItem="byt-co-eZB" firstAttribute="leading" secondItem="88q-O5-PkM" secondAttribute="trailing" constant="10" id="qpp-yk-dBR"/>
+                            <constraint firstItem="Sac-MD-chj" firstAttribute="leading" secondItem="3A6-Hb-lvu" secondAttribute="leading" constant="20" id="rFy-uh-0d2"/>
                             <constraint firstItem="b9N-Y9-ste" firstAttribute="leading" secondItem="3A6-Hb-lvu" secondAttribute="leading" constant="16" id="rrH-tY-veb"/>
-                            <constraint firstItem="Sac-MD-chj" firstAttribute="top" secondItem="7IN-UI-Mtf" secondAttribute="bottom" constant="15" id="vef-1W-h8e"/>
-                            <constraint firstItem="3A6-Hb-lvu" firstAttribute="bottom" secondItem="7IN-UI-Mtf" secondAttribute="bottom" constant="60" id="wgd-7a-C7t"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1K5-kO-PWC"/>

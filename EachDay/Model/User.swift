@@ -35,8 +35,6 @@ struct User: Identifiable, Codable {
     
     enum CodingKeys: String, CodingKey {
         case name, id, email, passcode, journalTags, trackTimeCategories, image,  calendarColors
-//        case journal = "Journal"
-//        case trackedTime = "TrackedTime"
     }
 }
 

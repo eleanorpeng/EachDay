@@ -12,13 +12,16 @@ import FirebaseFirestoreSwift
 class TimeTrackingManager {
     static let shared = TimeTrackingManager()
     var database = Firestore.firestore()
-    var timeRecordID: String?
-    var userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
+//    var timeRecordID: String?
+    var timeRecordID = UserDefaults.standard.string(forKey: "TimeRecordID")
+//    var userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
+    var userDocID = "IAMACTUALLYFAKE"
     
     func uploadTimeRecord(record: inout TrackedTime, completion: @escaping(Result<String, Error>) -> Void) {
         let document = database.collection("User").document(userDocID ?? "").collection("TrackedTime").document()
         record.id = document.documentID
         timeRecordID = document.documentID
+        UserDefaults.standard.setValue(document.documentID, forKey: "TimeRecordID")
         do {
             try document.setData(from: record)
             completion(.success("Successfully uploaded time tracking data!"))
@@ -59,15 +62,17 @@ class TimeTrackingManager {
         })
     }
     
-    func updateFields(endTime: Timestamp, duration: Double) {
+    func updateFields(endTime: Timestamp, duration: Double, completion: @escaping(Result<String, Error>) -> Void) {
         database.collection("User").document(userDocID ?? "").collection("TrackedTime").document(timeRecordID ?? "").updateData([
             "endTime": endTime,
             "duration": duration
         ]) { err in
             if let err = err {
                 print("Error in updating time record date.")
+                completion(.failure(err))
             } else {
-                print("Time record data updated successfully!")
+                let message = "Time record data updated successfully!"
+                completion(.success(message))
             }
         }
     }

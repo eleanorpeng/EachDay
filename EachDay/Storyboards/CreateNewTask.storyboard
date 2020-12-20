@@ -33,7 +33,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qnf-fV-0Oz">
-                                <rect key="frame" x="40" y="746" width="334" height="36"/>
+                                <rect key="frame" x="40" y="796" width="334" height="36"/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.68235294117647061" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="Start">
@@ -44,7 +44,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add task details" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lgf-fR-ljZ">
-                                <rect key="frame" x="16" y="167" width="382" height="329"/>
+                                <rect key="frame" x="16" y="167" width="382" height="379"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -66,7 +66,7 @@
                             <constraint firstItem="Lgf-fR-ljZ" firstAttribute="leading" secondItem="Oz6-kj-Xnr" secondAttribute="leading" constant="16" id="Rco-OC-V1w"/>
                             <constraint firstItem="OEA-3A-Ktw" firstAttribute="centerY" secondItem="13l-Kq-nuW" secondAttribute="centerY" id="c3F-2S-4JA"/>
                             <constraint firstItem="elh-wj-OmL" firstAttribute="top" secondItem="Oz6-kj-Xnr" secondAttribute="top" constant="25" id="gQR-wo-Pye"/>
-                            <constraint firstItem="Oz6-kj-Xnr" firstAttribute="bottom" secondItem="Qnf-fV-0Oz" secondAttribute="bottom" constant="80" id="h0c-5P-AsL"/>
+                            <constraint firstItem="Oz6-kj-Xnr" firstAttribute="bottom" secondItem="Qnf-fV-0Oz" secondAttribute="bottom" constant="30" id="h0c-5P-AsL"/>
                             <constraint firstItem="Lgf-fR-ljZ" firstAttribute="top" secondItem="OEA-3A-Ktw" secondAttribute="bottom" constant="20" id="kIS-gO-Wj1"/>
                             <constraint firstItem="Oz6-kj-Xnr" firstAttribute="trailing" secondItem="Lgf-fR-ljZ" secondAttribute="trailing" constant="16" id="qut-nc-ZfE"/>
                             <constraint firstItem="Oz6-kj-Xnr" firstAttribute="trailing" secondItem="Qnf-fV-0Oz" secondAttribute="trailing" constant="40" id="t80-W6-fqa"/>
@@ -114,14 +114,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeTrackingTagTableViewCell" id="Tcc-hH-6B6" customClass="TimeTrackingTagTableViewCell" customModule="EachDay" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="37"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="37.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tcc-hH-6B6" id="kvw-oX-0sx">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="37"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="37.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ag-wG-xBg">
-                                                    <rect key="frame" x="16" y="8" width="42" height="21"/>
+                                                    <rect key="frame" x="16" y="8" width="42" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -138,7 +138,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddNewTagTableViewCell" rowHeight="46" id="baz-P1-FmU" customClass="AddNewTagTableViewCell" customModule="EachDay" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="65" width="414" height="46"/>
+                                        <rect key="frame" x="0.0" y="65.5" width="414" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="baz-P1-FmU" id="1Bb-CK-fbC">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>

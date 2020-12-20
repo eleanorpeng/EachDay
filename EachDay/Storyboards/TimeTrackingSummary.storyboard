@@ -16,6 +16,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view hidden="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="ntN-vz-4wq" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="10" y="194" width="394" height="300"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="empty"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emW-mj-5FL" customClass="PieChartView" customModule="Charts">
                                 <rect key="frame" x="10" y="194" width="394" height="300"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -41,7 +48,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3bg-i9-cPO">
-                                <rect key="frame" x="0.0" y="504" width="414" height="308"/>
+                                <rect key="frame" x="0.0" y="504" width="414" height="306"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeTrackingSummaryTableViewCell" rowHeight="63" id="uBi-qr-7MI" customClass="TimeTrackingSummaryTableViewCell" customModule="EachDay" customModuleProvider="target">
@@ -81,12 +88,9 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UR4-6h-CKe">
-                                <rect key="frame" x="132" y="822" width="150" height="30"/>
+                                <rect key="frame" x="20" y="820" width="374" height="32"/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.68235294120000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="akd-ze-of5"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <state key="normal" title="Write Reflection">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -102,21 +106,30 @@
                             <constraint firstItem="emW-mj-5FL" firstAttribute="leading" secondItem="Kmd-ns-nzM" secondAttribute="leading" constant="10" id="2N7-ea-f6R"/>
                             <constraint firstItem="A36-JN-kMd" firstAttribute="top" secondItem="Kmd-ns-nzM" secondAttribute="top" constant="30" id="3pZ-sf-PDm"/>
                             <constraint firstItem="7Cg-9K-VMX" firstAttribute="leading" secondItem="Kmd-ns-nzM" secondAttribute="leading" constant="20" id="4VA-6L-GNo"/>
+                            <constraint firstItem="ntN-vz-4wq" firstAttribute="trailing" secondItem="emW-mj-5FL" secondAttribute="trailing" id="D1m-Dq-C12"/>
+                            <constraint firstItem="UR4-6h-CKe" firstAttribute="leading" secondItem="Kmd-ns-nzM" secondAttribute="leading" constant="20" id="EaU-93-phS"/>
                             <constraint firstItem="UR4-6h-CKe" firstAttribute="centerX" secondItem="VK1-ta-qbD" secondAttribute="centerX" id="Fwn-FX-9LJ"/>
                             <constraint firstItem="A36-JN-kMd" firstAttribute="centerX" secondItem="VK1-ta-qbD" secondAttribute="centerX" id="Nyp-BZ-nLW"/>
                             <constraint firstItem="7Cg-9K-VMX" firstAttribute="top" secondItem="A36-JN-kMd" secondAttribute="bottom" constant="25" id="RwC-Ll-DzU"/>
                             <constraint firstItem="Kmd-ns-nzM" firstAttribute="trailing" secondItem="7Cg-9K-VMX" secondAttribute="trailing" constant="20" id="TdJ-qt-Tn5"/>
+                            <constraint firstItem="ntN-vz-4wq" firstAttribute="bottom" secondItem="emW-mj-5FL" secondAttribute="bottom" id="eWt-jE-wHf"/>
+                            <constraint firstItem="ntN-vz-4wq" firstAttribute="height" secondItem="emW-mj-5FL" secondAttribute="height" id="gPi-QJ-9mT"/>
                             <constraint firstItem="emW-mj-5FL" firstAttribute="top" secondItem="7Cg-9K-VMX" secondAttribute="bottom" constant="40" id="gZz-o2-BjZ"/>
                             <constraint firstItem="3bg-i9-cPO" firstAttribute="trailing" secondItem="Kmd-ns-nzM" secondAttribute="trailing" id="i12-6X-vPv"/>
+                            <constraint firstItem="ntN-vz-4wq" firstAttribute="top" secondItem="emW-mj-5FL" secondAttribute="top" id="lLJ-b6-9n4"/>
                             <constraint firstItem="3bg-i9-cPO" firstAttribute="leading" secondItem="Kmd-ns-nzM" secondAttribute="leading" id="m0k-Hz-Ui8"/>
                             <constraint firstItem="Kmd-ns-nzM" firstAttribute="trailing" secondItem="emW-mj-5FL" secondAttribute="trailing" constant="10" id="nda-kN-6XK"/>
                             <constraint firstItem="UR4-6h-CKe" firstAttribute="top" secondItem="3bg-i9-cPO" secondAttribute="bottom" constant="10" id="oMi-Od-8nI"/>
+                            <constraint firstItem="ntN-vz-4wq" firstAttribute="leading" secondItem="emW-mj-5FL" secondAttribute="leading" id="qTs-df-iei"/>
                             <constraint firstItem="3bg-i9-cPO" firstAttribute="top" secondItem="emW-mj-5FL" secondAttribute="bottom" constant="10" id="s29-3r-ZST"/>
                             <constraint firstItem="7Cg-9K-VMX" firstAttribute="centerX" secondItem="VK1-ta-qbD" secondAttribute="centerX" id="sE5-AN-Td8"/>
+                            <constraint firstItem="Kmd-ns-nzM" firstAttribute="trailing" secondItem="UR4-6h-CKe" secondAttribute="trailing" constant="20" id="w6K-m7-zz9"/>
+                            <constraint firstItem="ntN-vz-4wq" firstAttribute="width" secondItem="emW-mj-5FL" secondAttribute="width" id="yXJ-MF-U5g"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CeL-tY-dbz"/>
                     <connections>
+                        <outlet property="animationView" destination="ntN-vz-4wq" id="L8V-4a-dpp"/>
                         <outlet property="pieChartView" destination="emW-mj-5FL" id="W9b-KP-6L5"/>
                         <outlet property="segmentedControl" destination="7Cg-9K-VMX" id="nfh-RH-OLF"/>
                         <outlet property="tableView" destination="3bg-i9-cPO" id="2h7-ao-hFc"/>
@@ -139,6 +152,9 @@
             <point key="canvasLocation" x="1539" y="379"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="ntN-vz-4wq"/>
+    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

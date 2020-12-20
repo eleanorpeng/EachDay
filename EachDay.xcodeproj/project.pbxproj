@@ -42,6 +42,7 @@
 		2031429D2570E655006410A8 /* TimeTrackingMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031429C2570E655006410A8 /* TimeTrackingMainCollectionViewCell.swift */; };
 		203142A02570E668006410A8 /* TimeTrackingMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031429F2570E668006410A8 /* TimeTrackingMainTableViewCell.swift */; };
 		203142CF25710367006410A8 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203142CE25710367006410A8 /* PaddingLabel.swift */; };
+		203A94E3258F07FB002B7936 /* loading-dots.json in Resources */ = {isa = PBXBuildFile; fileRef = 203A94E2258F07FB002B7936 /* loading-dots.json */; };
 		205101682580A69100E7D985 /* Passcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205101672580A69100E7D985 /* Passcode.storyboard */; };
 		2051016F2580CC6300E7D985 /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2051016E2580CC6300E7D985 /* PasscodeViewController.swift */; };
 		205101972581164800E7D985 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205101962581164700E7D985 /* UserManager.swift */; };
@@ -135,6 +136,7 @@
 		2031429C2570E655006410A8 /* TimeTrackingMainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackingMainCollectionViewCell.swift; sourceTree = "<group>"; };
 		2031429F2570E668006410A8 /* TimeTrackingMainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackingMainTableViewCell.swift; sourceTree = "<group>"; };
 		203142CE25710367006410A8 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		203A94E2258F07FB002B7936 /* loading-dots.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-dots.json"; sourceTree = "<group>"; };
 		205101672580A69100E7D985 /* Passcode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Passcode.storyboard; sourceTree = "<group>"; };
 		2051016E2580CC6300E7D985 /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		205101962581164700E7D985 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				20AA1AEB2588F0E40074B683 /* empty.json */,
 				20AA1AF82589AE720074B683 /* loading.json */,
 				20AA1AFB2589DE580074B683 /* welcome.json */,
+				203A94E2258F07FB002B7936 /* loading-dots.json */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				2053B85E257F2296005DFA24 /* UserSetting.storyboard in Resources */,
 				20733BC625725DEB004B4A3B /* CreateNewTask.storyboard in Resources */,
 				201953CE2585B85A004BF656 /* mailbox.json in Resources */,
+				203A94E3258F07FB002B7936 /* loading-dots.json in Resources */,
 				2023E65F258475C1001C43E8 /* FilterJournalView.storyboard in Resources */,
 				2098B159256F8DDF00AAC1CB /* WriteJournal.storyboard in Resources */,
 				20AA1AFC2589DE580074B683 /* welcome.json in Resources */,

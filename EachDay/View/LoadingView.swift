@@ -29,6 +29,18 @@ class LoadingView {
         return loading
     }()
     
+    private let loadingDotsView: AnimationView = {
+        var loading = AnimationView()
+        loading = .init(name: "loading-dots")
+        loading.alpha = 0
+        loading.backgroundColor = .clear
+        loading.contentMode = .scaleAspectFit
+        loading.loopMode = .loop
+        loading.animationSpeed = 1.5
+        loading.play()
+        return loading
+    }()
+    
     private var myTargetView: UIView?
     
     func startLoading(on viewController: UIViewController) {
@@ -51,6 +63,25 @@ class LoadingView {
 //        UIView.animate(withDuration: 0.15, animations: {
 //            self.loadingView.alpha = 1
 //        }, completion: nil)
+    }
+    
+    func startLoadingWithDots(on viewController: UIViewController) {
+        guard let targetView = viewController.view else { return }
+        myTargetView = targetView
+        loadingDotsView.frame = targetView.frame
+        loadingDotsView.center = targetView.center
+        backgroundview.frame = targetView.bounds
+        
+        targetView.addSubview(backgroundview)
+        targetView.addSubview(loadingDotsView)
+        
+        UIView.animate(withDuration: 0.15, animations: {
+            self.backgroundview.alpha = 0.6
+        }, completion: { done in
+            UIView.animate(withDuration: 0.15, animations: {
+                self.loadingDotsView.alpha = 1
+            })
+        })
     }
     
     func dismissLoading() {
@@ -85,6 +116,18 @@ class LoadingView {
             UIView.animate(withDuration: 0.25, animations: {
                 self.loadingView.removeFromSuperview()
             }, completion: nil)
+        })
+    }
+    
+    func dismissLoadingDots() {
+        guard let targetView = myTargetView else { return }
+        UIView.animate(withDuration: 0.25, animations: {
+            UIView.animate(withDuration: 0.25, animations: {
+                self.backgroundview.alpha = 0
+            }, completion: { done in
+                self.loadingDotsView.removeFromSuperview()
+                self.backgroundview.removeFromSuperview()
+            })
         })
     }
 }
