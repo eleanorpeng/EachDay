@@ -34,7 +34,7 @@ class JournalManager {
         })
     }
     
-    func fetchTimeCapsuleData(currentDate: Double, completion: @escaping (Result<[Journal], Error>) -> Void) {
+    func fetchTimeCapsuleData(currentDate: Date, completion: @escaping (Result<[Journal], Error>) -> Void) {
         database.collection("User").document(userDocID ?? "").collection("Journal").whereField("date", isLessThan: currentDate).addSnapshotListener({ querySnapchot, error in
             if let error = error {
                 completion(.failure(error))
@@ -126,7 +126,7 @@ class JournalManager {
         }
     }
     
-    func updateJournal(journalID: String, title: String, content: String, tags: [String]) {
+    func updateJournal(journalID: String, title: String, content: String, tags: [String], completion: @escaping (Result<String, Error>) -> Void) {
         database.collection("User").document(userDocID ?? "").collection("Journal").document(journalID).updateData([
             "title" : title,
             "content" : content,
@@ -134,8 +134,10 @@ class JournalManager {
         ]) { err in
             if let err = err {
                 print("Error in updating journal data")
+                completion(.failure(err))
             } else {
-                print("Journal data updated successfully!")
+                let message = "Journal data updated successfully!"
+                completion(.success(message))
             }
         }
     }

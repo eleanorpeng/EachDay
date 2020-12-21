@@ -185,7 +185,21 @@ class WriteJournalViewController: UIViewController {
     }
     
     func layoutTags() {
+        if !(journalTags?.isEmpty ?? false) {
+            view.subviews.forEach({
+                if $0 is PaddingableUILabel {
+                    $0.isHidden = true
+                    tagLabel.isHidden = false
+                }
+            })
+        }
         guard (journalTags?.count ?? 0) > 0 else {
+            view.subviews.forEach({
+                if $0 is PaddingableUILabel {
+                    $0.isHidden = true
+                    tagLabel.isHidden = false
+                }
+            })
             tagLabel.isHidden = true
             tagSeparator.isHidden = true
             return

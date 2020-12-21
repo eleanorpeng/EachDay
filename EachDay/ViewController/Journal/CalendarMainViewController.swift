@@ -42,7 +42,6 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData()
         fetchUser()
         initialSetUp()
 //        if let colors = UserDefaults.standard.array(forKey: "calendarColors") as? [UIColor] {
@@ -51,12 +50,13 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController?.navigationBar.clipsToBounds = true
-        
+        fetchTimeCapsuleData()
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveProfileImage(_:)), name: Notifications.receiveProfileImageNotification, object: nil)
     }
     
@@ -73,8 +73,8 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
 //        customAlert.dismissAlert()
     }
     
-    func fetchData() {
-        JournalManager.shared.fetchTimeCapsuleData(currentDate: Date().timeIntervalSince1970, completion: { result in
+    func fetchTimeCapsuleData() {
+        JournalManager.shared.fetchTimeCapsuleData(currentDate: Date(), completion: { result in
             switch result {
             case .success(let timeCapsule):
                 self.timeCapsule = timeCapsule

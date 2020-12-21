@@ -82,11 +82,13 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let tags = journalVM?.tags else { return }
         if let destination = segue.destination as? TagSelectionViewController {
+            destination.navigationController?.setNavigationBarHidden(true, animated: true)
             destination.fromDetail = true
             destination.selectedTags = modifiedTags ?? tags
             destination.delegate = self
@@ -138,7 +140,17 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
             JournalManager.shared.updateJournal(journalID: journalVM?.id ?? id,
                                                 title: modifiedTitle ?? title,
                                                 content: modifiedContent ?? content,
-                                                tags: modifiedTags ?? tags)
+                                                tags: modifiedTags ?? tags, completion: { result in
+                                                    switch result {
+                                                    case .success(let message):
+                                                        
+                                                        self.layoutTags(tags: (self.modifiedTags ?? self.journalVM?.tags) ?? [""])
+                                                        print(self.modifiedTags)
+                                                        print(message)
+                                                    case .failure(let error):
+                                                        print(error)
+                                                    }
+                                                })
         }
     }
     
@@ -153,7 +165,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         contentTextView.delegate = self
         titleTextView.delegate = self
         displayImage()
-        layoutTags()
+        layoutTags(tags: journalVM?.tags ?? [""])
         if isTimeCapsule {
             createBarButtonItem()
         }
@@ -201,27 +213,67 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         task.resume()
     }
     
-    func layoutTags() {
-        guard (journalVM?.tags.count)! > 0 else {
+//    func layoutTags() {
+//        guard (journalVM?.tags.count)! > 0 else {
+//            tagLabel.isHidden = true
+//            tagSeparator.isHidden = true
+//            return
+//        }
+//        tagLabel.text = journalVM?.tags[0]
+//        tagLabel.clipsToBounds = true
+//        tagLabel.backgroundColor = UIColor(hexString: "F7AE00")
+//        guard (journalVM?.tags.count)! > 1 else { return }
+//        var xAnchor: CGFloat = 16
+//        let journalTags = journalVM?.tags
+//        var previousTag = tagLabel
+//        for num in 0..<journalTags!.count-1 {
+//            let journalTagLabel = PaddingableUILabel()
+//            journalTagLabel.translatesAutoresizingMaskIntoConstraints = false
+//            journalTagLabel.backgroundColor = UIColor(hexString: "F7AE00")
+//            journalTagLabel.textColor = .white
+//            journalTagLabel.text = journalTags?[num+1]
+//            journalTagLabel.font = UIFont.systemFont(ofSize: 15)
+//            journalTagLabel.clipsToBounds = true
+//            journalTagLabel.cornerRadius = 6
+//            journalTagLabel.paddingLeft = 8
+//            journalTagLabel.paddingRight = 8
+//            journalTagLabel.paddingTop = 8
+//            journalTagLabel.paddingBottom = 8
+//            setJournalTagConstraints(previousTag: previousTag!, currentTag: journalTagLabel, xAnchor: &xAnchor)
+//            previousTag = journalTagLabel
+//        }
+//    }
+    func layoutTags(tags: [String]) {
+        if modifiedTags != nil {
+            view.subviews.forEach({
+                if $0 is PaddingableUILabel {
+                    $0.isHidden = true
+                    tagLabel.isHidden = false
+                }
+            })
+        }
+        guard !tags.isEmpty else {
             tagLabel.isHidden = true
             tagSeparator.isHidden = true
             return
         }
-        tagLabel.text = journalVM?.tags[0]
+        
+        tagLabel.text = tags[0]
         tagLabel.clipsToBounds = true
         tagLabel.backgroundColor = UIColor(hexString: "F7AE00")
-        guard (journalVM?.tags.count)! > 1 else { return }
+        guard tags.count > 1 else { return }
         var xAnchor: CGFloat = 16
-        let journalTags = journalVM?.tags
+        let journalTags = tags
         var previousTag = tagLabel
-        for num in 0..<journalTags!.count-1 {
+        for num in 0..<tags.count-1 {
             let journalTagLabel = PaddingableUILabel()
             journalTagLabel.translatesAutoresizingMaskIntoConstraints = false
             journalTagLabel.backgroundColor = UIColor(hexString: "F7AE00")
             journalTagLabel.textColor = .white
-            journalTagLabel.text = journalTags?[num+1]
+            journalTagLabel.text = tags[num+1]
+            journalTagLabel.font = UIFont.systemFont(ofSize: 15)
             journalTagLabel.clipsToBounds = true
-            journalTagLabel.cornerRadius = 8
+            journalTagLabel.cornerRadius = 6
             journalTagLabel.paddingLeft = 8
             journalTagLabel.paddingRight = 8
             journalTagLabel.paddingTop = 8
@@ -237,8 +289,8 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         view.sendSubviewToBack(currentTag)
         NSLayoutConstraint.activate([
             currentTag.leadingAnchor.constraint(equalTo: previousTag.trailingAnchor, constant: xAnchor),
-            currentTag.topAnchor.constraint(equalTo: tagSeparator.bottomAnchor, constant: 10),
-            currentTag.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+            currentTag.topAnchor.constraint(equalTo: tagSeparator.bottomAnchor, constant: 8),
+            currentTag.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
         ])
     }
     

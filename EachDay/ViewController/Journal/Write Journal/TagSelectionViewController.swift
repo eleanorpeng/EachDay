@@ -146,7 +146,13 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
             self.createEditAlert(button: button)
         }))
         alertSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+            let tag = self.tags?[button.tag]
             self.tags?.remove(at: button.tag)
+            self.selectedTags = self.selectedTags.filter({
+                $0 != tag
+            })
+            print(self.selectedTags)
+            self.delegate?.getSelectedTags(tags: self.selectedTags)
             self.updateTags()
 //            JournalManager.shared.updateJournalTags(userID: self.user?[0].id ?? "", tags: self.tags ?? [])
             self.tableView.reloadData()
@@ -163,7 +169,15 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
         editAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak editAlert] _ in
             let textField = editAlert?.textFields![0]
             let tag = textField?.text
+            var index = 0
+            for num in 0..<self.selectedTags.count {
+                if self.selectedTags[num] == tag {
+                    index = num
+                }
+            }
             self.tags?[button.tag] = tag ?? ""
+            self.selectedTags[index] = tag ?? ""
+            self.delegate?.getSelectedTags(tags: self.selectedTags)
             self.updateTags()
 //            JournalManager.shared.updateJournalTags(userID: self.user?[0].id ?? "", tags: self.tags ?? [])
             self.tableView.reloadData()
