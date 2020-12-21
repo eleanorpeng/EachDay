@@ -48,8 +48,10 @@ struct TrackedTime: Identifiable, Codable {
     var taskName: String
     var duration: Double
     var taskDescrpition: String
+    var pauseIntervals: [TimeInterval]?
+    var pauseTime: Date?
     
-    init(date: Timestamp, startTime: Timestamp, endTime: Timestamp, taskName: String, id: String, duration: Double, taskDescrpition: String) {
+    init(date: Timestamp, startTime: Timestamp, endTime: Timestamp, taskName: String, id: String, duration: Double, taskDescrpition: String, pauseIntervals: [TimeInterval]?, pauseTime: Date?) {
         self.date = date
         self.startTime = startTime
         self.endTime = endTime
@@ -57,11 +59,12 @@ struct TrackedTime: Identifiable, Codable {
         self.id = id
         self.duration = duration
         self.taskDescrpition = taskDescrpition
-        
+        self.pauseIntervals = pauseIntervals
+        self.pauseTime = pauseTime
     }
     
     enum CodingKeys: String, CodingKey {
-        case startTime, endTime, taskName, id, date, duration, taskDescrpition
+        case startTime, endTime, taskName, id, date, duration, taskDescrpition, pauseIntervals, pauseTime
     }
 }
 

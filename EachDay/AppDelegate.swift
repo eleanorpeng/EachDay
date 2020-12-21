@@ -15,6 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
+        UserDefaults.standard.register(defaults: [
+            EPUserDefaults.hasSignedIn.rawValue: false,
+            EPUserDefaults.enableBiometrics.rawValue: false,
+            EPUserDefaults.userId.rawValue: "",
+            "isPaused": false
+        ])
         return true
     }
 

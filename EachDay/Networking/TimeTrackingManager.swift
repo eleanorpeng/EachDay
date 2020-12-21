@@ -20,8 +20,8 @@ class TimeTrackingManager {
     func uploadTimeRecord(record: inout TrackedTime, completion: @escaping(Result<String, Error>) -> Void) {
         let document = database.collection("User").document(userDocID ?? "").collection("TrackedTime").document()
         record.id = document.documentID
-        timeRecordID = document.documentID
         UserDefaults.standard.setValue(document.documentID, forKey: "TimeRecordID")
+        timeRecordID = UserDefaults.standard.string(forKey: "TimeRecordID")
         do {
             try document.setData(from: record)
             completion(.success("Successfully uploaded time tracking data!"))
@@ -77,6 +77,41 @@ class TimeTrackingManager {
         }
     }
     
+    func updatePauseIntervals(pauseIntervals: [TimeInterval], completion: @escaping (Result<String, Error>) -> Void) {
+        database.collection("User").document(userDocID ?? "").collection("TrackedTime").document(timeRecordID ?? "").updateData([
+            "pauseIntervals": pauseIntervals
+        ]) { err in
+            if let err = err {
+                completion(.failure(err))
+            } else {
+                let message = "Pause time intervals updated successfully!"
+                completion(.success(message))
+            }
+        }
+    }
+    
+    func deletePauseTime(completion: @escaping(Result<String, Error>) -> Void) {
+        database.collection("User").document(userDocID ?? "").collection("TrackedTime").document(timeRecordID ?? "").updateData([
+            "pauseTime": FieldValue.delete()
+        ]) { err in
+            if let err = err {
+                completion(.failure(err))
+            } else {
+                let message = "Paused time updated successfull!"
+            }
+        }
+    }
+    func updatePauseTime(pauseTime: Date, completion: @escaping(Result<String, Error>) -> Void) {
+        database.collection("User").document(userDocID ?? "").collection("TrackedTime").document(timeRecordID ?? "").updateData([
+            "pauseTime": pauseTime
+        ]) { err in
+            if let err = err {
+                completion(.failure(err))
+            } else {
+                let message = "Paused time updated successfull!"
+            }
+        }
+    }
     func updateTrackTimeCategories(categories: [String]) {
         database.collection("User").document(userDocID ?? "").updateData([
             "trackTimeCategories": categories
