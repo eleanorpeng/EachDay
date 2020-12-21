@@ -64,17 +64,8 @@ class TimeTrackingMainPageViewController: UIViewController {
     var elapsedTimeInterval: TimeInterval?
     @IBOutlet weak var totalTimeLabel: UILabel!
     var totalTime: Double? = 0
-//        didSet {
-//            totalTimeLabel.text = totalTime?.getFormattedTime()
-//        }
     
     var trackedTimeDic: [String : TimeInterval]?
-//        didSet {
-//            for (category, time) in recordedTime! {
-//                totalTime! += time
-//            }
-//        }
-    
     var endTime: TimeInterval?
     var endTimeTS: Timestamp?
     var trackedTimeCategories: [String]?
@@ -160,11 +151,9 @@ class TimeTrackingMainPageViewController: UIViewController {
                     hasNewRecord = true
                     taskName = $0.taskName
                     taskDescription = $0.taskDescrpition
-                    
 //                    elapsedTimeInterval = currentTime.dateValue().timeIntervalSince1970 - ($0.startTime).dateValue().timeIntervalSince1970
                     let pauseSeconds = $0.pauseIntervals?.reduce(0) { $0 + $1 }
                     startTime = $0.startTime.dateValue().timeIntervalSince1970
-                    
                     if let pauseTime = $0.pauseTime {
                         self.pausedTime = pauseTime
                         self.isPaused = true
@@ -173,7 +162,6 @@ class TimeTrackingMainPageViewController: UIViewController {
                         elapsedTimeInterval = currentTime -
                             ($0.startTime).dateValue().timeIntervalSince1970
                             - (pauseSeconds ?? 0) - lastTimeInterval
-                       
                     } else {
                         if let pauseIntervals = $0.pauseIntervals {
                             self.pausedIntervals = pauseIntervals
@@ -191,7 +179,6 @@ class TimeTrackingMainPageViewController: UIViewController {
                                                          repeats: true)
                             isTiming = true
                         }
-//                        self.isTiming = true
                     }
                     elapsedTime = elapsedTimeInterval?.getFormattedTime()
                     tableView.reloadData()

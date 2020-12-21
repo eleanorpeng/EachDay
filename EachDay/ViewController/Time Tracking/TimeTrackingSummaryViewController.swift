@@ -49,7 +49,7 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
         initialSetUp()
         createBackButton()
     }
-    
+
     func initialSetUp() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -66,19 +66,7 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
         fetchFilteredData(startDate: startDateTS, endDate: endDateTS)
         pieChartView.entryLabelFont = .systemFont(ofSize: 12, weight: .light)
         pieChartView.entryLabelColor = .black
-        if let trackedTime = trackedTime {
-            if trackedTime.isEmpty {
-                pieChartView.isHidden = true
-                animationView.isHidden = false
-                animationView.loopMode = .loop
-                animationView.animationSpeed = 1
-                animationView.contentMode = .scaleAspectFit
-                animationView.play()
-            } else {
-                pieChartView.isHidden = false
-                animationView.isHidden = true
-            }
-        }
+        
     }
     
     func calculatePieChartValue() {
@@ -146,6 +134,7 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
                 self.calculateTotalTime()
                 self.calculatePieChartValue()
                 DispatchQueue.main.async {
+                    self.configureEmptyView()
                     self.tableView.reloadData()
                     self.setUpPieChart(value: self.percentageTimeValues ?? [], label: self.categories ?? [])
                 }
@@ -153,6 +142,22 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
                 print(error)
             }
         })
+    }
+    
+    func configureEmptyView() {
+        if let trackedTime = trackedTime {
+            if trackedTime.isEmpty {
+                pieChartView.isHidden = true
+                animationView.isHidden = false
+                animationView.loopMode = .loop
+                animationView.animationSpeed = 1
+                animationView.contentMode = .scaleAspectFit
+                animationView.play()
+            } else {
+                pieChartView.isHidden = false
+                animationView.isHidden = true
+            }
+        }
     }
 
     func switchSegmentIndex() {
@@ -208,6 +213,13 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
 
 extension TimeTrackingSummaryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let categories = categories {
+            if categories.isEmpty {
+                tableView.backgroundView = configureEmptyTableViewBackground()
+            } else {
+                tableView.backgroundView = nil
+            }
+        }
         return categories?.count ?? 0
     }
     
@@ -217,5 +229,30 @@ extension TimeTrackingSummaryViewController: UITableViewDelegate, UITableViewDat
         summaryCell.layoutCell(activity: categories?[indexPath.row] ?? "",
                                time: timeValues?[indexPath.row].getFormattedTime() ?? "")
         return summaryCell
+    }
+    
+    func configureEmptyTableViewBackground() -> UIView {
+        let customView = UIView()
+        view.addSubview(customView)
+        customView.translatesAutoresizingMaskIntoConstraints = false
+        let customLabel = UILabel()
+        customLabel.translatesAutoresizingMaskIntoConstraints = false
+        customLabel.text = "Seems like you haven't tracked any time yet!"
+        customLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        customLabel.textAlignment = .center
+        customLabel.textColor = .black
+        customView.addSubview(customLabel)
+        NSLayoutConstraint.activate([
+            customView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            customView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            customView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            customView.topAnchor.constraint(equalTo: animationView.bottomAnchor, constant: 20),
+            customLabel.leadingAnchor.constraint(equalTo: customView.leadingAnchor, constant: 16),
+            customLabel.trailingAnchor.constraint(equalTo: customView.trailingAnchor, constant: -16),
+            customLabel.topAnchor.constraint(equalTo: customView.topAnchor, constant: 16),
+            customLabel.heightAnchor.constraint(equalToConstant: 50),
+            customLabel.widthAnchor.constraint(equalToConstant: 150)
+        ])
+        return customView
     }
 }
