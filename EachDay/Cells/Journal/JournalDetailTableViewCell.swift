@@ -57,7 +57,6 @@ extension JournalDetailTableViewCell: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        return 10
-        
         return tags?.count ?? 0
     }
     
@@ -80,6 +79,4 @@ extension JournalDetailTableViewCell: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 60, height: 20)
     }
-    
-    
 }

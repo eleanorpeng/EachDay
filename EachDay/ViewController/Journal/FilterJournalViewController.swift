@@ -46,7 +46,6 @@ class FilterJournalViewController: UIViewController {
         searchController.searchBar.placeholder = "Search journals with tags"
         definesPresentationContext = true
         navigationItem.hidesSearchBarWhenScrolling = false
-       
     }
     
     func filterContentForSearchText(_ searchText: String) {
@@ -88,15 +87,13 @@ extension FilterJournalViewController: UITableViewDelegate, UITableViewDataSourc
         }
         searchController.searchBar.text = selectedText
     }
-    
-    
 }
 
 extension FilterJournalViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         filterContentForSearchText(searchBar.text!)
-     
+    
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.delegate?.getFilteredTag(tag: searchBar.text!)

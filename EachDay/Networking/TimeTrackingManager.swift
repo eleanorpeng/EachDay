@@ -14,8 +14,8 @@ class TimeTrackingManager {
     var database = Firestore.firestore()
 //    var timeRecordID: String?
     var timeRecordID = UserDefaults.standard.string(forKey: "TimeRecordID")
-//    var userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
-    var userDocID = "IAMACTUALLYFAKE"
+    var userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
+//    var userDocID = "IAMACTUALLYFAKE"
     
     func uploadTimeRecord(record: inout TrackedTime, completion: @escaping(Result<String, Error>) -> Void) {
         let document = database.collection("User").document(userDocID ?? "").collection("TrackedTime").document()

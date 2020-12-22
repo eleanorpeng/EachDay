@@ -12,12 +12,14 @@ import FirebaseStorage
 
 class JournalManager {
     static let shared = JournalManager()
-//    var userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
-    var userDocID = "IAMACTUALLYFAKE"
+    var userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
+    
+//    var userDocID = "IAMACTUALLYFAKE"
     var database = Firestore.firestore()
     
     func fetchJournalData(selectedMonth: Int, completion: @escaping (Result<[Journal], Error>) -> Void) {
         database.collection("User").document(userDocID ?? "").collection("Journal").order(by: "date", descending: true).addSnapshotListener({ querySnapshot, error in
+            print("HERE: \(self.userDocID)")
             if let error = error {
                 completion(.failure(error))
             } else {

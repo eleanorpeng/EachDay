@@ -13,16 +13,16 @@ import FirebaseStorage
 class UserManager {
     static let shared = UserManager()
     let database = Firestore.firestore()
-//    var userDocIDTest = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
+    var userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
 //    var userDocID: String?
-    var userDocID = "IAMACTUALLYFAKE"
+//    var userDocID = "IAMACTUALLYFAKE"
     func uploadUserData(user: inout User, completion: @escaping (Result<String, Error>) -> Void) {
-        let document = database.collection("User").document()
-        user.id = document.documentID
+        
+//        user.id = document.documentID
 //        UserDefaults.standard.setValue(user.id, forKey: EPUserDefaults.userId.rawValue)
 //        userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
         do {
-            try document.setData(from: user)
+            try database.collection("User").document(user.id).setData(from: user)
             completion(.success("Successfully updated user data!"))
         } catch {
             completion(.failure(error))

@@ -253,6 +253,12 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
             })
         }
         guard !tags.isEmpty else {
+            view.subviews.forEach({
+                if $0 is PaddingableUILabel {
+                    $0.isHidden = true
+                    tagLabel.isHidden = false
+                }
+            })
             tagLabel.isHidden = true
             tagSeparator.isHidden = true
             return

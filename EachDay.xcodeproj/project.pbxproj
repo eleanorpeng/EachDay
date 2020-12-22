@@ -137,6 +137,7 @@
 		2031429F2570E668006410A8 /* TimeTrackingMainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackingMainTableViewCell.swift; sourceTree = "<group>"; };
 		203142CE25710367006410A8 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		203A94E2258F07FB002B7936 /* loading-dots.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-dots.json"; sourceTree = "<group>"; };
+		203A950D2591CD9A002B7936 /* EachDay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EachDay.entitlements; sourceTree = "<group>"; };
 		205101672580A69100E7D985 /* Passcode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Passcode.storyboard; sourceTree = "<group>"; };
 		2051016E2580CC6300E7D985 /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		205101962581164700E7D985 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -227,6 +228,7 @@
 		2009DE31256E270D00545439 /* EachDay */ = {
 			isa = PBXGroup;
 			children = (
+				203A950D2591CD9A002B7936 /* EachDay.entitlements */,
 				2009DE32256E270D00545439 /* AppDelegate.swift */,
 				2009DE34256E270D00545439 /* SceneDelegate.swift */,
 				2009DE36256E270D00545439 /* ViewController.swift */,
@@ -822,15 +824,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EachDay/EachDay.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4W449U649N;
+				DEVELOPMENT_TEAM = FRH9H66G29;
 				INFOPLIST_FILE = EachDay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.eleanorpeng.EachDay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eleanorpeng31.EachDay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -842,15 +847,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EachDay/EachDay.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4W449U649N;
+				DEVELOPMENT_TEAM = FRH9H66G29;
 				INFOPLIST_FILE = EachDay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.eleanorpeng.EachDay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eleanorpeng31.EachDay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

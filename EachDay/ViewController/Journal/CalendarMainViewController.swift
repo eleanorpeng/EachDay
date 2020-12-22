@@ -44,12 +44,11 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         super.viewDidLoad()
         fetchUser()
         initialSetUp()
+        isChangingColor = false
 //        if let colors = UserDefaults.standard.array(forKey: "calendarColors") as? [UIColor] {
 //            calendarData = CalendarView(colors: colors)
 //        }
-        
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -59,7 +58,6 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         fetchTimeCapsuleData()
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveProfileImage(_:)), name: Notifications.receiveProfileImageNotification, object: nil)
     }
-    
     
     func createTimeCapAlert() {
         NotificationCenter.default.post(Notification(name: Notifications.receiveTimeCapsule, object: nil))
@@ -179,10 +177,10 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
 }
 
 extension CalendarMainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CalendarMainCollectionViewCellDelegate, SlideUpViewDelegate {
-    
     func handleChangeColorButton(sender: Any) {
         colorPicker.delegate = self
         colorPicker.showSlideView(on: self)
+        isChangingColor = true
         if let button = sender as? UIButton {
             changeColorIndex = button.tag
         }
@@ -201,7 +199,7 @@ extension CalendarMainViewController: UICollectionViewDelegate, UICollectionView
             }
         })
 //        UserDefaults.setValue(calendarData?.colors, forKey: "calendarColors")
-        isChangingColor = true
+        
 //        collectionView.reloadData()
 //        isChangingColor = false
     }

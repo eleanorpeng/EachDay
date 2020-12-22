@@ -197,8 +197,6 @@ extension DetailJournalViewController: UITableViewDelegate, UITableViewDataSourc
                                title: journalViewModel.title,
                                content: journalViewModel.content,
                                tags: journalViewModel.tags)
-        print("Index: \(indexPath.row), tags: \(journalViewModel.tags)")
-//        print(journalViewModel.tags)
         if journalViewModel.tags.contains("Time Capsule") {
             journalCell.displayTimeCapsuleIndicator()
         }

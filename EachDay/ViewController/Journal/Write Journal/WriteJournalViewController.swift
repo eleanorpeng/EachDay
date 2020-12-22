@@ -37,6 +37,7 @@ class WriteJournalViewController: UIViewController {
     var config = YPImagePickerConfiguration()
     var isDefault = true
     var isWritingSummary = false
+    let loadingView = LoadingView()
     @IBOutlet var toolBarView: UIView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var completeButton: UIButton!
@@ -75,9 +76,9 @@ class WriteJournalViewController: UIViewController {
     }
     
     @IBAction func completeButtonClicked(_ sender: Any) {
+        loadingView.startLoading(on: self)
         uploadData()
         
-        navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLoad() {
@@ -157,7 +158,7 @@ class WriteJournalViewController: UIViewController {
         journalData = Journal(title: journalTitle ?? "",
                               date: Timestamp(date: selectedDate ?? Date()),
                               content: journalContent ?? "",
-                          tags: journalTags ?? [""],
+                          tags: journalTags ?? [],
                           image: journalImageURL ?? "",
                           hasTracker: false,
                           isTimeCapsule: false,
@@ -166,6 +167,11 @@ class WriteJournalViewController: UIViewController {
             switch result {
             case .success(let message):
                 print(message)
+                self.loadingView.dismissLoading()
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+                    self.tabBarController?.selectedIndex = 0
+                    self.navigationController?.popViewController(animated: true)
+                })
             case .failure(let error):
                 print(error)
             }
