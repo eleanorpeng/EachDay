@@ -7,6 +7,7 @@
 
 import UIKit
 import KeychainAccess
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -56,10 +57,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 //        let storyboard = UIStoryboard(name: "Passcode", bundle: nil)
         var storyboard: UIStoryboard
-        if UserDefaults.standard.bool(forKey: EPUserDefaults.hasSignedIn.rawValue) {
-            storyboard = UIStoryboard(name: "Passcode", bundle: nil)
-        } else {
+//        if UserDefaults.standard.bool(forKey: EPUserDefaults.hasSignedIn.rawValue) {
+//            storyboard = UIStoryboard(name: "Passcode", bundle: nil)
+//        } else {
+//            storyboard = UIStoryboard(name: "SignIn", bundle: nil)
+//        }
+        if Auth.auth().currentUser == nil {
             storyboard = UIStoryboard(name: "SignIn", bundle: nil)
+        } else {
+            storyboard = UIStoryboard(name: "Passcode", bundle: nil)
         }
         window?.rootViewController = storyboard.instantiateInitialViewController()
         window?.makeKeyAndVisible()

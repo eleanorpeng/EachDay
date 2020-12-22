@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import FirebaseFirestoreSwift
 import Kingfisher
+import FirebaseAuth
 
 class CalendarMainViewController: UIViewController, CustomAlertDelegate {
 
@@ -97,7 +98,6 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
                     self.calendarData = CalendarView(colors: self.calendarColors ?? [""])
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
-//                        self.isChangingColor = false
                     }
                 }
                 guard self.user?.image != nil else { return }
@@ -173,7 +173,6 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
             destination.journalData = timeCapsule?[0]
         }
     }
-
 }
 
 extension CalendarMainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CalendarMainCollectionViewCellDelegate, SlideUpViewDelegate {
@@ -241,7 +240,6 @@ extension CalendarMainViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var cellSize: CGSize = collectionView.bounds.size
-
         cellSize.width -= collectionView.contentInset.left * 2
         cellSize.width -= collectionView.contentInset.right * 2
         cellSize.height = cellSize.width + 70

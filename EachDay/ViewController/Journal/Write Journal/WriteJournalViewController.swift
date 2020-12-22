@@ -116,6 +116,7 @@ class WriteJournalViewController: UIViewController {
         completeButton.setImage(UIImage(named: "tick-gray"), for: .normal)
         tagLabel.isHidden = true
         tagSeparator.isHidden = true
+        datePicker.maximumDate = Date()
     }
 
     func imagePickerDonePicking() {

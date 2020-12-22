@@ -9,6 +9,7 @@ target 'EachDay' do
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Storage'
+  pod 'Firebase/Auth'
   pod 'SwiftLint'
   pod 'FanMenu', '~> 0.7'
   pod 'Charts'

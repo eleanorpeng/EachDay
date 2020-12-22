@@ -13,7 +13,6 @@
 		2009DE3A256E270D00545439 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2009DE38256E270D00545439 /* Main.storyboard */; };
 		2009DE3C256E270F00545439 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2009DE3B256E270F00545439 /* Assets.xcassets */; };
 		2009DE3F256E270F00545439 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2009DE3D256E270F00545439 /* LaunchScreen.storyboard */; };
-		2009DE48256E27C300545439 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2009DE47256E27C300545439 /* GoogleService-Info.plist */; };
 		2009DE71256E310500545439 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DE70256E310500545439 /* User.swift */; };
 		2009DE79256E41B500545439 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DE78256E41B500545439 /* UserViewModel.swift */; };
 		2009DE7D256E461D00545439 /* TrackedTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DE7C256E461D00545439 /* TrackedTimeViewModel.swift */; };
@@ -43,6 +42,7 @@
 		203142A02570E668006410A8 /* TimeTrackingMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031429F2570E668006410A8 /* TimeTrackingMainTableViewCell.swift */; };
 		203142CF25710367006410A8 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203142CE25710367006410A8 /* PaddingLabel.swift */; };
 		203A94E3258F07FB002B7936 /* loading-dots.json in Resources */ = {isa = PBXBuildFile; fileRef = 203A94E2258F07FB002B7936 /* loading-dots.json */; };
+		203A95112591E9C6002B7936 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 203A95102591E9C6002B7936 /* GoogleService-Info.plist */; };
 		205101682580A69100E7D985 /* Passcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205101672580A69100E7D985 /* Passcode.storyboard */; };
 		2051016F2580CC6300E7D985 /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2051016E2580CC6300E7D985 /* PasscodeViewController.swift */; };
 		205101972581164800E7D985 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205101962581164700E7D985 /* UserManager.swift */; };
@@ -107,7 +107,6 @@
 		2009DE3B256E270F00545439 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2009DE3E256E270F00545439 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2009DE40256E270F00545439 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2009DE47256E27C300545439 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2009DE70256E310500545439 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2009DE78256E41B500545439 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		2009DE7C256E461D00545439 /* TrackedTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedTimeViewModel.swift; sourceTree = "<group>"; };
@@ -138,6 +137,7 @@
 		203142CE25710367006410A8 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		203A94E2258F07FB002B7936 /* loading-dots.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-dots.json"; sourceTree = "<group>"; };
 		203A950D2591CD9A002B7936 /* EachDay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EachDay.entitlements; sourceTree = "<group>"; };
+		203A95102591E9C6002B7936 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		205101672580A69100E7D985 /* Passcode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Passcode.storyboard; sourceTree = "<group>"; };
 		2051016E2580CC6300E7D985 /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		205101962581164700E7D985 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -242,7 +242,7 @@
 				2009DEAB256EA81100545439 /* Extensions */,
 				2009DE3B256E270F00545439 /* Assets.xcassets */,
 				2009DE3D256E270F00545439 /* LaunchScreen.storyboard */,
-				2009DE47256E27C300545439 /* GoogleService-Info.plist */,
+				203A95102591E9C6002B7936 /* GoogleService-Info.plist */,
 				2009DE40256E270F00545439 /* Info.plist */,
 			);
 			path = EachDay;
@@ -529,12 +529,12 @@
 				20AA1AFC2589DE580074B683 /* welcome.json in Resources */,
 				201B28D42580774400FB6A77 /* Tags.storyboard in Resources */,
 				205101682580A69100E7D985 /* Passcode.storyboard in Resources */,
+				203A95112591E9C6002B7936 /* GoogleService-Info.plist in Resources */,
 				20AA1AF92589AE720074B683 /* loading.json in Resources */,
 				20D19BBF258B3E70003ABDD8 /* ColorPickerCollectionViewCell.xib in Resources */,
 				2098B165256FB2C600AAC1CB /* TimeCapsule.storyboard in Resources */,
 				2009DE3F256E270F00545439 /* LaunchScreen.storyboard in Resources */,
 				20FBA4652578BCB800A58AF0 /* SignIn.storyboard in Resources */,
-				2009DE48256E27C300545439 /* GoogleService-Info.plist in Resources */,
 				20733C1B25760CB2004B4A3B /* TimeTrackingSummary.storyboard in Resources */,
 				2009DE3C256E270F00545439 /* Assets.xcassets in Resources */,
 				20195451258701D0004BF656 /* DetailJournalContentView.storyboard in Resources */,
