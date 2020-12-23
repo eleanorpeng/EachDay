@@ -135,6 +135,7 @@ class WriteTimeCapsuleViewController: UIViewController {
         JournalManager.shared.publishJournalData(journal: &timeCapsuleData!, completion: { result in
             switch result {
             case .success(let message):
+                
                 print(message)
             case .failure(let error):
                 print(error)
