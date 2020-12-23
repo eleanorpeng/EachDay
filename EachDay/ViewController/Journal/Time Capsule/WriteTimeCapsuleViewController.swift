@@ -20,6 +20,7 @@ class WriteTimeCapsuleViewController: UIViewController {
     @IBOutlet weak var uploadImageButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     var config = YPImagePickerConfiguration()
+    let loadingView = LoadingView()
     let imagePicker = YPImagePicker()
     var selectedDate: Date?
     var letterImage: UIImage?
@@ -42,8 +43,9 @@ class WriteTimeCapsuleViewController: UIViewController {
     @IBOutlet var toolBarView: UIView!
     @IBOutlet weak var senderButton: UIButton!
     @IBAction func sendButtonClicked(_ sender: Any) {
+        loadingView.startLoading(on: self)
         uploadData()
-        navigationController?.popToRootViewController(animated: true)
+//        navigationController?.popToRootViewController(animated: true)
     }
     @IBOutlet weak var timeCapsuleLetterImageView: UIImageView!
     override func viewDidLoad() {
@@ -89,8 +91,6 @@ class WriteTimeCapsuleViewController: UIViewController {
                 let resized = photo.image.resizedImageWith(targetSize: CGSize(width: self.view.frame.width, height: 300))
                 self.letterImage = resized
                 self.timeCapsuleLetterImageView.image = resized
-                self.timeCapsuleLetterImageView.image = photo.image
-                self.letterImage = photo.image
                 self.uploadImageButton.setImage(nil, for: .normal)
                 self.uploadImageButton.setTitle("", for: .normal)
             }
@@ -128,15 +128,19 @@ class WriteTimeCapsuleViewController: UIViewController {
                                   date: Timestamp(date: selectedDate ?? Date()),
                                   content: letterContent ?? "",
                                   tags: ["Time Capsule"],
-                                  image: "",
+                                  image: self.letterImageURL ?? "",
                                   hasTracker: false,
                                   isTimeCapsule: true,
                                   id: "")
         JournalManager.shared.publishJournalData(journal: &timeCapsuleData!, completion: { result in
             switch result {
             case .success(let message):
-                
                 print(message)
+                self.loadingView.dismissLoading()
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+                    self.navigationController?.popViewController(animated: true)
+                    self.tabBarController?.selectedIndex = 0
+                })
             case .failure(let error):
                 print(error)
             }

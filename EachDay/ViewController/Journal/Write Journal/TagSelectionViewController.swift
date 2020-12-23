@@ -36,7 +36,7 @@ class TagSelectionViewController: UIViewController {
         alert.addTextField(configurationHandler: { textField in
             textField.placeholder = "New tag name"
         })
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak alert] _ in
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] _ in
             let textField = alert?.textFields![0]
             let newTag = textField?.text
             self.tags?.append(newTag ?? "")
@@ -151,8 +151,9 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
             self.selectedTags = self.selectedTags.filter({
                 $0 != tag
             })
-            print(self.selectedTags)
-            self.delegate?.getSelectedTags(tags: self.selectedTags)
+            if !self.fromUserSetting {
+                self.delegate?.getSelectedTags(tags: self.selectedTags)
+            }
             self.updateTags()
 //            JournalManager.shared.updateJournalTags(userID: self.user?[0].id ?? "", tags: self.tags ?? [])
             self.tableView.reloadData()
@@ -166,7 +167,7 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
         editAlert.addTextField(configurationHandler: { textField in
             textField.placeholder = self.tags?[button.tag]
         })
-        editAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak editAlert] _ in
+        editAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak editAlert] _ in
             let textField = editAlert?.textFields![0]
             let tag = textField?.text
             var index = 0
@@ -176,8 +177,10 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
                 }
             }
             self.tags?[button.tag] = tag ?? ""
-            self.selectedTags[index] = tag ?? ""
-            self.delegate?.getSelectedTags(tags: self.selectedTags)
+            if !self.fromUserSetting {
+                self.selectedTags[index] = tag ?? ""
+                self.delegate?.getSelectedTags(tags: self.selectedTags)
+            }
             self.updateTags()
 //            JournalManager.shared.updateJournalTags(userID: self.user?[0].id ?? "", tags: self.tags ?? [])
             self.tableView.reloadData()

@@ -37,18 +37,18 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
     var calendarColor: UIColor?
     var changeColorIndex: Int?
     var isChangingColor = false
+    var scrollToMonth = 0
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBAction func datePickerSelected(_ sender: Any) {
         selectedYear = datePicker.date.year()
+        scrollToMonth = datePicker.date.month()
+        scrollToSelectedMonth()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchUser()
         initialSetUp()
         isChangingColor = false
-//        if let colors = UserDefaults.standard.array(forKey: "calendarColors") as? [UIColor] {
-//            calendarData = CalendarView(colors: colors)
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,19 +126,34 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         dateLabel.text = currentDate.getFormattedDate()
         userProfileButton.clipsToBounds = true
         userProfileButton.layer.cornerRadius = userProfileButton.frame.width / 2
-        
+        scrollToMonth = currentDate.month()
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         updateCellsLayout()
+//        if !isChangingColor {
+////            collectionView.scrollToItem(at: IndexPath(row: currentDate.month() - 1, section: 0),
+////                                        at: [.centeredVertically, .centeredHorizontally],
+////                                        animated: true)
+//            collectionView.scrollToItem(at: IndexPath(row: scrollToMonth - 1, section: 0),
+//                                        at: [.centeredVertically, .centeredHorizontally],
+//                                        animated: true)
+//        }
+        scrollToSelectedMonth()
+    }
+
+    func scrollToSelectedMonth() {
         if !isChangingColor {
-            collectionView.scrollToItem(at: IndexPath(row: currentDate.month() - 1, section: 0),
+//            collectionView.scrollToItem(at: IndexPath(row: currentDate.month() - 1, section: 0),
+//                                        at: [.centeredVertically, .centeredHorizontally],
+//                                        animated: true)
+            collectionView.scrollToItem(at: IndexPath(row: scrollToMonth - 1, section: 0),
                                         at: [.centeredVertically, .centeredHorizontally],
                                         animated: true)
         }
     }
-
+    
     func updateCellsLayout() {
         let centerX = collectionView.contentOffset.x + (collectionView.frame.size.width)/2
 

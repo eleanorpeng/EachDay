@@ -271,7 +271,7 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
     func presentEnableBiometricsAuthAlert() {
         guard hasPasscode else {
             let alert = UIAlertController(title: "Could Not Enable FaceID", message: "Please enable passcode before enabling biometric authentication.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
             return
         }

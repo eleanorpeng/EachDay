@@ -79,6 +79,12 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHa-ar-BVc">
+                                <rect key="frame" x="0.0" y="101.5" width="414" height="300"/>
+                                <connections>
+                                    <action selector="imageViewButtonClicked:" destination="ta8-vd-ZyX" eventType="touchUpInside" id="gXX-cH-Mr8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="j4r-Zy-Q2E"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -89,13 +95,16 @@
                             <constraint firstItem="j4r-Zy-Q2E" firstAttribute="trailing" secondItem="BzS-6v-8dr" secondAttribute="trailing" constant="16" id="6em-iy-VdJ"/>
                             <constraint firstItem="Fmw-Xt-QyT" firstAttribute="top" secondItem="s8Z-wF-zvw" secondAttribute="bottom" constant="16" id="9LD-6b-RBQ"/>
                             <constraint firstItem="BzS-6v-8dr" firstAttribute="top" secondItem="MWT-jd-d33" secondAttribute="bottom" id="DI4-G6-E4P"/>
+                            <constraint firstItem="MHa-ar-BVc" firstAttribute="leading" secondItem="Fmw-Xt-QyT" secondAttribute="leading" id="Gdf-jb-SCx"/>
                             <constraint firstItem="Fmw-Xt-QyT" firstAttribute="leading" secondItem="j4r-Zy-Q2E" secondAttribute="leading" id="Jbo-gM-dlo"/>
                             <constraint firstItem="j4r-Zy-Q2E" firstAttribute="trailing" secondItem="sgO-VD-Ye4" secondAttribute="trailing" constant="16" id="KQp-Xf-ukJ"/>
+                            <constraint firstItem="MHa-ar-BVc" firstAttribute="top" secondItem="Fmw-Xt-QyT" secondAttribute="top" id="LEq-tN-Tue"/>
                             <constraint firstItem="j4r-Zy-Q2E" firstAttribute="trailing" secondItem="Fmw-Xt-QyT" secondAttribute="trailing" id="LnV-7J-n6B"/>
                             <constraint firstItem="sgO-VD-Ye4" firstAttribute="leading" secondItem="j4r-Zy-Q2E" secondAttribute="leading" constant="16" id="OJB-sL-6sO"/>
                             <constraint firstItem="j4r-Zy-Q2E" firstAttribute="trailing" secondItem="7uY-MU-erj" secondAttribute="trailing" id="Orx-Ti-oVr"/>
                             <constraint firstItem="MWT-jd-d33" firstAttribute="width" secondItem="LEy-fQ-3qr" secondAttribute="width" multiplier="0.9" id="SNY-yR-VOE"/>
                             <constraint firstItem="j4r-Zy-Q2E" firstAttribute="bottom" secondItem="jky-VV-V3f" secondAttribute="bottom" constant="8" id="T5N-8o-Pfk"/>
+                            <constraint firstItem="MHa-ar-BVc" firstAttribute="trailing" secondItem="Fmw-Xt-QyT" secondAttribute="trailing" id="Vtb-vR-s1i"/>
                             <constraint firstItem="sgO-VD-Ye4" firstAttribute="top" secondItem="Fmw-Xt-QyT" secondAttribute="bottom" constant="10" id="Wxr-LO-pSV"/>
                             <constraint firstItem="BzS-6v-8dr" firstAttribute="top" secondItem="sgO-VD-Ye4" secondAttribute="bottom" id="X8F-RH-BzH"/>
                             <constraint firstItem="MWT-jd-d33" firstAttribute="top" secondItem="Fmw-Xt-QyT" secondAttribute="bottom" constant="20" id="YJY-iy-5h2"/>
@@ -103,6 +112,7 @@
                             <constraint firstItem="BzS-6v-8dr" firstAttribute="leading" secondItem="j4r-Zy-Q2E" secondAttribute="leading" constant="16" id="dgT-We-KwZ"/>
                             <constraint firstItem="j4r-Zy-Q2E" firstAttribute="bottom" secondItem="7uY-MU-erj" secondAttribute="bottom" constant="40" id="kp2-kj-9oQ"/>
                             <constraint firstItem="jky-VV-V3f" firstAttribute="top" secondItem="7uY-MU-erj" secondAttribute="bottom" constant="8" id="qfs-qN-rHw"/>
+                            <constraint firstItem="MHa-ar-BVc" firstAttribute="bottom" secondItem="Fmw-Xt-QyT" secondAttribute="bottom" id="qo3-ry-5sM"/>
                             <constraint firstItem="MWT-jd-d33" firstAttribute="leading" secondItem="j4r-Zy-Q2E" secondAttribute="leading" constant="20" id="qu2-ga-fP3"/>
                             <constraint firstItem="s8Z-wF-zvw" firstAttribute="centerX" secondItem="LEy-fQ-3qr" secondAttribute="centerX" id="vml-N3-RhH"/>
                         </constraints>
@@ -125,6 +135,7 @@
                         <outlet property="contentTextView" destination="BzS-6v-8dr" id="4sv-NL-F97"/>
                         <outlet property="dateLabel" destination="s8Z-wF-zvw" id="6XJ-0v-TaV"/>
                         <outlet property="editButton" destination="Q4c-K7-l4s" id="fBf-aw-y0U"/>
+                        <outlet property="imageViewButton" destination="MHa-ar-BVc" id="vLc-9v-3R2"/>
                         <outlet property="journalImageView" destination="Fmw-Xt-QyT" id="43l-yX-nX2"/>
                         <outlet property="tagLabel" destination="jky-VV-V3f" id="TYV-Ij-0UM"/>
                         <outlet property="tagSeparator" destination="7uY-MU-erj" id="Gl3-w9-shS"/>

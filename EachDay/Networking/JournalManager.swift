@@ -12,9 +12,9 @@ import FirebaseStorage
 
 class JournalManager {
     static let shared = JournalManager()
-    var userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
+//    var userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
     
-//    var userDocID = "IAMACTUALLYFAKE"
+    var userDocID = "IAMACTUALLYFAKE"
     var database = Firestore.firestore()
     
     func fetchJournalData(selectedMonth: Int, completion: @escaping (Result<[Journal], Error>) -> Void) {
@@ -128,11 +128,12 @@ class JournalManager {
         }
     }
     
-    func updateJournal(journalID: String, title: String, content: String, tags: [String], completion: @escaping (Result<String, Error>) -> Void) {
+    func updateJournal(journalID: String, title: String, content: String, tags: [String], image: String, completion: @escaping (Result<String, Error>) -> Void) {
         database.collection("User").document(userDocID ?? "").collection("Journal").document(journalID).updateData([
             "title" : title,
             "content" : content,
-            "tags": tags
+            "tags": tags,
+            "image": image
         ]) { err in
             if let err = err {
                 print("Error in updating journal data")

@@ -8,6 +8,7 @@
 import UIKit
 import PKHUD
 import Kingfisher
+import YPImagePicker
 
 class DetailJournalContentViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, TagSelectionViewControllerDelegate {
     func getSelectedTags(tags: [String]) {
@@ -32,7 +33,16 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     var modifiedTags: [String]?
     var isTimeCapsule = false
     let loadingView = LoadingView()
+    let imagePicker = YPImagePicker()
+    var journalImage: UIImage?
+    var journalImageURL: String?
+    var modifiedImageURL: String?
     
+    @IBOutlet weak var imageViewButton: UIButton!
+    @IBAction func imageViewButtonClicked(_ sender: Any) {
+        imagePickerDonePicking()
+        present(imagePicker, animated: true, completion: nil)
+    }
     @IBAction func trashButtonClicked(_ sender: Any) {
         let alert = UIAlertController(title: isTimeCapsule ?
                                         "Are you sure you want to delete this time capsule?" :
@@ -74,7 +84,6 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         super.viewDidLoad()
         journalVM = JournalViewModel(journal: journalData!)
         initialSetUp()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,6 +92,38 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+       
+    }
+    
+    func createTimeCapsuleDismissAlert() {
+        let alert = UIAlertController(title: "Do you wish to save or delete this time capsule letter?",
+                                      message: nil
+                                      , preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { _ in
+            self.createSaveAlert()
+        }))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+            self.createDeleteTimeCapsuleAlert()
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func createDeleteTimeCapsuleAlert() {
+        let alert = UIAlertController(title: isTimeCapsule ?
+                                        "Are you sure you want to delete this time capsule?" :
+                                        "Are you sure you want to delete this journal?"
+                                      , message: "This action can't be undo.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak alert] _ in
+            JournalManager.shared.deleteJournal(journalID: self.journalVM?.id ?? "")
+            self.loadingView.startLoading(on: self)
+            self.navigationController?.popViewController(animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -96,7 +137,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     }
     
     @objc func createSaveAlert() {
-        let alert = UIAlertController(title: "You just saved one precious memory!", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Time Capsule Saved", message:  "You just saved one precious memory!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             JournalManager.shared.changeTimeCapsuleStatus(journalID: self.journalVM?.id ?? "")
             self.loadingView.startLoading(on: self)
@@ -111,41 +152,84 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
             JournalManager.shared.changeTimeCapsuleStatus(journalID: self.journalVM?.id ?? "")
             self.loadingView.startLoading(on: self)
-//            HUD.flash(.progress)
             self.navigationController?.popViewController(animated: true)
         }))
         alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: { _ in
             JournalManager.shared.deleteJournal(journalID: self.journalVM?.id ?? "")
             self.loadingView.startLoading(on: self)
-//            HUD.flash(.progress)
             self.navigationController?.popViewController(animated: true)
         }))
         present(alert, animated: true, completion: nil)
     }
     
     func configureEditMode() {
+        if isEditingContent {
+            createCameraButton()
+        } else {
+            self.navigationItem.rightBarButtonItems = [trashButton, editButton]
+        }
         editButton.title = isEditingContent ? "Done" : "Edit"
         contentTextView.isEditable = isEditingContent
         titleTextView.isEditable = isEditingContent
         titleTextField.isUserInteractionEnabled = isEditingContent
         titleTextView.isUserInteractionEnabled = isEditingContent
         contentTextView.inputAccessoryView = toolBarView
-        if !isEditingContent && (modifiedTitle != nil || modifiedContent != nil || modifiedTags != nil) {
-            updateJournal()
+        configureImageEditingMode()
+        if !isEditingContent && (modifiedTitle != nil || modifiedContent != nil || modifiedTags != nil || modifiedImageURL != nil || journalImage != nil) {
+            updateImageData()
         }
     }
     
+    func configureImageEditingMode() {
+        if isEditingContent {
+            imageViewButton.isHidden = false
+        } else {
+            imageViewButton.isHidden = true
+        }
+    }
+    
+    func imagePickerDonePicking() {
+        imagePicker.didFinishPicking { [unowned imagePicker] items, _ in
+            if let photo = items.singlePhoto {
+                let resized = photo.image.resizedImageWith(targetSize: CGSize(width: self.view.frame.width, height: 300))
+                self.journalImage = resized
+                self.journalImageView.image = resized
+                self.titleTextViewToImageConstraint.constant = 10
+                self.journalImageView.isHidden = false
+            }
+            imagePicker.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func updateImageData() {
+        loadingView.startLoading(on: self)
+        guard journalImage != nil else {
+            modifiedImageURL = ""
+            updateJournal()
+            return
+        }
+        JournalManager.shared.uploadImage(image: journalImage!, completion: { result in
+            switch result {
+            case .success(let url):
+                self.modifiedImageURL = url
+                self.updateJournal()
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
+    
     func updateJournal() {
-        if let title = journalVM?.title, let content = journalVM?.content, let tags = journalVM?.tags, let id = journalVM?.id {
+        if let title = journalVM?.title, let content = journalVM?.content, let tags = journalVM?.tags, let id = journalVM?.id, let image = journalVM?.image {
             JournalManager.shared.updateJournal(journalID: journalVM?.id ?? id,
                                                 title: modifiedTitle ?? title,
                                                 content: modifiedContent ?? content,
-                                                tags: modifiedTags ?? tags, completion: { result in
+                                                tags: modifiedTags ?? tags,
+                                                image: modifiedImageURL ?? image, completion: { result in
                                                     switch result {
                                                     case .success(let message):
-                                                        
                                                         self.layoutTags(tags: (self.modifiedTags ?? self.journalVM?.tags) ?? [""])
-                                                        print(self.modifiedTags)
+                                                        self.loadingView.dismissLoading()
                                                         print(message)
                                                     case .failure(let error):
                                                         print(error)
@@ -161,6 +245,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         titleTextField.text = journalVM?.title
         titleTextView.setUpTitle(text: journalVM?.title ?? "", lineSpacing: 3)
         contentTextView.setUpContentText(text: journalVM?.content ?? "", lineSpacing: 3)
+        journalImageURL = journalVM?.image
         titleTextField.delegate = self
         contentTextView.delegate = self
         titleTextView.delegate = self
@@ -169,6 +254,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         if isTimeCapsule {
             createBarButtonItem()
         }
+        createBackButton()
     }
     
     func createBarButtonItem() {
@@ -186,13 +272,51 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         self.navigationItem.rightBarButtonItems = [trashButton, saveBarButton]
     }
     
+    func createCameraButton() {
+        let cameraButton = UIButton(type: .custom)
+        cameraButton.setImage(UIImage(systemName: "camera"), for: .normal)
+        cameraButton.addTarget(self, action: #selector(cameraButtonClicked), for: .touchUpInside)
+    
+        let cameraBarButton = UIBarButtonItem(customView: cameraButton)
+        let currWidth = cameraBarButton.customView?.widthAnchor.constraint(equalToConstant: 24)
+        currWidth?.isActive = true
+        let currHeight = cameraBarButton.customView?.heightAnchor.constraint(equalToConstant: 24)
+        currHeight?.isActive = true
+        self.navigationItem.rightBarButtonItems = [editButton, trashButton, cameraBarButton]
+    }
+    
+    @objc func cameraButtonClicked() {
+        imagePickerDonePicking()
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func createBackButton() {
+        let backButton = UIButton(type: .custom)
+        backButton.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
+        backButton.setImage(UIImage(named: "back"), for: .normal)
+        backButton.addTarget(self, action: #selector(handleBackButtonClicked), for: .touchUpInside)
+        
+        let backBarButton = UIBarButtonItem(customView: backButton)
+        let currWidth = backBarButton.customView?.widthAnchor.constraint(equalToConstant: 24)
+        currWidth?.isActive = true
+        let currHeight = backBarButton.customView?.heightAnchor.constraint(equalToConstant: 24)
+        currHeight?.isActive = true
+        self.navigationItem.leftBarButtonItem = backBarButton
+    }
+    
+    @objc func handleBackButtonClicked() {
+        if isTimeCapsule {
+            createTimeCapsuleDismissAlert()
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
     func displayImage() {
         guard journalVM?.image != "" else {
             titleTextFieldToImageConstraint.constant = -290
             titleTextViewToImageConstraint.constant = -300
             journalImageView.isHidden = true
-//            loadingView.dismissLoading()
-//            HUD.hide()
             return
         }
         loadingView.startLoading(on: self)
@@ -202,12 +326,10 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
             guard let data = data, error == nil else {
                 return
             }
-            
             DispatchQueue.main.async {
                 let image = UIImage(data: data)
                 self.journalImageView.kf.setImage(with: url, options: [.transition(.fade(1))])
                 self.loadingView.dismissLoading()
-//                HUD.hide()
             }
         })
         task.resume()

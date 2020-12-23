@@ -78,7 +78,6 @@ class WriteJournalViewController: UIViewController {
     @IBAction func completeButtonClicked(_ sender: Any) {
         loadingView.startLoading(on: self)
         uploadData()
-        
     }
     
     override func viewDidLoad() {
@@ -170,8 +169,8 @@ class WriteJournalViewController: UIViewController {
                 print(message)
                 self.loadingView.dismissLoading()
                 DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
-                    self.tabBarController?.selectedIndex = 0
                     self.navigationController?.popViewController(animated: true)
+                    self.tabBarController?.selectedIndex = 0
                 })
             case .failure(let error):
                 print(error)
