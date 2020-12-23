@@ -8,6 +8,7 @@
 import UIKit
 import YPImagePicker
 import Firebase
+import UserNotifications
 
 class WriteTimeCapsuleViewController: UIViewController {
 
@@ -25,6 +26,7 @@ class WriteTimeCapsuleViewController: UIViewController {
     var selectedDate: Date?
     var letterImage: UIImage?
     var letterImageURL: String?
+    let center = UNUserNotificationCenter.current()
     var letterTitle: String? {
         didSet {
             checkAllInfo()
@@ -44,6 +46,7 @@ class WriteTimeCapsuleViewController: UIViewController {
     @IBOutlet weak var senderButton: UIButton!
     @IBAction func sendButtonClicked(_ sender: Any) {
         loadingView.startLoading(on: self)
+        createPushNotification()
         uploadData()
 //        navigationController?.popToRootViewController(animated: true)
     }
@@ -85,6 +88,22 @@ class WriteTimeCapsuleViewController: UIViewController {
         }
     }
     
+    func createPushNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = "You Received a Time Capsule!"
+        content.body = "Read what you sent to yourself."
+        let date = selectedDate ?? Date()
+        let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+        
+        let identifier = "TimeCapsuleNotification"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        center.add(request, withCompletionHandler: { error in
+            if let error = error {
+                print(error)
+            }
+        })
+    }
     func imagePickerDonePicking() {
         imagePicker.didFinishPicking { [unowned imagePicker] items, _ in
             if let photo = items.singlePhoto {
@@ -170,3 +189,5 @@ extension WriteTimeCapsuleViewController: UITextFieldDelegate {
         letterTitle = textField.text
     }
 }
+
+

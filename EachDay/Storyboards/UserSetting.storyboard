@@ -48,8 +48,8 @@
                                                                 <action selector="editProfileButtonClicked:" destination="y70-eD-Udq" eventType="touchUpInside" id="id7-Ur-i9h"/>
                                                             </connections>
                                                         </button>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Eleanor Peng" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="AoX-pU-bwY">
-                                                            <rect key="frame" x="102" y="39.5" width="124" height="24"/>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Your Name" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="AoX-pU-bwY">
+                                                            <rect key="frame" x="102" y="39" width="157.5" height="25.5"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
@@ -118,18 +118,26 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00:00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3lA-FE-4RL">
+                                                    <rect key="frame" x="352" y="15" width="46" height="34"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="DKz-Bz-0E1" firstAttribute="centerY" secondItem="Nam-rN-oXX" secondAttribute="centerY" id="2Kh-36-ixP"/>
                                                 <constraint firstItem="0Of-bp-Z10" firstAttribute="centerY" secondItem="Nam-rN-oXX" secondAttribute="centerY" id="Ie6-Aa-e9a"/>
+                                                <constraint firstItem="3lA-FE-4RL" firstAttribute="centerY" secondItem="Nam-rN-oXX" secondAttribute="centerY" id="Qud-gD-BIu"/>
                                                 <constraint firstItem="t8B-xp-J1W" firstAttribute="centerY" secondItem="Nam-rN-oXX" secondAttribute="centerY" id="WBs-Vb-sIz"/>
                                                 <constraint firstAttribute="trailing" secondItem="0Of-bp-Z10" secondAttribute="trailing" constant="20" id="fMW-3C-7Sf"/>
+                                                <constraint firstAttribute="trailing" secondItem="3lA-FE-4RL" secondAttribute="trailing" constant="16" id="uIF-It-JSe"/>
                                                 <constraint firstItem="DKz-Bz-0E1" firstAttribute="leading" secondItem="Nam-rN-oXX" secondAttribute="leading" constant="20" id="ucX-4H-dO1"/>
                                                 <constraint firstItem="t8B-xp-J1W" firstAttribute="leading" secondItem="DKz-Bz-0E1" secondAttribute="trailing" constant="16" id="w9X-Gs-ZdI"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="iconImageView" destination="DKz-Bz-0E1" id="ajW-cq-TN4"/>
+                                            <outlet property="reminderTextField" destination="3lA-FE-4RL" id="Rsp-8h-f0r"/>
                                             <outlet property="settingDescriptionLabel" destination="0Of-bp-Z10" id="6wA-SJ-mVe"/>
                                             <outlet property="settingLabel" destination="t8B-xp-J1W" id="DWq-au-fbx"/>
                                         </connections>
@@ -156,7 +164,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C5X-5a-R1m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="313" y="169"/>
+            <point key="canvasLocation" x="311.59420289855075" y="168.75"/>
         </scene>
         <!--Passcode-->
         <scene sceneID="Ldn-5h-q8a">

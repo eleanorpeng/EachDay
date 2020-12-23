@@ -236,11 +236,6 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
                 self.isDisablingPasscode = false
             }
             self.performSegue(withIdentifier: "ShowPasscodeSegue", sender: self)
-//            if !self.hasPasscode {
-//                self.performSegue(withIdentifier: "ShowPasscodeSegue", sender: self)
-//            } else {
-//                self.presentDisablePasscodeAlert()
-//            }
         }))
         
         if hasPasscode {
