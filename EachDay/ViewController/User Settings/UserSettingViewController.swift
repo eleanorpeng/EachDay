@@ -38,6 +38,10 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
     var user: User?
     var userName: String?
     let keychain = Keychain()
+    var reminderTime: Date?
+    var routineReminderClicked = false
+    var hasSetReminder = false
+    let center = UNUserNotificationCenter.current()
     
 //    UserDefaults.setValue(self.enableBiometricsAuth, forKey: EPUserDefaults.enableBiometrics.rawValue)
     
@@ -58,11 +62,12 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
     }
     
     func initialSetUp() {
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationItem.title = "Settings"
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorColor = .clear
-        settings = [Settings(icon: "notification", setting: "Daily Reminder", description: "00:00"),
+        settings = [Settings(icon: "notification", setting: "Daily Reminder", description: ">"),
                     Settings(icon: "tag", setting: "Journal Tags", description: ">"),
                     Settings(icon: "stopwatch", setting: "Time Tracker Categories", description: ">"),
                     Settings(icon: "passcode", setting: "Passcode", description: (keychain["passcode"] != nil) ? "Enable" : "Disable"),
@@ -114,7 +119,8 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
         if let destination = segue.destination as? TagSelectionViewController {
             destination.fromUserSetting = true
             destination.isTimeTracking = isTimeTracking
-            self.navigationController?.navigationBar.isHidden = true
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+//            self.navigationController?.navigationBar.isHidden = true
         }
         
         if let destination = segue.destination as? PasscodeViewController {
@@ -137,7 +143,13 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
     
 }
 
-extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource, ProfileTableViewCellDelegate {
+extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource, ProfileTableViewCellDelegate, SettingsTableViewCellDelegate {
+    func getSelectedTime(time: Date) {
+        reminderTime = time
+        hasSetReminder = true
+        createDailyReminderNotification()
+        print(reminderTime)
+    }
     
     func handleEditImage() {
         imagePickerDonePicking()
@@ -168,6 +180,13 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        if indexPath.section == 0 {
+//            return setUpProfileCell()
+//        } else if indexPath.section == 1 && indexPath.row == 0 {
+//            return setUpReminderCell(index: indexPath.row)
+//        } else {
+//            return setUpSettingCell(index: indexPath.row)
+//        }
         if indexPath.section == 0 {
             return setUpProfileCell()
         } else {
@@ -186,7 +205,6 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
             profileCell.layoutCell(profileImage: profileImageURL, name: userName ?? "Eleanor Peng")
             
         }
-        
         return profileCell
     }
     
@@ -196,6 +214,18 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
         settingCell.layoutCell(icon: settings?[index].icon ?? "",
                                setting: settings?[index].setting ?? "",
                                description: settings?[index].description ?? "")
+        settingCell.routineReminderClicked = routineReminderClicked
+        return settingCell
+    }
+    
+    func setUpReminderCell(index: Int) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.identifier)
+        guard let settingCell = cell as? SettingsTableViewCell else { return cell! }
+        settingCell.setUpDailyReminderCell(icon: settings?[index].icon ?? "",
+                               setting: settings?[index].setting ?? "",
+                               description: settings?[index].description ?? "")
+        settingCell.delegate = self
+        settingCell.routineReminderClicked = routineReminderClicked
         return settingCell
     }
     
@@ -208,6 +238,8 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
         }
         switch indexPath.row {
         case 0:
+            performSegue(withIdentifier: "ShowRoutineReminderSegue", sender: self)
+//            presentRoutineAlert()
             return
         case 1:
             performSegue(withIdentifier: "ShowTagsSegue", sender: self)
@@ -222,8 +254,49 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
         }
     }
     
-    func presentRoutineAlert() {
+    func createDailyReminderNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = "Daily Reminder"
+        content.body = "Time to write your journal."
+        let time = reminderTime
+        let triggerDaily = Calendar.current.dateComponents([.hour, .minute, .second], from: time!)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDaily, repeats: true)
         
+        let identifier = "DailyRoutineNotification"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        center.add(request, withCompletionHandler: { error in
+            if let error = error {
+                print(error)
+            }
+        })
+        
+    }
+    
+    func removeDailyReminderNotification() {
+        center.removePendingNotificationRequests(withIdentifiers: ["DailyRoutineNotification"])
+    }
+    
+    func presentRoutineAlert() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: hasSetReminder ? "Disable" : "Enable", style: .default, handler: { _ in
+            if self.hasSetReminder {
+                self.reminderTime = nil
+                self.removeDailyReminderNotification()
+            } else {
+                self.routineReminderClicked = true
+                self.tableView.reloadData()
+            }
+        }))
+        
+        if hasSetReminder {
+            alert.addAction(UIAlertAction(title: "Edit Reminder Time", style: .default, handler: { _ in
+                //not sure
+                self.tableView.reloadData()
+            }))
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     func presentPasscodeAlert() {

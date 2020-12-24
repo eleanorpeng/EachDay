@@ -93,8 +93,8 @@ extension FilterJournalViewController: UISearchResultsUpdating, UISearchBarDeleg
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         filterContentForSearchText(searchBar.text!)
-    
     }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.delegate?.getFilteredTag(tag: searchBar.text!)
         self.navigationController?.popViewController(animated: true)

@@ -35,6 +35,9 @@
 		2023E65F258475C1001C43E8 /* FilterJournalView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2023E65E258475C1001C43E8 /* FilterJournalView.storyboard */; };
 		2023E68525847A15001C43E8 /* FilterJournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023E68425847A15001C43E8 /* FilterJournalViewController.swift */; };
 		2023E68825847A5A001C43E8 /* FilterJournalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023E68725847A5A001C43E8 /* FilterJournalTableViewCell.swift */; };
+		2023F6CD25943A5E00A3ACC4 /* RoutineReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023F6CC25943A5E00A3ACC4 /* RoutineReminderTableViewCell.swift */; };
+		2023F6D025943CD400A3ACC4 /* RoutineReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023F6CF25943CD400A3ACC4 /* RoutineReminderViewController.swift */; };
+		2023F6D9259443EC00A3ACC4 /* notification.json in Resources */ = {isa = PBXBuildFile; fileRef = 2023F6D8259443EC00A3ACC4 /* notification.json */; };
 		203142942570D048006410A8 /* WriteTimeCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203142932570D048006410A8 /* WriteTimeCapsuleViewController.swift */; };
 		203142972570E441006410A8 /* TimeTrackingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203142962570E441006410A8 /* TimeTrackingButton.swift */; };
 		2031429A2570E518006410A8 /* TimeTrackingMainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203142992570E518006410A8 /* TimeTrackingMainPageViewController.swift */; };
@@ -129,6 +132,9 @@
 		2023E65E258475C1001C43E8 /* FilterJournalView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilterJournalView.storyboard; sourceTree = "<group>"; };
 		2023E68425847A15001C43E8 /* FilterJournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterJournalViewController.swift; sourceTree = "<group>"; };
 		2023E68725847A5A001C43E8 /* FilterJournalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterJournalTableViewCell.swift; sourceTree = "<group>"; };
+		2023F6CC25943A5E00A3ACC4 /* RoutineReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineReminderTableViewCell.swift; sourceTree = "<group>"; };
+		2023F6CF25943CD400A3ACC4 /* RoutineReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineReminderViewController.swift; sourceTree = "<group>"; };
+		2023F6D8259443EC00A3ACC4 /* notification.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notification.json; sourceTree = "<group>"; };
 		203142932570D048006410A8 /* WriteTimeCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteTimeCapsuleViewController.swift; sourceTree = "<group>"; };
 		203142962570E441006410A8 /* TimeTrackingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackingButton.swift; sourceTree = "<group>"; };
 		203142992570E518006410A8 /* TimeTrackingMainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackingMainPageViewController.swift; sourceTree = "<group>"; };
@@ -276,6 +282,7 @@
 				20AA1AF82589AE720074B683 /* loading.json */,
 				20AA1AFB2589DE580074B683 /* welcome.json */,
 				203A94E2258F07FB002B7936 /* loading-dots.json */,
+				2023F6D8259443EC00A3ACC4 /* notification.json */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -325,6 +332,7 @@
 				2053B883257F7224005DFA24 /* ProfileTableViewCell.swift */,
 				2053B886257F7234005DFA24 /* SettingsTableViewCell.swift */,
 				201B28DB25807C5A00FB6A77 /* UserSettingTagsTableViewCell.swift */,
+				2023F6CC25943A5E00A3ACC4 /* RoutineReminderTableViewCell.swift */,
 				20D19BBC258B3E70003ABDD8 /* ColorPickerCollectionViewCell.swift */,
 				20D19BBD258B3E70003ABDD8 /* ColorPickerCollectionViewCell.xib */,
 				20FBA4A5257A04EC00A58AF0 /* Journal */,
@@ -339,6 +347,7 @@
 				2053B85A257F227A005DFA24 /* UserSettingViewController.swift */,
 				2051016E2580CC6300E7D985 /* PasscodeViewController.swift */,
 				2013683525826A6E00C90BB6 /* BiometricAuthentication.swift */,
+				2023F6CF25943CD400A3ACC4 /* RoutineReminderViewController.swift */,
 			);
 			path = "User Settings";
 			sourceTree = "<group>";
@@ -535,6 +544,7 @@
 				2098B165256FB2C600AAC1CB /* TimeCapsule.storyboard in Resources */,
 				2009DE3F256E270F00545439 /* LaunchScreen.storyboard in Resources */,
 				20FBA4652578BCB800A58AF0 /* SignIn.storyboard in Resources */,
+				2023F6D9259443EC00A3ACC4 /* notification.json in Resources */,
 				20733C1B25760CB2004B4A3B /* TimeTrackingSummary.storyboard in Resources */,
 				2009DE3C256E270F00545439 /* Assets.xcassets in Resources */,
 				20195451258701D0004BF656 /* DetailJournalContentView.storyboard in Resources */,
@@ -634,6 +644,7 @@
 				2009DE71256E310500545439 /* User.swift in Sources */,
 				2009DE7D256E461D00545439 /* TrackedTimeViewModel.swift in Sources */,
 				20BBA887258C543600816870 /* CalendarView.swift in Sources */,
+				2023F6CD25943A5E00A3ACC4 /* RoutineReminderTableViewCell.swift in Sources */,
 				20733BDE25739156004B4A3B /* AddNewTagTableViewCell.swift in Sources */,
 				20FBA458257896B600A58AF0 /* JournalTag.swift in Sources */,
 				203142CF25710367006410A8 /* PaddingLabel.swift in Sources */,
@@ -648,6 +659,7 @@
 				2023E68525847A15001C43E8 /* FilterJournalViewController.swift in Sources */,
 				2009DE33256E270D00545439 /* AppDelegate.swift in Sources */,
 				2009DE92256E5A8400545439 /* JournalTableViewCell.swift in Sources */,
+				2023F6D025943CD400A3ACC4 /* RoutineReminderViewController.swift in Sources */,
 				20733BD125732D81004B4A3B /* StopWatch.swift in Sources */,
 				2031429D2570E655006410A8 /* TimeTrackingMainCollectionViewCell.swift in Sources */,
 				2019553E25776BB4006FA8E8 /* CalendarMainCollectionViewCell.swift in Sources */,

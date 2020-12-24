@@ -17,9 +17,9 @@ class SettingsTableViewCell: UITableViewCell {
     weak var delegate: SettingsTableViewCellDelegate?
     var datePicker: UIDatePicker!
     var selectedTime: Date?
+    var routineReminderClicked = false
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -33,6 +33,7 @@ class SettingsTableViewCell: UITableViewCell {
         settingDescriptionLabel.text = description
         settingDescriptionLabel.textColor = .lightGray
         settingDescriptionLabel.isHidden = false
+        reminderTextField.isHidden = true
     }
     
     func setUpDailyReminderCell(icon: String, setting: String, description: String) {
@@ -41,15 +42,21 @@ class SettingsTableViewCell: UITableViewCell {
         settingDescriptionLabel.isHidden = true
         datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: contentView.frame.width, height: 200))
         datePicker.datePickerMode = .time
-        datePicker.addTarget(self, action: #selector(dateChanged), for: .touchUpInside)
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
         reminderTextField.inputView = datePicker
         let doneButton = UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(datePickerDone))
         let toolBar = UIToolbar.init(frame: CGRect(x: 0, y: 0, width: contentView.frame.width, height: 44))
         toolBar.setItems([UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil), doneButton], animated: true)
+        if routineReminderClicked {
+            reminderTextField.becomeFirstResponder()
+        }
+//        reminderTextField.becomeFirstResponder()
     }
 
     @objc func dateChanged() {
-        reminderTextField.text = "\(datePicker.date)"
+        print(datePicker.date)
+        reminderTextField.text = datePicker.date.getFormattedTime()
     }
     
     @objc func datePickerDone() {
