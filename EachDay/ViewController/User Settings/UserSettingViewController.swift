@@ -61,6 +61,9 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
         hasPasscode = keychain["passcode"] != nil 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        hasPasscode = keychain["passcode"] != nil 
+    }
     func initialSetUp() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.title = "Settings"

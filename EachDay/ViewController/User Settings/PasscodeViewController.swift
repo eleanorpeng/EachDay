@@ -11,7 +11,6 @@ import KeychainAccess
 
 class PasscodeViewController: UIViewController, UserSettingViewControllerDelegate {
     
-    
     weak var delegate: PasscodeViewControllerDelegate?
     @IBOutlet weak var pinView: SVPinView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -28,35 +27,10 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        UserDefaults.standard.setValue(false, forKey: EPUserDefaults.hasSignedIn.rawValue)
-//        let touchBool = biometricAuth.canEvaluatePolicy()
-//        if touchBool {
-//            self.configureBiometrics()
-//        }
-//        print(keychain["passcode"])
-//        
-//        if isInitial && keychain["passcode"] != nil {
-//            configureIntialView()
-//        } else if isInitial && keychain["passcode"] == nil {
-//            performSegue(withIdentifier: "ShowMainSegue", sender: self)
-//        } else {
-//            configurePinView()
-//        }
-        
-//        pinView.keyboardType = .phonePad
-//        pinView.becomeFirstResponderAtIndex = 0
-//        if isInitial && keychain["passcode"] != nil {
-//            configureIntialView()
-//        } else if isInitial && keychain["passcode"] == nil {
-//            performSegue(withIdentifier: "ShowMainSegue", sender: self)
-//        } else {
-//            configurePinView()
-//        }
+        initialSetUp()
     }
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        print(keychain["passcode"])
+    
+    func initialSetUp() {
         if isInitial && keychain["passcode"] != nil {
             configureIntialView()
         } else if isInitial && keychain["passcode"] == nil {
@@ -65,7 +39,7 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
             configurePinView()
         }
     }
-    
+
     //Initial View
     func getBiometricsAuthState(enable: Bool) {
         enableBiometricsAuth = enable
@@ -80,6 +54,7 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
             }
         }
     }
+    
     func configureIntialView() {
         if enableBiometricsAuth {
             configureBiometrics()
@@ -89,7 +64,6 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
         pinView.keyboardType = .phonePad
         pinView.didFinishCallback = { [weak self] pin in
             if pin == self?.keychain["passcode"] {
-//                print(self?.keychain["passcode"])
                 self?.performSegue(withIdentifier: "ShowMainSegue", sender: self)
             } else {
                 self?.createShakeAnimation()
@@ -103,6 +77,7 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
     func configurePinView() {
         pinView.keyboardType = .phonePad
         pinView.becomeFirstResponderAtIndex = 0
+        print("back to configure pin view")
         if isEditingPasscode {
             self.configureEditingView()
         } else if isDisablingPasscode {
@@ -114,17 +89,17 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
     
     func configureSetUpView() {
         pinView.didFinishCallback = { [weak self] pin in
-            print("The passcode is \(pin)")
             self?.checkPasscode(pin: pin)
-//            UserManager.shared.updatePasscode(userDocID: "Eleanor", passcode: self?.passcode ?? "")
-//            self?.showCompleteAlert()
         }
     }
     
     func checkPasscode(pin: String) {
+        print("in check passcode")
         if count == 1 {
+            print("in first")
             firstCheck(pin: pin)
         } else if count == 2 {
+            print("in second")
             secondCheck(pin: pin)
         }
     }
@@ -136,11 +111,8 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
         }
         pinView.didFinishCallback = { [weak self] pin in
             if pin == self?.keychain["passcode"] {
+                self?.editPasscode()
                 self?.pinView.clearPin()
-                self?.titleLabel.text = "Enter New Passcode"
-                self?.subtitleLabel.text = "Please enter new passcode."
-                self?.configureSetUpView()
-                
             } else {
                 self?.showIncompleteAlert()
             }
@@ -186,6 +158,19 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
         view.layer.add(animation, forKey: "position")
     }
     
+    func editPasscode() {
+        titleLabel.text = "Enter New Passcode"
+        subtitleLabel.text = "Please enter new passcode."
+        pinView.didFinishCallback = { [weak self] pin in
+            self?.passcode = pin
+            self?.keychain["passcode"] = pin
+            self?.count = 1
+        }
+        pinView.clearPin()
+        configureSetUpView()
+    }
+    
+    
     func firstCheck(pin: String) {
         passcode = pin
         keychain["passcode"] = passcode
@@ -205,13 +190,8 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
             showIncompleteAlert()
         }
     }
-    
+   
     func showCompleteAlert() {
-//        let alert = UIAlertController(title: isDisablingPasscode ? "Passcode disabled." : "Your passcode is set!", message: nil, preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-//            self.navigationController?.popViewController(animated: true)
-//        }))
-//        self.present(alert, animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -220,13 +200,6 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
         createShakeAnimation()
         self.delegate?.getPasscodeState(isEditing: false, isDisabling: false)
         pinView.clearPin()
-        
-//        let alert = UIAlertController(title: "Please enter the correct passcode.", message: nil, preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-//            self.delegate?.getPasscodeState(isEditing: false, isDisabling: false)
-//            self.pinView.clearPin()
-//        }))
-//        self.present(alert, animated: true, completion: nil)
     }
 
     

@@ -57,13 +57,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 //        let storyboard = UIStoryboard(name: "Passcode", bundle: nil)
         var storyboard: UIStoryboard
+        let keychain = Keychain()
 
 //        if Auth.auth().currentUser == nil {
 //            storyboard = UIStoryboard(name: "SignIn", bundle: nil)
 //        } else {
 //            storyboard = UIStoryboard(name: "Passcode", bundle: nil)
 //        }
-        storyboard = UIStoryboard(name: "Passcode", bundle: nil)
+        if keychain["passcode"] == nil {
+            storyboard = UIStoryboard(name: "Main", bundle: nil)
+        } else {
+            storyboard = UIStoryboard(name: "Passcode", bundle: nil)
+        }
+        
         
         window?.rootViewController = storyboard.instantiateInitialViewController()
         window?.makeKeyAndVisible()
