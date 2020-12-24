@@ -35,34 +35,7 @@ class SettingsTableViewCell: UITableViewCell {
         settingDescriptionLabel.isHidden = false
         reminderTextField.isHidden = true
     }
-    
-    func setUpDailyReminderCell(icon: String, setting: String, description: String) {
-        iconImageView.image = UIImage(named: icon)
-        settingLabel.text = setting
-        settingDescriptionLabel.isHidden = true
-        datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: contentView.frame.width, height: 200))
-        datePicker.datePickerMode = .time
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
-        reminderTextField.inputView = datePicker
-        let doneButton = UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(datePickerDone))
-        let toolBar = UIToolbar.init(frame: CGRect(x: 0, y: 0, width: contentView.frame.width, height: 44))
-        toolBar.setItems([UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil), doneButton], animated: true)
-        if routineReminderClicked {
-            reminderTextField.becomeFirstResponder()
-        }
-//        reminderTextField.becomeFirstResponder()
-    }
 
-    @objc func dateChanged() {
-        print(datePicker.date)
-        reminderTextField.text = datePicker.date.getFormattedTime()
-    }
-    
-    @objc func datePickerDone() {
-        self.delegate?.getSelectedTime(time: datePicker.date)
-        reminderTextField.resignFirstResponder()
-    }
 }
 
 protocol SettingsTableViewCellDelegate: AnyObject {

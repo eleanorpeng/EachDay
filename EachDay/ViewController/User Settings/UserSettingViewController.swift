@@ -130,6 +130,10 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
             destination.isInitial = false
             self.delegate = destination
         }
+        
+        if let destination = segue.destination as? RoutineReminderViewController {
+            destination.user = user
+        }
     }
     
     func handlePasscodeSet(hasSet: Bool) {
@@ -180,13 +184,6 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if indexPath.section == 0 {
-//            return setUpProfileCell()
-//        } else if indexPath.section == 1 && indexPath.row == 0 {
-//            return setUpReminderCell(index: indexPath.row)
-//        } else {
-//            return setUpSettingCell(index: indexPath.row)
-//        }
         if indexPath.section == 0 {
             return setUpProfileCell()
         } else {
@@ -218,17 +215,6 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
         return settingCell
     }
     
-    func setUpReminderCell(index: Int) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.identifier)
-        guard let settingCell = cell as? SettingsTableViewCell else { return cell! }
-        settingCell.setUpDailyReminderCell(icon: settings?[index].icon ?? "",
-                               setting: settings?[index].setting ?? "",
-                               description: settings?[index].description ?? "")
-        settingCell.delegate = self
-        settingCell.routineReminderClicked = routineReminderClicked
-        return settingCell
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 2 {
@@ -239,7 +225,6 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
         switch indexPath.row {
         case 0:
             performSegue(withIdentifier: "ShowRoutineReminderSegue", sender: self)
-//            presentRoutineAlert()
             return
         case 1:
             performSegue(withIdentifier: "ShowTagsSegue", sender: self)
@@ -274,29 +259,6 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
     
     func removeDailyReminderNotification() {
         center.removePendingNotificationRequests(withIdentifiers: ["DailyRoutineNotification"])
-    }
-    
-    func presentRoutineAlert() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: hasSetReminder ? "Disable" : "Enable", style: .default, handler: { _ in
-            if self.hasSetReminder {
-                self.reminderTime = nil
-                self.removeDailyReminderNotification()
-            } else {
-                self.routineReminderClicked = true
-                self.tableView.reloadData()
-            }
-        }))
-        
-        if hasSetReminder {
-            alert.addAction(UIAlertAction(title: "Edit Reminder Time", style: .default, handler: { _ in
-                //not sure
-                self.tableView.reloadData()
-            }))
-        }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
     
     func presentPasscodeAlert() {

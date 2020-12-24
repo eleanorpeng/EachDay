@@ -7,6 +7,7 @@
 
 import UIKit
 import Lottie
+import Firebase
 
 class RoutineReminderViewController: UIViewController {
 
@@ -20,6 +21,7 @@ class RoutineReminderViewController: UIViewController {
 //    var datePicker: UIDatePicker!
     let center = UNUserNotificationCenter.current()
     var selectedDate: Date?
+    var user: User?
     var selectedDateText = "00:00" {
         didSet {
             tableView.reloadData()
@@ -46,6 +48,10 @@ class RoutineReminderViewController: UIViewController {
         animationView.play()
         self.navigationItem.title = "Daily Reminder"
         addToolBar()
+        if user != nil {
+            selectedDate = user?.routineTime?.dateValue()
+            selectedDateText = user?.routineTime?.dateValue().getFormattedTime() ?? "00:00"
+        }
     }
     
     func showDatePicker() {
@@ -101,7 +107,16 @@ class RoutineReminderViewController: UIViewController {
         selectedDateText = selectedDate?.getFormattedTime() ?? "00:00"
         createDailyReminderNotification()
         dismissDatePicker()
-        tableView.reloadData()
+        UserManager.shared.updateRoutineTime(routineTime: Timestamp(date: selectedDate!), completion: { result in
+            switch result {
+            case .success(let message):
+                print(message)
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        })
+        
     }
 }
 
@@ -111,6 +126,14 @@ extension RoutineReminderViewController: UITableViewDelegate, UITableViewDataSou
         if !switchStatus {
             selectedDateText = "00:00"
             selectedDate = nil
+            UserManager.shared.deleteRoutineTime(completion: { result in
+                switch result {
+                case .success(let message):
+                    print(message)
+                case .failure(let error):
+                    print(error)
+                }
+            })
             center.removePendingNotificationRequests(withIdentifiers: ["DailyRoutineNotification"])
         }
 //        tableView.reloadData()

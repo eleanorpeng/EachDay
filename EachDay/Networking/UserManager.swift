@@ -30,6 +30,34 @@ class UserManager {
         }
     }
     
+    func updateRoutineTime(routineTime: Timestamp, completion: @escaping(Result<String, Error>) -> Void) {
+        database.collection("User").document(userDocID ?? "").updateData([
+            "routineTime": routineTime
+        ]) { err in
+            if let err = err {
+                completion(.failure(err))
+                print("Failed to update routine time.")
+            } else {
+                let message = "Routine time updated successfully!"
+                completion(.success(message))
+            }
+        }
+    }
+    
+    func deleteRoutineTime(completion: @escaping(Result<String, Error>) -> Void) {
+        database.collection("User").document(userDocID ?? "").updateData([
+            "routineTime": FieldValue.delete()
+        ]) { err in
+            if let err = err {
+                completion(.failure(err))
+                print("Failed to delete routine time.")
+            } else {
+                let message = "Routine time deleted successfully!"
+                completion(.success(message))
+            }
+        }
+    }
+    
     func updatePasscode(passcode: String) {
         database.collection("User").document(userDocID ?? "").updateData([
             "passcode" : passcode

@@ -17,9 +17,8 @@ class RoutineReminderTableViewCell: UITableViewCell {
         switchStatus = routineSwitch.isOn
         UserDefaults.standard.setValue(switchStatus, forKey: EPUserDefaults.hasDailyReminder.rawValue)
         self.delegate?.getSwitchStatus(status: switchStatus)
-        print("Switch: \(routineSwitch.isOn)")
-        
     }
+    
     var switchStatus = false
     weak var delegate: RoutineReminderTableViewCellDelegate?
     
@@ -45,7 +44,6 @@ class RoutineReminderTableViewCell: UITableViewCell {
         routineSwitch.isHidden = true
         label.text = "Reminder Time"
         timeLabel.text = time
-         
     }
 
 }

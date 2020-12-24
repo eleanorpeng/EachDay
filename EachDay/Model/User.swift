@@ -17,10 +17,11 @@ struct User: Identifiable, Codable {
     var trackTimeCategories: [String]
     var image: String
     var calendarColors: [String]
+    var routineTime: Timestamp?
 //    let trackedTime: [TrackedTime]
 //    let journal: [Journal]
     
-    init(name: String, id: String, email: String, passcode: String, journalTags: [String], trackTimeCategories: [String], image: String, colors: [String]) {
+    init(name: String, id: String, email: String, passcode: String, journalTags: [String], trackTimeCategories: [String], image: String, colors: [String], routineTime: Timestamp?) {
         self.name = name
         self.id = id
         self.email = email
@@ -29,12 +30,13 @@ struct User: Identifiable, Codable {
         self.trackTimeCategories = trackTimeCategories
         self.image = image
         self.calendarColors = colors
+        self.routineTime = routineTime
 //        self.trackedTime = trackedTime
 //        self.journal = journal
     }
     
     enum CodingKeys: String, CodingKey {
-        case name, id, email, passcode, journalTags, trackTimeCategories, image,  calendarColors
+        case name, id, email, passcode, journalTags, trackTimeCategories, image,  calendarColors, routineTime
     }
 }
 

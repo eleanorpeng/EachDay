@@ -91,7 +91,8 @@ class SignInViewController: UIViewController {
                         journalTags: ["Time Capsule", "Reflection"],
                         trackTimeCategories: ["Eat", "Sleep", "Music", "Commute", "TV", "Read", "Workout", "Work"],
                         image: "",
-                        colors: calendarColors!)
+                        colors: calendarColors!,
+                        routineTime: nil)
         UserManager.shared.uploadUserData(user: user, completion: { result in
             switch result {
             case .success(let message):
