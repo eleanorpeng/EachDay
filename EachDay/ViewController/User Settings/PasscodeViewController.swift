@@ -77,7 +77,6 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
     func configurePinView() {
         pinView.keyboardType = .phonePad
         pinView.becomeFirstResponderAtIndex = 0
-        print("back to configure pin view")
         if isEditingPasscode {
             self.configureEditingView()
         } else if isDisablingPasscode {

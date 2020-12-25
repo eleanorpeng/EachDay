@@ -17,8 +17,8 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var userProfileButton: UIButton!
     @IBAction func userProfileButtonClicked(_ sender: Any) {
-//        performSegue(withIdentifier: "ShowUserSettingSegue", sender: self)
-        try? Auth.auth().signOut()
+        performSegue(withIdentifier: "ShowUserSettingSegue", sender: self)
+//        try? Auth.auth().signOut()
     }
     @IBAction func backToTodayButtonClicked(_ sender: Any) {
         datePicker.date = currentDate
