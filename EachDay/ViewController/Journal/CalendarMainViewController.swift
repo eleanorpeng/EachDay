@@ -17,10 +17,19 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var userProfileButton: UIButton!
     @IBAction func userProfileButtonClicked(_ sender: Any) {
-        performSegue(withIdentifier: "ShowUserSettingSegue", sender: self)
+//        performSegue(withIdentifier: "ShowUserSettingSegue", sender: self)
+        try? Auth.auth().signOut()
     }
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBAction func backToTodayButtonClicked(_ sender: Any) {
+        datePicker.date = currentDate
+        scrollToMonth = datePicker.date.month()
+        backToTodayButton.isHidden = true
+        
+    }
+    
+    @IBOutlet weak var backToTodayButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
+    
     var selectedMonth = 0
     var user: User?
     let monthNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -37,12 +46,21 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
     var calendarColor: UIColor?
     var changeColorIndex: Int?
     var isChangingColor = false
-    var scrollToMonth = 0
+    var scrollToMonth = 0 {
+        didSet {
+            scrollToSelectedMonth()
+        }
+    }
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBAction func datePickerSelected(_ sender: Any) {
         selectedYear = datePicker.date.year()
         scrollToMonth = datePicker.date.month()
-        scrollToSelectedMonth()
+        if datePicker.date != currentDate {
+            backToTodayButton.isHidden = false
+            
+        }
+        
+//        scrollToSelectedMonth()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,10 +141,10 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
-        dateLabel.text = currentDate.getFormattedDate()
         userProfileButton.clipsToBounds = true
         userProfileButton.layer.cornerRadius = userProfileButton.frame.width / 2
         scrollToMonth = currentDate.month()
+
     }
 
     override func viewWillLayoutSubviews() {
@@ -143,6 +161,12 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         scrollToSelectedMonth()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        datePicker.date = currentDate
+        scrollToMonth = datePicker.date.month()
+        
+    }
     func scrollToSelectedMonth() {
         if !isChangingColor {
 //            collectionView.scrollToItem(at: IndexPath(row: currentDate.month() - 1, section: 0),

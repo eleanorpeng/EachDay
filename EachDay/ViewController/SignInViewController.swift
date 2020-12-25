@@ -21,6 +21,14 @@ class SignInViewController: UIViewController {
         configureSignInStatus(status: true)
         uploadUserData()
     }
+    
+    @IBAction func privacyPolicyButtonClicked(_ sender: Any) {
+        performSegue(withIdentifier: "ShowPrivatePolicySegue", sender: self)
+    }
+    
+    @IBAction func termsAndConditionsButtonClicked(_ sender: Any) {
+        performSegue(withIdentifier: "ShowTermsandConditionsSegue", sender: self)
+    }
     let keychain = Keychain()
     var calendarColors: [String]?
     var userID: String?

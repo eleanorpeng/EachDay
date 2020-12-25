@@ -12,9 +12,9 @@ import FirebaseStorage
 
 class JournalManager {
     static let shared = JournalManager()
-//    var userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
+    var userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
     
-    var userDocID = "IAMACTUALLYFAKE"
+//    var userDocID = "IAMACTUALLYFAKE"
     var database = Firestore.firestore()
     
     func fetchJournalData(selectedMonth: Int, completion: @escaping (Result<[Journal], Error>) -> Void) {

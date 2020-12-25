@@ -64,7 +64,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        } else {
 //            storyboard = UIStoryboard(name: "Passcode", bundle: nil)
 //        }
-        if keychain["passcode"] == nil {
+        if Auth.auth().currentUser == nil {
+            storyboard = UIStoryboard(name: "SignIn", bundle: nil)
+        } else if keychain["passcode"] == nil {
             storyboard = UIStoryboard(name: "Main", bundle: nil)
         } else {
             storyboard = UIStoryboard(name: "Passcode", bundle: nil)
