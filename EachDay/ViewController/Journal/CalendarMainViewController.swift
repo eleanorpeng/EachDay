@@ -28,7 +28,7 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
     }
     
     @IBOutlet weak var backToTodayButton: UIButton!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView! 
     
     var selectedMonth = 0
     var user: User?
