@@ -19,7 +19,6 @@ class JournalManager {
     
     func fetchJournalData(selectedMonth: Int, completion: @escaping (Result<[Journal], Error>) -> Void) {
         database.collection("User").document(userDocID ?? "").collection("Journal").order(by: "date", descending: true).addSnapshotListener({ querySnapshot, error in
-            print("HERE: \(self.userDocID)")
             if let error = error {
                 completion(.failure(error))
             } else {

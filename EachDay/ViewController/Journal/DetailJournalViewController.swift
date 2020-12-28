@@ -42,6 +42,11 @@ class DetailJournalViewController: UIViewController {
         setUpNavigationBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     func setUpNavigationBar() {
         var monthTitle = ""
         switch selectedMonth {

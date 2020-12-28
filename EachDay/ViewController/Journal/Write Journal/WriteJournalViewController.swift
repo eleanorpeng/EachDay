@@ -94,6 +94,7 @@ class WriteJournalViewController: UIViewController {
         journalImageView.image = journalImage
         uploadImageButton.isHidden = true
         journalImageView.backgroundColor = .clear
+        journalTags = ["Reflection"]
     }
     
     func initialSetUp() {

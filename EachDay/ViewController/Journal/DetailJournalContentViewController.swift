@@ -204,7 +204,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     func updateImageData() {
         loadingView.startLoading(on: self)
         guard journalImage != nil else {
-            modifiedImageURL = ""
+            modifiedImageURL = nil
             updateJournal()
             return
         }
@@ -317,9 +317,11 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
             titleTextFieldToImageConstraint.constant = -290
             titleTextViewToImageConstraint.constant = -300
             journalImageView.isHidden = true
+            imageViewButton.isEnabled = false
             return
         }
         loadingView.startLoading(on: self)
+        imageViewButton.isEnabled = true
         guard let urlString = journalVM?.image,
               let url = URL(string: urlString) else { return }
         let task = URLSession.shared.dataTask(with: url, completionHandler: { data, _, error in

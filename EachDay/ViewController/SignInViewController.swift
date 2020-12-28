@@ -34,6 +34,7 @@ class SignInViewController: UIViewController {
     var userID: String?
     var email: String?
     var name: String?
+    var user: User?
     fileprivate var currentNonce: String?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +89,22 @@ class SignInViewController: UIViewController {
     func configureSignInStatus(status: Bool) {
         UserDefaults.standard.setValue(status, forKey: EPUserDefaults.hasSignedIn.rawValue)
         
+    }
+    
+    func fetchUser() {
+        UserManager.shared.fetchUser(completion: { result in
+            switch result {
+            case .success(let user):
+                guard !user.isEmpty else {
+                    self.uploadUserData()
+                    return
+                }
+                self.user = user[0]
+                self.performSegue(withIdentifier: "ShowMainFromSignIn", sender: self)
+            case .failure(let error):
+                print(error)
+            }
+        })
     }
     
     func uploadUserData() {
@@ -212,10 +229,10 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
                 self.name = user.displayName ?? ""
                 guard let uid = Auth.auth().currentUser?.uid else { return }
                 self.userID = uid
-                print("User ID: \(self.userID)")
                 UserDefaults.standard.setValue(self.userID, forKey: EPUserDefaults.userId.rawValue)
                 guard self.userID != nil else { return }
-                self.uploadUserData()
+//                self.uploadUserData()
+                self.fetchUser()
             }
         }
     }
