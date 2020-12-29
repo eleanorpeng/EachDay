@@ -55,15 +55,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
         guard let windowScene = (scene as? UIWindowScene) else { return }
-//        let storyboard = UIStoryboard(name: "Passcode", bundle: nil)
         var storyboard: UIStoryboard
         let keychain = Keychain()
 
-//        if Auth.auth().currentUser == nil {
-//            storyboard = UIStoryboard(name: "SignIn", bundle: nil)
-//        } else {
-//            storyboard = UIStoryboard(name: "Passcode", bundle: nil)
-//        }
         if Auth.auth().currentUser == nil {
             storyboard = UIStoryboard(name: "SignIn", bundle: nil)
         } else if keychain["passcode"] == nil {

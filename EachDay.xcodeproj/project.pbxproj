@@ -45,7 +45,7 @@
 		203142A02570E668006410A8 /* TimeTrackingMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031429F2570E668006410A8 /* TimeTrackingMainTableViewCell.swift */; };
 		203142CF25710367006410A8 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203142CE25710367006410A8 /* PaddingLabel.swift */; };
 		203A94E3258F07FB002B7936 /* loading-dots.json in Resources */ = {isa = PBXBuildFile; fileRef = 203A94E2258F07FB002B7936 /* loading-dots.json */; };
-		203A95112591E9C6002B7936 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 203A95102591E9C6002B7936 /* GoogleService-Info.plist */; };
+		203E959A259B0DF8002877EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 203E9599259B0DF8002877EC /* GoogleService-Info.plist */; };
 		205101682580A69100E7D985 /* Passcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205101672580A69100E7D985 /* Passcode.storyboard */; };
 		2051016F2580CC6300E7D985 /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2051016E2580CC6300E7D985 /* PasscodeViewController.swift */; };
 		205101972581164800E7D985 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205101962581164700E7D985 /* UserManager.swift */; };
@@ -143,7 +143,7 @@
 		203142CE25710367006410A8 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		203A94E2258F07FB002B7936 /* loading-dots.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-dots.json"; sourceTree = "<group>"; };
 		203A950D2591CD9A002B7936 /* EachDay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EachDay.entitlements; sourceTree = "<group>"; };
-		203A95102591E9C6002B7936 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		203E9599259B0DF8002877EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		205101672580A69100E7D985 /* Passcode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Passcode.storyboard; sourceTree = "<group>"; };
 		2051016E2580CC6300E7D985 /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		205101962581164700E7D985 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 				2009DEAB256EA81100545439 /* Extensions */,
 				2009DE3B256E270F00545439 /* Assets.xcassets */,
 				2009DE3D256E270F00545439 /* LaunchScreen.storyboard */,
-				203A95102591E9C6002B7936 /* GoogleService-Info.plist */,
+				203E9599259B0DF8002877EC /* GoogleService-Info.plist */,
 				2009DE40256E270F00545439 /* Info.plist */,
 			);
 			path = EachDay;
@@ -481,6 +481,7 @@
 				2009DE2D256E270D00545439 /* Resources */,
 				D1E5CAA6732A627912FCB0BA /* [CP] Embed Pods Frameworks */,
 				2009DE8C256E4EEB00545439 /* SwiftLint */,
+				203E9597259B0C5F002877EC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -530,6 +531,7 @@
 			files = (
 				20AA1AE925889F510074B683 /* mail-send.json in Resources */,
 				2053B85E257F2296005DFA24 /* UserSetting.storyboard in Resources */,
+				203E959A259B0DF8002877EC /* GoogleService-Info.plist in Resources */,
 				20733BC625725DEB004B4A3B /* CreateNewTask.storyboard in Resources */,
 				201953CE2585B85A004BF656 /* mailbox.json in Resources */,
 				203A94E3258F07FB002B7936 /* loading-dots.json in Resources */,
@@ -538,7 +540,6 @@
 				20AA1AFC2589DE580074B683 /* welcome.json in Resources */,
 				201B28D42580774400FB6A77 /* Tags.storyboard in Resources */,
 				205101682580A69100E7D985 /* Passcode.storyboard in Resources */,
-				203A95112591E9C6002B7936 /* GoogleService-Info.plist in Resources */,
 				20AA1AF92589AE720074B683 /* loading.json in Resources */,
 				20D19BBF258B3E70003ABDD8 /* ColorPickerCollectionViewCell.xib in Resources */,
 				2098B165256FB2C600AAC1CB /* TimeCapsule.storyboard in Resources */,
@@ -573,6 +574,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		203E9597259B0C5F002877EC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		A399A99DA25D3F5E6EF14F6F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -839,6 +859,7 @@
 				CODE_SIGN_ENTITLEMENTS = EachDay/EachDay.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = FRH9H66G29;
 				INFOPLIST_FILE = EachDay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -862,6 +883,7 @@
 				CODE_SIGN_ENTITLEMENTS = EachDay/EachDay.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = FRH9H66G29;
 				INFOPLIST_FILE = EachDay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
