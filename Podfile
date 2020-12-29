@@ -21,5 +21,6 @@ target 'EachDay' do
   pod 'SVPinView', '~> 1.0'
   pod 'KeychainAccess'
   pod 'lottie-ios'
+  pod 'Firebase/Crashlytics'
   
 end

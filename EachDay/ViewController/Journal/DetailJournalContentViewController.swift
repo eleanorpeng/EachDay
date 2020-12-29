@@ -51,7 +51,6 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak alert] _ in
             JournalManager.shared.deleteJournal(journalID: self.journalVM?.id ?? "")
             self.loadingView.startLoading(on: self)
-//            HUD.flash(.progress)
             self.navigationController?.popViewController(animated: true)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
