@@ -25,10 +25,7 @@ class SignInViewController: UIViewController {
     @IBAction func privacyPolicyButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "ShowPrivatePolicySegue", sender: self)
     }
-    
-    @IBAction func termsAndConditionsButtonClicked(_ sender: Any) {
-        performSegue(withIdentifier: "ShowTermsandConditionsSegue", sender: self)
-    }
+  
     let keychain = Keychain()
     var calendarColors: [String]?
     var userID: String?
@@ -46,7 +43,6 @@ class SignInViewController: UIViewController {
         calendarColors = [
             "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00"
         ]
-        //        UserDefaults.standard.setValue(calendarColors, forKey: "calendarColors")
         keychain["passcode"] = nil
         addSignInButton()
     }

@@ -52,71 +52,48 @@
                                     <action selector="signInButtonClicked:" destination="Yc2-G7-V9o" eventType="touchUpInside" id="8F0-CB-ZEq"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="VaI-U2-atj">
-                                <rect key="frame" x="60" y="780.5" width="294" height="27.5"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O3p-4q-JF1">
-                                        <rect key="frame" x="0.0" y="0.0" width="84" height="27.5"/>
-                                        <state key="normal">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="Privacy Policy">
-                                                    <attributes>
-                                                        <color key="NSColor" systemColor="labelColor"/>
-                                                        <font key="NSFont" metaFont="system"/>
-                                                        <integer key="NSUnderline" value="1"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                        </state>
-                                        <connections>
-                                            <action selector="privacyPolicyButtonClicked:" destination="Yc2-G7-V9o" eventType="touchUpInside" id="5En-rm-4Cz"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nYa-fm-6rm">
-                                        <rect key="frame" x="175" y="0.0" width="119" height="27.5"/>
-                                        <state key="normal">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="Terms &amp; Conditions">
-                                                    <attributes>
-                                                        <color key="NSColor" systemColor="labelColor"/>
-                                                        <font key="NSFont" metaFont="system"/>
-                                                        <integer key="NSUnderline" value="1"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                        </state>
-                                        <connections>
-                                            <action selector="termsAndConditionsButtonClicked:" destination="Yc2-G7-V9o" eventType="touchUpInside" id="Ve4-Kj-WwZ"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By tapping &quot;Sign In With Apple&quot;, you agree to our privacy policy and terms and conditions." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5rn-MR-kik">
                                 <rect key="frame" x="60" y="818" width="294" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O3p-4q-JF1">
+                                <rect key="frame" x="165" y="780.5" width="84" height="27.5"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Privacy Policy">
+                                            <attributes>
+                                                <color key="NSColor" systemColor="labelColor"/>
+                                                <font key="NSFont" metaFont="system"/>
+                                                <integer key="NSUnderline" value="1"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="privacyPolicyButtonClicked:" destination="Yc2-G7-V9o" eventType="touchUpInside" id="5En-rm-4Cz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eeI-er-ZS1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Xpp-mu-beo" firstAttribute="centerX" secondItem="EW3-HH-tAa" secondAttribute="centerX" id="5fe-mj-eUJ"/>
                             <constraint firstItem="vVT-BN-ciT" firstAttribute="centerX" secondItem="EW3-HH-tAa" secondAttribute="centerX" id="BtV-ZY-GzC"/>
-                            <constraint firstItem="5rn-MR-kik" firstAttribute="top" secondItem="VaI-U2-atj" secondAttribute="bottom" constant="10" id="Exj-7L-uAG"/>
+                            <constraint firstItem="5rn-MR-kik" firstAttribute="top" secondItem="O3p-4q-JF1" secondAttribute="bottom" constant="10" id="C0k-SV-Wur"/>
                             <constraint firstItem="TW7-c9-FzJ" firstAttribute="centerY" secondItem="EW3-HH-tAa" secondAttribute="centerY" id="GsA-lK-OaP"/>
                             <constraint firstItem="5rn-MR-kik" firstAttribute="leading" secondItem="EW3-HH-tAa" secondAttribute="leading" constant="60" id="KSE-5C-oHi"/>
                             <constraint firstItem="eeI-er-ZS1" firstAttribute="bottom" secondItem="5rn-MR-kik" secondAttribute="bottom" constant="15" id="Km1-qQ-Eiv"/>
                             <constraint firstItem="N4O-1J-oWP" firstAttribute="centerX" secondItem="EW3-HH-tAa" secondAttribute="centerX" id="LlI-LX-KH0"/>
                             <constraint firstItem="TW7-c9-FzJ" firstAttribute="top" secondItem="Xpp-mu-beo" secondAttribute="bottom" constant="50" id="OMf-0h-DuX"/>
+                            <constraint firstItem="O3p-4q-JF1" firstAttribute="centerX" secondItem="EW3-HH-tAa" secondAttribute="centerX" id="QQg-n9-rZU"/>
                             <constraint firstItem="TW7-c9-FzJ" firstAttribute="centerX" secondItem="EW3-HH-tAa" secondAttribute="centerX" id="TGx-Te-3ul"/>
                             <constraint firstItem="TW7-c9-FzJ" firstAttribute="leading" secondItem="EW3-HH-tAa" secondAttribute="leading" constant="16" id="dWZ-1X-sgS"/>
                             <constraint firstItem="Xpp-mu-beo" firstAttribute="top" secondItem="N4O-1J-oWP" secondAttribute="bottom" constant="20" id="gxa-DW-5ha"/>
                             <constraint firstAttribute="trailing" secondItem="TW7-c9-FzJ" secondAttribute="trailing" constant="16" id="jJh-Sg-W8V"/>
                             <constraint firstAttribute="trailing" secondItem="5rn-MR-kik" secondAttribute="trailing" constant="60" id="kTQ-ig-F0I"/>
                             <constraint firstItem="vVT-BN-ciT" firstAttribute="top" secondItem="TW7-c9-FzJ" secondAttribute="bottom" constant="80" id="mb9-nb-rMF"/>
-                            <constraint firstItem="VaI-U2-atj" firstAttribute="trailing" secondItem="5rn-MR-kik" secondAttribute="trailing" id="mhE-hZ-GXB"/>
-                            <constraint firstItem="VaI-U2-atj" firstAttribute="leading" secondItem="5rn-MR-kik" secondAttribute="leading" id="p2D-fd-D0y"/>
                             <constraint firstItem="5rn-MR-kik" firstAttribute="centerX" secondItem="EW3-HH-tAa" secondAttribute="centerX" id="z3S-SI-qtQ"/>
                         </constraints>
                     </view>
@@ -125,7 +102,6 @@
                         <outlet property="signInButton" destination="vVT-BN-ciT" id="P1D-uM-LnO"/>
                         <segue destination="Qo3-8V-vS5" kind="show" identifier="ShowMainFromSignIn" id="Zyb-4J-SLG"/>
                         <segue destination="sAK-Gn-H3N" kind="presentation" identifier="ShowPrivatePolicySegue" id="al7-4Z-A7A"/>
-                        <segue destination="sD9-0i-xVF" kind="presentation" identifier="ShowTermsandConditionsSegue" id="IZI-NM-6VT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZpJ-26-fB9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -166,54 +142,309 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2es-Af-PJv">
                                 <rect key="frame" x="10" y="76" width="394" height="722"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Privacy Policy
-Eleanor Peng built the Each Day app as a Free app. This SERVICE is provided by Eleanor Peng at no cost and is intended for use as is.
+                                <mutableString key="text">Privacy Policy  
+==============
 
-This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
+Last updated: December 29, 2020
 
-If you choose to use my Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that I collect is used for providing and improving the Service. I will not use or share your information with anyone except as described in this Privacy Policy.
+This Privacy Policy describes Our policies and procedures on the collection,
+use and disclosure of Your information when You use the Service and tells You
+about Your privacy rights and how the law protects You.
 
-The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at Each Day unless otherwise defined in this Privacy Policy.
+We use Your Personal data to provide and improve the Service. By using the
+Service, You agree to the collection and use of information in accordance with
+this Privacy Policy. This Privacy Policy has been created with the help of the
+[Privacy Policy Generator](https://www.privacypolicies.com/privacy-policy-
+generator/).
 
-Information Collection and Use
-For a better experience, while using our Service, I may require you to provide us with certain personally identifiable information, including but not limited to Full name, email address. The information that I request will be retained on your device and is not collected by me in any way.
+Interpretation and Definitions  
+==============================
 
-Log Data
-I want to inform you that whenever you use my Service, in a case of an error in the app I collect data and information (through third party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing my Service, the time and date of your use of the Service, and other statistics.
+Interpretation  
+--------------
 
-Cookies
-Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory.
+The words of which the initial letter is capitalized have meanings defined
+under the following conditions. The following definitions shall have the same
+meaning regardless of whether they appear in singular or in plural.
 
-This Service does not use these “cookies” explicitly. However, the app may use third party code and libraries that use “cookies” to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.
+Definitions  
+-----------
 
-Service Providers
-I may employ third-party companies and individuals due to the following reasons:
+For the purposes of this Privacy Policy:
 
-To facilitate our Service;
-To provide the Service on our behalf;
-To perform Service-related services; or
-To assist us in analyzing how our Service is used.
-I want to inform users of this Service that these third parties have access to your Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.
+  * Account means a unique account created for You to access our Service or
+    parts of our Service.
 
-Security
-I value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and I cannot guarantee its absolute security.
+  * Affiliate means an entity that controls, is controlled by or is under
+    common control with a party, where "control" means ownership of 50% or
+    more of the shares, equity interest or other securities entitled to vote
+    for election of directors or other managing authority.
 
-Links to Other Sites
+  * Application means the software program provided by the Company downloaded
+    by You on any electronic device, named Each Day
 
-This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by me. Therefore, I strongly advise you to review the Privacy Policy of these websites. I have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.
+  * Company (referred to as either "the Company", "We", "Us" or "Our" in this
+    Agreement) refers to Each Day.
 
-Children’s Privacy
-These Services do not address anyone under the age of 13. I do not knowingly collect personally identifiable information from children under 13. In the case I discover that a child under 13 has provided me with personal information, I immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact me so that I will be able to do necessary actions.
+  * Country refers to: Taiwan
 
-Changes to This Privacy Policy
-I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by posting the new Privacy Policy on this page.
+  * Device means any device that can access the Service such as a computer, a
+    cellphone or a digital tablet.
 
-This policy is effective as of 2020-12-25
+  * Personal Data is any information that relates to an identified or
+    identifiable individual.
 
-Contact Us
-If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at eleanorpeng31@gmail.com.
+  * Service refers to the Application.
 
-This privacy policy page was created at privacypolicytemplate.net and modified/generated by App Privacy Policy Generator</string>
+  * Service Provider means any natural or legal person who processes the data
+    on behalf of the Company. It refers to third-party companies or
+    individuals employed by the Company to facilitate the Service, to provide
+    the Service on behalf of the Company, to perform services related to the
+    Service or to assist the Company in analyzing how the Service is used.
+
+  * Third-party Social Media Service refers to any website or any social
+    network website through which a User can log in or create an account to
+    use the Service.
+
+  * Usage Data refers to data collected automatically, either generated by the
+    use of the Service or from the Service infrastructure itself (for example,
+    the duration of a page visit).
+
+  * You means the individual accessing or using the Service, or the company,
+    or other legal entity on behalf of which such individual is accessing or
+    using the Service, as applicable.
+
+
+Collecting and Using Your Personal Data  
+=======================================
+
+Types of Data Collected  
+-----------------------
+
+Personal Data  
+~~~~~~~~~~~~~
+
+While using Our Service, We may ask You to provide Us with certain personally
+identifiable information that can be used to contact or identify You.
+Personally identifiable information may include, but is not limited to:
+
+  * Email address
+
+  * First name and last name
+
+  * Usage Data
+
+
+Usage Data  
+~~~~~~~~~~
+
+Usage Data is collected automatically when using the Service.
+
+Usage Data may include information such as Your Device's Internet Protocol
+address (e.g. IP address), browser type, browser version, the pages of our
+Service that You visit, the time and date of Your visit, the time spent on
+those pages, unique device identifiers and other diagnostic data.
+
+When You access the Service by or through a mobile device, We may collect
+certain information automatically, including, but not limited to, the type of
+mobile device You use, Your mobile device unique ID, the IP address of Your
+mobile device, Your mobile operating system, the type of mobile Internet
+browser You use, unique device identifiers and other diagnostic data.
+
+We may also collect information that Your browser sends whenever You visit our
+Service or when You access the Service by or through a mobile device.
+
+Information Collected while Using the Application  
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+While using Our Application, in order to provide features of Our Application,
+We may collect, with Your prior permission:
+
+  * Pictures and other information from your Device's camera and photo library
+
+We use this information to provide features of Our Service, to improve and
+customize Our Service. The information may be uploaded to the Company's
+servers and/or a Service Provider's server or it may be simply stored on Your
+device.
+
+You can enable or disable access to this information at any time, through Your
+Device settings.
+
+Use of Your Personal Data  
+-------------------------
+
+The Company may use Personal Data for the following purposes:
+
+  * To provide and maintain our Service , including to monitor the usage of
+    our Service.
+
+  * To manage Your Account: to manage Your registration as a user of the
+    Service. The Personal Data You provide can give You access to different
+    functionalities of the Service that are available to You as a registered
+    user.
+
+  * For the performance of a contract: the development, compliance and
+    undertaking of the purchase contract for the products, items or services
+    You have purchased or of any other contract with Us through the Service.
+
+  * To contact You: To contact You by email, telephone calls, SMS, or other
+    equivalent forms of electronic communication, such as a mobile
+    application's push notifications regarding updates or informative
+    communications related to the functionalities, products or contracted
+    services, including the security updates, when necessary or reasonable for
+    their implementation.
+
+  * To provide You with news, special offers and general information about
+    other goods, services and events which we offer that are similar to those
+    that you have already purchased or enquired about unless You have opted
+    not to receive such information.
+
+  * To manage Your requests: To attend and manage Your requests to Us.
+
+  * For business transfers: We may use Your information to evaluate or conduct
+    a merger, divestiture, restructuring, reorganization, dissolution, or
+    other sale or transfer of some or all of Our assets, whether as a going
+    concern or as part of bankruptcy, liquidation, or similar proceeding, in
+    which Personal Data held by Us about our Service users is among the assets
+    transferred.
+
+  * For other purposes : We may use Your information for other purposes, such
+    as data analysis, identifying usage trends, determining the effectiveness
+    of our promotional campaigns and to evaluate and improve our Service,
+    products, services, marketing and your experience.
+
+
+We may share Your personal information in the following situations:
+
+  * With Service Providers: We may share Your personal information with
+    Service Providers to monitor and analyze the use of our Service, to
+    contact You.
+  * For business transfers: We may share or transfer Your personal information
+    in connection with, or during negotiations of, any merger, sale of Company
+    assets, financing, or acquisition of all or a portion of Our business to
+    another company.
+  * With Affiliates: We may share Your information with Our affiliates, in
+    which case we will require those affiliates to honor this Privacy Policy.
+    Affiliates include Our parent company and any other subsidiaries, joint
+    venture partners or other companies that We control or that are under
+    common control with Us.
+  * With business partners: We may share Your information with Our business
+    partners to offer You certain products, services or promotions.
+  * With other users: when You share personal information or otherwise
+    interact in the public areas with other users, such information may be
+    viewed by all users and may be publicly distributed outside. If You
+    interact with other users or register through a Third-Party Social Media
+    Service, Your contacts on the Third-Party Social Media Service may see
+    Your name, profile, pictures and description of Your activity. Similarly,
+    other users will be able to view descriptions of Your activity,
+    communicate with You and view Your profile.
+  * With Your consent : We may disclose Your personal information for any
+    other purpose with Your consent.
+
+Retention of Your Personal Data  
+-------------------------------
+
+The Company will retain Your Personal Data only for as long as is necessary
+for the purposes set out in this Privacy Policy. We will retain and use Your
+Personal Data to the extent necessary to comply with our legal obligations
+(for example, if we are required to retain your data to comply with applicable
+laws), resolve disputes, and enforce our legal agreements and policies.
+
+The Company will also retain Usage Data for internal analysis purposes. Usage
+Data is generally retained for a shorter period of time, except when this data
+is used to strengthen the security or to improve the functionality of Our
+Service, or We are legally obligated to retain this data for longer time
+periods.
+
+Transfer of Your Personal Data  
+------------------------------
+
+Your information, including Personal Data, is processed at the Company's
+operating offices and in any other places where the parties involved in the
+processing are located. It means that this information may be transferred to —
+and maintained on — computers located outside of Your state, province, country
+or other governmental jurisdiction where the data protection laws may differ
+than those from Your jurisdiction.
+
+Your consent to this Privacy Policy followed by Your submission of such
+information represents Your agreement to that transfer.
+
+The Company will take all steps reasonably necessary to ensure that Your data
+is treated securely and in accordance with this Privacy Policy and no transfer
+of Your Personal Data will take place to an organization or a country unless
+there are adequate controls in place including the security of Your data and
+other personal information.
+
+Disclosure of Your Personal Data  
+--------------------------------
+
+Business Transactions  
+~~~~~~~~~~~~~~~~~~~~~
+
+If the Company is involved in a merger, acquisition or asset sale, Your
+Personal Data may be transferred. We will provide notice before Your Personal
+Data is transferred and becomes subject to a different Privacy Policy.
+
+Law enforcement  
+~~~~~~~~~~~~~~~
+
+Under certain circumstances, the Company may be required to disclose Your
+Personal Data if required to do so by law or in response to valid requests by
+public authorities (e.g. a court or a government agency).
+
+Other legal requirements  
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Company may disclose Your Personal Data in the good faith belief that such
+action is necessary to:
+
+  * Comply with a legal obligation
+  * Protect and defend the rights or property of the Company
+  * Prevent or investigate possible wrongdoing in connection with the Service
+  * Protect the personal safety of Users of the Service or the public
+  * Protect against legal liability
+
+Security of Your Personal Data  
+------------------------------
+
+The security of Your Personal Data is important to Us, but remember that no
+method of transmission over the Internet, or method of electronic storage is
+100% secure. While We strive to use commercially acceptable means to protect
+Your Personal Data, We cannot guarantee its absolute security.
+
+Links to Other Websites  
+=======================
+
+Our Service may contain links to other websites that are not operated by Us.
+If You click on a third party link, You will be directed to that third party's
+site. We strongly advise You to review the Privacy Policy of every site You
+visit.
+
+We have no control over and assume no responsibility for the content, privacy
+policies or practices of any third party sites or services.
+
+Changes to this Privacy Policy  
+==============================
+
+We may update Our Privacy Policy from time to time. We will notify You of any
+changes by posting the new Privacy Policy on this page.
+
+We will let You know via email and/or a prominent notice on Our Service, prior
+to the change becoming effective and update the "Last updated" date at the top
+of this Privacy Policy.
+
+You are advised to review this Privacy Policy periodically for any changes.
+Changes to this Privacy Policy are effective when they are posted on this
+page.
+
+Contact Us  
+==========
+
+If you have any questions about this Privacy Policy, You can contact us:
+
+  * By email: eachday.co@gmail.com
+
+</mutableString>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -238,86 +469,7 @@ This privacy policy page was created at privacypolicytemplate.net and modified/g
             </objects>
             <point key="canvasLocation" x="1189.8550724637682" y="135.9375"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Zbv-QD-TMi">
-            <objects>
-                <viewController id="sD9-0i-xVF" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0NE-yG-AvC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms &amp; Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Imt-RR-NyN">
-                                <rect key="frame" x="115" y="30" width="184" height="24"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gSX-na-gUU">
-                                <rect key="frame" x="0.0" y="64" width="414" height="2"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="2" id="66r-qa-uuk"/>
-                                </constraints>
-                            </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6gY-OG-LmW">
-                                <rect key="frame" x="10" y="76" width="394" height="722"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Terms &amp; Conditions
-By downloading or using the app, these terms will automatically apply to you – you should make sure therefore that you read them carefully before using the app. You’re not allowed to copy, or modify the app, any part of the app, or our trademarks in any way. You’re not allowed to attempt to extract the source code of the app, and you also shouldn’t try to translate the app into other languages, or make derivative versions. The app itself, and all the trade marks, copyright, database rights and other intellectual property rights related to it, still belong to Eleanor Peng.
-
-Eleanor Peng is committed to ensuring that the app is as useful and efficient as possible. For that reason, we reserve the right to make changes to the app or to charge for its services, at any time and for any reason. We will never charge you for the app or its services without making it very clear to you exactly what you’re paying for.
-
-The Each Day app stores and processes personal data that you have provided to us, in order to provide my Service. It’s your responsibility to keep your phone and access to the app secure. We therefore recommend that you do not jailbreak or root your phone, which is the process of removing software restrictions and limitations imposed by the official operating system of your device. It could make your phone vulnerable to malware/viruses/malicious programs, compromise your phone’s security features and it could mean that the Each Day app won’t work properly or at all.
-
-You should be aware that there are certain things that Eleanor Peng will not take responsibility for. Certain functions of the app will require the app to have an active internet connection. The connection can be Wi-Fi, or provided by your mobile network provider, but Eleanor Peng cannot take responsibility for the app not working at full functionality if you don’t have access to Wi-Fi, and you don’t have any of your data allowance left.
-
-If you’re using the app outside of an area with Wi-Fi, you should remember that your terms of the agreement with your mobile network provider will still apply. As a result, you may be charged by your mobile provider for the cost of data for the duration of the connection while accessing the app, or other third party charges. In using the app, you’re accepting responsibility for any such charges, including roaming data charges if you use the app outside of your home territory (i.e. region or country) without turning off data roaming. If you are not the bill payer for the device on which you’re using the app, please be aware that we assume that you have received permission from the bill payer for using the app.
-
-Along the same lines, Eleanor Peng cannot always take responsibility for the way you use the app i.e. You need to make sure that your device stays charged – if it runs out of battery and you can’t turn it on to avail the Service, Eleanor Peng cannot accept responsibility.
-
-With respect to Eleanor Peng’s responsibility for your use of the app, when you’re using the app, it’s important to bear in mind that although we endeavour to ensure that it is updated and correct at all times, we do rely on third parties to provide information to us so that we can make it available to you. Eleanor Peng accepts no liability for any loss, direct or indirect, you experience as a result of relying wholly on this functionality of the app.
-
-At some point, we may wish to update the app. The app is currently available on iOS – the requirements for system(and for any additional systems we decide to extend the availability of the app to) may change, and you’ll need to download the updates if you want to keep using the app. Eleanor Peng does not promise that it will always update the app so that it is relevant to you and/or works with the iOS version that you have installed on your device. However, you promise to always accept updates to the application when offered to you, We may also wish to stop providing the app, and may terminate use of it at any time without giving notice of termination to you. Unless we tell you otherwise, upon any termination, (a) the rights and licenses granted to you in these terms will end; (b) you must stop using the app, and (if needed) delete it from your device.
-
-Changes to This Terms and Conditions
-
-I may update our Terms and Conditions from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by posting the new Terms and Conditions on this page.
-
-These terms and conditions are effective as of 2020-12-25
-
-Contact Us
-
-If you have any questions or suggestions about my Terms and Conditions, do not hesitate to contact me at eleanorpeng31@gmail.com.
-
-This Terms and Conditions page was generated by App Privacy Policy Generator</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="f0n-77-WiZ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="6gY-OG-LmW" firstAttribute="leading" secondItem="f0n-77-WiZ" secondAttribute="leading" constant="10" id="1Zz-QG-G4d"/>
-                            <constraint firstAttribute="trailing" secondItem="gSX-na-gUU" secondAttribute="trailing" id="2pe-7S-2E3"/>
-                            <constraint firstItem="f0n-77-WiZ" firstAttribute="bottom" secondItem="6gY-OG-LmW" secondAttribute="bottom" constant="10" id="9hA-sf-Bgf"/>
-                            <constraint firstItem="Imt-RR-NyN" firstAttribute="centerX" secondItem="0NE-yG-AvC" secondAttribute="centerX" id="Apy-Qr-QIf"/>
-                            <constraint firstItem="gSX-na-gUU" firstAttribute="leading" secondItem="0NE-yG-AvC" secondAttribute="leading" id="Bj4-W9-fky"/>
-                            <constraint firstItem="6gY-OG-LmW" firstAttribute="top" secondItem="gSX-na-gUU" secondAttribute="bottom" constant="10" id="NOZ-K0-rrp"/>
-                            <constraint firstItem="gSX-na-gUU" firstAttribute="top" secondItem="Imt-RR-NyN" secondAttribute="bottom" constant="10" id="NmQ-Ex-zeZ"/>
-                            <constraint firstItem="Imt-RR-NyN" firstAttribute="top" secondItem="f0n-77-WiZ" secondAttribute="top" constant="30" id="YBR-6i-B5U"/>
-                            <constraint firstItem="f0n-77-WiZ" firstAttribute="trailing" secondItem="6gY-OG-LmW" secondAttribute="trailing" constant="10" id="xVw-4u-D7T"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pqI-3c-I7s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2039" y="137"/>
-        </scene>
     </scenes>
-    <designables>
-        <designable name="TW7-c9-FzJ"/>
-    </designables>
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
