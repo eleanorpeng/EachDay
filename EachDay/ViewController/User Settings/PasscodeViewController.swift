@@ -128,6 +128,8 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
                 UserManager.shared.updatePasscode(passcode: "")
                 self?.delegate?.handlePasscodeSet(hasSet: false)
                 self?.keychain["passcode"] = nil
+                UserDefaults.standard.setValue(false, forKey: EPUserDefaults.enableBiometrics.rawValue)
+                print("In passcode: \(UserDefaults.standard.bool(forKey: EPUserDefaults.enableBiometrics.rawValue))")
                 self?.showCompleteAlert()
             } else {
                 self?.showIncompleteAlert()

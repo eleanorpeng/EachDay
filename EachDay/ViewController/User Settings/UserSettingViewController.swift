@@ -42,9 +42,6 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
     var routineReminderClicked = false
     var hasSetReminder = false
     let center = UNUserNotificationCenter.current()
-    
-//    UserDefaults.setValue(self.enableBiometricsAuth, forKey: EPUserDefaults.enableBiometrics.rawValue)
-    
     var enableBiometricsAuth = UserDefaults.standard.bool(forKey: EPUserDefaults.enableBiometrics.rawValue) {
         didSet {
             settings?[4].description = enableBiometricsAuth ? "Enable" : "Disable"
@@ -64,6 +61,7 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
     override func viewWillAppear(_ animated: Bool) {
         hasPasscode = keychain["passcode"] != nil
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        setUpSettings()
     }
     
     func initialSetUp() {
@@ -71,12 +69,18 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorColor = .clear
+        
+    }
+    
+    func setUpSettings() {
+        enableBiometricsAuth = UserDefaults.standard.bool(forKey: EPUserDefaults.enableBiometrics.rawValue)
         settings = [Settings(icon: "notification", setting: "Daily Reminder", description: ">"),
                     Settings(icon: "tag", setting: "Journal Tags", description: ">"),
                     Settings(icon: "stopwatch", setting: "Time Tracker Categories", description: ">"),
                     Settings(icon: "passcode", setting: "Passcode", description: (keychain["passcode"] != nil) ? "Enable" : "Disable"),
                     Settings(icon: "face-recognition", setting: "FaceID", description: enableBiometricsAuth ? "Enable" : "Disable")
                     ]
+        tableView.reloadData()
     }
     
     func fetchUserData() {
@@ -110,7 +114,6 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
                 self.isDefaultProfileImage = false
             }
             imagePicker.dismiss(animated: true, completion: {
-//                self.loadingView.startLoadingWithoutBackground(on: self)
                 self.tableView.reloadData()
                 NotificationCenter.default.post(name: Notifications.receiveProfileImageNotification, object: self.profileImage)
                 
@@ -124,7 +127,6 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
             destination.fromUserSetting = true
             destination.isTimeTracking = isTimeTracking
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-//            self.navigationController?.navigationBar.isHidden = true
         }
         
         if let destination = segue.destination as? PasscodeViewController {
@@ -156,7 +158,6 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
         reminderTime = time
         hasSetReminder = true
         createDailyReminderNotification()
-        print(reminderTime)
     }
     
     func handleEditImage() {
@@ -286,13 +287,7 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    
-//    func presentEditPasscodeAlert() {
-//        let alert = UIAlertAction(title: "Edit Passcode", style: .default, handler: { _ in
-//            self.performSegue(withIdentifier: "ShowPasscodeSegue", sender: self)
-//        })
-//    }
-    
+   
     func presentDisablePasscodeAlert() {
         let alert = UIAlertController(title: "Passcode Disabled", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
