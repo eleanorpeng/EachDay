@@ -51,10 +51,10 @@ class TimeTrackingMainPageViewController: UIViewController {
         didSet {
             if isTiming || isPaused {
                 createNewTaskButton.isEnabled = false
-//                collectionView.isUserInteractionEnabled = false
+                createNewTaskButton.backgroundColor = .lightGray
             } else {
                 createNewTaskButton.isEnabled = true
-//                collectionView.isUserInteractionEnabled = true
+                createNewTaskButton.backgroundColor = UIColor(r: 247, g: 174, b: 0)
             }
         }
     }
@@ -91,14 +91,12 @@ class TimeTrackingMainPageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-//        fetchTimeRecord()
         fetchTimeRecord()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         guard hasAddedNew else { return }
-//        stop()
     }
     
     func fetchUser() {
@@ -106,7 +104,6 @@ class TimeTrackingMainPageViewController: UIViewController {
             switch result {
             case .success(let user):
                 self.trackedTimeCategories = user[0].trackTimeCategories
-//                self.calculateTotalTime()
             case .failure(let error):
                 print(error)
             }
@@ -151,7 +148,6 @@ class TimeTrackingMainPageViewController: UIViewController {
                     hasNewRecord = true
                     taskName = $0.taskName
                     taskDescription = $0.taskDescrpition
-//                    elapsedTimeInterval = currentTime.dateValue().timeIntervalSince1970 - ($0.startTime).dateValue().timeIntervalSince1970
                     let pauseSeconds = $0.pauseIntervals?.reduce(0) { $0 + $1 }
                     startTime = $0.startTime.dateValue().timeIntervalSince1970
                     if let pauseTime = $0.pauseTime {
@@ -357,15 +353,6 @@ extension TimeTrackingMainPageViewController: UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        guard !isTiming else {
-//            let alert = UIAlertController(title: "This action will stop your current task", message: "Do you wish to continue?", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
-//                self.stop()
-//            }))
-//            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//            present(alert, animated: true, completion: nil)
-//            return
-//        }
         collectionView.deselectItem(at: indexPath, animated: true)
         taskName = icons[indexPath.row].name
         taskDescription = ""
@@ -490,7 +477,6 @@ extension TimeTrackingMainPageViewController: CreateNewTaskViewControllerDelegat
                 print(error)
             }
         })
-//        tableView.reloadData()
         isPaused = false
         isTiming = false
         endTimeTS = nil
