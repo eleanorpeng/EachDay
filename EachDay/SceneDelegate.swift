@@ -19,14 +19,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
 //        let storyboard = UIStoryboard(name: "Passcode", bundle: nil)
-        var storyboard: UIStoryboard
-        if UserDefaults.standard.bool(forKey: EPUserDefaults.hasSignedIn.rawValue) {
-            storyboard = UIStoryboard(name: "Passcode", bundle: nil)
-        } else {
-            storyboard = UIStoryboard(name: "SignIn", bundle: nil)
-        }
-        window?.rootViewController = storyboard.instantiateInitialViewController()
-        window?.makeKeyAndVisible()
+//        var storyboard: UIStoryboard
+//        if UserDefaults.standard.bool(forKey: EPUserDefaults.hasSignedIn.rawValue) {
+//            storyboard = UIStoryboard(name: "Passcode", bundle: nil)
+//        } else {
+//            storyboard = UIStoryboard(name: "SignIn", bundle: nil)
+//        }
+//        window?.rootViewController = storyboard.instantiateInitialViewController()
+//        window?.makeKeyAndVisible()
 //        let window = UIWindow(windowScene: windowScene)
 //        window.rootViewController = PasscodeViewController()
 //        self.window = window
@@ -62,8 +62,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             storyboard = UIStoryboard(name: "SignIn", bundle: nil)
         } else if keychain["passcode"] == nil {
             storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let uid = Auth.auth().currentUser?.uid
+            UserDefaults.standard.setValue(uid, forKey: EPUserDefaults.userId.rawValue)
         } else {
             storyboard = UIStoryboard(name: "Passcode", bundle: nil)
+            let uid = Auth.auth().currentUser?.uid
+            UserDefaults.standard.setValue(uid, forKey: EPUserDefaults.userId.rawValue)
         }
         
         window?.rootViewController = storyboard.instantiateInitialViewController()

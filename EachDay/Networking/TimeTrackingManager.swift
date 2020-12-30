@@ -12,7 +12,6 @@ import FirebaseFirestoreSwift
 class TimeTrackingManager {
     static let shared = TimeTrackingManager()
     var database = Firestore.firestore()
-//    var timeRecordID: String?
     var timeRecordID = UserDefaults.standard.string(forKey: "TimeRecordID")
     var userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
 //    var userDocID = "IAMACTUALLYFAKE"

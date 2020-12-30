@@ -481,7 +481,7 @@
 				2009DE2D256E270D00545439 /* Resources */,
 				D1E5CAA6732A627912FCB0BA /* [CP] Embed Pods Frameworks */,
 				2009DE8C256E4EEB00545439 /* SwiftLint */,
-				203E9597259B0C5F002877EC /* ShellScript */,
+				203E9597259B0C5F002877EC /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -575,7 +575,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
-		203E9597259B0C5F002877EC /* ShellScript */ = {
+		203E9597259B0C5F002877EC /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -586,6 +586,7 @@
 				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
 				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
+			name = Crashlytics;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -859,6 +860,7 @@
 				CODE_SIGN_ENTITLEMENTS = EachDay/EachDay.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = FRH9H66G29;
 				INFOPLIST_FILE = EachDay/Info.plist;
@@ -870,7 +872,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -883,6 +885,7 @@
 				CODE_SIGN_ENTITLEMENTS = EachDay/EachDay.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = FRH9H66G29;
 				INFOPLIST_FILE = EachDay/Info.plist;
@@ -894,7 +897,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

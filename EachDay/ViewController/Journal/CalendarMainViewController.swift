@@ -60,7 +60,7 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
             
         }
         
-//        scrollToSelectedMonth()
+        scrollToSelectedMonth()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,15 +163,13 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
+        guard datePicker != nil else { return }
         datePicker.date = currentDate
         scrollToMonth = datePicker.date.month()
-        
     }
+    
     func scrollToSelectedMonth() {
         if !isChangingColor {
-//            collectionView.scrollToItem(at: IndexPath(row: currentDate.month() - 1, section: 0),
-//                                        at: [.centeredVertically, .centeredHorizontally],
-//                                        animated: true)
             collectionView.scrollToItem(at: IndexPath(row: scrollToMonth - 1, section: 0),
                                         at: [.centeredVertically, .centeredHorizontally],
                                         animated: true)
