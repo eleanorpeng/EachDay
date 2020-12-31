@@ -20,7 +20,6 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
     }
     
     weak var delegate: UserSettingViewControllerDelegate?
-    
     var isDisablingPasscode = false
     var isTimeTracking = false
     var profileImage: UIImage?
@@ -32,6 +31,7 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
             }
         }
     }
+    
     var isDefaultProfileImage = true
     var settings: [Settings]?
     var isEditingPasscode = false
@@ -51,11 +51,11 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
     }
     @IBOutlet weak var tableView: UITableView!
     let imagePicker = YPImagePicker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
         fetchUserData()
-        hasPasscode = keychain["passcode"] != nil 
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,7 +69,6 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorColor = .clear
-        
     }
     
     func setUpSettings() {
@@ -227,10 +226,17 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
         } else {
             isTimeTracking = false
         }
-        switch indexPath.row {
+        performUserSettingsSegue(index: indexPath.row, section: indexPath.section)
+    }
+    
+    func performUserSettingsSegue(index: Int, section: Int) {
+        switch index {
         case 0:
-            performSegue(withIdentifier: "ShowRoutineReminderSegue", sender: self)
-            return
+            if section == 1 {
+                performSegue(withIdentifier: "ShowRoutineReminderSegue", sender: self)
+            } else {
+                return
+            }
         case 1:
             performSegue(withIdentifier: "ShowTagsSegue", sender: self)
         case 2:
@@ -259,7 +265,6 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
                 print(error)
             }
         })
-        
     }
     
     func removeDailyReminderNotification() {

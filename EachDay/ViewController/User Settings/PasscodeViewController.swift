@@ -203,7 +203,6 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
         pinView.clearPin()
     }
 
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? UserSettingViewController {
             //changed from if passcode to keychain

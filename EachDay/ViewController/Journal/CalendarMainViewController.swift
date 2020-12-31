@@ -24,7 +24,6 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         datePicker.date = currentDate
         scrollToMonth = datePicker.date.month()
         backToTodayButton.isHidden = true
-        
     }
     
     @IBOutlet weak var backToTodayButton: UIButton!
@@ -57,11 +56,10 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         scrollToMonth = datePicker.date.month()
         if datePicker.date != currentDate {
             backToTodayButton.isHidden = false
-            
         }
-        
         scrollToSelectedMonth()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchUser()
@@ -150,14 +148,6 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         updateCellsLayout()
-//        if !isChangingColor {
-////            collectionView.scrollToItem(at: IndexPath(row: currentDate.month() - 1, section: 0),
-////                                        at: [.centeredVertically, .centeredHorizontally],
-////                                        animated: true)
-//            collectionView.scrollToItem(at: IndexPath(row: scrollToMonth - 1, section: 0),
-//                                        at: [.centeredVertically, .centeredHorizontally],
-//                                        animated: true)
-//        }
         scrollToSelectedMonth()
     }
 

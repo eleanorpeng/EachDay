@@ -14,18 +14,11 @@ import FirebaseAuth
 
 class SignInViewController: UIViewController {
     
-    
     @IBOutlet weak var animationView: AnimationView!
-    @IBOutlet weak var signInButton: UIButton!
-    @IBAction func signInButtonClicked(_ sender: Any) {
-        configureSignInStatus(status: true)
-        uploadUserData()
-    }
-    
     @IBAction func privacyPolicyButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "ShowPrivatePolicySegue", sender: self)
     }
-  
+    @IBOutlet weak var privacyPolicyButton: UIButton!
     let keychain = Keychain()
     var calendarColors: [String]?
     var userID: String?
@@ -33,13 +26,12 @@ class SignInViewController: UIViewController {
     var name: String?
     var user: User?
     fileprivate var currentNonce: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createAnimation()
-        setUpButton()
-        signInButton.isHidden = true
-        configureSignInStatus(status: false)
-        UserDefaults.standard.setValue(false, forKey: EPUserDefaults.enableBiometrics.rawValue)
+//        UserDefaults.standard.setValue(false, forKey: EPUserDefaults.hasSignedIn.rawValue)
+//        UserDefaults.standard.setValue(false, forKey: EPUserDefaults.enableBiometrics.rawValue)
         calendarColors = [
             "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00"
         ]
@@ -54,6 +46,7 @@ class SignInViewController: UIViewController {
         view.addSubview(button)
         NSLayoutConstraint.activate([
             button.topAnchor.constraint(equalTo: animationView.bottomAnchor, constant: 80),
+            button.bottomAnchor.constraint(equalTo: privacyPolicyButton.topAnchor, constant: 20),
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.heightAnchor.constraint(equalToConstant: 45),
             button.widthAnchor.constraint(equalToConstant: 280)
@@ -70,10 +63,6 @@ class SignInViewController: UIViewController {
         controller.presentationContextProvider = self
         controller.performRequests()
     }
-    func setUpButton() {
-        signInButton.clipsToBounds = true
-        signInButton.layer.cornerRadius = 10
-    }
     
     func createAnimation() {
         animationView.loopMode = .loop
@@ -81,12 +70,7 @@ class SignInViewController: UIViewController {
         animationView.animationSpeed = 1
         animationView.play()
     }
-    
-    func configureSignInStatus(status: Bool) {
-        UserDefaults.standard.setValue(status, forKey: EPUserDefaults.hasSignedIn.rawValue)
-        
-    }
-    
+   
     func fetchUser() {
         UserManager.shared.fetchUser(completion: { result in
             switch result {
@@ -124,23 +108,6 @@ class SignInViewController: UIViewController {
             }
         })
     }
-    
-    //    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-    //        if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
-    //            userID = credential.user
-    //            UserDefaults.standard.setValue(credential.email, forKey: "userEmail")
-    //            UserDefaults.standard.setValue(credential.fullName?.givenName, forKey: "userName")
-    //            UserDefaults.standard.setValue(userID, forKey: EPUserDefaults.userId.rawValue)
-    //        }
-    //        guard !UserDefaults.standard.bool(forKey: EPUserDefaults.hasSignedIn.rawValue) else { return }
-    //        uploadUserData()
-    //        UserDefaults.standard.setValue(true, forKey: EPUserDefaults.hasSignedIn.rawValue)
-    //    }
-    
-    //    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-    //        print(error)
-    //    }
-    
     
     private func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
@@ -206,17 +173,8 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
             let credential = OAuthProvider.credential(withProviderID: "apple.com",
                                                       idToken: idTokenString,
                                                       rawNonce: nonce)
-            //        UserDefaults.standard.setValue(appleIDCredential.user, forKey: EPUserDefaults.userId.rawValue)
             // Sign in with Firebase.
             Auth.auth().signIn(with: credential) { (authResult, error) in
-//                guard error != nil else { return }
-//                guard let user = authResult?.user else { return }
-//                self.email = user.email ?? ""
-//                self.name = user.displayName ?? ""
-//                guard let uid = Auth.auth().currentUser?.uid else { return }
-//                self.userID = uid
-//                UserDefaults.standard.setValue(self.userID, forKey: EPUserDefaults.userId.rawValue)
-//                self.uploadUserData()
                 if let error = error {
                     print(error)
                 }
@@ -227,7 +185,6 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
                 self.userID = uid
                 UserDefaults.standard.setValue(self.userID, forKey: EPUserDefaults.userId.rawValue)
                 guard self.userID != nil else { return }
-//                self.uploadUserData()
                 self.fetchUser()
             }
         }

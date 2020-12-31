@@ -39,7 +39,8 @@
                                                             </constraints>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCS-2Z-4OE">
-                                                            <rect key="frame" x="336.5" y="16" width="21.5" height="22"/>
+                                                            <rect key="frame" x="336.5" y="16" width="21.5" height="23"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                             <color key="tintColor" systemColor="labelColor"/>
                                                             <state key="normal">
                                                                 <imageReference key="image" image="pencil" catalog="system" symbolScale="large"/>

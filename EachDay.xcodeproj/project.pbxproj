@@ -17,7 +17,6 @@
 		2009DE79256E41B500545439 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DE78256E41B500545439 /* UserViewModel.swift */; };
 		2009DE7D256E461D00545439 /* TrackedTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DE7C256E461D00545439 /* TrackedTimeViewModel.swift */; };
 		2009DE87256E4B8600545439 /* JournalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DE86256E4B8600545439 /* JournalViewModel.swift */; };
-		2009DE8A256E4CBB00545439 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DE89256E4CBB00545439 /* MainPageViewController.swift */; };
 		2009DE8F256E557700545439 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DE8E256E557700545439 /* CardView.swift */; };
 		2009DE92256E5A8400545439 /* JournalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DE91256E5A8400545439 /* JournalTableViewCell.swift */; };
 		2009DEAD256EA82400545439 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DEAC256EA82300545439 /* UIColorExtension.swift */; };
@@ -114,7 +113,6 @@
 		2009DE78256E41B500545439 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		2009DE7C256E461D00545439 /* TrackedTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedTimeViewModel.swift; sourceTree = "<group>"; };
 		2009DE86256E4B8600545439 /* JournalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewModel.swift; sourceTree = "<group>"; };
-		2009DE89256E4CBB00545439 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		2009DE8E256E557700545439 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		2009DE91256E5A8400545439 /* JournalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTableViewCell.swift; sourceTree = "<group>"; };
 		2009DEAC256EA82300545439 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -373,7 +371,6 @@
 		20FBA45A2578996700A58AF0 /* Journal */ = {
 			isa = PBXGroup;
 			children = (
-				2009DE89256E4CBB00545439 /* MainPageViewController.swift */,
 				2019553A25776B4E006FA8E8 /* CalendarMainViewController.swift */,
 				2019556825778C70006FA8E8 /* SelectionViewController.swift */,
 				20FBA44625779A3000A58AF0 /* DetailJournalViewController.swift */,
@@ -649,7 +646,6 @@
 				20AA1AF62589AC770074B683 /* LoadingView.swift in Sources */,
 				20733BE125748A83004B4A3B /* TimeTrackingTopTableViewCell.swift in Sources */,
 				2009DEB1256EAB1A00545439 /* MainPageGreetingsTableViewCell.swift in Sources */,
-				2009DE8A256E4CBB00545439 /* MainPageViewController.swift in Sources */,
 				201B28DC25807C5A00FB6A77 /* UserSettingTagsTableViewCell.swift in Sources */,
 				2098B162256F9A9800AAC1CB /* Helper.swift in Sources */,
 				20733BD42573526E004B4A3B /* TimeTrackingTagViewController.swift in Sources */,
@@ -860,14 +856,16 @@
 				CODE_SIGN_ENTITLEMENTS = EachDay/EachDay.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = FRH9H66G29;
 				INFOPLIST_FILE = EachDay/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.eleanorpeng31.EachDay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -885,14 +883,16 @@
 				CODE_SIGN_ENTITLEMENTS = EachDay/EachDay.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = FRH9H66G29;
 				INFOPLIST_FILE = EachDay/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.eleanorpeng31.EachDay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

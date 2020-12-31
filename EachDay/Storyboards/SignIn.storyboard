@@ -38,20 +38,6 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="welcome"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVT-BN-ciT">
-                                <rect key="frame" x="117" y="653" width="180" height="32"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="Wv3-ZC-aIZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <state key="normal" title="Sign In With Apple">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="signInButtonClicked:" destination="Yc2-G7-V9o" eventType="touchUpInside" id="8F0-CB-ZEq"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By tapping &quot;Sign In With Apple&quot;, you agree to our privacy policy and terms and conditions." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5rn-MR-kik">
                                 <rect key="frame" x="60" y="818" width="294" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -80,7 +66,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Xpp-mu-beo" firstAttribute="centerX" secondItem="EW3-HH-tAa" secondAttribute="centerX" id="5fe-mj-eUJ"/>
-                            <constraint firstItem="vVT-BN-ciT" firstAttribute="centerX" secondItem="EW3-HH-tAa" secondAttribute="centerX" id="BtV-ZY-GzC"/>
                             <constraint firstItem="5rn-MR-kik" firstAttribute="top" secondItem="O3p-4q-JF1" secondAttribute="bottom" constant="10" id="C0k-SV-Wur"/>
                             <constraint firstItem="TW7-c9-FzJ" firstAttribute="centerY" secondItem="EW3-HH-tAa" secondAttribute="centerY" id="GsA-lK-OaP"/>
                             <constraint firstItem="5rn-MR-kik" firstAttribute="leading" secondItem="EW3-HH-tAa" secondAttribute="leading" constant="60" id="KSE-5C-oHi"/>
@@ -93,13 +78,12 @@
                             <constraint firstItem="Xpp-mu-beo" firstAttribute="top" secondItem="N4O-1J-oWP" secondAttribute="bottom" constant="20" id="gxa-DW-5ha"/>
                             <constraint firstAttribute="trailing" secondItem="TW7-c9-FzJ" secondAttribute="trailing" constant="16" id="jJh-Sg-W8V"/>
                             <constraint firstAttribute="trailing" secondItem="5rn-MR-kik" secondAttribute="trailing" constant="60" id="kTQ-ig-F0I"/>
-                            <constraint firstItem="vVT-BN-ciT" firstAttribute="top" secondItem="TW7-c9-FzJ" secondAttribute="bottom" constant="80" id="mb9-nb-rMF"/>
                             <constraint firstItem="5rn-MR-kik" firstAttribute="centerX" secondItem="EW3-HH-tAa" secondAttribute="centerX" id="z3S-SI-qtQ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="animationView" destination="TW7-c9-FzJ" id="2Ia-CN-2Mq"/>
-                        <outlet property="signInButton" destination="vVT-BN-ciT" id="P1D-uM-LnO"/>
+                        <outlet property="privacyPolicyButton" destination="O3p-4q-JF1" id="nqp-UV-g3w"/>
                         <segue destination="Qo3-8V-vS5" kind="show" identifier="ShowMainFromSignIn" id="Zyb-4J-SLG"/>
                         <segue destination="sAK-Gn-H3N" kind="presentation" identifier="ShowPrivatePolicySegue" id="al7-4Z-A7A"/>
                     </connections>
@@ -142,7 +126,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2es-Af-PJv">
                                 <rect key="frame" x="10" y="76" width="394" height="722"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <mutableString key="text">Privacy Policy  
+                                <string key="text">Privacy Policy  
 ==============
 
 Last updated: December 29, 2020
@@ -444,7 +428,7 @@ If you have any questions about this Privacy Policy, You can contact us:
 
   * By email: eachday.co@gmail.com
 
-</mutableString>
+</string>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
