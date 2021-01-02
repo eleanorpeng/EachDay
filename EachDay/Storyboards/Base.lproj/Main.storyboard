@@ -424,11 +424,11 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <datePicker clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="vfZ-0z-zDT">
+                            <datePicker clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="vfZ-0z-zDT">
                                 <rect key="frame" x="142" y="233" width="130" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="4sv-2d-15M"/>
-                                    <constraint firstAttribute="width" constant="130" id="OL1-cu-c9V"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="OL1-cu-c9V"/>
                                 </constraints>
                                 <connections>
                                     <action selector="datePickerSelected:" destination="bBO-pU-OWi" eventType="valueChanged" id="Hho-rP-AQ8"/>
