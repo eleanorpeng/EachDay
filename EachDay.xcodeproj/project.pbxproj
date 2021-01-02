@@ -54,6 +54,7 @@
 		2053B884257F7224005DFA24 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053B883257F7224005DFA24 /* ProfileTableViewCell.swift */; };
 		2053B887257F7234005DFA24 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053B886257F7234005DFA24 /* SettingsTableViewCell.swift */; };
 		2053B88B257F7CCE005DFA24 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053B88A257F7CCE005DFA24 /* Settings.swift */; };
+		206A6B6B259DB7620077130C /* EachDayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A6B6A259DB7620077130C /* EachDayTests.swift */; };
 		20733BC625725DEB004B4A3B /* CreateNewTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20733BC525725DEB004B4A3B /* CreateNewTask.storyboard */; };
 		20733BC925725E62004B4A3B /* CreateNewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20733BC825725E62004B4A3B /* CreateNewTaskViewController.swift */; };
 		20733BD125732D81004B4A3B /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20733BD025732D81004B4A3B /* StopWatch.swift */; };
@@ -99,6 +100,16 @@
 		20FBA4E6257A41A200A58AF0 /* DetailJournalContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBA4E5257A41A200A58AF0 /* DetailJournalContentViewController.swift */; };
 		E884CDF5DDDA7E5EEA9A626B /* Pods_EachDay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC369F7277BF410ED23CBE70 /* Pods_EachDay.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		206A6B6D259DB7620077130C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2009DE27256E270D00545439 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2009DE2E256E270D00545439;
+			remoteInfo = EachDay;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2009DE2F256E270D00545439 /* EachDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EachDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +162,11 @@
 		2053B883257F7224005DFA24 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		2053B886257F7234005DFA24 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		2053B88A257F7CCE005DFA24 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		206A6B4D259D86E40077130C /* EachDayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EachDayTests.swift; sourceTree = "<group>"; };
+		206A6B4F259D86E50077130C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		206A6B68259DB7620077130C /* EachDayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EachDayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		206A6B6A259DB7620077130C /* EachDayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EachDayTests.swift; sourceTree = "<group>"; };
+		206A6B6C259DB7620077130C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20733BC525725DEB004B4A3B /* CreateNewTask.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateNewTask.storyboard; sourceTree = "<group>"; };
 		20733BC825725E62004B4A3B /* CreateNewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTaskViewController.swift; sourceTree = "<group>"; };
 		20733BD025732D81004B4A3B /* StopWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
@@ -208,6 +224,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		206A6B65259DB7620077130C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -215,6 +238,8 @@
 			isa = PBXGroup;
 			children = (
 				2009DE31256E270D00545439 /* EachDay */,
+				206A6B4C259D86E40077130C /* EachDayTests */,
+				206A6B69259DB7620077130C /* EachDayTests */,
 				2009DE30256E270D00545439 /* Products */,
 				D4C3B707630014EF24F03CEE /* Pods */,
 				FA09CD32197E57AB2F01CA0E /* Frameworks */,
@@ -225,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				2009DE2F256E270D00545439 /* EachDay.app */,
+				206A6B68259DB7620077130C /* EachDayTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -348,6 +374,24 @@
 				2023F6CF25943CD400A3ACC4 /* RoutineReminderViewController.swift */,
 			);
 			path = "User Settings";
+			sourceTree = "<group>";
+		};
+		206A6B4C259D86E40077130C /* EachDayTests */ = {
+			isa = PBXGroup;
+			children = (
+				206A6B4D259D86E40077130C /* EachDayTests.swift */,
+				206A6B4F259D86E50077130C /* Info.plist */,
+			);
+			path = EachDayTests;
+			sourceTree = "<group>";
+		};
+		206A6B69259DB7620077130C /* EachDayTests */ = {
+			isa = PBXGroup;
+			children = (
+				206A6B6A259DB7620077130C /* EachDayTests.swift */,
+				206A6B6C259DB7620077130C /* Info.plist */,
+			);
+			path = EachDayTests;
 			sourceTree = "<group>";
 		};
 		2098B15B256F8DEC00AAC1CB /* Storyboards */ = {
@@ -489,17 +533,39 @@
 			productReference = 2009DE2F256E270D00545439 /* EachDay.app */;
 			productType = "com.apple.product-type.application";
 		};
+		206A6B67259DB7620077130C /* EachDayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 206A6B6F259DB7620077130C /* Build configuration list for PBXNativeTarget "EachDayTests" */;
+			buildPhases = (
+				206A6B64259DB7620077130C /* Sources */,
+				206A6B65259DB7620077130C /* Frameworks */,
+				206A6B66259DB7620077130C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				206A6B6E259DB7620077130C /* PBXTargetDependency */,
+			);
+			name = EachDayTests;
+			productName = EachDayTests;
+			productReference = 206A6B68259DB7620077130C /* EachDayTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		2009DE27256E270D00545439 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1210;
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					2009DE2E256E270D00545439 = {
 						CreatedOnToolsVersion = 12.1;
+					};
+					206A6B67259DB7620077130C = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 2009DE2E256E270D00545439;
 					};
 				};
 			};
@@ -517,6 +583,7 @@
 			projectRoot = "";
 			targets = (
 				2009DE2E256E270D00545439 /* EachDay */,
+				206A6B67259DB7620077130C /* EachDayTests */,
 			);
 		};
 /* End PBXProject section */
@@ -548,6 +615,13 @@
 				20195451258701D0004BF656 /* DetailJournalContentView.storyboard in Resources */,
 				2009DE3A256E270D00545439 /* Main.storyboard in Resources */,
 				20AA1AEC2588F0E40074B683 /* empty.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		206A6B66259DB7620077130C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,7 +783,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		206A6B64259DB7620077130C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				206A6B6B259DB7620077130C /* EachDayTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		206A6B6E259DB7620077130C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2009DE2E256E270D00545439 /* EachDay */;
+			targetProxy = 206A6B6D259DB7620077130C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2009DE38256E270D00545439 /* Main.storyboard */ = {
@@ -901,6 +991,48 @@
 			};
 			name = Release;
 		};
+		206A6B70259DB7620077130C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FRH9H66G29;
+				"HEADER_SEARCH_PATHS[arch=*]" = "\"${SRCROOT}/Pods/Firebase/CoreOnly/Sources\"";
+				INFOPLIST_FILE = EachDayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.eleanorpeng31.EachDayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EachDay.app/EachDay";
+			};
+			name = Debug;
+		};
+		206A6B71259DB7620077130C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FRH9H66G29;
+				"HEADER_SEARCH_PATHS[arch=*]" = "\"${SRCROOT}/Pods/Firebase/CoreOnly/Sources\"";
+				INFOPLIST_FILE = EachDayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.eleanorpeng31.EachDayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EachDay.app/EachDay";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -918,6 +1050,15 @@
 			buildConfigurations = (
 				2009DE44256E270F00545439 /* Debug */,
 				2009DE45256E270F00545439 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		206A6B6F259DB7620077130C /* Build configuration list for PBXNativeTarget "EachDayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				206A6B70259DB7620077130C /* Debug */,
+				206A6B71259DB7620077130C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

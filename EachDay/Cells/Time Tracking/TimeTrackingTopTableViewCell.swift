@@ -13,9 +13,10 @@ class TimeTrackingTopTableViewCell: UITableViewCell {
     @IBOutlet weak var activityLabel: PaddingableUILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var activityElapsedTimeLabel: UILabel!
-    @IBOutlet weak var activityDurationLabel: UILabel!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet var activityLabelYConstraint: NSLayoutConstraint!
+    @IBOutlet var activityLabelBottomConstraint: NSLayoutConstraint!
     @IBAction func pauseButtonClicked(_ sender: Any) {
         self.delegate?.pauseTiming()
     }
@@ -31,13 +32,20 @@ class TimeTrackingTopTableViewCell: UITableViewCell {
 
     }
     
-    func layoutCell(activity: String, description: String, elapsedTime: String, duration: String, color: UIColor) {
+    func layoutCell(activity: String, description: String, elapsedTime: String, color: UIColor) {
         activityLabel.text = activity
         descriptionLabel.text = description
         activityElapsedTimeLabel.text = elapsedTime
-        activityDurationLabel.text = duration
         activityLabel.backgroundColor = color
         activityElapsedTimeLabel.textColor = UIColor(r: 247, g: 174, b: 0)
+        if description == "" {
+            activityLabelYConstraint.isActive = true
+            activityLabelBottomConstraint.isActive = false
+        } else {
+            activityLabelYConstraint.isActive = false
+            activityLabelBottomConstraint.isActive = true
+        }
+        contentView.layoutIfNeeded()
     }
     
     func configurePauseButtonImage(image: UIImage) {

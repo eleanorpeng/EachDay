@@ -16,7 +16,7 @@ class DetailJournalViewController: UIViewController {
     var user: User?
     var journalData: [Journal]?
     var selectedMonth = 0
-    var selectedYear = 2020
+    var selectedYear = 2021
     var selectedFilterTag: String?
     let searchController = UISearchController(searchResultsController: nil)
     var isFiltering: Bool = false
@@ -36,9 +36,8 @@ class DetailJournalViewController: UIViewController {
         tableView.separatorColor = .clear
         tableView.reloadData()
         createBarButtonItem()
-        fetchData(userDocID: "Eleanor")
-//        createSearchBar()
-        fetchUser(userDocID: "Eleanor")
+        fetchData()
+        fetchUser()
         setUpNavigationBar()
     }
     
@@ -105,7 +104,7 @@ class DetailJournalViewController: UIViewController {
         performSegue(withIdentifier: "ShowFilterJournalTagsSegue", sender: self)
     }
     
-    func fetchData(userDocID: String) {
+    func fetchData() {
         JournalManager.shared.fetchFilteredJournalData(selectedMonth: selectedMonth,
                                                        selectedYear: selectedYear, completion: { result in
             switch result {
@@ -128,7 +127,7 @@ class DetailJournalViewController: UIViewController {
         })
     }
     
-    func fetchUser(userDocID: String) {
+    func fetchUser() {
         UserManager.shared.fetchUser(completion: { result in
             switch result {
             case .success(let user):

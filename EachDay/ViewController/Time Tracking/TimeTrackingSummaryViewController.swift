@@ -69,15 +69,19 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
         
     }
     
-    func calculatePieChartValue() {
+    func configurePieChart() {
         guard let timeRecord = self.timeRecords else { return }
         categories = Array(timeRecord.keys)
         timeValues = Array(timeRecord.values)
+        computePieChartValue(time: timeValues)
+        tableView.reloadData()
+    }
+    
+    func computePieChartValue(time: [Double]?) {
         guard let sum = timeValues?.reduce(0, +) else { return }
         percentageTimeValues = timeValues?.map({
             return ($0 / sum) * 100
         })
-        tableView.reloadData()
     }
     
     func createBackButton() {
@@ -132,7 +136,7 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
             case .success(let trackedTime):
                 self.trackedTime = trackedTime
                 self.calculateTotalTime()
-                self.calculatePieChartValue()
+                self.configurePieChart()
                 DispatchQueue.main.async {
                     self.configureEmptyView()
                     self.tableView.reloadData()

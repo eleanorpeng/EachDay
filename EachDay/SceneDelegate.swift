@@ -69,7 +69,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let uid = Auth.auth().currentUser?.uid
             UserDefaults.standard.setValue(uid, forKey: EPUserDefaults.userId.rawValue)
         }
-        
+
         window?.rootViewController = storyboard.instantiateInitialViewController()
         window?.makeKeyAndVisible()
         

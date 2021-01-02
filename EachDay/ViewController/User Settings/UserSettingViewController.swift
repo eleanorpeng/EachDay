@@ -122,6 +122,10 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        prepareForSegues(segue: segue)
+    }
+    
+    func prepareForSegues(segue: UIStoryboardSegue) {
         if let destination = segue.destination as? TagSelectionViewController {
             destination.fromUserSetting = true
             destination.isTimeTracking = isTimeTracking
@@ -179,6 +183,7 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
             return 70
         }
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
@@ -266,11 +271,7 @@ extension UserSettingViewController: UITableViewDelegate, UITableViewDataSource,
             }
         })
     }
-    
-    func removeDailyReminderNotification() {
-        center.removePendingNotificationRequests(withIdentifiers: ["DailyRoutineNotification"])
-    }
-    
+
     func presentPasscodeAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 

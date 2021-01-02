@@ -272,7 +272,7 @@ extension TimeTrackingMainPageViewController: UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeTrackingTopTableViewCell.identifier)
         guard let topCell = cell as? TimeTrackingTopTableViewCell else { return cell! }
         topCell.delegate = self
-        topCell.layoutCell(activity: taskName ?? "", description: taskDescription ?? "", elapsedTime: elapsedTime ?? "00:00:00", duration: "", color: .yellow)
+        topCell.layoutCell(activity: taskName ?? "", description: taskDescription ?? "", elapsedTime: elapsedTime ?? "00:00:00", color: .yellow)
         topCell.configurePauseButtonImage(image: (isPaused ? UIImage(named: "play-button")! : UIImage(named: "pause"))!)
         return topCell
     }

@@ -17,10 +17,6 @@ class UserManager {
 //    var userDocID: String?
 //    var userDocID = "IAMACTUALLYFAKE"
     func uploadUserData(user: User, completion: @escaping (Result<String, Error>) -> Void) {
-//        database.collection("User").document(user.id).setData(from: user)
-//        user.id = document.documentID
-//        UserDefaults.standard.setValue(user.id, forKey: EPUserDefaults.userId.rawValue)
-//        userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
         do {
             print(user.id)
             try database.collection("User").document(user.id).setData(from: user)

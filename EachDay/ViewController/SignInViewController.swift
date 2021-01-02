@@ -30,8 +30,6 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createAnimation()
-//        UserDefaults.standard.setValue(false, forKey: EPUserDefaults.hasSignedIn.rawValue)
-//        UserDefaults.standard.setValue(false, forKey: EPUserDefaults.enableBiometrics.rawValue)
         calendarColors = [
             "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00", "F7AE00"
         ]

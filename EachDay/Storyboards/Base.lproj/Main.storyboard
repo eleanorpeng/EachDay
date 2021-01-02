@@ -304,6 +304,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="txo-Yr-c5m"/>
                     <connections>
+                        <outlet property="timeCapsuleButtonView" destination="YgL-tb-9ee" id="waN-1B-WhP"/>
+                        <outlet property="writeJournalButtonView" destination="9tW-fG-HkS" id="fgV-IP-UZS"/>
                         <segue destination="k3R-Nk-wM3" kind="show" identifier="ShowWriteJournalFromSelection" id="vIo-9E-cHF"/>
                         <segue destination="gFi-Hp-0NU" kind="show" identifier="ShowTimeCapsuleFromSelection" id="Ihw-2d-Scl"/>
                     </connections>
@@ -422,7 +424,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="vfZ-0z-zDT">
+                            <datePicker clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="vfZ-0z-zDT">
                                 <rect key="frame" x="142" y="233" width="130" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="4sv-2d-15M"/>
@@ -464,11 +466,11 @@
                             <constraint firstItem="09X-ER-1cb" firstAttribute="top" secondItem="r57-ss-FbE" secondAttribute="top" constant="20" id="HRM-FN-KVT"/>
                             <constraint firstItem="vTO-h0-x0h" firstAttribute="leading" secondItem="r57-ss-FbE" secondAttribute="leading" constant="20" id="Hx8-8s-1bN"/>
                             <constraint firstItem="vTO-h0-x0h" firstAttribute="top" secondItem="09X-ER-1cb" secondAttribute="bottom" constant="20" id="JbE-gn-nJA"/>
-                            <constraint firstItem="b8Z-SX-aec" firstAttribute="centerX" secondItem="vfZ-0z-zDT" secondAttribute="centerX" id="KUb-dd-kel"/>
                             <constraint firstItem="gdf-4J-eiE" firstAttribute="top" secondItem="r57-ss-FbE" secondAttribute="top" constant="30" id="LBv-4E-E3U"/>
                             <constraint firstItem="b8Z-SX-aec" firstAttribute="top" secondItem="vfZ-0z-zDT" secondAttribute="bottom" constant="10" id="LKA-ml-0I2"/>
+                            <constraint firstItem="vfZ-0z-zDT" firstAttribute="centerX" secondItem="b8Z-SX-aec" secondAttribute="centerX" id="P8z-dd-HCl"/>
+                            <constraint firstItem="b8Z-SX-aec" firstAttribute="centerX" secondItem="yb9-nB-Yfm" secondAttribute="centerX" id="ef4-GB-qiS"/>
                             <constraint firstItem="mhf-x4-QEk" firstAttribute="top" secondItem="vfZ-0z-zDT" secondAttribute="bottom" id="fqM-Je-hn7"/>
-                            <constraint firstItem="vfZ-0z-zDT" firstAttribute="centerX" secondItem="yb9-nB-Yfm" secondAttribute="centerX" id="hN0-pA-BSH"/>
                             <constraint firstItem="r57-ss-FbE" firstAttribute="bottom" secondItem="mhf-x4-QEk" secondAttribute="bottom" constant="50" id="lNs-fm-pW9"/>
                             <constraint firstAttribute="bottom" secondItem="EaZ-o6-O1i" secondAttribute="bottom" constant="-250" id="qTy-ZB-W1g"/>
                             <constraint firstItem="r57-ss-FbE" firstAttribute="trailing" secondItem="mhf-x4-QEk" secondAttribute="trailing" id="uuq-8d-AjS"/>
@@ -758,7 +760,7 @@
         <!--Time Tracking Main Page View Controller-->
         <scene sceneID="cL2-FD-lQI">
             <objects>
-                <viewController id="wqS-iT-YMm" customClass="TimeTrackingMainPageViewController" customModule="EachDay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TimeTrackingMainPageVC" id="wqS-iT-YMm" customClass="TimeTrackingMainPageViewController" customModule="EachDay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OUm-mH-LNs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -894,20 +896,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descriptions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NuK-Ta-Pyf">
-                                                    <rect key="frame" x="24" y="50" width="133" height="42"/>
+                                                    <rect key="frame" x="24" y="50" width="76.5" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="00:25:35" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfe-OW-5eS">
-                                                    <rect key="frame" x="177" y="16" width="105" height="29"/>
+                                                    <rect key="frame" x="177" y="13.5" width="105" height="29"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:15 PM - 3:40 PM" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6b2-oo-w9y">
-                                                    <rect key="frame" x="177" y="55" width="115" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Reading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVx-MR-1Mu" customClass="PaddingableUILabel" customModule="EachDay" customModuleProvider="target">
@@ -934,7 +930,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="DBM-eI-r4Q">
-                                                    <rect key="frame" x="312" y="38.5" width="86" height="35"/>
+                                                    <rect key="frame" x="312" y="10.5" width="86" height="35"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fjg-ZN-NZY">
                                                             <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
@@ -965,23 +961,21 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="DBM-eI-r4Q" secondAttribute="trailing" constant="16" id="1uC-6b-xap"/>
                                                 <constraint firstItem="RVx-MR-1Mu" firstAttribute="top" secondItem="J2a-aq-Ey5" secondAttribute="top" constant="16" id="2YE-HU-3x7"/>
-                                                <constraint firstItem="6b2-oo-w9y" firstAttribute="top" secondItem="Vfe-OW-5eS" secondAttribute="bottom" constant="10" id="7b0-hQ-JPP"/>
-                                                <constraint firstItem="6b2-oo-w9y" firstAttribute="leading" secondItem="Vfe-OW-5eS" secondAttribute="leading" id="9e8-E5-9ji"/>
-                                                <constraint firstItem="6b2-oo-w9y" firstAttribute="leading" secondItem="NuK-Ta-Pyf" secondAttribute="trailing" constant="20" id="LW9-uM-3QW"/>
-                                                <constraint firstItem="DBM-eI-r4Q" firstAttribute="leading" secondItem="6b2-oo-w9y" secondAttribute="trailing" constant="20" id="X7R-A3-3lK"/>
+                                                <constraint firstItem="Vfe-OW-5eS" firstAttribute="centerY" secondItem="DBM-eI-r4Q" secondAttribute="centerY" id="GtR-xX-WKt"/>
                                                 <constraint firstAttribute="bottom" secondItem="NuK-Ta-Pyf" secondAttribute="bottom" constant="20" id="bnz-Bv-7Tt"/>
                                                 <constraint firstItem="DBM-eI-r4Q" firstAttribute="centerY" secondItem="J2a-aq-Ey5" secondAttribute="centerY" id="c5M-Nl-lEE"/>
                                                 <constraint firstItem="DBM-eI-r4Q" firstAttribute="leading" secondItem="Vfe-OW-5eS" secondAttribute="trailing" constant="30" id="hwx-Wd-btO"/>
-                                                <constraint firstItem="Vfe-OW-5eS" firstAttribute="top" secondItem="RVx-MR-1Mu" secondAttribute="top" id="m9N-IC-h2U"/>
+                                                <constraint firstItem="RVx-MR-1Mu" firstAttribute="centerY" secondItem="Vfe-OW-5eS" secondAttribute="centerY" id="mcW-7n-UPc"/>
                                                 <constraint firstItem="NuK-Ta-Pyf" firstAttribute="leading" secondItem="J2a-aq-Ey5" secondAttribute="leading" constant="24" id="nbs-x5-iBE"/>
                                                 <constraint firstItem="NuK-Ta-Pyf" firstAttribute="top" secondItem="RVx-MR-1Mu" secondAttribute="bottom" constant="10" id="t14-pE-xGf"/>
                                                 <constraint firstItem="RVx-MR-1Mu" firstAttribute="leading" secondItem="J2a-aq-Ey5" secondAttribute="leading" constant="16" id="vDb-VB-QZS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="activityDurationLabel" destination="6b2-oo-w9y" id="T0N-ld-rFe"/>
                                             <outlet property="activityElapsedTimeLabel" destination="Vfe-OW-5eS" id="8Hy-kl-3xU"/>
                                             <outlet property="activityLabel" destination="RVx-MR-1Mu" id="hh6-Bq-aDy"/>
+                                            <outlet property="activityLabelBottomConstraint" destination="t14-pE-xGf" id="MWe-WF-K9F"/>
+                                            <outlet property="activityLabelYConstraint" destination="mcW-7n-UPc" id="1yP-x7-eg9"/>
                                             <outlet property="descriptionLabel" destination="NuK-Ta-Pyf" id="Emo-wM-cDL"/>
                                             <outlet property="pauseButton" destination="Fjg-ZN-NZY" id="PbS-cJ-fq2"/>
                                             <outlet property="stopButton" destination="daj-3z-lKf" id="r8b-oc-OKo"/>

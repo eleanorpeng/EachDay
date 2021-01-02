@@ -40,7 +40,7 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
     var currentDate = Date()
     var journalData: [Journal]?
     var timeCapsule: [Journal]?
-    var selectedYear = 2020
+    var selectedYear = 2021
     let colorPicker = SlideUpView()
     var calendarColor: UIColor?
     var changeColorIndex: Int?
@@ -65,6 +65,8 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         fetchUser()
         initialSetUp()
         isChangingColor = false
+        selectedYear = Date().year()
+        scrollToSelectedMonth()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +78,11 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveProfileImage(_:)), name: Notifications.receiveProfileImageNotification, object: nil)
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        updateCellsLayout()
+    }
+
     func createTimeCapAlert() {
         NotificationCenter.default.post(Notification(name: Notifications.receiveTimeCapsule, object: nil))
         customAlert.delegate = self
@@ -142,21 +149,15 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         userProfileButton.clipsToBounds = true
         userProfileButton.layer.cornerRadius = userProfileButton.frame.width / 2
         scrollToMonth = currentDate.month()
-
     }
 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        updateCellsLayout()
-        scrollToSelectedMonth()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        guard datePicker != nil else { return }
-        datePicker.date = currentDate
-        scrollToMonth = datePicker.date.month()
-    }
+  
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(true)
+//        guard datePicker != nil else { return }
+//        datePicker.date = currentDate
+//        scrollToMonth = datePicker.date.month()
+//    }
     
     func scrollToSelectedMonth() {
         if !isChangingColor {
