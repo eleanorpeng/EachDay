@@ -59,7 +59,7 @@ We live only once. To make the best out of life, I believe it's important to aim
 * [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
 
 ## Author
-Eleanor Peng – eleanorpeng31@gmail.com
+Eleanor Peng – eachday.co@gmail.com
 
 ## License
 Distributed under the MIT License. See ``LICENSE`` for more information.
