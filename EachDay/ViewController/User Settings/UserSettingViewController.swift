@@ -118,7 +118,6 @@ class UserSettingViewController: UIViewController, PasscodeViewControllerDelegat
                 
             })
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

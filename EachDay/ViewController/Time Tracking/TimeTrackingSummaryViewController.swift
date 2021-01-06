@@ -78,9 +78,9 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
     }
     
     func computePieChartValue(time: [Double]?) {
-        guard let sum = timeValues?.reduce(0, +) else { return }
-        percentageTimeValues = timeValues?.map({
-            return ($0 / sum) * 100
+        guard let sum = time?.reduce(0, +) else { return }
+        percentageTimeValues = time?.map({
+            return (($0 / sum) * 100).rounded(toPlaces: 1)
         })
     }
     

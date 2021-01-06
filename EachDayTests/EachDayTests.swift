@@ -35,7 +35,7 @@ class EachDayTests: XCTestCase {
         }
     }
     
-    func timeSpentPercentageComputed() {
+    func testTimeSpentPercentageComputed() throws {
         let timeValues: [Double] = [12, 35, 60, 180, 42, 37]
         let percentageValues = [3.3, 9.6, 16.4, 49.2, 11.5, 10.1]
         sut.computePieChartValue(time: timeValues)
