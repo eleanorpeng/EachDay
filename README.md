@@ -1,7 +1,9 @@
 # EachDay
-<h1 align="center">
+<p align="center">
   <img src="ScreenShots/EachDayLogo2.png" width="160" height="160">
-</h1>
+  <a href="https://apps.apple.com/us/app/each-day-diary-time-tracker/id1546723426?itsct=apps_box&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-radius: 13px; width: 250px; height: 83px;"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-US?size=250x83&amp;releaseDate=1609286400&h=c74239b6702e72af37ebcac0350fa729" alt="Download on the App Store" style="border-radius: 13px; width: 250px; height: 83px;"></a>
+</p>
+
 <h4 align="center">A simple yet elegantly designed journaling and time tracker app for those who enjoy recording life events.</h4>
 
 <p align="center">
