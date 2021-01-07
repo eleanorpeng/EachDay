@@ -13,12 +13,26 @@ import FirebaseStorage
 class JournalManager {
     static let shared = JournalManager()
     var userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
-    
+    // swiftlint:disable all
+    let USER_KEY = "User"
+    let JOURNAL_KEY = "Journal"
+    let ID_KEY = "id"
+    let DATE_KEY = "date"
+    let IS_TIME_CAPSULE_KEY = "isTimeCapsule"
+    let JOURNAL_TAG_KEY = "journalTags"
+    let TITLE_KEY = "title"
+    let CONTENT_KEY = "content"
+    let IMAGE_KEY = "image"
+    let TAG_KEY = "tags"
+    // swiftlint:enable all
 //    var userDocID = "IAMACTUALLYFAKE"
     var database = Firestore.firestore()
     
     func fetchJournalData(selectedMonth: Int, completion: @escaping (Result<[Journal], Error>) -> Void) {
-        database.collection("User").document(userDocID ?? "").collection("Journal").order(by: "date", descending: true).addSnapshotListener({ querySnapshot, error in
+        database.collection(USER_KEY).document(userDocID ?? "")
+            .collection(JOURNAL_KEY)
+            .order(by: DATE_KEY, descending: true)
+            .addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -36,7 +50,10 @@ class JournalManager {
     }
     
     func fetchTimeCapsuleData(currentDate: Date, completion: @escaping (Result<[Journal], Error>) -> Void) {
-        database.collection("User").document(userDocID ?? "").collection("Journal").whereField("date", isLessThan: currentDate).addSnapshotListener({ querySnapchot, error in
+        database.collection(USER_KEY).document(userDocID ?? "")
+            .collection(JOURNAL_KEY)
+            .whereField(DATE_KEY, isLessThan: currentDate)
+            .addSnapshotListener({ querySnapchot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -54,8 +71,8 @@ class JournalManager {
     }
     
     func fetchFilteredJournalData(selectedMonth: Int, selectedYear: Int, completion: @escaping (Result<[Journal], Error>) -> Void) {
-        database.collection("User").document(userDocID ?? "").collection("Journal")
-            .order(by: "date", descending: true).addSnapshotListener({ querySnapshot, error in
+        database.collection(USER_KEY).document(userDocID ?? "").collection(JOURNAL_KEY)
+            .order(by: DATE_KEY, descending: true).addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -74,8 +91,8 @@ class JournalManager {
     }
     
     func changeTimeCapsuleStatus(journalID: String) {
-        database.collection("User").document(userDocID ?? "").collection("Journal").document(journalID).updateData([
-            "isTimeCapsule": false
+        database.collection(USER_KEY).document(userDocID ?? "").collection(JOURNAL_KEY).document(journalID).updateData([
+            IS_TIME_CAPSULE_KEY: false
         ]) { err in
             if let err = err {
                 print("Error in updating time capsule status")
@@ -86,7 +103,7 @@ class JournalManager {
     }
     
     func publishJournalData(journal: inout Journal, completion: @escaping (Result<String, Error>) -> Void) {
-        let document = database.collection("User").document(userDocID ?? "").collection("Journal").document()
+        let document = database.collection(USER_KEY).document(userDocID ?? "").collection(JOURNAL_KEY).document()
         journal.id = document.documentID
         do {
             try document.setData(from: journal)
@@ -96,12 +113,8 @@ class JournalManager {
         }
     }
     
-    func deleteJournalData() {
-        
-    }
-    
     func fetchUser(completion: @escaping (Result<[User], Error>) -> Void) {
-        database.collection("User").whereField("id", isEqualTo: userDocID ?? "").addSnapshotListener({ querySnapshot, error in
+        database.collection(USER_KEY).whereField(ID_KEY, isEqualTo: userDocID ?? "").addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -115,9 +128,9 @@ class JournalManager {
     }
     
     func updateJournalTags(tags: [String]) {
-        let user = database.collection("User").document(userDocID ?? "")
+        let user = database.collection(USER_KEY).document(userDocID ?? "")
         user.updateData([
-            "journalTags": tags
+            JOURNAL_TAG_KEY: tags
         ]) { err in
             if let err = err {
                 print("Error in updating user data")
@@ -128,11 +141,11 @@ class JournalManager {
     }
     
     func updateJournal(journalID: String, title: String, content: String, tags: [String], image: String, completion: @escaping (Result<String, Error>) -> Void) {
-        database.collection("User").document(userDocID ?? "").collection("Journal").document(journalID).updateData([
-            "title" : title,
-            "content" : content,
-            "tags": tags,
-            "image": image
+        database.collection(USER_KEY).document(userDocID ?? "").collection(JOURNAL_KEY).document(journalID).updateData([
+            TITLE_KEY : title,
+            CONTENT_KEY : content,
+            TAG_KEY: tags,
+            IMAGE_KEY: image
         ]) { err in
             if let err = err {
                 print("Error in updating journal data")
@@ -145,7 +158,10 @@ class JournalManager {
     }
     
     func deleteJournal(journalID: String) {
-        database.collection("User").document(userDocID ?? "").collection("Journal").document(journalID).delete() { err in
+        database.collection(USER_KEY)
+            .document(userDocID ?? "")
+            .collection(JOURNAL_KEY)
+            .document(journalID).delete() { err in
             if let err = err {
                 print("Error removing document: \(err)")
             } else {
@@ -176,7 +192,6 @@ class JournalManager {
                     completion(.success(downloadURL.absoluteString))
                 })
             }
-            
         })
     }
 }

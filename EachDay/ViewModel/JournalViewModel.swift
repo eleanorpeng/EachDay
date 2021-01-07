@@ -73,9 +73,6 @@ class JournalViewModel {
     var dateTS: Timestamp {
         return journal.date
     }
-//    var image: String {
-//        return journal.image
-//    }
     
     var formattedDate: String {
         let date1 = journal.date.dateValue()

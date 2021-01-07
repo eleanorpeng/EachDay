@@ -18,7 +18,6 @@ class RoutineReminderViewController: UIViewController {
             tableView.reloadData()
         }
     }
-//    var datePicker: UIDatePicker!
     let center = UNUserNotificationCenter.current()
     var selectedDate: Date?
     var user: User?
@@ -29,10 +28,12 @@ class RoutineReminderViewController: UIViewController {
     }
     @IBOutlet weak var datePickerConstraint: NSLayoutConstraint!
     @IBOutlet weak var datePicker: UIDatePicker!
+    
     @IBAction func datePickerChanged(_ sender: Any) {
         selectedDate = datePicker.date
         selectedDateText = selectedDate?.getFormattedTime() ?? "00:00"
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
@@ -136,7 +137,6 @@ extension RoutineReminderViewController: UITableViewDelegate, UITableViewDataSou
             })
             center.removePendingNotificationRequests(withIdentifiers: ["DailyRoutineNotification"])
         }
-//        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

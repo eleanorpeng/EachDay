@@ -71,6 +71,7 @@
 		2098B165256FB2C600AAC1CB /* TimeCapsule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2098B164256FB2C600AAC1CB /* TimeCapsule.storyboard */; };
 		2098B168256FB39F00AAC1CB /* TimeCapsuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2098B167256FB39F00AAC1CB /* TimeCapsuleViewController.swift */; };
 		20A5D3D62583212E0009F3FC /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A5D3D52583212E0009F3FC /* Notifications.swift */; };
+		20A9A52225A6EAB30054A9BD /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A9A52125A6EAB30054A9BD /* UIButtonExtension.swift */; };
 		20AA1AE925889F510074B683 /* mail-send.json in Resources */ = {isa = PBXBuildFile; fileRef = 20AA1AE825889F510074B683 /* mail-send.json */; };
 		20AA1AEC2588F0E40074B683 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 20AA1AEB2588F0E40074B683 /* empty.json */; };
 		20AA1AEF2589A3040074B683 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AA1AEE2589A3040074B683 /* UILabelExtension.swift */; };
@@ -183,6 +184,7 @@
 		2098B164256FB2C600AAC1CB /* TimeCapsule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeCapsule.storyboard; sourceTree = "<group>"; };
 		2098B167256FB39F00AAC1CB /* TimeCapsuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleViewController.swift; sourceTree = "<group>"; };
 		20A5D3D52583212E0009F3FC /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		20A9A52125A6EAB30054A9BD /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		20AA1AE825889F510074B683 /* mail-send.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "mail-send.json"; sourceTree = "<group>"; };
 		20AA1AEB2588F0E40074B683 /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 		20AA1AEE2589A3040074B683 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				20F2CF1D2587433D003B7B41 /* UITextViewExtension.swift */,
 				2053B880257F56D9005DFA24 /* UIViewExtension.swift */,
 				20AA1AEE2589A3040074B683 /* UILabelExtension.swift */,
+				20A9A52125A6EAB30054A9BD /* UIButtonExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -765,6 +768,7 @@
 				20FBA4622578B20200A58AF0 /* DoubleExtension.swift in Sources */,
 				2009DEAD256EA82400545439 /* UIColorExtension.swift in Sources */,
 				2009DE79256E41B500545439 /* UserViewModel.swift in Sources */,
+				20A9A52225A6EAB30054A9BD /* UIButtonExtension.swift in Sources */,
 				20F2CF1B25872FE6003B7B41 /* JournalTagsCollectionViewCell.swift in Sources */,
 				20D19BBE258B3E70003ABDD8 /* ColorPickerCollectionViewCell.swift in Sources */,
 				2053B85B257F227A005DFA24 /* UserSettingViewController.swift in Sources */,

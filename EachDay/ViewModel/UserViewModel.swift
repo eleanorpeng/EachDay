@@ -41,12 +41,5 @@ class UserViewModel {
     var image: String {
         return user.image
     }
-    
-//    var trackedTime: [TrackedTime] {
-//        return user.trackedTime
-//    }
-//
-//    var journal: [Journal] {
-//        return user.journal
-//    }
+
 }

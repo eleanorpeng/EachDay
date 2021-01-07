@@ -12,4 +12,5 @@ enum EPUserDefaults: String {
     case userId
     case enableBiometrics
     case hasDailyReminder
+    case isPaused
 }

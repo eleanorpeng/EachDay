@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             EPUserDefaults.hasSignedIn.rawValue: false,
             EPUserDefaults.enableBiometrics.rawValue: false,
             EPUserDefaults.userId.rawValue: "",
-            "isPaused": false,
+            EPUserDefaults.isPaused.rawValue: false,
             EPUserDefaults.hasDailyReminder.rawValue: false
         ])
         return true
