@@ -13,9 +13,6 @@ class TimeCapsuleViewController: UIViewController {
 
     let helper = Helper()
     var selectedDate: Date?
- 
-//    @IBOutlet weak var animationView: AnimationView!
-//    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var animationView: AnimationView!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -52,15 +49,6 @@ class TimeCapsuleViewController: UIViewController {
         let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.paragraphStyle: paragraphStyle, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 19)]
         let attributedString = NSAttributedString(string: "When do you wish to receive your letter?", attributes: attributes)
         titleLabel.attributedText = attributedString
-        
-//        let paragraphStyle = NSMutableParagraphStyle()
-//        paragraphStyle.lineSpacing = lineSpacing
-//
-//        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.paragraphStyle: paragraphStyle, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
-//
-//        let attributedString = NSAttributedString(string: text, attributes: attributes)
-//
-//        self.attributedText = attributedString
     }
 
     func createBackButton() {

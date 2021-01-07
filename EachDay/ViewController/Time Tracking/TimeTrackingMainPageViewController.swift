@@ -14,22 +14,29 @@ class TimeTrackingMainPageViewController: UIViewController {
     var hasAddedNew = false
     let helper = Helper()
     let loadingView = LoadingView()
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var createNewTaskButton: UIButton!
+    
     @IBAction func createNewTask(_ sender: Any) {
         performSegue(withIdentifier: "ShowCreateNewTaskSegue", sender: self)
     }
+    
     let stopWatch = Stopwatch()
+    
     var elapsedTime: String? {
         didSet {
             self.tableView.reloadData()
         }
     }
+    
     @IBAction func timeTrackingSummaryButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "ShowTimeTrackingSummarySegue", sender: self)
     }
+    
     var hasNewRecord = false
+    
     let icons: [TimeTrackingButton] = [
         TimeTrackingButton(name: "Sleep", icon: "sleep"),
         TimeTrackingButton(name: "Work", icon: "work"),
@@ -40,13 +47,17 @@ class TimeTrackingMainPageViewController: UIViewController {
         TimeTrackingButton(name: "Commute", icon: "commute"),
         TimeTrackingButton(name: "TV", icon: "tv")
     ]
+    
     var trackedTime: [TrackedTime]? {
         didSet {
             tableView.reloadData()
         }
     }
+    
     var startTime: TimeInterval?
+    
     var pausedTime: Date?
+    
     var isTiming = false {
         didSet {
             if isTiming || isPaused {
@@ -58,14 +69,18 @@ class TimeTrackingMainPageViewController: UIViewController {
             }
         }
     }
+    
     var isPaused = false
+    
     var timer = Timer()
     var pausedIntervals: [TimeInterval] = []
     var elapsedTimeInterval: TimeInterval?
+    
     @IBOutlet weak var totalTimeLabel: UILabel!
+    
     var totalTime: Double? = 0
     
-    var trackedTimeDic: [String : TimeInterval]?
+    var trackedTimeDic: [String : TimeInterval]? = [:]
     var endTime: TimeInterval?
     var endTimeTS: Timestamp?
     var trackedTimeCategories: [String]?
@@ -83,10 +98,7 @@ class TimeTrackingMainPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
-        setUpButton()
         fetchUser()
-        trackedTimeDic = [:]
-        fetchTimeRecord()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,11 +106,6 @@ class TimeTrackingMainPageViewController: UIViewController {
         fetchTimeRecord()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        guard hasAddedNew else { return }
-    }
-    
     func fetchUser() {
         JournalManager.shared.fetchUser(completion: { result in
             switch result {
@@ -134,6 +141,10 @@ class TimeTrackingMainPageViewController: UIViewController {
             }
         })
     }
+    
+    func hasEndedTimer(startTime: Timestamp, endTime: Timestamp) -> Bool {
+        return !(startTime == endTime)
+    }
   
     func resumeFromBackground() {
         if let trackedTime = trackedTime {
@@ -143,43 +154,52 @@ class TimeTrackingMainPageViewController: UIViewController {
             })
             guard !filteredTrackedTime.isEmpty else { return }
             trackedTime.forEach({
-                if $0.startTime == $0.endTime {
+                if !hasEndedTimer(startTime: $0.startTime, endTime: $0.endTime) {
                     let currentTime = Timestamp(date: Date()).dateValue().timeIntervalSince1970
                     hasNewRecord = true
                     taskName = $0.taskName
                     taskDescription = $0.taskDescrpition
                     let pauseSeconds = $0.pauseIntervals?.reduce(0) { $0 + $1 }
                     startTime = $0.startTime.dateValue().timeIntervalSince1970
-                    if let pauseTime = $0.pauseTime {
-                        self.pausedTime = pauseTime
-                        self.isPaused = true
-                        self.isTiming = false
-                        let lastTimeInterval = currentTime - pauseTime.timeIntervalSince1970
-                        elapsedTimeInterval = currentTime -
-                            ($0.startTime).dateValue().timeIntervalSince1970
-                            - (pauseSeconds ?? 0) - lastTimeInterval
-                    } else {
-                        if let pauseIntervals = $0.pauseIntervals {
-                            self.pausedIntervals = pauseIntervals
-                        }
-                        self.isPaused = false
-                        elapsedTimeInterval = currentTime -
-                            ($0.startTime).dateValue().timeIntervalSince1970
-                            - (pauseSeconds ?? 0)
-                        if !timer.isValid {
-                            timer.invalidate()
-                            timer = Timer.scheduledTimer(timeInterval: 1,
-                                                         target: self,
-                                                         selector: #selector(updateTimer),
-                                                         userInfo: nil,
-                                                         repeats: true)
-                            isTiming = true
-                        }
-                    }
+                    computeResumedElapsedTimeInterval(pauseTime: $0.pauseTime,
+                                                      currentTime: currentTime,
+                                                      startTime: startTime,
+                                                      pauseIntervals: pausedIntervals,
+                                                      pauseSeconds: pauseSeconds,
+                                                      trackedTime: $0)
                     elapsedTime = elapsedTimeInterval?.getFormattedTime()
                     tableView.reloadData()
                 }
             })
+        }
+    }
+    
+    func computeResumedElapsedTimeInterval(pauseTime: Date?, currentTime: TimeInterval, startTime: TimeInterval?, pauseIntervals: [TimeInterval]?, pauseSeconds: Double?, trackedTime: TrackedTime) {
+        if let pauseTime = trackedTime.pauseTime {
+            self.pausedTime = pauseTime
+            self.isPaused = true
+            self.isTiming = false
+            let lastTimeInterval = currentTime - pauseTime.timeIntervalSince1970
+            elapsedTimeInterval = currentTime -
+                (trackedTime.startTime).dateValue().timeIntervalSince1970
+                - (pauseSeconds ?? 0) - lastTimeInterval
+        } else {
+            if let pauseIntervals = trackedTime.pauseIntervals {
+                self.pausedIntervals = pauseIntervals
+            }
+            self.isPaused = false
+            elapsedTimeInterval = currentTime -
+                (trackedTime.startTime).dateValue().timeIntervalSince1970
+                - (pauseSeconds ?? 0)
+            if !timer.isValid {
+                timer.invalidate()
+                timer = Timer.scheduledTimer(timeInterval: 1,
+                                             target: self,
+                                             selector: #selector(updateTimer),
+                                             userInfo: nil,
+                                             repeats: true)
+                isTiming = true
+            }
         }
     }
     
@@ -202,6 +222,7 @@ class TimeTrackingMainPageViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         collectionView.collectionViewLayout = layout
         tableView.separatorColor = .clear
+        setUpButton()
         self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -242,6 +263,28 @@ class TimeTrackingMainPageViewController: UIViewController {
             destination.timeRecords = self.trackedTimeDic
         }
     }
+    
+    func addData() {
+        let startTimeTS = Timestamp.init(date: Date(timeIntervalSince1970: startTime ?? 0))
+        let today = Timestamp.init(date: Date())
+        var timeRecord = TrackedTime(date: today,
+                                     startTime: startTimeTS,
+                                     endTime: endTimeTS ?? startTimeTS,
+                                     taskName: taskName ?? "",
+                                     id: "",
+                                     duration: elapsedTimeInterval ?? 0,
+                                     taskDescrpition: taskDescription ?? "",
+                                     pauseIntervals: [0],
+                                     pauseTime: nil)
+        TimeTrackingManager.shared.uploadTimeRecord(record: &timeRecord, completion: { result in
+            switch result {
+            case .success(let message):
+                print(message)
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
 
 }
 
@@ -250,6 +293,7 @@ extension TimeTrackingMainPageViewController: UITableViewDelegate, UITableViewDa
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return trackedTime?.count ?? 0
     }
@@ -288,37 +332,15 @@ extension TimeTrackingMainPageViewController: UITableViewDelegate, UITableViewDa
         return pastCell
     }
     
+    //TimeTrackingTopTableViewCellDelegate Methods
     func stopTiming() {
         stop()
         tableView.reloadData()
     }
     
     func pauseTiming() {
-        pause()
+        pauseOrResumeTiming()
     }
-    
-    func addData() {
-        let startTimeTS = Timestamp.init(date: Date(timeIntervalSince1970: startTime ?? 0))
-        let today = Timestamp.init(date: Date())
-        var timeRecord = TrackedTime(date: today,
-                                     startTime: startTimeTS,
-                                     endTime: endTimeTS ?? startTimeTS,
-                                     taskName: taskName ?? "",
-                                     id: "",
-                                     duration: elapsedTimeInterval ?? 0,
-                                     taskDescrpition: taskDescription ?? "",
-                                     pauseIntervals: [0],
-                                     pauseTime: nil)
-        TimeTrackingManager.shared.uploadTimeRecord(record: &timeRecord, completion: { result in
-            switch result {
-            case .success(let message):
-                print(message)
-            case .failure(let error):
-                print(error)
-            }
-        })
-    }
-    
 }
 
 extension TimeTrackingMainPageViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -377,7 +399,7 @@ extension TimeTrackingMainPageViewController: CreateNewTaskViewControllerDelegat
         hasAddedNew = true
         hasNewRecord = true
         if isPaused {
-            pause()
+            pauseOrResumeTiming()
         }
         timer.invalidate()
         if !timer.isValid {
@@ -398,54 +420,61 @@ extension TimeTrackingMainPageViewController: CreateNewTaskViewControllerDelegat
         if let pausedTime = pausedTime {
             pausedSeconds += Date().timeIntervalSince(pausedTime)
         }
+        
         elapsedTimeInterval = currentTime - startTime! - pausedSeconds
-        elapsedTime = String(format: "%02d:%02d:%02d",
-                             Int( elapsedTimeInterval! / 3600),
-                             Int((elapsedTimeInterval! / 60).truncatingRemainder(dividingBy: 60)), Int(elapsedTimeInterval!.truncatingRemainder(dividingBy: 60)))
+        elapsedTime = elapsedTimeInterval?.getFormattedTime()
         tableView.reloadData()
     }
     
-    func pause() {
-        if isTiming == true && isPaused == false {
-            timer.invalidate()
-            isTiming = false
-            pausedTime = Date()
-            TimeTrackingManager.shared.updatePauseTime(pauseTime: pausedTime ?? Date(), completion: { result in
-                switch result {
-                case .success(let message):
-                    print(message)
-                case .failure(let error):
-                    print(error)
-                }
-            })
-            isPaused = true
-            updateTimer()
-        } else if isTiming == false && isPaused == true {
-            let pausedSeconds = Date().timeIntervalSince(pausedTime!)
-            pausedIntervals.append(pausedSeconds)
-            TimeTrackingManager.shared.updatePauseIntervals(pauseIntervals: pausedIntervals, completion: { result in
-                switch result {
-                case .success(let message):
-                    print(message)
-                case .failure(let error):
-                    print(error)
-                }
-            })
-            pausedTime = nil
-            if !timer.isValid {
-                timer.invalidate()
-                timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-                isPaused = false
-                isTiming = true
-                TimeTrackingManager.shared.deletePauseTime(completion: { result in
-                    switch result {
-                    case .success(let message):
-                        print(message)
-                    case .failure(let error):
-                        print(error)
-                    }
-                })
+    func configurePauseStatus() {
+        timer.invalidate()
+        isTiming = false
+        pausedTime = Date()
+        TimeTrackingManager.shared.updatePauseTime(pauseTime: pausedTime ?? Date(), completion: { result in
+            switch result {
+            case .success(let message):
+                print(message)
+            case .failure(let error):
+                print(error)
             }
+        })
+        isPaused = true
+        updateTimer()
+    }
+    
+    func configurePlayStatus() {
+        let pausedSeconds = Date().timeIntervalSince(pausedTime!)
+        pausedIntervals.append(pausedSeconds)
+        TimeTrackingManager.shared.updatePauseIntervals(pauseIntervals: pausedIntervals, completion: { result in
+            switch result {
+            case .success(let message):
+                print(message)
+            case .failure(let error):
+                print(error)
+            }
+        })
+        pausedTime = nil
+        if !timer.isValid {
+            timer.invalidate()
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+            isPaused = false
+            isTiming = true
+            TimeTrackingManager.shared.deletePauseTime(completion: { result in
+                switch result {
+                case .success(let message):
+                    print(message)
+                case .failure(let error):
+                    print(error)
+                }
+            })
+        }
+    }
+    
+    func pauseOrResumeTiming() {
+        if isTiming == true && isPaused == false {
+            configurePauseStatus()
+        } else if isTiming == false && isPaused == true {
+            configurePlayStatus()
         }
         tableView.reloadData()
     }

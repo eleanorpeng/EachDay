@@ -11,18 +11,23 @@ class SelectionViewController: UIViewController {
 
     @IBOutlet weak var writeJournalButtonView: UIView!
     @IBOutlet weak var timeCapsuleButtonView: UIView!
+    
     @IBAction func writeJournalButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "ShowWriteJournalFromSelection", sender: self)
     }
+    
     @IBAction func timeCapsuleButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "ShowTimeCapsuleFromSelection", sender: self)
     }
+    
     @IBAction func writeJournalTextButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "ShowWriteJournalFromSelection", sender: self)
     }
+    
     @IBAction func timeCapsuleTextButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "ShowTimeCapsuleFromSelection", sender: self)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true

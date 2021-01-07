@@ -20,13 +20,11 @@ class DetailJournalViewController: UIViewController {
     var selectedFilterTag: String?
     let searchController = UISearchController(searchResultsController: nil)
     var isFiltering: Bool = false
-//        return searchController.isActive && !isSearchBarEmpty
-        
     var filteredJournals: [Journal] = []
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-//    let db = Firestore.firestore()
+
     var selectedJournalIndex = 0
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +76,7 @@ class DetailJournalViewController: UIViewController {
         }
         self.navigationItem.title = monthTitle
     }
+    
     func createBarButtonItem() {
         let filterButton = UIButton(type: .custom)
         filterButton.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
@@ -100,6 +99,7 @@ class DetailJournalViewController: UIViewController {
         tableView.reloadData()
         createBarButtonItem()
     }
+    
     @objc func filterJournal() {
         performSegue(withIdentifier: "ShowFilterJournalTagsSegue", sender: self)
     }
@@ -218,8 +218,7 @@ extension DetailJournalViewController: UITableViewDelegate, UITableViewDataSourc
         performSegue(withIdentifier: "ShowDetailJournalContentSegue", sender: self)
     }
     
-    func configureEmptyView() -> UIView {
-        let customView = UIView()
+    func createAnimationView() -> AnimationView {
         var animationView = AnimationView()
         animationView = .init(name: "empty")
         animationView.animationSpeed = 1
@@ -227,17 +226,19 @@ extension DetailJournalViewController: UITableViewDelegate, UITableViewDataSourc
         animationView.contentMode = .scaleAspectFit
         animationView.play()
         animationView.translatesAutoresizingMaskIntoConstraints = false
-        
+        return animationView
+    }
+    
+    func configureEmptyView() -> UIView {
+        let customView = UIView()
+        let animationView = createAnimationView()
         let messageLabel = UILabel()
         messageLabel.textAlignment = .center
         messageLabel.numberOfLines = 0
-        messageLabel.translatesAutoresizingMaskIntoConstraints = false
-        messageLabel.text = isFiltering ?
-            "Hmm... seems like you haven't written anything with this tag."
-            : "Hmm... seems like you haven't written anything in this month."
-        messageLabel.font = UIFont.boldSystemFont(ofSize: 19)
-//        messageLabel.changeLineSpacing(lineSpacing: 5, text: "Hmm... seems like you haven't entered anything this month yet")
-
+        messageLabel.customLabel(text: isFiltering ?
+                                    "Hmm... seems like you haven't written anything with this tag."
+                                    : "Hmm... seems like you haven't written anything in this month.",
+                                 font: UIFont.boldSystemFont(ofSize: 19))
         customView.addSubview(animationView)
         customView.addSubview(messageLabel)
         
@@ -256,13 +257,6 @@ extension DetailJournalViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
 }
-//
-//extension DetailJournalViewController: UISearchResultsUpdating {
-//    func updateSearchResults(for searchController: UISearchController) {
-//        let searchBar = searchController.searchBar
-//        filterContentForSearchText(searchBar.text!)
-//    }
-//}
 
 extension DetailJournalViewController: FilterJournalViewControllerDelegate {
     func getFilteredTag(tag: String) {

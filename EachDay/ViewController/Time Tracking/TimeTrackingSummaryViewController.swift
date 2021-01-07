@@ -25,25 +25,28 @@ class TimeTrackingSummaryViewController: UIViewController, ChartViewDelegate {
     @IBAction func writeReflectionButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "ShowWriteReflectionSegue", sender: self)
     }
-    let helper = Helper()
     @IBOutlet weak var animationView: AnimationView!
+    let helper = Helper()
     var selectedSegmentIndex = 0
     var timeRecords: [String:TimeInterval]?
     var trackedTime: [TrackedTime]?
     var trackedTimeCategories: [String]?
     var percentageTimeValues: [Double]?
+    var startDateTS: Timestamp?
+    var endDateTS: Timestamp?
+    
     var timeValues: [Double]? {
         didSet {
             tableView.reloadData()
         }
     }
+    
     var categories: [String]? {
         didSet {
             tableView.reloadData()
         }
     }
-    var startDateTS: Timestamp?
-    var endDateTS: Timestamp?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
@@ -240,11 +243,9 @@ extension TimeTrackingSummaryViewController: UITableViewDelegate, UITableViewDat
         view.addSubview(customView)
         customView.translatesAutoresizingMaskIntoConstraints = false
         let customLabel = UILabel()
-        customLabel.translatesAutoresizingMaskIntoConstraints = false
-        customLabel.text = "Seems like you haven't tracked any time yet!"
-        customLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        customLabel.customLabel(text: "Seems like you haven't tracked any time yet!",
+                                font:  UIFont.boldSystemFont(ofSize: 16))
         customLabel.textAlignment = .center
-        customLabel.textColor = .black
         customView.addSubview(customLabel)
         NSLayoutConstraint.activate([
             customView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -259,4 +260,5 @@ extension TimeTrackingSummaryViewController: UITableViewDelegate, UITableViewDat
         ])
         return customView
     }
+
 }

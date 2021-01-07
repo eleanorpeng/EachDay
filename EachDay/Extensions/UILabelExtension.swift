@@ -17,4 +17,11 @@ extension UILabel {
         let attributedString = NSAttributedString(string: text, attributes: attributes)
         self.attributedText = attributedString
     }
+    
+    func customLabel(text: String, font: UIFont, color: UIColor = .black) {
+        self.text = text
+        self.font = font
+        self.textColor = color
+        self.translatesAutoresizingMaskIntoConstraints = false
+    }
 }
