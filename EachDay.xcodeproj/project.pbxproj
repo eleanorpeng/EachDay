@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2009DE33256E270D00545439 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DE32256E270D00545439 /* AppDelegate.swift */; };
 		2009DE35256E270D00545439 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DE34256E270D00545439 /* SceneDelegate.swift */; };
-		2009DE37256E270D00545439 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009DE36256E270D00545439 /* ViewController.swift */; };
 		2009DE3A256E270D00545439 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2009DE38256E270D00545439 /* Main.storyboard */; };
 		2009DE3C256E270F00545439 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2009DE3B256E270F00545439 /* Assets.xcassets */; };
 		2009DE3F256E270F00545439 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2009DE3D256E270F00545439 /* LaunchScreen.storyboard */; };
@@ -116,7 +115,6 @@
 		2009DE2F256E270D00545439 /* EachDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EachDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2009DE32256E270D00545439 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2009DE34256E270D00545439 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2009DE36256E270D00545439 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2009DE39256E270D00545439 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2009DE3B256E270F00545439 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2009DE3E256E270F00545439 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -263,7 +261,6 @@
 				203A950D2591CD9A002B7936 /* EachDay.entitlements */,
 				2009DE32256E270D00545439 /* AppDelegate.swift */,
 				2009DE34256E270D00545439 /* SceneDelegate.swift */,
-				2009DE36256E270D00545439 /* ViewController.swift */,
 				2098B15B256F8DEC00AAC1CB /* Storyboards */,
 				2009DE75256E311800545439 /* ViewController */,
 				2009DEB3256EAB1D00545439 /* Cells */,
@@ -747,7 +744,6 @@
 				20AA1AEF2589A3040074B683 /* UILabelExtension.swift in Sources */,
 				20AA1B05258AF0830074B683 /* SlideUpView.swift in Sources */,
 				2019556925778C70006FA8E8 /* SelectionViewController.swift in Sources */,
-				2009DE37256E270D00545439 /* ViewController.swift in Sources */,
 				20FBA44E25779A5100A58AF0 /* JournalDetailTableViewCell.swift in Sources */,
 				2053B887257F7234005DFA24 /* SettingsTableViewCell.swift in Sources */,
 				2023E68525847A15001C43E8 /* FilterJournalViewController.swift in Sources */,
