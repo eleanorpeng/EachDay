@@ -186,7 +186,7 @@ public final class CompatibleAnimationView: UIView {
   }
 
   @objc
-  public func pause() {
+  public func pauseOrResumeTiming() {
     animationView.pause()
   }
 

@@ -76,11 +76,8 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
-
-    
     var startOfDay: Date {
         let calendar = Calendar(identifier: .gregorian).gregorianUTC
-//        return Calendar.current.startOfDay(for: self)
         return calendar.startOfDay(for: self)
     }
     

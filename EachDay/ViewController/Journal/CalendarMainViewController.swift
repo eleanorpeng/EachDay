@@ -92,7 +92,6 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
     @objc func dismissAlert() {
         NotificationCenter.default.post(Notification(name: Notifications.dismissTimeCapsule, object: nil))
         performSegue(withIdentifier: "ShowJournalContentSegue", sender: self)
-//        customAlert.dismissAlert()
     }
     
     func fetchTimeCapsuleData() {
@@ -150,14 +149,6 @@ class CalendarMainViewController: UIViewController, CustomAlertDelegate {
         userProfileButton.layer.cornerRadius = userProfileButton.frame.width / 2
         scrollToMonth = currentDate.month()
     }
-
-  
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(true)
-//        guard datePicker != nil else { return }
-//        datePicker.date = currentDate
-//        scrollToMonth = datePicker.date.month()
-//    }
     
     func scrollToSelectedMonth() {
         if !isChangingColor {
@@ -225,10 +216,6 @@ extension CalendarMainViewController: UICollectionViewDelegate, UICollectionView
                 print(error)
             }
         })
-//        UserDefaults.setValue(calendarData?.colors, forKey: "calendarColors")
-        
-//        collectionView.reloadData()
-//        isChangingColor = false
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -239,13 +226,11 @@ extension CalendarMainViewController: UICollectionViewDelegate, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarMainCollectionViewCell.identifier, for: indexPath)
         guard let cardCell = cell as? CalendarMainCollectionViewCell else { return cell }
         cardCell.delegate = self
-        if let month = calendarData?.month[indexPath.row], let monthString = calendarData?.monthText[indexPath.row], let color = calendarData?.colors?[indexPath.row] {
+        if let month = calendarData?.month[indexPath.row],
+           let monthString = calendarData?.monthText[indexPath.row],
+           let color = calendarData?.colors?[indexPath.row] {
             cardCell.layoutCell(monthNum: String(month), monthText: monthString, color: UIColor(hexString: color))
         }
-//        cardCell.layoutCell(monthNum: String(monthNum[indexPath.row]), monthText: monthText[indexPath.row], color: UIColor(r: 247, g: 174, b: 0))
-//        if indexPath.row == changeColorIndex {
-//            cardCell.layoutCell(monthNum: String(monthNum[indexPath.row]), monthText: monthText[indexPath.row], color: calendarColor ?? UIColor(r: 247, g: 174, b: 0))
-//        }
         cardCell.changeColorButton.tag = indexPath.row
         cardCell.layer.cornerRadius = 10
         cardCell.clipsToBounds = true

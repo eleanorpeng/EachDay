@@ -11,10 +11,6 @@ import Kingfisher
 import YPImagePicker
 
 class DetailJournalContentViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, TagSelectionViewControllerDelegate {
-    func getSelectedTags(tags: [String]) {
-        modifiedTags = tags
-    }
-    
     @IBOutlet weak var titleTextFieldToImageConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleTextViewToImageConstraint: NSLayoutConstraint!
     @IBOutlet weak var dateLabel: UILabel!
@@ -98,6 +94,10 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
        
     }
     
+    func getSelectedTags(tags: [String]) {
+        modifiedTags = tags
+    }
+    
     func createTimeCapsuleDismissAlert() {
         let alert = UIAlertController(title: "Do you wish to save or delete this time capsule letter?",
                                       message: nil
@@ -140,7 +140,6 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             JournalManager.shared.changeTimeCapsuleStatus(journalID: self.journalVM?.id ?? "")
             self.loadingView.startLoading(on: self)
-//            HUD.flash(.progress)
             self.navigationController?.popViewController(animated: true)
         }))
         present(alert, animated: true, completion: nil)
@@ -238,8 +237,6 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
     }
     
     func initialSetUp() {
-//        HUD.show(.progress)
-//        loadingView.startLoading(on: self)
         dateLabel.text = journalVM?.formattedDate
         titleTextField.text = journalVM?.title
         titleTextView.setUpTitle(text: journalVM?.title ?? "", lineSpacing: 3)
@@ -335,37 +332,7 @@ class DetailJournalContentViewController: UIViewController, UITextFieldDelegate,
         })
         task.resume()
     }
-    
-//    func layoutTags() {
-//        guard (journalVM?.tags.count)! > 0 else {
-//            tagLabel.isHidden = true
-//            tagSeparator.isHidden = true
-//            return
-//        }
-//        tagLabel.text = journalVM?.tags[0]
-//        tagLabel.clipsToBounds = true
-//        tagLabel.backgroundColor = UIColor(hexString: "F7AE00")
-//        guard (journalVM?.tags.count)! > 1 else { return }
-//        var xAnchor: CGFloat = 16
-//        let journalTags = journalVM?.tags
-//        var previousTag = tagLabel
-//        for num in 0..<journalTags!.count-1 {
-//            let journalTagLabel = PaddingableUILabel()
-//            journalTagLabel.translatesAutoresizingMaskIntoConstraints = false
-//            journalTagLabel.backgroundColor = UIColor(hexString: "F7AE00")
-//            journalTagLabel.textColor = .white
-//            journalTagLabel.text = journalTags?[num+1]
-//            journalTagLabel.font = UIFont.systemFont(ofSize: 15)
-//            journalTagLabel.clipsToBounds = true
-//            journalTagLabel.cornerRadius = 6
-//            journalTagLabel.paddingLeft = 8
-//            journalTagLabel.paddingRight = 8
-//            journalTagLabel.paddingTop = 8
-//            journalTagLabel.paddingBottom = 8
-//            setJournalTagConstraints(previousTag: previousTag!, currentTag: journalTagLabel, xAnchor: &xAnchor)
-//            previousTag = journalTagLabel
-//        }
-//    }
+
     func layoutTags(tags: [String]) {
         if modifiedTags != nil {
             view.subviews.forEach({

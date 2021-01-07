@@ -87,7 +87,7 @@ class SignInViewController: UIViewController {
     
     func uploadUserData() {
         //Get name from Apple ID, will change user info based on Apple ID info
-        var user = User(name: name ?? "",
+        let user = User(name: name ?? "",
                         id: userID ?? "",
                         email: email ?? "",
                         passcode: "",

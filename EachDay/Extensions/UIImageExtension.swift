@@ -15,10 +15,10 @@ extension UIImage {
         let newHeight = targetSize.height / self.size.height
         var newSize: CGSize
 
-        if(newWidth > newHeight) {
+        if newWidth > newHeight {
             newSize = CGSize(width: imageSize.width * newHeight, height: imageSize.height * newHeight)
         } else {
-            newSize = CGSize(width: imageSize.width * newWidth,  height: imageSize.height * newWidth)
+            newSize = CGSize(width: imageSize.width * newWidth, height: imageSize.height * newWidth)
         }
 
         let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)

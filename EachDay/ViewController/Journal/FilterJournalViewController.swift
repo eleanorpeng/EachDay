@@ -12,18 +12,23 @@ class FilterJournalViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     weak var delegate: FilterJournalViewControllerDelegate?
     var tags: [String]?
+    
     var isFiltering: Bool {
         return searchController.isActive && !isSearchBarEmpty
     }
+    
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
+    
     var filteredTags: [String] = []
     let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         DispatchQueue.main.async {
@@ -74,7 +79,6 @@ extension FilterJournalViewController: UITableViewDelegate, UITableViewDataSourc
             tagCell.layoutCell(tag: tags?[indexPath.row] ?? "")
         }
         return tagCell
-        //when tag is clicked, move the text to the textfield, click search to navigate back to the previous view (should be sorted already)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -102,6 +106,5 @@ extension FilterJournalViewController: UISearchResultsUpdating, UISearchBarDeleg
 }
 
 protocol FilterJournalViewControllerDelegate: AnyObject {
-//    func getSearchStatus(isSearching: Bool)
     func getFilteredTag(tag: String)
 }

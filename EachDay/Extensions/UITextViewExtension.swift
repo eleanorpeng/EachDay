@@ -24,7 +24,8 @@ extension UITextView {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = lineSpacing
         
-        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.paragraphStyle: paragraphStyle, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)]
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                                                         NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)]
         
         let attributedString = NSAttributedString(string: text, attributes: attributes)
         
@@ -35,7 +36,8 @@ extension UITextView {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = lineSpacing
         
-        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.paragraphStyle: paragraphStyle, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                                                         NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
         
         let attributedString = NSAttributedString(string: text, attributes: attributes)
         
@@ -43,4 +45,3 @@ extension UITextView {
     }
     
 }
-

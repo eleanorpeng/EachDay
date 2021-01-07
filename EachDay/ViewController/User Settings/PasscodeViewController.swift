@@ -129,7 +129,6 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
                 self?.delegate?.handlePasscodeSet(hasSet: false)
                 self?.keychain["passcode"] = nil
                 UserDefaults.standard.setValue(false, forKey: EPUserDefaults.enableBiometrics.rawValue)
-                print("In passcode: \(UserDefaults.standard.bool(forKey: EPUserDefaults.enableBiometrics.rawValue))")
                 self?.showCompleteAlert()
             } else {
                 self?.showIncompleteAlert()
@@ -170,7 +169,6 @@ class PasscodeViewController: UIViewController, UserSettingViewControllerDelegat
         pinView.clearPin()
         configureSetUpView()
     }
-    
     
     func firstCheck(pin: String) {
         passcode = pin

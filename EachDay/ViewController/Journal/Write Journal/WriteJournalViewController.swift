@@ -52,17 +52,21 @@ class WriteJournalViewController: UIViewController {
     @IBAction func dateChanged(_ sender: Any) {
         selectedDate = datePicker.date
     }
+    
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBAction func dismissKeyboardButtonClicked(_ sender: Any) {
         view.endEditing(true)
     }
+    
     @IBAction func uploadImageButtonClicked(_ sender: Any) {
         imagePickerDonePicking()
         present(imagePicker, animated: true, completion: nil)
     }
+    
     @IBOutlet weak var uploadImageButton: UIButton!
     let helper = Helper()
     let imagePicker = YPImagePicker()
+    
     var completeAllInfo = false {
         didSet {
             if true {
@@ -97,7 +101,7 @@ class WriteJournalViewController: UIViewController {
         journalTags = ["Reflection"]
     }
     
-    func initialSetUp() {
+    func createBackButton() {
         let buttonBackground = helper.createCircularBackground(view: view, color: UIColor(hexString: "F1F1F1"), width: 40, height: 40)
         let button = helper.createButton(background: buttonBackground, image: UIImage(named: "close")!, padding: 12)
         NSLayoutConstraint.activate([
@@ -105,6 +109,10 @@ class WriteJournalViewController: UIViewController {
             buttonBackground.centerYAnchor.constraint(equalTo: completeButton.centerYAnchor)
         ])
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
+    }
+    
+    func initialSetUp() {
+        createBackButton()
         contentTextView.delegate = self
         contentTextView.text = "Record detail of your day"
         contentTextView.textColor = .lightGray
@@ -155,6 +163,7 @@ class WriteJournalViewController: UIViewController {
             }
         })
     }
+    
     func addData() {
         journalData = Journal(title: journalTitle ?? "",
                               date: Timestamp(date: selectedDate ?? Date()),
@@ -236,6 +245,7 @@ class WriteJournalViewController: UIViewController {
             previousTag = journalTagLabel
         }
     }
+    
     func setJournalTagConstraints(previousTag: PaddingableUILabel, currentTag: PaddingableUILabel, xAnchor: inout CGFloat) {
         currentTag.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(currentTag)
@@ -245,6 +255,7 @@ class WriteJournalViewController: UIViewController {
             currentTag.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
         ])
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? TagSelectionViewController {
             destination.delegate = self

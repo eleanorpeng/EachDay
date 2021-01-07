@@ -16,6 +16,7 @@ class WriteTimeCapsuleViewController: UIViewController {
         imagePickerDonePicking()
         present(imagePicker, animated: true, completion: nil)
     }
+    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var uploadImageButton: UIButton!
@@ -27,30 +28,36 @@ class WriteTimeCapsuleViewController: UIViewController {
     var letterImage: UIImage?
     var letterImageURL: String?
     let center = UNUserNotificationCenter.current()
+    
     var letterTitle: String? {
         didSet {
             checkAllInfo()
         }
     }
+    
     var letterContent: String? {
         didSet {
             checkAllInfo()
         }
     }
+    
     let helper = Helper()
     var timeCapsuleData: Journal?
+    
     @IBAction func dismissButtonClicked(_ sender: Any) {
         view.endEditing(true)
     }
+    
     @IBOutlet var toolBarView: UIView!
     @IBOutlet weak var senderButton: UIButton!
     @IBAction func sendButtonClicked(_ sender: Any) {
         loadingView.startLoading(on: self)
         createPushNotification()
         uploadData()
-//        navigationController?.popToRootViewController(animated: true)
     }
+    
     @IBOutlet weak var timeCapsuleLetterImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetUp()
@@ -104,6 +111,7 @@ class WriteTimeCapsuleViewController: UIViewController {
             }
         })
     }
+    
     func imagePickerDonePicking() {
         imagePicker.didFinishPicking { [unowned imagePicker] items, _ in
             if let photo = items.singlePhoto {
@@ -116,6 +124,7 @@ class WriteTimeCapsuleViewController: UIViewController {
             imagePicker.dismiss(animated: true, completion: nil)
         }
     }
+    
     @objc func back() {
         navigationController?.popViewController(animated: true)
     }
@@ -125,6 +134,7 @@ class WriteTimeCapsuleViewController: UIViewController {
             completeAllInfo = true
         }
     }
+    
     func uploadData() {
         guard letterImage != nil else {
             letterImageURL = ""
@@ -189,5 +199,3 @@ extension WriteTimeCapsuleViewController: UITextFieldDelegate {
         letterTitle = textField.text
     }
 }
-
-

@@ -20,20 +20,23 @@ class CreateNewTaskViewController: UIViewController {
     var taskName: String?
     var taskDescription: String?
     weak var delegate: CreateNewTaskViewControllerDelegate?
+    
     @IBOutlet weak var addTagButton: UIButton!
     @IBAction func addTagButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "ShowTimeTrackingTagSegue", sender: self)
     }
+    
     @IBOutlet weak var tagImageView: UIImageView!
     @IBOutlet weak var taskDetailTextView: UITextView!
     @IBAction func saveButtonClicked(_ sender: Any) {
         self.delegate?.startTiming()
         self.dismiss(animated: true, completion: nil)
     }
+    
     @IBOutlet weak var saveButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        startTiming()
         initialSetUp()
     }
     
@@ -49,24 +52,11 @@ class CreateNewTaskViewController: UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-//
-//    func startTiming() {
-//        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateElapsedTimeLabel(timer:)), userInfo: nil, repeats: true)
-//        stopWatch.start()
-//    }
     
     func setUpTextView() {
         taskDetailTextView.text = "Add task details"
         taskDetailTextView.textColor = .lightGray
     }
-    
-//    @objc func updateElapsedTimeLabel(timer: Timer) {
-//        if stopWatch.isRunning {
-//            elapsedTimeLabel.text = stopWatch.elapsedTimeAsString
-//        } else {
-//            timer.invalidate()
-//        }
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? TimeTrackingTagViewController {

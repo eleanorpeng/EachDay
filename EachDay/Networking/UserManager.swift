@@ -13,13 +13,23 @@ import FirebaseStorage
 class UserManager {
     static let shared = UserManager()
     let database = Firestore.firestore()
+    
+    // swiftlint:disable all
+    let USER_KEY = "User"
+    let ROUTINE_TIME_KEY = "routineTime"
+    let PASSCODE_KEY = "passcode"
+    let ID_KEY = "id"
+    let NAME_KEY = "name"
+    let IMAGE_KEY = "image"
+    let CALENDAR_COLORS_KEY = "calendarColors"
+    // swiftlint:enable all
+    
     var userDocID = UserDefaults.standard.string(forKey: EPUserDefaults.userId.rawValue)
-//    var userDocID: String?
 //    var userDocID = "IAMACTUALLYFAKE"
     func uploadUserData(user: User, completion: @escaping (Result<String, Error>) -> Void) {
         do {
             print(user.id)
-            try database.collection("User").document(user.id).setData(from: user)
+            try database.collection(USER_KEY).document(user.id).setData(from: user)
             completion(.success("Successfully updated user data!"))
         } catch {
             completion(.failure(error))
@@ -27,8 +37,8 @@ class UserManager {
     }
     
     func updateRoutineTime(routineTime: Timestamp, completion: @escaping(Result<String, Error>) -> Void) {
-        database.collection("User").document(userDocID ?? "").updateData([
-            "routineTime": routineTime
+        database.collection(USER_KEY).document(userDocID ?? "").updateData([
+            ROUTINE_TIME_KEY: routineTime
         ]) { err in
             if let err = err {
                 completion(.failure(err))
@@ -41,8 +51,8 @@ class UserManager {
     }
     
     func deleteRoutineTime(completion: @escaping(Result<String, Error>) -> Void) {
-        database.collection("User").document(userDocID ?? "").updateData([
-            "routineTime": FieldValue.delete()
+        database.collection(USER_KEY).document(userDocID ?? "").updateData([
+            ROUTINE_TIME_KEY: FieldValue.delete()
         ]) { err in
             if let err = err {
                 completion(.failure(err))
@@ -55,8 +65,8 @@ class UserManager {
     }
     
     func updatePasscode(passcode: String) {
-        database.collection("User").document(userDocID ?? "").updateData([
-            "passcode" : passcode
+        database.collection(USER_KEY).document(userDocID ?? "").updateData([
+            PASSCODE_KEY : passcode
         ]) { err in
             if let err = err {
                 print("Failed to update passcode!")
@@ -67,7 +77,7 @@ class UserManager {
     }
     
     func fetchUser(completion: @escaping (Result<[User], Error>) -> Void) {
-        database.collection("User").whereField("id", isEqualTo: userDocID ?? "").addSnapshotListener({ querySnapshot, error in
+        database.collection(USER_KEY).whereField(ID_KEY, isEqualTo: userDocID ?? "").addSnapshotListener({ querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -81,8 +91,8 @@ class UserManager {
     }
     
     func updateUserName(name: String) {
-        database.collection("User").document(userDocID ?? "").updateData([
-            "name": name
+        database.collection(USER_KEY).document(userDocID ?? "").updateData([
+            NAME_KEY: name
         ]) { err in
             if let err = err {
                 print("Failed to update user name")
@@ -93,8 +103,8 @@ class UserManager {
     }
     
     func updateImage(image: String) {
-        database.collection("User").document(userDocID ?? "").updateData([
-            "image": image
+        database.collection(USER_KEY).document(userDocID ?? "").updateData([
+            IMAGE_KEY: image
         ]) { err in
             if let err = err {
                 print("Failed to update user profile image")
@@ -130,8 +140,8 @@ class UserManager {
     }
     
     func updateCalendarColor(color: [String], completion: @escaping (Result<String, Error>) -> Void) {
-        database.collection("User").document(userDocID ?? "").updateData([
-            "calendarColors" : color
+        database.collection(USER_KEY).document(userDocID ?? "").updateData([
+            CALENDAR_COLORS_KEY : color
         ]) { err in
             if let err = err {
                 print("Failed to update color.")

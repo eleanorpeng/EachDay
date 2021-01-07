@@ -23,13 +23,12 @@ class TagSelectionViewController: UIViewController {
     var fromDetail = false
     var selectedTagsFromDetail: [String] = []
     weak var delegate: TagSelectionViewControllerDelegate?
+    
     @IBAction func sortButtonClicked(_ sender: Any) {
         isSorting = !isSorting
         configureSortButton()
-//
-//        tableView.dragDelegate = self
-//        tableView.dragInteractionEnabled = true
     }
+    
     @IBOutlet weak var tableView: UITableView!
     @IBAction func addButtonClicked(_ sender: Any) {
         let alert = UIAlertController(title: "Add new tag", message: nil, preferredStyle: .alert)
@@ -41,7 +40,6 @@ class TagSelectionViewController: UIViewController {
             let newTag = textField?.text
             self.tags?.append(newTag ?? "")
             self.updateTags()
-//            JournalManager.shared.updateJournalTags(userID: self.user?[0].id ?? "", tags: self.tags ?? [])
             self.tableView.reloadData()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -76,6 +74,7 @@ class TagSelectionViewController: UIViewController {
             tableView.isEditing = false
         }
     }
+    
     func initialSetUp() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -106,12 +105,6 @@ class TagSelectionViewController: UIViewController {
             JournalManager.shared.updateJournalTags(tags: tags ?? [])
         }
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let destination = segue.destination as? WriteJournalViewController {
-//            self.delegate = destination
-//        }
-//    }
     
 }
 
@@ -155,7 +148,6 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
                 self.delegate?.getSelectedTags(tags: self.selectedTags)
             }
             self.updateTags()
-//            JournalManager.shared.updateJournalTags(userID: self.user?[0].id ?? "", tags: self.tags ?? [])
             self.tableView.reloadData()
         }))
         alertSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: .none))
@@ -182,7 +174,6 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
                 self.delegate?.getSelectedTags(tags: self.selectedTags)
             }
             self.updateTags()
-//            JournalManager.shared.updateJournalTags(userID: self.user?[0].id ?? "", tags: self.tags ?? [])
             self.tableView.reloadData()
         }))
         self.present(editAlert, animated: true, completion: nil)
@@ -204,9 +195,6 @@ extension TagSelectionViewController: UITableViewDataSource, UITableViewDelegate
         tagCell.selectionButton.tag = indexPath.row
         tagCell.moreButton.tag = indexPath.row
         tagCell.selectionIndicator.isHidden = !selectedTags.contains(tagCell.tagLabel?.text ?? "")
-//        if fromDetail {
-//            tagCell.selectionIndicator.isHidden = !selectedTagsFromDetail.contains(tagCell.tagLabel?.text ?? "")
-//        }
         return tagCell
     }
     
