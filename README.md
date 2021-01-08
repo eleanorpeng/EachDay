@@ -58,6 +58,10 @@ We live only once. To make the best out of life, I believe it's important to aim
 * [FAPaginationLayout](https://github.com/fahidattique55/FAPaginationLayout)
 * [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
 
+## Requirements
+* iOS 14.0+
+* Xcode 12.1
+
 ## Author
 Eleanor Peng – eachday.co@gmail.com
 
